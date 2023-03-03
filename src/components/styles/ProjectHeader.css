@@ -1,0 +1,22 @@
+.project-header {
+  display: flex;
+  align-items: center;
+}
+
+.project-header .img {
+  margin-right: 10px;
+  width: 25px;
+  height: 25px;
+}
+
+.project-header .img img {
+  height: 100%;
+}
+
+.project-header p {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: 0.05px;
+  color: var(--active);
+}
