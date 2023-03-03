@@ -49,6 +49,7 @@ import LandingPage from "./pages/LandingPage";
 import BlogTopic from "./pages/BlogTopic";
 import Land from "./pages/land";
 import ImageGen from "./pages/ImageGen";
+import Audio from "./pages/Audio";
 
 function App() {
   return (
@@ -101,6 +102,7 @@ function App() {
         <Route path="blogtopic" element={<BlogTopic />} />
         <Route path="land" element={<Land />} />
         <Route path="image" element={<ImageGen />} />
+        <Route path="audio" element={<Audio />} />
 
       </Routes>
     </React.Fragment>
