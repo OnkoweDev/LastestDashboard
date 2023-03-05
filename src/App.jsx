@@ -50,6 +50,17 @@ import BlogTopic from "./pages/BlogTopic";
 import Land from "./pages/land";
 import ImageGen from "./pages/ImageGen";
 import Audio from "./pages/Audio";
+import French from "./Language/French";
+import Spanish from "./Language/Spanish";
+import German from "./Language/German";
+import Hausa from "./Language/Hausa";
+import Igbo from "./Language/Igbo";
+import Yoruba from "./Language/Yoruba";
+import Russian from "./Language/Russian";
+import Portugish from "./Language/Portugish";
+import Italian from "./Language/Italian";
+import Japanese from "./Language/Japanese";
+import Chinese from "./Language/Chinese";
 
 function App() {
   return (
@@ -103,6 +114,17 @@ function App() {
         <Route path="land" element={<Land />} />
         <Route path="image" element={<ImageGen />} />
         <Route path="audio" element={<Audio />} />
+        <Route path="french" element={<French />} />
+        <Route path="spanish" element={<Spanish />} />
+        <Route path="german" element={<German />} />
+        <Route path="hausa" element={<Hausa />} />
+        <Route path="igbo" element={<Igbo />} />
+        <Route path="yoruba" element={<Yoruba />} />
+        <Route path="russian" element={<Russian />} />
+        <Route path="portugish" element={<Portugish />} />
+        <Route path="italian" element={<Italian />} />
+        <Route path="japanese" element={<Japanese />} />
+        <Route path="chinese" element={<Chinese />} />
 
       </Routes>
     </React.Fragment>
