@@ -69,6 +69,7 @@ import ArticleRewriterMore from "./pages2/ArticleRewriter/ArticleRewriterMore";
 import UpdateArticle from "./pages2/ArticleRewriter/UpdateArticle";
 import AllBlog from "./pages2/BlogWriter/blogwriter";
 import BlogMore from "./pages2/BlogWriter/blogWritermore";
+import UpdateBlog from "./pages2/BlogWriter/updateBlog";
 
 function App() {
   return (
@@ -144,6 +145,7 @@ function App() {
 
         <Route path="allblogs" element={<AllBlog />} />
         <Route path="allblogs/:id" element={<BlogMore />} />
+        <Route path="updateBlog/:id" element={<UpdateBlog />} />
 
 
 

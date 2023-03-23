@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getBlogWriterAction } from "../../actions/backend/blogWriterAction";
+import { deleteBlogAction, getBlogWriterAction } from "../../actions/backend/blogWriterAction";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
@@ -14,23 +14,23 @@ const AllBlog = () => {
   const getBlogWriter = useSelector((state)=>state.getBlogWriter)
   const {loading,error,blogs} = getBlogWriter
 
-  const deleteArticleWriter = useSelector((state)=>state.deleteArticleWriter)
-  const {loading:deleteLoading,error:deleteError,success} = deleteArticleWriter
+  const deleteBlogWriter = useSelector((state)=>state.deleteBlogWriter)
+  const {loading:deleteLoading,error:deleteError,success} = deleteBlogWriter
 
   useEffect(() => {
     dispatch(getBlogWriterAction())
   }, [success])
   
-//   const handleDelete = (id) =>{
-//     if(window.confirm(`Are you sure you want to delete Item`)){
-//     dispatch(deleteArticleAction(id))
-//     setMessage("Item deleted Successful")
-//     setTimeout(()=>{
-//         setMessage("")
-//     },4000)
-//     }
+  const handleDelete = (id) =>{
+    if(window.confirm(`Are you sure you want to delete Item`)){
+    dispatch(deleteBlogAction(id))
+    setMessage("Item deleted Successful")
+    setTimeout(()=>{
+        setMessage("")
+    },4000)
+    }
    
-// }
+}
 
   return (
     <>
@@ -56,11 +56,12 @@ const AllBlog = () => {
                {loading && <Loader />}
                {error && <div className=' bar error'>{error}</div>}
 
-               {blogs && blogs.map((blog)=>(
+               {blogs && blogs.slice(0,10).map((blog)=>(
                 <div className="card" key={blog.id}>
-                        <p numberOfLines={1}>{blog.article}</p>
+                        <p>{blog.article.slice(0,300)}....</p>
                         <Link to={`/allblogs/${blog.id}`}>Read more</Link><br/>
-                        <Link to={`/update/${blog.id}`}>Update</Link><br/>
+                        <Link to={`/updateBlog/${blog.id}`}>Update</Link><br/>
+                        <a onClick={()=>handleDelete(blog.id)}>Delete</a>
                         
                 </div>
                 ))}

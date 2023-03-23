@@ -37,10 +37,23 @@ const BlogMore = () => {
                 {error && <div className=' bar error'>{error}</div>}
                 {blog && blog.map((blo)=>(
                     <div key={blo.id}className="cards-container">
-                        {blo.article}                    
+                        {blo.article} 
+                                           
                     </div>
+                    
                 ))}
-            {/* <Voice /> */}
+            <br/>
+            <Link className="article-btn"  
+            style={{ 
+              fontSize: "14px",
+              width:"20%",
+              textAlign:"center",
+              justifyContent:"center",
+              alignItems:"center",
+              padding:"5px",
+              
+          }} 
+          to='/allblogs'>Back</Link><br/>
           </div>
         </div>
       </main>
