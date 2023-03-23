@@ -23,6 +23,7 @@ export const login = (email,password) => async(dispatch) => {
                 : error.message,
           });
         }
+        //const res2 = await axios.get(`http://localhost:8000/task/${userInfo.id}/runs`);
 }
 
 export const register = (full_name,email,password) => async(dispatch) =>{

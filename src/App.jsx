@@ -61,6 +61,14 @@ import Portugish from "./Language/Portugish";
 import Italian from "./Language/Italian";
 import Japanese from "./Language/Japanese";
 import Chinese from "./Language/Chinese";
+import Project from "./pages/Project";
+import Test from "./pages2/Test";
+import ArticleRewriter2 from "./pages/ArticleRewriter2";
+import ALLArticleRewritter from "./pages2/ArticleRewriter/ArticleRewritter";
+import ArticleRewriterMore from "./pages2/ArticleRewriter/ArticleRewriterMore";
+import UpdateArticle from "./pages2/ArticleRewriter/UpdateArticle";
+import AllBlog from "./pages2/BlogWriter/blogwriter";
+import BlogMore from "./pages2/BlogWriter/blogWritermore";
 
 function App() {
   return (
@@ -125,6 +133,24 @@ function App() {
         <Route path="italian" element={<Italian />} />
         <Route path="japanese" element={<Japanese />} />
         <Route path="chinese" element={<Chinese />} />
+        <Route path="project" element={<Project />} />
+        <Route path="art" element={<ArticleRewriter2 />} />
+
+        // pages2
+
+        <Route path="allArticle" element={<ALLArticleRewritter />} />
+        <Route path="allArticle/:id" element={<ArticleRewriterMore />} />
+        <Route path="update/:id" element={<UpdateArticle />} />
+
+        <Route path="allblogs" element={<AllBlog />} />
+        <Route path="allblogs/:id" element={<BlogMore />} />
+
+
+
+
+
+        
+
 
       </Routes>
     </React.Fragment>

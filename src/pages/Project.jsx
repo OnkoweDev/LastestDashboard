@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/GoogleAdTitle.css";
 import articleBlog from "../assets/article-blog.png";
 import {
@@ -14,12 +14,8 @@ import { FiStopCircle } from "react-icons/fi";
 import { CiPause1 } from "react-icons/ci";
 import { RiVoiceprintFill } from "react-icons/ri";
 import {useDispatch, useSelector} from 'react-redux'
-import { addArticleBlog } from "../actions/ai/articleBlogAction";
 import Loader from "../components/Loader";
-import { addArticleRewriter } from "../actions/ai/artcleRewriterAction";
-import { getProjectAction } from "../actions/backend/projectAction";
-import { articleAddAction } from "../actions/backend/articleWritterAction";
-import { useNavigate } from "react-router-dom";
+import { projectAction } from "../actions/backend/projectAction";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -29,56 +25,25 @@ mic.interimResults = true
 mic.lang = 'en-US'
 
 
-const ArticleRewriter = () => {
+const Project = () => {
   // state for audio option
-  const myDiv = useRef(null);
   const [isAudio, setIsAudio] = useState(false);
 
   const[isListening, setIsListening] = useState(false)
   const [note, setNote] = useState([])
 
-  const [content, setContent] = useState([])
-
-  const [article, setArticle] = useState()
-  const [projectId, setProjectId] = useState()
+  const [name, setName] = useState("")
+  const [status, setStatus] = useState("")
   
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const articleRewriter = useSelector((state)=>state.articleRewriter)
-  const {loading,error,success,rewriters} = articleRewriter 
+  const project = useSelector((state)=>state.project)
+  const {loading,error,success,projects} = project 
 
-  const getProject = useSelector((state)=>state.getProject)
-  const {loading:projectLoading,error:projectError, project} = getProject
-
-  const articleWritter = useSelector((state)=>state.articleWritter)
-  const  {loading:articleLoading,error:articleError, writer} = articleWritter
-
-
-
-  const handleForm = (e) => {
-    e.preventDefault()
-    const divData = myDiv.current.innerText;
-      setArticle(divData)
-      console.log(divData) 
-      console.log(projectId) 
-      dispatch(articleAddAction(divData,projectId))
-      navigate('/allArticle') 
-      
-  }
-  
-  useEffect(() => {
-    dispatch(getProjectAction())
-  }, [])
-  
-
-  
   const handSubmit = (e) => {
     e.preventDefault()
-    console.log("loading")
-    dispatch(addArticleRewriter(content))
+    console.log(name,status)
+    dispatch(projectAction(name,status))
   }
-
- 
 
 
   useEffect(() => {
@@ -132,16 +97,16 @@ const ArticleRewriter = () => {
               {/* header */}
               <ProjectHeader
                 image={articleBlog}
-                title="Article/Blog Rewriter"
+                title="Article/Blog Conclusion"
               />
               {/* body container */}
               <div className="body-content">
                 <div className="left">
                     <form onSubmit={handSubmit}>
-                  <p className="product-p">Content*</p>
+                  <p className="product-p">Project Name*</p>
                   <textarea
-                    onChange={(e)=>setContent(e.target.value)}
-                    value={content}
+                    onChange={(e)=>setName(e.target.value)}
+                    value={name}
                     name=""
                     id=""
                     style={{
@@ -155,9 +120,26 @@ const ArticleRewriter = () => {
                       margin: "10px 0",
                       padding: "10px",
                       resize: "none",
-                      overflow:"auto",
-                       border:"0px",
-                       outline:"0px",
+                    }}
+                  ></textarea>
+
+                  <p className="product-p">Project Status*</p>
+                  <textarea
+                    onChange={(e)=>setStatus(e.target.value)}
+                    value={status}
+                    name=""
+                    id=""
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      background: "var(--primary-blue)",
+                      borderRadius: "var(--border-radius-xs)",
+                      border: "none",
+                      outline: "none",
+                      height: "40%",
+                      margin: "10px 0",
+                      padding: "10px",
+                      resize: "none",
                     }}
                   ></textarea>
                   <div
@@ -168,71 +150,32 @@ const ArticleRewriter = () => {
                       margin: "10px 0",
                     }}
                   >
-                   
+        
                     {isListening ? <RiVoiceprintFill  className="icon-div mic-icon" /> : <FiStopCircle  className="icon-div mic-icon" />}
                      <AiOutlineAudio
                         className="icon-div mic-icon"
                         onClick={()=>setIsListening(prevState => !prevState)}
                       />
                   </div>
-                  {/*  number of output*/}
+                 
+                
                   <button className="article-btn" style={{ fontSize: "14px" }}>
-                    Create Article Rewriter
+                    Create New Project
                   </button>
                   </form>
                 </div>
                 {/*  */}
                 <div className="right">
                 {loading && <Loader />}
-                {error && <div className=' bar error'>{error}</div>}
+                {error && <div className='bar error'>{error}</div>}
+                  
+                  <div className="sec-1">
+                    <BCDIcons />
+                        <div className="txt-sec"></div>
 
-                {articleLoading && <Loader />}
-                {articleError && <div className=' bar error'>{articleError}</div>}
-
-                
-                <form onSubmit={handleForm}>
-                {rewriters && rewriters.map((rewrite)=>(
-                  <div className="sec-1" ref={myDiv} contentEditable  type='text'>
-                  <BCDIcons />
-                        {rewrite.generated_article}
+                   
                   </div>
-                  ))}
-                 <br />
-                 
-                 <p className="product-p">Select Project*</p>
-                    <select
-                      onChange={(e)=>setProjectId(e.target.value)} 
-                      value={projectId}
-                       name=""
-                       id=""
-                       className="select"
-                       style={{
-                         display: "block",
-                         width: "100%",
-                         background: "var(--primary-blue)",
-                         borderRadius: "var(--border-radius-xs)",
-                         border: "none",
-                         outline: "none",
-                         height: "10%",
-                         margin: "5px 0",
-                         padding: "5px",
-                         fontWeight: "400",
-                         fontSize: "14px",
-                         lineHeight: "21px",
-                         color: "rgba(0, 22, 51, 0.5)",
-                       }}
-                     >
-                     {
-                      project && project.map((pro, i)=>(
-                       <option key={i} value={pro.id}>{pro.name}</option>
-                       ))
-                      }
-                     </select>
-                  <br />
-                <button className="article-btn" style={{ fontSize: "14px" }}>
-                Save Article Rewriter
-              </button>
-                </form>
+                  
                 </div>
               </div>
             </div>
@@ -243,4 +186,4 @@ const ArticleRewriter = () => {
   );
 };
 
-export default ArticleRewriter;
+export default Project;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./styles/LinkedInShort.css";
 import blog3 from "../assets/blog-writer.png";
 import {
@@ -17,6 +17,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addArticleWriter } from "../actions/ai/blogArticleAction";
 import Loader from "../components/Loader";
+import { getProjectAction } from "../actions/backend/projectAction";
+import { blogWriterAddAction } from "../actions/backend/blogWriterAction";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -30,13 +32,20 @@ const LinkedInShort = () => {
   const [title,setTitle] = useState([])
   const [intro,setIntro] = useState([])
   const [sections,setSections] = useState([])
+  const [projectId,setProjectId] = useState()
+
+  const myDiv = useRef(null);
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const blogArticle = useSelector((state)=>state.blogArticle)
-
   const {loading, error, success, writers} = blogArticle
+  const getProject = useSelector((state)=>state.getProject)
+  const {loading:projectLoading,error:projectError, project} = getProject
+
+  const addBlogWriter = useSelector((state)=>state.addBlogWriter)
+  const {loading:blogLoading, error:blogError, success:blogSuccess} = addBlogWriter
 
 
   const handleArticle = (e) => {
@@ -45,8 +54,11 @@ const LinkedInShort = () => {
     dispatch(addArticleWriter(title,intro,sections))
   }
 
+  useEffect(() => {
+    dispatch(getProjectAction())
+  }, [])
+
 useEffect(() => {
- 
 }, [success])
 
   const [isAudio, setIsAudio] = useState(false);
@@ -87,6 +99,19 @@ useEffect(() => {
       }
   }
 
+  const handleForm = (e) => {
+    e.preventDefault()
+    const divData = myDiv.current.innerText;
+    setArticle(divData)
+    console.log(divData)
+    console.log(projectId)
+    dispatch(blogWriterAddAction(divData, projectId))
+    navigate('/allBlogs')
+  }
+
+ 
+
+
 
 
 
@@ -112,7 +137,7 @@ useEffect(() => {
               <div className="body-content">
                 <div className="left">
                     <form onSubmit={handleArticle}>
-                        {loading && <Loader />}
+                       
                         <p className="product-p">Title*</p>
                         <input type="text" className="input"  onChange={(e)=>setTitle(e.target.value)} value={title}/>
                         <p className="product-p">Intro*</p>
@@ -219,12 +244,49 @@ useEffect(() => {
                 </div>
                 {/*  */}
                 <div className="right">
-                    {writers && writers.map((writer)=>(
-                        <div className="sec-1">
-                            <BCDIcons />
-                                {writer.generated_contents}
-                        </div>
+                {loading && <Loader />}
+                <form onSubmit={handleForm}>
+                  {writers && writers.map((writer)=>(
+                    <div className="sec-1" ref={myDiv} contentEditable>
+                    <BCDIcons />
+                    {writer.generated_contents}
+                    </div>
                     ))}
+                    <br/>
+                    <p className="product-p">Select Project*</p>
+                    <select
+                      onChange={(e)=>setProjectId(e.target.value)} 
+                      value={projectId}
+                       name=""
+                       id=""
+                       className="select"
+                       style={{
+                         display: "block",
+                         width: "100%",
+                         background: "var(--primary-blue)",
+                         borderRadius: "var(--border-radius-xs)",
+                         border: "none",
+                         outline: "none",
+                         height: "10%",
+                         margin: "5px 0",
+                         padding: "5px",
+                         fontWeight: "400",
+                         fontSize: "14px",
+                         lineHeight: "21px",
+                         color: "rgba(0, 22, 51, 0.5)",
+                       }}
+                     >
+                     {
+                      project && project.map((pro, i)=>(
+                       <option key={i} value={pro.id}>{pro.name}</option>
+                       ))
+                      }
+                     </select>
+                  <br />
+                    <button className="article-btn" style={{ fontSize: "14px" }}>
+                    Save Blog Writer
+                  </button>
+                </form>
                 </div>
               </div>
             </div>

@@ -1,3 +1,4 @@
+
 import {createStore, combineReducers,applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from '@redux-devtools/extension'
@@ -27,6 +28,9 @@ import { emailGeneratorReducer } from './reducers/ai/emailGenReducer'
 import { landingPageReducer } from './reducers/ai/landingPageReducer'
 import { blogtopicReducer } from './reducers/ai/blogTopicReducer'
 import { landingReducer } from './reducers/ai/landReducer'
+import { addProjectReducer, getProjectReducer } from './reducers/backend/projectReducer'
+import {  addArticleWriterReducer, deleteArticleWriterReducer, getArticleWriterReducer, getOneArticleWriterReducer, updatdeArticleWriterReducer } from './reducers/backend/articleWriterReducer'
+import { addBlogWriterReducer, getBlogWriterReducer, getOneBlogWriterReducer } from './reducers/backend/blogWriterReducer'
 
 
 const reducers = combineReducers({
@@ -65,7 +69,21 @@ const reducers = combineReducers({
     blogTopic:blogtopicReducer,
     land:landingReducer,
 
+    //Backend 
+    project: addProjectReducer,
+    getProject: getProjectReducer,
 
+    //Article REWRITER
+    articleWritter:addArticleWriterReducer,
+    getArticleWriter:getArticleWriterReducer,
+    getOneArticleWriter:getOneArticleWriterReducer,
+    updateArticleWriter:updatdeArticleWriterReducer,
+    deleteArticleWriter:deleteArticleWriterReducer,
+
+    //BLOGWRITER
+    addBlogWriter:addBlogWriterReducer,
+    getBlogWriter:getBlogWriterReducer, 
+    getOneBlogWriter:getOneBlogWriterReducer,
     
     //ebook in store
    // AddEbook:addEbookReducer,
@@ -74,12 +92,16 @@ const reducers = combineReducers({
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')):null
 
+const projectInfoFromStorage = localStorage.getItem('projectInfo') ? JSON.parse(localStorage.getItem('projectInfo')):null
+
 // const initialState = {
 //     userLogin:{ userInfo:userInfoFromStorage}}
 
 const initialState = {
     userLogin: { userInfo: userInfoFromStorage },
+    project: { projectInfo: projectInfoFromStorage },
   };
+  
 const middleware = [thunk]
 
 const store = createStore(

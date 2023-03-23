@@ -19,7 +19,6 @@ import Loader from "../components/Loader";
 import { addArticleRewriter } from "../actions/ai/artcleRewriterAction";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { articleAddAction } from "../actions/backend/articleWritterAction";
-import { useNavigate } from "react-router-dom";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -29,7 +28,7 @@ mic.interimResults = true
 mic.lang = 'en-US'
 
 
-const ArticleRewriter = () => {
+const ArticleRewriter2 = () => {
   // state for audio option
   const myDiv = useRef(null);
   const [isAudio, setIsAudio] = useState(false);
@@ -43,7 +42,6 @@ const ArticleRewriter = () => {
   const [projectId, setProjectId] = useState()
   
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const articleRewriter = useSelector((state)=>state.articleRewriter)
   const {loading,error,success,rewriters} = articleRewriter 
 
@@ -62,7 +60,7 @@ const ArticleRewriter = () => {
       console.log(divData) 
       console.log(projectId) 
       dispatch(articleAddAction(divData,projectId))
-      navigate('/allArticle') 
+      console.log(error)
       
   }
   
@@ -199,7 +197,7 @@ const ArticleRewriter = () => {
                   ))}
                  <br />
                  
-                 <p className="product-p">Select Project*</p>
+                 
                     <select
                       onChange={(e)=>setProjectId(e.target.value)} 
                       value={projectId}
@@ -243,4 +241,4 @@ const ArticleRewriter = () => {
   );
 };
 
-export default ArticleRewriter;
+export default ArticleRewriter2;
