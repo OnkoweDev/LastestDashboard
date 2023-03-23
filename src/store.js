@@ -31,6 +31,7 @@ import { landingReducer } from './reducers/ai/landReducer'
 import { addProjectReducer, getProjectReducer } from './reducers/backend/projectReducer'
 import {  addArticleWriterReducer, deleteArticleWriterReducer, getArticleWriterReducer, getOneArticleWriterReducer, updatdeArticleWriterReducer } from './reducers/backend/articleWriterReducer'
 import { addBlogWriterReducer, deleteBlogWriterReducer, getBlogWriterReducer, getOneBlogWriterReducer, updateBlogWriterReducer } from './reducers/backend/blogWriterReducer'
+import { saveBlogIntroReducer } from './reducers/backend/blogIntroReducer'
 
 
 const reducers = combineReducers({
@@ -86,6 +87,9 @@ const reducers = combineReducers({
     getOneBlogWriter:getOneBlogWriterReducer,
     deleteBlogWriter:deleteBlogWriterReducer,
     updateBlogWriter:updateBlogWriterReducer,
+
+    //Blog Intro
+    saveBlogIntro:saveBlogIntroReducer,
     
     //ebook in store
    // AddEbook:addEbookReducer,

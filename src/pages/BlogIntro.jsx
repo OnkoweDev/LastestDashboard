@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect, useRef } from "react";
 import "./styles/Article.css";
 import blog1 from "../assets/article.png";
 import {
@@ -18,6 +18,8 @@ import { addEbook, viewMyEbook } from "../actions/ebookaction";
 import { useNavigate } from "react-router-dom";
 import { addBlog, getBlogIntroAction } from "../actions/ai/blogIntroAction";
 import Loader from '../components/Loader'
+import { getProjectAction } from "../actions/backend/projectAction";
+import { blogIntroAddAction } from "../actions/backend/blogIntroAction";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -32,7 +34,9 @@ const TTR = () => {
     
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
-  const [arrayData, setArrayData] = useState([]);
+  const [projectId, setProjectId] = useState();
+
+  const myDiv = useRef(null)
   
 
   const [title, setTitle] = useState([])
@@ -56,8 +60,10 @@ const TTR = () => {
   const getBlogIntro = useSelector((state)=>state.getBlogIntro)
   const {loading:blogIntroLoading, error:blogIntroError,blogs,success:blogSuccess} = getBlogIntro
   const userLogin = useSelector((state)=>state.userLogin)
-
   const {userInfo} = userLogin
+
+  const getProject = useSelector((state)=>state.getProject)
+  const {loading:projectLoading,error:projectError, project} = getProject
 
  // const data = []
 //   newBlogs && newBlogs.forEach(function(blog){
@@ -70,6 +76,18 @@ const TTR = () => {
 //         }
 //      })
 
+
+const handleForm  = (e) => {
+  e.preventDefault()
+  const divData = myDiv.current.innerText;
+  console.log(divData)
+  console.log(projectId)
+  dispatch(blogIntroAddAction(divData,projectId))
+}
+
+useEffect(() => {
+  dispatch(getProjectAction())
+}, [])
      
   
 
@@ -93,38 +111,8 @@ const TTR = () => {
 
   
 
-  useEffect(() => {
-    handleListening()
-  }, [isListening])
-  
+ 
 
-  const handleListening = () => {
-      if(isListening){
-          mic.start()
-          mic.onend = () => {
-              console.log('continue ...')
-              mic.start()
-          }
-      }
-      else{
-          mic.stop()
-          mic.onend = () => {
-              console.log('stoped')
-          }
-      }
-      mic.onstart = () => {
-          console.log('Mics is on')
-      }
-
-      mic.onresult = event => {
-          const transcript = Array.from(event.results).map(result => result[0]).map(result=> result.transcript).join('')
-          console.log(transcript)
-          setNote(transcript)
-          mic.onerror = event => {
-              console.log(event.error)
-          }
-      }
-  }
 
   // state to keep track of number of output
   // handle audio option
@@ -167,7 +155,7 @@ const TTR = () => {
                       padding: "10px",
                       resize: "none",
                     }}
-                  >{note}</textarea>
+                  ></textarea>
                   <div
                     className="mic"
                     style={{
@@ -236,16 +224,59 @@ const TTR = () => {
                 </div>
                 {/*  */}
                 <div className="right">
-                    {loading && <Loader />}
-                    {error && <div className=' bar error'>{error}</div>}
+                <form onSubmit={handleForm}>
+                {loading && <Loader />}
+                {error && <div className=' bar error'>{error}</div>}
                 {
-                     newBlogs && newBlogs.slice(0,1).map((d)=>(
-                  <div className="sec-1">
-                    <BCDIcons />                   
-                        {d.generated_intros}
-                  </div>
-                   ))
-                }
+                  newBlogs && newBlogs.slice(0,1).map((d)=>(
+                    <div className="sec-1" contentEditable ref={myDiv}>
+                    {d.generated_intros.map((d)=>(
+                      <p>
+                      {d}
+                      </p>
+                      
+                      ))}
+                      </div>
+                      ))
+                    }
+
+                    <br />
+                 
+                    <p className="product-p">Select Project*</p>
+                       <select
+                         onChange={(e)=>setProjectId(e.target.value)} 
+                         value={projectId}
+                          name=""
+                          id=""
+                          className="select"
+                          style={{
+                            display: "block",
+                            width: "100%",
+                            background: "var(--primary-blue)",
+                            borderRadius: "var(--border-radius-xs)",
+                            border: "none",
+                            outline: "none",
+                            height: "10%",
+                            margin: "5px 0",
+                            padding: "5px",
+                            fontWeight: "400",
+                            fontSize: "14px",
+                            lineHeight: "21px",
+                            color: "rgba(0, 22, 51, 0.5)",
+                          }}
+                        >
+                        {
+                         project && project.map((pro, i)=>(
+                          <option key={i} value={pro.id}>{pro.name}</option>
+                          ))
+                         }
+                        </select>
+                     <br />
+                    <button className="article-btn" style={{ fontSize: "14px" }}>
+                    Save Blog Intro Generated
+                  </button>
+                    </form>
+
                 </div>
               </div>
             </div>
