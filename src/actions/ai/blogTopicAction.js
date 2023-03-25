@@ -12,7 +12,7 @@ export const blogTopicAction = (topic,no_of_outputs) => async(dispatch) => {
             },
         };
         const {data} = await axios.post(`http://44.203.107.96/topic/`, {topic,no_of_outputs},config)
-        dispatch({type:ADD_BLOGTOPIC_SUCCESS,payload:data.data})
+        dispatch({type:ADD_BLOGTOPIC_SUCCESS,payload:[data.data]})
         console.log(data)
         //console.log(error)
     } catch (error) {

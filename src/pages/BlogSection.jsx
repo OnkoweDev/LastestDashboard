@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./styles/Facebook.css";
 import blog2 from "../assets/blog-section.png";
 import {
@@ -16,6 +16,8 @@ import { RiVoiceprintFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { blogSectionAction } from "../actions/ai/blogSectionAction";
+import Loader from "../components/Loader";
+import { getProjectAction } from "../actions/backend/projectAction";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -26,16 +28,24 @@ mic.lang = 'en-US'
 
 const Facebook = () => {
   // state for audio option
-  const [isAudio, setIsAudio] = useState(false);
+  const myDiv = useRef(null)
 
   const [topic, setTopic] = useState([])
   const [intro, setIntro] = useState([])
   const [outputNumber, setOutputNumber] = useState(1);
+  const [projectId, setProjectId] = useState();
+
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const blogSection = useSelector((state)=>state.blogSection)
   const {loading, success,error, blogsSec} = blogSection
+  const getProject = useSelector((state)=>state.getProject)
+  const {loading:projectLoading,error:projectError, project} = getProject
+
+  const saveBlogSection = useSelector((state)=>state.saveBlogSection)
+  const {loading:blogLoading, success:blogSuccess,error:blogError} = saveBlogSection
+  
 
   const handleSubmit = (e) =>{
     e.preventDefault()
@@ -85,10 +95,19 @@ const Facebook = () => {
   }
   // state to keep track of number of output
   // handle audio option
-  const handleAudio = () => {
-    console.log("Mic is clicked");
-    setIsAudio(true);
-  };
+  
+  const handleForm = (e) => {
+    e.preventDefault()
+    const divData = myDiv.current.innerText;
+    console.log(divData)
+    console.log(projectId)
+    //dispatch()
+  }
+
+  useEffect(() => {
+    dispatch(getProjectAction())
+  }, [])
+
   return (
     <>
       <main>
@@ -214,13 +233,56 @@ const Facebook = () => {
                 </div>
                 {/*  */}
                 <div className="right">
-                    {blogsSec && blogsSec.slice(0,1).map((blog)=>(
-
-                        <div className="sec-1">
-                            <BCDIcons />
-                            {blog.generated_sections}
-                        </div>
-                    ))}
+                <form onSubmit={handleForm}>
+                {loading && <Loader />}
+                {error && <div className=' bar error'>{error}</div>}
+                {blogsSec && blogsSec.slice(0,1).map((blog)=>(
+                  
+                  <div className="sec-1" ref={myDiv}>
+                  <BCDIcons />
+                  {blog.generated_sections.map((d)=>(
+                    <p>{d}</p>
+                  ))}
+                  </div>
+                  ))}
+                  
+                  <br />
+                  <br />
+                 
+                  <p className="product-p">Select Project*</p>
+                     <select
+                       onChange={(e)=>setProjectId(e.target.value)} 
+                       value={projectId}
+                        name=""
+                        id=""
+                        className="select"
+                        style={{
+                          display: "block",
+                          width: "100%",
+                          background: "var(--primary-blue)",
+                          borderRadius: "var(--border-radius-xs)",
+                          border: "none",
+                          outline: "none",
+                          height: "10%",
+                          margin: "5px 0",
+                          padding: "5px",
+                          fontWeight: "400",
+                          fontSize: "14px",
+                          lineHeight: "21px",
+                          color: "rgba(0, 22, 51, 0.5)",
+                        }}
+                      >
+                      {
+                       project && project.map((pro, i)=>(
+                        <option key={i} value={pro.id}>{pro.name}</option>
+                        ))
+                       }
+                      </select>
+                   <br />
+                    <button className="article-btn" style={{ fontSize: "14px" }}>
+                    Save Blog Section Generated
+                    </button>
+                  </form>
                  
                 </div>
               </div>

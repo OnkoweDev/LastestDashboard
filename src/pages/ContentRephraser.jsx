@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./styles/GoogleAdDesc.css";
 import content from "../assets/content.png";
 import {
@@ -16,6 +16,9 @@ import { RiVoiceprintFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { addContentRephesal } from "../actions/ai/contentRepresalAction";
 import Loader from "../components/Loader";
+import { getProjectAction } from "../actions/backend/projectAction";
+import { addContentRepreAction } from "../actions/backend/contentRepreAction";
+import { useNavigate } from "react-router-dom";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -29,19 +32,41 @@ const GoogleAdDesc = () => {
   const[isListening, setIsListening] = useState(false)
   const [note, setNote] = useState([])
 
+  const [projectId, setProjectId] = useState()
+  const myDiv = useRef(null)
+
   const [content, setContent] = useState([])
   const [outputNumber, setOutputNumber] = useState(1);
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const contentRephesal = useSelector((state)=>state.contentRephesal)
   const {loading,error, rephesals,success} = contentRephesal
 
+  const getProject = useSelector((state)=>state.getProject)
+  const {loading:projectLoading,error:projectError, project} = getProject
+
+   const saveContent = useSelector((state)=>state.saveContent)
+   const {loading:contentLoading,error:contentError} = saveContent
 
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log("working")
     dispatch(addContentRephesal(content,outputNumber))
   }
+
+  const handleForm = (e) => {
+    e.preventDefault()
+    const divData = myDiv.current.innerText
+    console.log(divData)
+    console.log(projectId)
+    dispatch(addContentRepreAction(divData,projectId))
+    navigate('/content')
+  }
+
+  useEffect(() => {
+    dispatch(getProjectAction())
+  }, [])
 
 
 
@@ -189,14 +214,55 @@ const GoogleAdDesc = () => {
                 <div className="right">
                     {loading && <Loader />}
                     {error && <div className=' bar error'>{error}</div>}
-                    {rephesals && rephesals.map((rephesal)=>(
-
-                        <div className="sec-1">
-                            <BCDIcons />
-                            {rephesal.generated_rephrase_contents}
-                        </div>
-                    ))}
-                  {/* <div className="sec-2">
+                    {contentLoading && <Loader />}
+                    {contentError && <div className=' bar error'>{contentError}</div>}
+                    <form onSubmit={handleForm}>
+                        {rephesals && rephesals.map((rephesal)=>(
+                          
+                          <div className="sec-1" ref={myDiv} contentEditable>
+                          <BCDIcons />
+                          {rephesal.generated_rephrase_contents.map((d)=>(
+                            <p>{d}</p>
+                          ))}
+                          </div>
+                          ))}
+                          <br />
+                 
+                 <p className="product-p">Select Project*</p>
+                    <select
+                      onChange={(e)=>setProjectId(e.target.value)} 
+                      value={projectId}
+                       name=""
+                       id=""
+                       className="select"
+                       style={{
+                         display: "block",
+                         width: "100%",
+                         background: "var(--primary-blue)",
+                         borderRadius: "var(--border-radius-xs)",
+                         border: "none",
+                         outline: "none",
+                         height: "10%",
+                         margin: "5px 0",
+                         padding: "5px",
+                         fontWeight: "400",
+                         fontSize: "14px",
+                         lineHeight: "21px",
+                         color: "rgba(0, 22, 51, 0.5)",
+                       }}
+                     >
+                     {
+                      project && project.map((pro, i)=>(
+                       <option key={i} value={pro.id}>{pro.name}</option>
+                       ))
+                      }
+                     </select>
+                  <br />
+                <button className="article-btn" style={{ fontSize: "14px" }}>
+                Save Article Rewriter
+              </button>
+                      </form>
+                      {/* <div className="sec-2">
                     <BCDIcons />
                     <div className="txt-sec"></div>
                   </div> */}

@@ -57,15 +57,16 @@ const TTR = () => {
   const addBlogIntro = useSelector((state)=>state.addBlogIntro)
   const {loading,error,success,newBlogs} = addBlogIntro
 
-  const getBlogIntro = useSelector((state)=>state.getBlogIntro)
-  const {loading:blogIntroLoading, error:blogIntroError,blogs,success:blogSuccess} = getBlogIntro
+  const saveBlogIntro = useSelector((state)=>state.saveBlogIntro)
+  const {loading:saveIntroLoading, error:saveIntroError} = saveBlogIntro
+
   const userLogin = useSelector((state)=>state.userLogin)
   const {userInfo} = userLogin
 
   const getProject = useSelector((state)=>state.getProject)
   const {loading:projectLoading,error:projectError, project} = getProject
 
- // const data = []
+  //const data = []
 //   newBlogs && newBlogs.forEach(function(blog){
 //         if(Array.isArray(blog)){
 //             blog.forEach(function(intro){
@@ -75,6 +76,12 @@ const TTR = () => {
 //             })
 //         }
 //      })
+//const data =[newBlogs];
+///console.log(data)
+//  arr.forEach((blogs)=>{
+//   data.push(blogs)
+//   console.log(data)
+// })
 
 
 const handleForm  = (e) => {
@@ -83,6 +90,7 @@ const handleForm  = (e) => {
   console.log(divData)
   console.log(projectId)
   dispatch(blogIntroAddAction(divData,projectId))
+  navigate('/blog-intro-generator')
 }
 
 useEffect(() => {
@@ -133,6 +141,7 @@ useEffect(() => {
               {/* body */}
               <div className="body-content">
                 <div className="left">
+              
                     <form onSubmit={handleIntro}>
                   <p className="product-p">Topic*</p>
                  
@@ -164,48 +173,7 @@ useEffect(() => {
                       margin: "10px 0",
                     }}
                   >
-                    {/* {isAudio ? (
-                      <div className="audio">
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <RiVoiceprintFill />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <CiPause1 />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <FiStopCircle />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setIsAudio(false);
-                          }}
-                        >
-                          <HiOutlinePencil />
-                        </button>
-                      </div>
-                    ) : (
-                      <AiOutlineAudio
-                        className="icon-div mic-icon"
-                        onClick={handleAudio}
-                      />
-                    )} */}
+                    
                     {isListening ?  <RiVoiceprintFill /> :  <FiStopCircle />}
                     <AiOutlineAudio onClick={()=>setIsListening(prevState =>!prevState)} />
                   </div>
@@ -224,18 +192,18 @@ useEffect(() => {
                 </div>
                 {/*  */}
                 <div className="right">
-                <form onSubmit={handleForm}>
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
+                
+               
+
+
+                <form onSubmit={handleForm}>
+                
                 {
-                  newBlogs && newBlogs.slice(0,1).map((d)=>(
+                  newBlogs && newBlogs.map((d)=>(
                     <div className="sec-1" contentEditable ref={myDiv}>
-                    {d.generated_intros.map((d)=>(
-                      <p>
-                      {d}
-                      </p>
-                      
-                      ))}
+                        {d.generated_intros}
                       </div>
                       ))
                     }
@@ -274,7 +242,7 @@ useEffect(() => {
                      <br />
                     <button className="article-btn" style={{ fontSize: "14px" }}>
                     Save Blog Intro Generated
-                  </button>
+                     </button>
                     </form>
 
                 </div>

@@ -32,6 +32,9 @@ import { addProjectReducer, getProjectReducer } from './reducers/backend/project
 import {  addArticleWriterReducer, deleteArticleWriterReducer, getArticleWriterReducer, getOneArticleWriterReducer, updatdeArticleWriterReducer } from './reducers/backend/articleWriterReducer'
 import { addBlogWriterReducer, deleteBlogWriterReducer, getBlogWriterReducer, getOneBlogWriterReducer, updateBlogWriterReducer } from './reducers/backend/blogWriterReducer'
 import { saveBlogIntroReducer } from './reducers/backend/blogIntroReducer'
+import { saveBlogSectionReducer } from './reducers/backend/blogSectionReducer'
+import { saveBlogTopicReducer } from './reducers/backend/blogTopicReducer'
+import { addContentReducer, deleteContentReducer, getContentReducer, getOneContentReducer } from './reducers/backend/contentRepreReducer'
 
 
 const reducers = combineReducers({
@@ -90,6 +93,18 @@ const reducers = combineReducers({
 
     //Blog Intro
     saveBlogIntro:saveBlogIntroReducer,
+
+    //Blog Section
+    saveBlogSection:saveBlogSectionReducer,
+
+    //Blog Topic
+    saveBlogTopic: saveBlogTopicReducer,
+
+    //contentRepresal
+    saveContent:addContentReducer,
+    getContent:getContentReducer,
+    getOneContent:getOneContentReducer,
+    deleteRepresal:deleteContentReducer,
     
     //ebook in store
    // AddEbook:addEbookReducer,
