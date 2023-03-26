@@ -35,6 +35,7 @@ import { saveBlogIntroReducer } from './reducers/backend/blogIntroReducer'
 import { saveBlogSectionReducer } from './reducers/backend/blogSectionReducer'
 import { saveBlogTopicReducer } from './reducers/backend/blogTopicReducer'
 import { addContentReducer, deleteContentReducer, getContentReducer, getOneContentReducer } from './reducers/backend/contentRepreReducer'
+import { addEmailReducer, deleteEmailReducer, getEmailReducer, getOneEmailReducer } from './reducers/backend/emailGenReducer'
 
 
 const reducers = combineReducers({
@@ -105,6 +106,12 @@ const reducers = combineReducers({
     getContent:getContentReducer,
     getOneContent:getOneContentReducer,
     deleteRepresal:deleteContentReducer,
+
+    //email
+    addEmail:addEmailReducer,
+    getEmail:getEmailReducer,
+    getOneEmail:getOneEmailReducer,
+    deleteEmail:deleteEmailReducer,
     
     //ebook in store
    // AddEbook:addEbookReducer,

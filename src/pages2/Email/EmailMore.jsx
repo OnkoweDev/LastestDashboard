@@ -2,28 +2,27 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getOneArticleAction } from "../../actions/backend/articleWritterAction";
+import { getOneEmailGenAction } from "../../actions/backend/emailGeneratorAction";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
 
-const ArticleRewriterMore = () => {
+const EmailMore = () => {
   // state to hold the data comimg from the database / backend
   //const [data, setData] = useState(HomepageData);
   const [article, setArticle] = useState([])
 
   const dispatch = useDispatch()
-  const getOneArticleWriter = useSelector((state)=>state.getOneArticleWriter)
-  const {loading,error,wroter} = getOneArticleWriter
+  const getOneEmail = useSelector((state)=>state.getOneEmail)
+  const {loading,error,email} = getOneEmail
 
   const {id} = useParams();
-  const data = [wroter]
-  console.log(data)
+  //const data = [wroter]
+  //console.log(data)
 
   useEffect(() => {
-    dispatch(getOneArticleAction(id))
-    const data = [wroter]
-    console.log(data)
+    dispatch(getOneEmailGenAction(id))
+    
   }, [])
   
  
@@ -37,19 +36,19 @@ const ArticleRewriterMore = () => {
           <div className="content">
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
-                {wroter && wroter.map((wrote)=>(
-                    <div key={wrote.id}className="cards-container">
-                        {wrote.article_rewriter} 
-                        <br />
-                        <Link to="allArticle">Back</Link>                   
+                {email && email.map((con)=>(
+                    <div key={con.id}className="cards-container">
+                        {con.email_generator}  
+                                      
                     </div>
                 ))}
-            {/* <Voice /> */}
+                <br />
+                <Link   style={{width:'150px', textAlign:"center", padding:"3px,0px,0px,0px"}} to="/email">Back</Link>    
           </div>
         </div>
       </main>
     </>
   );
-};
+}; 
 
-export default ArticleRewriterMore;
+export default EmailMore;

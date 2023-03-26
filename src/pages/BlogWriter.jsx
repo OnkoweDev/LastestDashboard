@@ -276,6 +276,8 @@ useEffect(() => {
                          color: "rgba(0, 22, 51, 0.5)",
                        }}
                      >
+                     <option value="" selected disabled hidden>Choose here</option>
+
                      {
                       project && project.map((pro, i)=>(
                        <option key={i} value={pro.id}>{pro.name}</option>

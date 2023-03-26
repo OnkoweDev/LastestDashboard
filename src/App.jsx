@@ -72,6 +72,8 @@ import BlogMore from "./pages2/BlogWriter/blogWritermore";
 import UpdateBlog from "./pages2/BlogWriter/updateBlog";
 import AllContentRepre from "./pages2/ContentRepresal/ContentRepresal";
 import ContentRepreMore from "./pages2/ContentRepresal/ContentRepreMore";
+import EmailGen from "./pages2/Email/EmailGen";
+import EmailMore from "./pages2/Email/EmailMore";
 
 function App() {
   return (
@@ -151,6 +153,12 @@ function App() {
 
         <Route path="content" element={<AllContentRepre />} />
         <Route path="content/:id" element={<ContentRepreMore />} />
+
+
+        <Route path="email" element={<EmailGen />} />
+        <Route path="email/:id" element={<EmailMore />} />
+
+
 
 
 

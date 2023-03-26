@@ -38,15 +38,17 @@ const ContentRepreMore = () => {
                 {error && <div className=' bar error'>{error}</div>}
                 {contents && contents.map((con)=>(
                     <div key={con.id}className="cards-container">
-                        {con.content}                    
+                        {con.content}  
+                                      
                     </div>
                 ))}
-            {/* <Voice /> */}
+                <br />
+                <Link   style={{width:'150px', textAlign:"center", padding:"3px,0px,0px,0px"}} to="/content">Back</Link>    
           </div>
         </div>
       </main>
     </>
   );
-};
+}; 
 
 export default ContentRepreMore;
