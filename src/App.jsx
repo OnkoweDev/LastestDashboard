@@ -80,6 +80,8 @@ import FacebookAds from "./pages2/FacebookAds/FacebookAds";
 import FacebookMore from "./pages2/FacebookAds/FacebookMore";
 import ALLGoogleAds from "./pages2/GoogleAds/GoogleAds";
 import GoogleAdsMore from "./pages2/GoogleAds/GoogleAdsMore";
+import AllTitles from "./pages2/GoogleTitles/GoogleTitles";
+import GoogleTitleMore from "./pages2/GoogleTitles/GoogleTitleMore";
 
 function App() {
   return (
@@ -172,6 +174,9 @@ function App() {
 
         <Route path="allgoogleads" element={<ALLGoogleAds />} />
         <Route path="allgoogleads/:id" element={<GoogleAdsMore />} />
+
+        <Route path="alltitle" element={<AllTitles />} />
+        <Route path="alltitle/:id" element={<GoogleTitleMore />} />
 
 
 

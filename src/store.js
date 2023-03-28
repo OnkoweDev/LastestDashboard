@@ -39,6 +39,7 @@ import { addEmailReducer, deleteEmailReducer, getEmailReducer, getOneEmailReduce
 import { addSubjectReducer, deleteSubjectReducer, getOneSubjectReducer, getSubjectReducer } from './reducers/backend/emailSubjectReducer'
 import { addFacebookReducer, deleteFacebookReducer, getFacebookReducer, getOneFacebookReducer } from './reducers/backend/facebookReducer'
 import { addGoogleAdsReducer, deleteGoogleAdsReducer, getGoogleAdsReducer, getOneGoogleAdsReducer } from './reducers/backend/googleAdsReducer'
+import { addGoogleTitleReducer, deleteGoogleTitleReducer, getGoogleTitleReducer, getOneGoogleTitleReducer } from './reducers/backend/googleTitleReducer'
 
 
 const reducers = combineReducers({
@@ -133,6 +134,12 @@ const reducers = combineReducers({
     getGoogleAds:getGoogleAdsReducer,
     getOneGoogleAds:getOneGoogleAdsReducer,
     deleteGoogleAds:deleteGoogleAdsReducer,
+
+    //Google titles
+    saveTitle:addGoogleTitleReducer,
+    getTitle:getGoogleTitleReducer,
+    getOneTitle:getOneGoogleTitleReducer,
+    deleteTitle:deleteGoogleTitleReducer,
     
     //ebook in store
    // AddEbook:addEbookReducer,
