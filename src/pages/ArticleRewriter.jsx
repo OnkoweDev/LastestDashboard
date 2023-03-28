@@ -192,7 +192,7 @@ const ArticleRewriter = () => {
                 
                 <form onSubmit={handleForm}>
                 {rewriters && rewriters.map((rewrite)=>(
-                  <div className="sec-1" ref={myDiv} contentEditable  type='text'>
+                  <div className="sec-1" ref={myDiv} suppressContentEditableWarning={true} contentEditable  type='text'>
                   <BCDIcons />
                         {rewrite.generated_article}
                   </div>

@@ -36,6 +36,9 @@ import { saveBlogSectionReducer } from './reducers/backend/blogSectionReducer'
 import { saveBlogTopicReducer } from './reducers/backend/blogTopicReducer'
 import { addContentReducer, deleteContentReducer, getContentReducer, getOneContentReducer } from './reducers/backend/contentRepreReducer'
 import { addEmailReducer, deleteEmailReducer, getEmailReducer, getOneEmailReducer } from './reducers/backend/emailGenReducer'
+import { addSubjectReducer, deleteSubjectReducer, getOneSubjectReducer, getSubjectReducer } from './reducers/backend/emailSubjectReducer'
+import { addFacebookReducer, deleteFacebookReducer, getFacebookReducer, getOneFacebookReducer } from './reducers/backend/facebookReducer'
+import { addGoogleAdsReducer, deleteGoogleAdsReducer, getGoogleAdsReducer, getOneGoogleAdsReducer } from './reducers/backend/googleAdsReducer'
 
 
 const reducers = combineReducers({
@@ -112,6 +115,24 @@ const reducers = combineReducers({
     getEmail:getEmailReducer,
     getOneEmail:getOneEmailReducer,
     deleteEmail:deleteEmailReducer,
+
+    //email subject
+    saveSubject:addSubjectReducer,
+    getSubject:getSubjectReducer,
+    getOneSubject:getOneSubjectReducer,
+    deleteSubject:deleteSubjectReducer,
+
+    //Facebook
+    saveFacebook:addFacebookReducer,
+    getFacebook:getFacebookReducer,
+    getOneFacebook:getOneFacebookReducer,
+    deleteFacebook:deleteFacebookReducer,
+
+    //GoogleAds
+    saveGoogleAds:addGoogleAdsReducer,
+    getGoogleAds:getGoogleAdsReducer,
+    getOneGoogleAds:getOneGoogleAdsReducer,
+    deleteGoogleAds:deleteGoogleAdsReducer,
     
     //ebook in store
    // AddEbook:addEbookReducer,

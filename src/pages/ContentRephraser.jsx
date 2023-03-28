@@ -219,7 +219,7 @@ const GoogleAdDesc = () => {
                     <form onSubmit={handleForm}>
                         {rephesals && rephesals.map((rephesal)=>(
                           
-                          <div className="sec-1" ref={myDiv} contentEditable>
+                          <div className="sec-1" ref={myDiv} suppressContentEditableWarning={true} contentEditable>
                           <BCDIcons />
                           {rephesal.generated_rephrase_contents.map((d)=>(
                             <p>{d}</p>

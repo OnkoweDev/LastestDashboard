@@ -74,6 +74,12 @@ import AllContentRepre from "./pages2/ContentRepresal/ContentRepresal";
 import ContentRepreMore from "./pages2/ContentRepresal/ContentRepreMore";
 import EmailGen from "./pages2/Email/EmailGen";
 import EmailMore from "./pages2/Email/EmailMore";
+import AllEmailSubject from "./pages2/EmailSubject/EmailSubject";
+import EmailSubjectMore from "./pages2/EmailSubject/EmailSubjectMore";
+import FacebookAds from "./pages2/FacebookAds/FacebookAds";
+import FacebookMore from "./pages2/FacebookAds/FacebookMore";
+import ALLGoogleAds from "./pages2/GoogleAds/GoogleAds";
+import GoogleAdsMore from "./pages2/GoogleAds/GoogleAdsMore";
 
 function App() {
   return (
@@ -157,6 +163,24 @@ function App() {
 
         <Route path="email" element={<EmailGen />} />
         <Route path="email/:id" element={<EmailMore />} />
+
+        <Route path="allEmailSubject" element={<AllEmailSubject />} />
+        <Route path="allEmailSubject/:id" element={<EmailSubjectMore />} />
+
+        <Route path="allfacebookads" element={<FacebookAds />} />
+        <Route path="allfacebookads/:id" element={<FacebookMore />} />
+
+        <Route path="allgoogleads" element={<ALLGoogleAds />} />
+        <Route path="allgoogleads/:id" element={<GoogleAdsMore />} />
+
+
+
+
+
+
+
+
+
 
 
 

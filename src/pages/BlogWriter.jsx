@@ -247,7 +247,7 @@ useEffect(() => {
                 {loading && <Loader />}
                 <form onSubmit={handleForm}>
                   {writers && writers.map((writer)=>(
-                    <div className="sec-1" ref={myDiv} contentEditable>
+                    <div className="sec-1" ref={myDiv} suppressContentEditableWarning={true} contentEditable>
                     <BCDIcons />
                     {writer.generated_contents}
                     </div>

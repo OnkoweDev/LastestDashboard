@@ -185,7 +185,7 @@ const GoogleTitle = () => {
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
                 {title && title.map((you)=>(
-                  <div className="sec-1">
+                  <div className="sec-1" contentEditable suppressContentEditableWarning={true}>
                     
                     {you.generated_titles.map((d)=>(
                         
