@@ -82,6 +82,8 @@ import ALLGoogleAds from "./pages2/GoogleAds/GoogleAds";
 import GoogleAdsMore from "./pages2/GoogleAds/GoogleAdsMore";
 import AllTitles from "./pages2/GoogleTitles/GoogleTitles";
 import GoogleTitleMore from "./pages2/GoogleTitles/GoogleTitleMore";
+import AllInstagram from "./pages2/Instagram/Instagram";
+import InstagramMore from "./pages2/Instagram/InstagramMore";
 
 function App() {
   return (
@@ -177,6 +179,10 @@ function App() {
 
         <Route path="alltitle" element={<AllTitles />} />
         <Route path="alltitle/:id" element={<GoogleTitleMore />} />
+
+        <Route path="allinstagram" element={<AllInstagram />} />
+        <Route path="allinstagram/:id" element={<InstagramMore />} />
+
 
 
 

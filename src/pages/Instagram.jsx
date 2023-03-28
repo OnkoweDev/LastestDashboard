@@ -19,6 +19,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { InstagramAction } from "../actions/ai/instagramAction";
 import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
+import { addInstagramCapAction } from "../actions/backend/instagramCapAction";
+import { useNavigate } from "react-router-dom";
 
 const Instagram = () => {
   // state for audio option
@@ -28,11 +30,16 @@ const Instagram = () => {
   const [tone, setTone] = useState()
   const [projectId, setProjectId] = useState()
 
-  const myDiv = useRef(null)
+  const myDiv = useRef(null) 
+  const navegate = useNavigate()
 
   const dispatch = useDispatch()
   const instagram = useSelector((state)=>state.instagram)
   const {loading, error,success,instagrams} = instagram
+
+
+  const saveInstagram = useSelector((state)=>state.saveInstagram)
+  const {loading:instaLoading, error:instaError,success:instaSuccess} = saveInstagram
 
   const getProject = useSelector((state)=>state.getProject)
   const {loading:projectLoading,error:projectError, project} = getProject
@@ -50,6 +57,9 @@ const Instagram = () => {
     e.preventDefault()
     const divData = myDiv.current.innerText
     console.log(divData,projectId)
+    dispatch(addInstagramCapAction(divData,projectId))
+    navegate('/allinstagram')
+
   }
 
   // handle audio option
@@ -232,7 +242,7 @@ const Instagram = () => {
                         </select>
                     <br />
                     <button className="article-btn" style={{ fontSize: "12px" }}>
-                    Save Google Title
+                    Save Instagram Caption
                   </button>
                     </form>
                   {/* <div className="sec-2">

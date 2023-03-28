@@ -40,6 +40,7 @@ import { addSubjectReducer, deleteSubjectReducer, getOneSubjectReducer, getSubje
 import { addFacebookReducer, deleteFacebookReducer, getFacebookReducer, getOneFacebookReducer } from './reducers/backend/facebookReducer'
 import { addGoogleAdsReducer, deleteGoogleAdsReducer, getGoogleAdsReducer, getOneGoogleAdsReducer } from './reducers/backend/googleAdsReducer'
 import { addGoogleTitleReducer, deleteGoogleTitleReducer, getGoogleTitleReducer, getOneGoogleTitleReducer } from './reducers/backend/googleTitleReducer'
+import { addInstagramCapReducer, deleteInstagramReducer, getInstagramReducer, getOneInstagramReducer } from './reducers/backend/instagramReducer'
 
 
 const reducers = combineReducers({
@@ -140,6 +141,12 @@ const reducers = combineReducers({
     getTitle:getGoogleTitleReducer,
     getOneTitle:getOneGoogleTitleReducer,
     deleteTitle:deleteGoogleTitleReducer,
+
+    // InstagramCaptions
+    saveInstagram:addInstagramCapReducer,
+    getInstagram:getInstagramReducer,
+    getOneInstagram:getOneInstagramReducer,
+    deleteInstagram:deleteInstagramReducer,
     
     //ebook in store
    // AddEbook:addEbookReducer,
