@@ -84,6 +84,8 @@ import AllTitles from "./pages2/GoogleTitles/GoogleTitles";
 import GoogleTitleMore from "./pages2/GoogleTitles/GoogleTitleMore";
 import AllInstagram from "./pages2/Instagram/Instagram";
 import InstagramMore from "./pages2/Instagram/InstagramMore";
+import AllLandingPage from "./pages2/LangingPage/LandingPage";
+import LandingMore from "./pages2/LangingPage/LandPageMore";
 
 function App() {
   return (
@@ -182,6 +184,9 @@ function App() {
 
         <Route path="allinstagram" element={<AllInstagram />} />
         <Route path="allinstagram/:id" element={<InstagramMore />} />
+
+        <Route path="all_landing" element={<AllLandingPage />} />
+        <Route path="all_landing/:id" element={<LandingMore />} />
 
 
 

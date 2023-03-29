@@ -41,6 +41,7 @@ import { addFacebookReducer, deleteFacebookReducer, getFacebookReducer, getOneFa
 import { addGoogleAdsReducer, deleteGoogleAdsReducer, getGoogleAdsReducer, getOneGoogleAdsReducer } from './reducers/backend/googleAdsReducer'
 import { addGoogleTitleReducer, deleteGoogleTitleReducer, getGoogleTitleReducer, getOneGoogleTitleReducer } from './reducers/backend/googleTitleReducer'
 import { addInstagramCapReducer, deleteInstagramReducer, getInstagramReducer, getOneInstagramReducer } from './reducers/backend/instagramReducer'
+import { addLandingPageCapReducer, deleteLandingPageReducer, getLandingPageReducer, getOneLandingPageReducer } from './reducers/backend/langingPageReducer'
 
 
 const reducers = combineReducers({
@@ -147,7 +148,12 @@ const reducers = combineReducers({
     getInstagram:getInstagramReducer,
     getOneInstagram:getOneInstagramReducer,
     deleteInstagram:deleteInstagramReducer,
-    
+
+    //Landing page
+    saveLandingPage:addLandingPageCapReducer,
+    getLandingPage:getLandingPageReducer,
+    getOneLandingPage:getOneLandingPageReducer,
+    deleteLandingPage:deleteLandingPageReducer,   
     //ebook in store
    // AddEbook:addEbookReducer,
     viewEbook:viewEbookReucer,
