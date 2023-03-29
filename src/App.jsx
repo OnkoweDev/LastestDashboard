@@ -86,6 +86,8 @@ import AllInstagram from "./pages2/Instagram/Instagram";
 import InstagramMore from "./pages2/Instagram/InstagramMore";
 import AllLandingPage from "./pages2/LangingPage/LandingPage";
 import LandingMore from "./pages2/LangingPage/LandPageMore";
+import LandingHeadline from "./pages2/LandingHeadline/LandingHeadline";
+import LandingHeadlineMore from "./pages2/LandingHeadline/LandingHeadlineMore";
 
 function App() {
   return (
@@ -187,6 +189,9 @@ function App() {
 
         <Route path="all_landing" element={<AllLandingPage />} />
         <Route path="all_landing/:id" element={<LandingMore />} />
+
+        <Route path="all_landing_headline" element={<LandingHeadline />} />
+        <Route path="all_landing_headline/:id" element={<LandingHeadlineMore />} />
 
 
 
