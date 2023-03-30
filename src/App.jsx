@@ -88,6 +88,10 @@ import AllLandingPage from "./pages2/LangingPage/LandingPage";
 import LandingMore from "./pages2/LangingPage/LandPageMore";
 import LandingHeadline from "./pages2/LandingHeadline/LandingHeadline";
 import LandingHeadlineMore from "./pages2/LandingHeadline/LandingHeadlineMore";
+import ALLPARAGRAPHWRITER from "./pages2/ParagraphWriter/ParagraphWriter";
+import ParagraphMore from "./pages2/ParagraphWriter/ParagraphMore";
+import ALLBlogIntro from "./pages2/BlogIntro/BlogIntro";
+import BlogIntroMore from "./pages2/BlogWriter/blogWritermore";
 
 function App() {
   return (
@@ -192,6 +196,12 @@ function App() {
 
         <Route path="all_landing_headline" element={<LandingHeadline />} />
         <Route path="all_landing_headline/:id" element={<LandingHeadlineMore />} />
+
+        <Route path="all_paragraph" element={<ALLPARAGRAPHWRITER />} />
+        <Route path="all_paragraph/:id" element={<ParagraphMore />} />
+
+        <Route path="all_blogs" element={<ALLBlogIntro />} />
+        <Route path="all_blogs/:id" element={<BlogIntroMore />} />
 
 
 

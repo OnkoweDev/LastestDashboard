@@ -31,7 +31,7 @@ import { landingReducer } from './reducers/ai/landReducer'
 import { addProjectReducer, getProjectReducer } from './reducers/backend/projectReducer'
 import {  addArticleWriterReducer, deleteArticleWriterReducer, getArticleWriterReducer, getOneArticleWriterReducer, updatdeArticleWriterReducer } from './reducers/backend/articleWriterReducer'
 import { addBlogWriterReducer, deleteBlogWriterReducer, getBlogWriterReducer, getOneBlogWriterReducer, updateBlogWriterReducer } from './reducers/backend/blogWriterReducer'
-import { saveBlogIntroReducer } from './reducers/backend/blogIntroReducer'
+import { deleteBlogIntroReducer, getNewBlogIntroReducer, getOneBlogIntroReducer, saveBlogIntroReducer } from './reducers/backend/blogIntroReducer'
 import { saveBlogSectionReducer } from './reducers/backend/blogSectionReducer'
 import { saveBlogTopicReducer } from './reducers/backend/blogTopicReducer'
 import { addContentReducer, deleteContentReducer, getContentReducer, getOneContentReducer } from './reducers/backend/contentRepreReducer'
@@ -43,6 +43,7 @@ import { addGoogleTitleReducer, deleteGoogleTitleReducer, getGoogleTitleReducer,
 import { addInstagramCapReducer, deleteInstagramReducer, getInstagramReducer, getOneInstagramReducer } from './reducers/backend/instagramReducer'
 import { addLandingPageCapReducer, deleteLandingPageReducer, getLandingPageReducer, getOneLandingPageReducer } from './reducers/backend/langingPageReducer'
 import { addLandingHeadlineReducer, deleteLandingHeadlineReducer, getLandingHeadlineReducer, getOneLandingHeadlineReducer } from './reducers/backend/landingHeadlineReducer'
+import { addParagraphReducer, deleteParagraphReducer, getOneParagraphReducer, getParagraphReducer } from './reducers/backend/paragraphReducer'
 
 
 const reducers = combineReducers({
@@ -101,6 +102,9 @@ const reducers = combineReducers({
 
     //Blog Intro
     saveBlogIntro:saveBlogIntroReducer,
+    getBlogIntro:getNewBlogIntroReducer,
+    getOneBlogIntro:getOneBlogIntroReducer,
+    deleteBlogIntro:deleteBlogIntroReducer,
 
     //Blog Section
     saveBlogSection:saveBlogSectionReducer,
@@ -161,7 +165,13 @@ const reducers = combineReducers({
     getHeadline:getLandingHeadlineReducer,
     getOneHeadline:getOneLandingHeadlineReducer,
     deleteHeadline:deleteLandingHeadlineReducer,
-    //ebook in store
+
+    //Paragraph 
+    saveParagraph:addParagraphReducer,
+    getParagraph:getParagraphReducer,
+    getOneParagraph:getOneParagraphReducer,
+    deleteParagraph:deleteParagraphReducer,
+        //ebook in store
    // AddEbook:addEbookReducer,
     viewEbook:viewEbookReucer,
 })

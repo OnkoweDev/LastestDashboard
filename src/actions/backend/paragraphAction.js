@@ -1,9 +1,11 @@
 import axios from "axios";
-import { ADD_BLOGINTRO_FAILED, ADD_BLOGINTRO_REQUEST, ADD_BLOGINTRO_SUCCESS, DELETE_BLOGINTRO_FAILED, DELETE_BLOGINTRO_REQUEST, DELETE_BLOGINTRO_SUCCESS, GETONE_BLOGINTRO_FAILED, GETONE_BLOGINTRO_REQUEST, GETONE_BLOGINTRO_SUCCESS, GET_BLOGINTRO_FAILED, GET_BLOGINTRO_REQUEST, GET_BLOGINTRO_SUCCESS } from "../../constant/backend/blogIntroConstant";
+import { ADD_PARAGRAPH_FAILED, ADD_PARAGRAPH_REQUEST, ADD_PARAGRAPH_SUCCESS, DELETE_PARAGRAPH_FAILED, DELETE_PARAGRAPH_REQUEST, DELETE_PARAGRAPH_SUCCESS, GETONE_PARAGRAPH_FAILED, GETONE_PARAGRAPH_REQUEST, GETONE_PARAGRAPH_SUCCESS, GET_PARAGRAPH_FAILED, GET_PARAGRAPH_REQUEST, GET_PARAGRAPH_SUCCESS } from "../../constant/backend/paragraghConstant";
 
-export const blogIntroAddAction = (intro,project_id) => async(dispatch,getState) => {
+
+
+export const addParagraphAction = (paragraph,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_BLOGINTRO_REQUEST})
+        dispatch({type:ADD_PARAGRAPH_REQUEST})
         const {userLogin:{userInfo}} = getState();
         const config = {
             headers:{
@@ -11,12 +13,12 @@ export const blogIntroAddAction = (intro,project_id) => async(dispatch,getState)
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogintro`, {intro,project_id},config)
-        dispatch({type:ADD_BLOGINTRO_SUCCESS,payload:[data.data]})
+        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/paragraphWriter`, {paragraph,project_id},config)
+        dispatch({type:ADD_PARAGRAPH_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
         dispatch({
-            type: ADD_BLOGINTRO_FAILED,
+            type: ADD_PARAGRAPH_FAILED,
             payload:
               error.response && error.response.data.message
                 ? error.response.data.message
@@ -25,9 +27,9 @@ export const blogIntroAddAction = (intro,project_id) => async(dispatch,getState)
     }
 }
 
-export const getBlogintroAction = () => async(dispatch,getState) => {
+export const getParagraphAction = () => async(dispatch,getState) => {
     try {
-        dispatch({type:GET_BLOGINTRO_REQUEST})
+        dispatch({type:GET_PARAGRAPH_REQUEST})
         const {userLogin:{userInfo}} = getState();
         const config = {
             headers:{
@@ -35,12 +37,12 @@ export const getBlogintroAction = () => async(dispatch,getState) => {
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogintro`,config)
-        dispatch({type:GET_BLOGINTRO_SUCCESS,payload:data.data})
+        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/paragraphWriter`,config)
+        dispatch({type:GET_PARAGRAPH_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
         dispatch({
-            type: GET_BLOGINTRO_FAILED,
+            type: GET_PARAGRAPH_FAILED,
             payload:
               error.response && error.response.data.message
                 ? error.response.data.message
@@ -49,10 +51,9 @@ export const getBlogintroAction = () => async(dispatch,getState) => {
     }
 }
 
-
-export const getOneIntroAction = (id) => async(dispatch,getState) => {
+export const getOneParagraphAction = (id) => async(dispatch,getState) => {
     try {
-        dispatch({type:GETONE_BLOGINTRO_REQUEST})
+        dispatch({type:GETONE_PARAGRAPH_REQUEST})
         const {userLogin:{userInfo}} = getState();
         const config = {
             headers:{
@@ -60,12 +61,12 @@ export const getOneIntroAction = (id) => async(dispatch,getState) => {
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogintro/${id}`,config)
-        dispatch({type:GETONE_BLOGINTRO_SUCCESS,payload:data.data})
+        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/paragraphWriter/${id}`,config)
+        dispatch({type:GETONE_PARAGRAPH_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
         dispatch({
-            type: GETONE_BLOGINTRO_FAILED,
+            type: GETONE_PARAGRAPH_FAILED,
             payload:
               error.response && error.response.data.message
                 ? error.response.data.message
@@ -74,9 +75,9 @@ export const getOneIntroAction = (id) => async(dispatch,getState) => {
     }
 }
 
-export const deleteIntroAction = (id) => async(dispatch,getState) => {
+export const deleteParagraphAction = (id) => async(dispatch,getState) => {
     try {
-        dispatch({type:DELETE_BLOGINTRO_REQUEST})
+        dispatch({type:DELETE_PARAGRAPH_REQUEST})
         const {userLogin:{userInfo}} = getState();
         const config = {
             headers:{
@@ -84,12 +85,12 @@ export const deleteIntroAction = (id) => async(dispatch,getState) => {
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogintro/${id}`,config)
-        dispatch({type:DELETE_BLOGINTRO_SUCCESS,payload:data.data})
+        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/paragraphWriter/${id}`,config)
+        dispatch({type:DELETE_PARAGRAPH_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
         dispatch({
-            type: DELETE_BLOGINTRO_FAILED,
+            type: DELETE_PARAGRAPH_FAILED,
             payload:
               error.response && error.response.data.message
                 ? error.response.data.message
