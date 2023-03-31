@@ -45,6 +45,7 @@ import { addLandingPageCapReducer, deleteLandingPageReducer, getLandingPageReduc
 import { addLandingHeadlineReducer, deleteLandingHeadlineReducer, getLandingHeadlineReducer, getOneLandingHeadlineReducer } from './reducers/backend/landingHeadlineReducer'
 import { addParagraphReducer, deleteParagraphReducer, getOneParagraphReducer, getParagraphReducer } from './reducers/backend/paragraphReducer'
 import { addProductDescReducer, deleteProductDescReducer, getOneProductDescReducer, getProductDescReducer } from './reducers/backend/productDescReducer'
+import { addProductNameReducer, deleteProductNameReducer, getOneProductNameReducer, getProductNameReducer } from './reducers/backend/productNameReducer'
 
 
 const reducers = combineReducers({
@@ -179,6 +180,11 @@ const reducers = combineReducers({
     getProductDesc:getProductDescReducer,
     getOneProductDesc:getOneProductDescReducer,
     deleteProductDesc:deleteProductDescReducer,
+
+    saveProductName:addProductNameReducer,
+    getProductName:getProductNameReducer,
+    getOneProductName:getOneProductNameReducer,
+    deleteProductName:deleteProductNameReducer,
     
         //ebook in store
    // AddEbook:addEbookReducer,

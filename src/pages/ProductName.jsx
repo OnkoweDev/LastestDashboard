@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   BCDIcons,
   OutputNumber,
@@ -19,18 +19,35 @@ import { AiOutlineAudio } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import { productNameAction } from "../actions/ai/productNameAction";
+import { getProjectAction } from "../actions/backend/projectAction";
+import { useEffect } from "react";
+import { addProductNameAction } from "../actions/backend/productNameAction";
+import { useNavigate } from "react-router-dom";
 
 
 const ProductName = () => {
   // state to keep track of number of output
   const [productDesc, setProductDesc] = useState([])
   const [keywords, setKeywords] = useState([])
+  const [projectId, setProjectId] = useState()
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
+  const myDiv = useRef(null)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const productName = useSelector((state) => state.productName)
   const {loading, error, success, product} = productName
+
+  const getProject = useSelector((state)=>state.getProject)
+  const {loading:projectLoading,error:projectError, project} = getProject
+
+  const saveProductName = useSelector((state) => state.saveProductName)
+  const {loading:productLoading,error:productError} = saveProductName
+
+  useEffect(() => {
+      dispatch(getProjectAction())
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -38,6 +55,15 @@ const ProductName = () => {
    dispatch(productNameAction(productDesc,keywords))
 
   }
+
+  const handleForm = (e) => {
+    e.preventDefault()
+    const divData = myDiv.current.innerText
+    console.log(divData,projectId)
+    dispatch(addProductNameAction(divData,projectId))
+    navigate('/all_product_name')
+  }
+  
 
   // handle audio option
   const handleAudio = () => {
@@ -165,20 +191,61 @@ const ProductName = () => {
                 </div>
 
                 <div className="right">
+                <form onSubmit={handleForm}>
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
-                {product && product.map((you)=>(
-                  <div className="sec-1">
+                {
+                  Array.isArray(product) ?
+                product && product.map((you)=>(
+                  <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
+                  
+                  {you.generated_names.map((d)=>(
                     
-                    {you.generated_names.map((d)=>(
-                        
-                         <div className="txt-sec">
-                            <BCDIcons />
-                            {d}
-                            </div>
+                    
+                    <p>
+                    {d}
+                    </p>
+                    
                     ))}
-                  </div>
-                ))}
+                    </div>
+                    )):null}
+                    <br />
+                    <p className="product-p">Select Project*</p>
+                          <select
+                        onChange={(e)=>setProjectId(e.target.value)} 
+                        value={projectId}
+                        name=""
+                        id=""
+                        className="select"
+                        style={{
+                          display: "block",
+                          width: "100%",
+                          background: "var(--primary-blue)",
+                          borderRadius: "var(--border-radius-xs)",
+                          border: "none",
+                          outline: "none",
+                          height: "10%",
+                          margin: "5px 0",
+                          padding: "5px",
+                          fontWeight: "400",
+                          fontSize: "14px",
+                          lineHeight: "21px",
+                          color: "rgba(0, 22, 51, 0.5)",
+                        }}
+                        >
+                        <option value="" selected disabled hidden>Select project</option>
+                        
+                        {
+                          project && project.map((pro, i)=>(
+                            <option key={i} value={pro.id}>{pro.name}</option>
+                            ))
+                          }
+                          </select>
+                          <br />
+                    <button className="article-btn" style={{ fontSize: "12px" }}>
+                    Save Product Name
+                  </button>
+                    </form>
                   {/* <div className="sec-2">
                     <BCDIcons />
                     <div className="txt-sec"></div>

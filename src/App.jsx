@@ -94,6 +94,8 @@ import ALLBlogIntro from "./pages2/BlogIntro/BlogIntro";
 import BlogIntroMore from "./pages2/BlogIntro/BlogMore";
 import AllBlogTopic from "./pages2/BlogTopic/AllBlogTopic";
 import BlogTopicMore from "./pages2/BlogTopic/BlogTopicMore";
+import AllProductName from "./pages2/ProductName/ProductName";
+import ProductMore from "./pages2/ProductName/ProductNameMore";
 BlogMore
 function App() {
   return (
@@ -207,6 +209,9 @@ function App() {
 
         <Route path="all_blog_topic" element={<AllBlogTopic />} />
         <Route path="all_blog_topic/:id" element={<BlogTopicMore />} />
+
+        <Route path="all_product_name" element={<AllProductName />} />
+        <Route path="all_product_name/:id" element={<ProductMore />} />
 
 
 
