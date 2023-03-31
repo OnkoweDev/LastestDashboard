@@ -90,7 +90,7 @@ const handleForm  = (e) => {
   console.log(divData)
   console.log(projectId)
   dispatch(blogIntroAddAction(divData,projectId))
-  navigate('/blog-intro-generator')
+  navigate('/all_blogs')
 }
 
 useEffect(() => {
@@ -201,11 +201,14 @@ useEffect(() => {
                 <form onSubmit={handleForm}>
                 
                 {
-                  newBlogs && newBlogs.map((d)=>(
-                    <div className="sec-1" contentEditable ref={myDiv}>
-                        {d.generated_intros}
+                  Array.isArray(newBlogs) ?
+                   newBlogs.map((d)=>(
+                    <div className="sec-1" suppressContentEditableWarning={true} contentEditable ref={myDiv}>
+                        {d.generated_intros.map((d)=>(
+                          <p>{d}</p>
+                        ))}
                       </div>
-                      ))
+                      )):null
                     }
 
                     <br />

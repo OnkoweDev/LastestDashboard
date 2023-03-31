@@ -1,42 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteIntroAction, getBlogintroAction } from "../../actions/backend/blogIntroAction";
-
-
+import { deleteBlogTopicAction, getBlogTopicAction } from "../../actions/backend/blogTopicAction";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
 
-const ALLBlogIntro = () => {
+const AllBlogTopic = () => {
   // state to hold the data comimg from the database / backend
   const [message, setMessage] = useState("");
 
   const dispatch = useDispatch()
-  const getBlogIntro = useSelector((state)=>state.getBlogIntro)
-  const {loading,error,blogs} = getBlogIntro
+  const getBlogTopic = useSelector((state)=>state.getBlogTopic)
+  const {loading,error,topics} = getBlogTopic
 
-//   const saveTitle = useSelector((state)=>state.saveTitle)
-//   const {error:googleError} = saveTitle
-
-  const deleteBlogIntro = useSelector((state)=>state.deleteBlogIntro)
-  const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteBlogIntro
+  const deleteBlogTopic = useSelector((state)=>state.deleteBlogTopic)
+  const {loading:deleteLoading,error:deleteError,success} = deleteBlogTopic
 
   useEffect(() => {
-    dispatch(getBlogintroAction())
-  }, [deleteSuccess])
+    dispatch(getBlogTopicAction())
+  }, [success])
   
   const handleDelete = (id) =>{
     if(window.confirm(`Are you sure you want to delete Item`)){
-    dispatch(deleteIntroAction(id))
+    dispatch(deleteBlogTopicAction(id))
     setMessage("Item deleted Successful")
     setTimeout(()=>{
         setMessage("")
     },4000)
     }
+   
 }
-
-
 
   return (
     <>
@@ -55,21 +49,19 @@ const ALLBlogIntro = () => {
             padding:"5px",
             
         }} 
-        to='/blog-intro-generator'>Create Blog Intro</Link><br/>
+        to='/blogtopic'>Add Blog Topic</Link><br/>
 
 
               <div className="cards-container">
                {loading && <Loader />}
                {error && <div className=' bar error'>{error}</div>}
-               {message && <div className=' bar success'>{message}</div>}
 
-               {blogs && blogs.map((blog)=>(
+               {topics && topics.slice(0,10).map((blog)=>(
                 <div className="card" key={blog.id}>
-                        <p>{blog.intro.slice(0,300)}.....</p>
-                        <Link to={`/all_intro/${blog.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(blog.id)} className="btn btn-danger">delete</a>
-
-                     
+                        <p>{blog.topic.slice(0,300)}....</p>
+                        <Link to={`/all_blog_topic/${blog.id}`}>Read more</Link><br/>
+                        <a onClick={()=>handleDelete(blog.id)}>Delete</a>
+                        
                 </div>
                 ))}
               </div>
@@ -81,4 +73,4 @@ const ALLBlogIntro = () => {
   );
 };
 
-export default ALLBlogIntro;
+export default AllBlogTopic;

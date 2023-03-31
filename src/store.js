@@ -4,7 +4,7 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from '@redux-devtools/extension'
 import { userLoginReducer, userRegisterReducer } from './reducers/userReducer'
 import { addEbookReducer, viewEbookReucer } from './reducers/ebookReducer'
-import { addBlogIntroReducer, getBlogIntroReducer } from './reducers/ai/blogIntroReducer'
+import { addBlogIntroReducer } from './reducers/ai/blogIntroReducer'
 import { blogSectionReducer } from './reducers/ai/blogSectionReducer'
 import { blogArticleWriterReducer } from './reducers/ai/articleWriterReducer'
 import { contentRephesalReducer } from './reducers/ai/contentRepresalReducer'
@@ -33,7 +33,7 @@ import {  addArticleWriterReducer, deleteArticleWriterReducer, getArticleWriterR
 import { addBlogWriterReducer, deleteBlogWriterReducer, getBlogWriterReducer, getOneBlogWriterReducer, updateBlogWriterReducer } from './reducers/backend/blogWriterReducer'
 import { deleteBlogIntroReducer, getNewBlogIntroReducer, getOneBlogIntroReducer, saveBlogIntroReducer } from './reducers/backend/blogIntroReducer'
 import { saveBlogSectionReducer } from './reducers/backend/blogSectionReducer'
-import { saveBlogTopicReducer } from './reducers/backend/blogTopicReducer'
+import { deleteBlogTopicReducer, getBlogTopicReducer, getOneBlogTopicReducer, saveBlogTopicReducer } from './reducers/backend/blogTopicReducer'
 import { addContentReducer, deleteContentReducer, getContentReducer, getOneContentReducer } from './reducers/backend/contentRepreReducer'
 import { addEmailReducer, deleteEmailReducer, getEmailReducer, getOneEmailReducer } from './reducers/backend/emailGenReducer'
 import { addSubjectReducer, deleteSubjectReducer, getOneSubjectReducer, getSubjectReducer } from './reducers/backend/emailSubjectReducer'
@@ -44,6 +44,7 @@ import { addInstagramCapReducer, deleteInstagramReducer, getInstagramReducer, ge
 import { addLandingPageCapReducer, deleteLandingPageReducer, getLandingPageReducer, getOneLandingPageReducer } from './reducers/backend/langingPageReducer'
 import { addLandingHeadlineReducer, deleteLandingHeadlineReducer, getLandingHeadlineReducer, getOneLandingHeadlineReducer } from './reducers/backend/landingHeadlineReducer'
 import { addParagraphReducer, deleteParagraphReducer, getOneParagraphReducer, getParagraphReducer } from './reducers/backend/paragraphReducer'
+import { addProductDescReducer, deleteProductDescReducer, getOneProductDescReducer, getProductDescReducer } from './reducers/backend/productDescReducer'
 
 
 const reducers = combineReducers({
@@ -53,7 +54,6 @@ const reducers = combineReducers({
 
     //This is the AI backend Reducers
     addBlogIntro:addBlogIntroReducer,
-    getBlogIntro:getBlogIntroReducer,
 
     //blogSectio
     blogSection:blogSectionReducer,
@@ -111,6 +111,9 @@ const reducers = combineReducers({
 
     //Blog Topic
     saveBlogTopic: saveBlogTopicReducer,
+    getBlogTopic:getBlogTopicReducer,
+    getOneBlogTopic:getOneBlogTopicReducer,
+    deleteBlogTopic:deleteBlogTopicReducer,
 
     //contentRepresal
     saveContent:addContentReducer,
@@ -171,6 +174,12 @@ const reducers = combineReducers({
     getParagraph:getParagraphReducer,
     getOneParagraph:getOneParagraphReducer,
     deleteParagraph:deleteParagraphReducer,
+
+    saveProductDesc:addProductDescReducer,
+    getProductDesc:getProductDescReducer,
+    getOneProductDesc:getOneProductDescReducer,
+    deleteProductDesc:deleteProductDescReducer,
+    
         //ebook in store
    // AddEbook:addEbookReducer,
     viewEbook:viewEbookReucer,

@@ -41,9 +41,10 @@ const ArticleRewriterMore = () => {
                     <div key={wrote.id}className="cards-container">
                         {wrote.article_rewriter} 
                         <br />
-                        <Link to="allArticle">Back</Link>                   
+                                    
                     </div>
                 ))}
+                <Link to="/allArticle">Back</Link>      
             {/* <Voice /> */}
           </div>
         </div>

@@ -91,8 +91,10 @@ import LandingHeadlineMore from "./pages2/LandingHeadline/LandingHeadlineMore";
 import ALLPARAGRAPHWRITER from "./pages2/ParagraphWriter/ParagraphWriter";
 import ParagraphMore from "./pages2/ParagraphWriter/ParagraphMore";
 import ALLBlogIntro from "./pages2/BlogIntro/BlogIntro";
-import BlogIntroMore from "./pages2/BlogWriter/blogWritermore";
-
+import BlogIntroMore from "./pages2/BlogIntro/BlogMore";
+import AllBlogTopic from "./pages2/BlogTopic/AllBlogTopic";
+import BlogTopicMore from "./pages2/BlogTopic/BlogTopicMore";
+BlogMore
 function App() {
   return (
     <React.Fragment>
@@ -200,8 +202,11 @@ function App() {
         <Route path="all_paragraph" element={<ALLPARAGRAPHWRITER />} />
         <Route path="all_paragraph/:id" element={<ParagraphMore />} />
 
-        <Route path="all_blogs" element={<ALLBlogIntro />} />
-        <Route path="all_blogs/:id" element={<BlogIntroMore />} />
+        <Route path="all_intro" element={<ALLBlogIntro />} />
+        <Route path="all_intro/:id" element={<BlogIntroMore />} />
+
+        <Route path="all_blog_topic" element={<AllBlogTopic />} />
+        <Route path="all_blog_topic/:id" element={<BlogTopicMore />} />
 
 
 

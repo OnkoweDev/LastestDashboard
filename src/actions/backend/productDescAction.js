@@ -1,9 +1,9 @@
 import axios from "axios";
-import { ADD_BLOGINTRO_FAILED, ADD_BLOGINTRO_REQUEST, ADD_BLOGINTRO_SUCCESS, DELETE_BLOGINTRO_FAILED, DELETE_BLOGINTRO_REQUEST, DELETE_BLOGINTRO_SUCCESS, GETONE_BLOGINTRO_FAILED, GETONE_BLOGINTRO_REQUEST, GETONE_BLOGINTRO_SUCCESS, GET_BLOGINTRO_FAILED, GET_BLOGINTRO_REQUEST, GET_BLOGINTRO_SUCCESS } from "../../constant/backend/blogIntroConstant";
+import { ADD_PRODUCTDESC_FAILED, ADD_PRODUCTDESC_REQUEST, ADD_PRODUCTDESC_SUCCESS, DELETE_PRODUCTDESC_FAILED, DELETE_PRODUCTDESC_REQUEST, DELETE_PRODUCTDESC_SUCCESS, GETONE_PRODUCTDESC_FAILED, GETONE_PRODUCTDESC_REQUEST, GETONE_PRODUCTDESC_SUCCESS, GET_PRODUCTDESC_FAILED, GET_PRODUCTDESC_REQUEST, GET_PRODUCTDESC_SUCCESS } from "../../constant/backend/productDescConstant";
 
-export const blogIntroAddAction = (intro,project_id) => async(dispatch,getState) => {
+export const addProductDescAction = (product_description,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_BLOGINTRO_REQUEST})
+        dispatch({type:ADD_PRODUCTDESC_REQUEST})
         const {userLogin:{userInfo}} = getState();
         const config = {
             headers:{
@@ -11,12 +11,12 @@ export const blogIntroAddAction = (intro,project_id) => async(dispatch,getState)
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogintro`, {intro,project_id},config)
-        dispatch({type:ADD_BLOGINTRO_SUCCESS,payload:data.data})
+        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/productDescription`, {product_description,project_id},config)
+        dispatch({type:ADD_PRODUCTDESC_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
         dispatch({
-            type: ADD_BLOGINTRO_FAILED,
+            type: ADD_PRODUCTDESC_FAILED,
             payload:
               error.response && error.response.data.message
                 ? error.response.data.message
@@ -25,9 +25,9 @@ export const blogIntroAddAction = (intro,project_id) => async(dispatch,getState)
     }
 }
 
-export const getBlogintroAction = () => async(dispatch,getState) => {
+export const getProductDescAction = () => async(dispatch,getState) => {
     try {
-        dispatch({type:GET_BLOGINTRO_REQUEST})
+        dispatch({type:GET_PRODUCTDESC_REQUEST})
         const {userLogin:{userInfo}} = getState();
         const config = {
             headers:{
@@ -35,12 +35,12 @@ export const getBlogintroAction = () => async(dispatch,getState) => {
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogintro`,config)
-        dispatch({type:GET_BLOGINTRO_SUCCESS,payload:data.data})
+        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/productDescription`,config)
+        dispatch({type:GET_PRODUCTDESC_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
         dispatch({
-            type: GET_BLOGINTRO_FAILED,
+            type: GET_PRODUCTDESC_FAILED,
             payload:
               error.response && error.response.data.message
                 ? error.response.data.message
@@ -49,10 +49,9 @@ export const getBlogintroAction = () => async(dispatch,getState) => {
     }
 }
 
-
-export const getOneIntroAction = (id) => async(dispatch,getState) => {
+export const getOneProductDescAction = (id) => async(dispatch,getState) => {
     try {
-        dispatch({type:GETONE_BLOGINTRO_REQUEST})
+        dispatch({type:GETONE_PRODUCTDESC_REQUEST})
         const {userLogin:{userInfo}} = getState();
         const config = {
             headers:{
@@ -60,12 +59,12 @@ export const getOneIntroAction = (id) => async(dispatch,getState) => {
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogintro/${id}`,config)
-        dispatch({type:GETONE_BLOGINTRO_SUCCESS,payload:data.data})
+        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/productDescription/${id}`,config)
+        dispatch({type:GETONE_PRODUCTDESC_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
         dispatch({
-            type: GETONE_BLOGINTRO_FAILED,
+            type: GETONE_PRODUCTDESC_FAILED,
             payload:
               error.response && error.response.data.message
                 ? error.response.data.message
@@ -74,9 +73,9 @@ export const getOneIntroAction = (id) => async(dispatch,getState) => {
     }
 }
 
-export const deleteIntroAction = (id) => async(dispatch,getState) => {
+export const deleteProductDescAction = (id) => async(dispatch,getState) => {
     try {
-        dispatch({type:DELETE_BLOGINTRO_REQUEST})
+        dispatch({type:DELETE_PRODUCTDESC_REQUEST})
         const {userLogin:{userInfo}} = getState();
         const config = {
             headers:{
@@ -84,12 +83,12 @@ export const deleteIntroAction = (id) => async(dispatch,getState) => {
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogintro/${id}`,config)
-        dispatch({type:DELETE_BLOGINTRO_SUCCESS,payload:data.data})
+        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/productDescription/${id}`,config)
+        dispatch({type:DELETE_PRODUCTDESC_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
         dispatch({
-            type: DELETE_BLOGINTRO_FAILED,
+            type: DELETE_PRODUCTDESC_FAILED,
             payload:
               error.response && error.response.data.message
                 ? error.response.data.message

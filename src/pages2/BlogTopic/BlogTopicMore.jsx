@@ -2,24 +2,26 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getOneIntroAction } from "../../actions/backend/blogIntroAction";
+import { getOneBlogTopicAction } from "../../actions/backend/blogTopicAction";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
 
-const BlogIntroMore = () => {
+const BlogTopicMore = () => {
   // state to hold the data comimg from the database / backend
   //const [data, setData] = useState(HomepageData);
   const [article, setArticle] = useState([])
 
   const dispatch = useDispatch()
-  const getOneBlogIntro = useSelector((state)=>state.getOneBlogIntro)
-  const {loading,error,blog} = getOneBlogIntro
+  const getOneBlogTopic = useSelector((state)=>state.getOneBlogTopic)
+  const {loading,error,topic} = getOneBlogTopic
 
   const {id} = useParams();
   
+
   useEffect(() => {
-    dispatch(getOneIntroAction(id))
+    dispatch(getOneBlogTopicAction(id))
+   
   }, [])
   
  
@@ -33,15 +35,25 @@ const BlogIntroMore = () => {
           <div className="content">
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
-                {blog && blog?.map((d)=>(
-                    <div key={d.id}className="cards-container">
-                        {d.intro} 
-                        <br />
-                                         
+                {topic && topic.map((blo)=>(
+                    <div key={blo.id}className="cards-container">
+                        {blo.topic} 
+                                           
                     </div>
+                    
                 ))}
-                <Link to="/all_intro">Back</Link> 
-            {/* <Voice /> */}
+            <br/>
+            <Link className="article-btn"  
+            style={{ 
+              fontSize: "14px",
+              width:"20%",
+              textAlign:"center",
+              justifyContent:"center",
+              alignItems:"center",
+              padding:"5px",
+              
+          }} 
+          to='/all_blog_topic'>Back</Link><br/>
           </div>
         </div>
       </main>
@@ -49,4 +61,4 @@ const BlogIntroMore = () => {
   );
 };
 
-export default BlogIntroMore;
+export default BlogTopicMore;

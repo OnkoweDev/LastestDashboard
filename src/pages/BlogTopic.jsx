@@ -61,6 +61,7 @@ const BlogTopic = () => {
     console.log(divData)
     console.log(projectId)
     dispatch(blogTopicAddAction(divData,projectId))
+    navigate('/all_blog_topic')
   }
 
   useEffect(() => {
@@ -179,18 +180,18 @@ const BlogTopic = () => {
                 <form onSubmit={handleForm}>
                   {loading && <Loader />}
                   {error && <div className='bar error'>{error}</div>}
-                  {topics?.map((blog)=>(
-                    
-                    <div className="sec-1" ref={myDiv} contentEditable>
-                    <BCDIcons />
-                    {blog.generated_topics?.map((d)=>(
+                  {  Array.isArray(topics) ? 
+                    topics.map((blog)=>(
+                    <div className="sec-1" ref={myDiv} suppressContentEditableWarning contentEditable>
+                  
+                    {blog.generated_topics.map((d)=>(
                       
                       <p>
                       {d}
                       </p>
                       ))}
                       </div>
-                      ))}
+                      )):null}
                       <br />
                       <p className="product-p">Select Project*</p>
                        <select
@@ -214,7 +215,10 @@ const BlogTopic = () => {
                             lineHeight: "21px",
                             color: "rgba(0, 22, 51, 0.5)",
                           }}
+                          
                         >
+                        <option value="" selected disabled hidden>Select project</option>
+
                         {
                          project && project.map((pro, i)=>(
                           <option key={i} value={pro.id}>{pro.name}</option>
