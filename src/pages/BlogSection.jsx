@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { blogSectionAction } from "../actions/ai/blogSectionAction";
 import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
+import { addSectionAction } from "../actions/backend/blogSectionAction";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -45,6 +46,7 @@ const Facebook = () => {
 
   const saveBlogSection = useSelector((state)=>state.saveBlogSection)
   const {loading:blogLoading, success:blogSuccess,error:blogError} = saveBlogSection
+  
   
 
   const handleSubmit = (e) =>{
@@ -101,7 +103,7 @@ const Facebook = () => {
     const divData = myDiv.current.innerText;
     console.log(divData)
     console.log(projectId)
-    //dispatch()
+    dispatch(addSectionAction(divData,projectId))
   }
 
   useEffect(() => {
@@ -272,6 +274,7 @@ const Facebook = () => {
                           color: "rgba(0, 22, 51, 0.5)",
                         }}
                       >
+                      <option value="" selected disabled hidden>Select project</option>
                       {
                        project && project.map((pro, i)=>(
                         <option key={i} value={pro.id}>{pro.name}</option>
