@@ -1,9 +1,9 @@
 import axios from "axios";
-import { ADD_BLOGINTRO_FAILED, ADD_BLOGINTRO_REQUEST, ADD_BLOGINTRO_SUCCESS, DELETE_BLOGINTRO_FAILED, DELETE_BLOGINTRO_REQUEST, DELETE_BLOGINTRO_SUCCESS, GETONE_BLOGINTRO_FAILED, GETONE_BLOGINTRO_REQUEST, GETONE_BLOGINTRO_SUCCESS, GET_BLOGINTRO_FAILED, GET_BLOGINTRO_REQUEST, GET_BLOGINTRO_SUCCESS } from "../../constant/backend/blogIntroConstant";
+import { ADD_EBOOK_FAILED, ADD_EBOOK_REQUEST, ADD_EBOOK_SUCCESS, DELETE_EBOOK_FAILED, DELETE_EBOOK_REQUEST, DELETE_EBOOK_SUCCESS, GETONE_EBOOK_FAILED, GETONE_EBOOK_REQUEST, GETONE_EBOOK_SUCCESS, GET_EBOOK_FAILED, GET_EBOOK_REQUEST, GET_EBOOK_SUCCESS } from "../../constant/backend/ebookConstant";
 
-export const blogIntroAddAction = (intro,project_id) => async(dispatch,getState) => {
+export const addEbookAction = (generated_ebook,project_id,title,description) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_BLOGINTRO_REQUEST})
+        dispatch({type:ADD_EBOOK_REQUEST})
         const {userLogin:{userInfo}} = getState();
         const config = {
             headers:{
@@ -11,12 +11,12 @@ export const blogIntroAddAction = (intro,project_id) => async(dispatch,getState)
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogIntro`, {intro,project_id},config)
-        dispatch({type:ADD_BLOGINTRO_SUCCESS,payload:data.data})
+        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/ebookGenerator`, {generated_ebook,project_id,title,description},config)
+        dispatch({type:ADD_EBOOK_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
         dispatch({
-            type: ADD_BLOGINTRO_FAILED,
+            type: ADD_EBOOK_FAILED,
             payload:
               error.response && error.response.data.message
                 ? error.response.data.message
@@ -25,9 +25,9 @@ export const blogIntroAddAction = (intro,project_id) => async(dispatch,getState)
     }
 }
 
-export const getBlogintroAction = () => async(dispatch,getState) => {
+export const getEbookAction = () => async(dispatch,getState) => {
     try {
-        dispatch({type:GET_BLOGINTRO_REQUEST})
+        dispatch({type:GET_EBOOK_REQUEST})
         const {userLogin:{userInfo}} = getState();
         const config = {
             headers:{
@@ -35,12 +35,12 @@ export const getBlogintroAction = () => async(dispatch,getState) => {
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogIntro`,config)
-        dispatch({type:GET_BLOGINTRO_SUCCESS,payload:data.data})
+        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/ebookGenerator`,config)
+        dispatch({type:GET_EBOOK_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
         dispatch({
-            type: GET_BLOGINTRO_FAILED,
+            type: GET_EBOOK_FAILED,
             payload:
               error.response && error.response.data.message
                 ? error.response.data.message
@@ -49,10 +49,9 @@ export const getBlogintroAction = () => async(dispatch,getState) => {
     }
 }
 
-
-export const getOneIntroAction = (id) => async(dispatch,getState) => {
+export const getOneEbookAction = (id) => async(dispatch,getState) => {
     try {
-        dispatch({type:GETONE_BLOGINTRO_REQUEST})
+        dispatch({type:GETONE_EBOOK_REQUEST})
         const {userLogin:{userInfo}} = getState();
         const config = {
             headers:{
@@ -60,12 +59,12 @@ export const getOneIntroAction = (id) => async(dispatch,getState) => {
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogIntro/${id}`,config)
-        dispatch({type:GETONE_BLOGINTRO_SUCCESS,payload:[data.data]})
+        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/ebookGenerator/${id}`,config)
+        dispatch({type:GETONE_EBOOK_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
         dispatch({
-            type: GETONE_BLOGINTRO_FAILED,
+            type: GETONE_EBOOK_FAILED,
             payload:
               error.response && error.response.data.message
                 ? error.response.data.message
@@ -74,9 +73,9 @@ export const getOneIntroAction = (id) => async(dispatch,getState) => {
     }
 }
 
-export const deleteIntroAction = (id) => async(dispatch,getState) => {
+export const deleteEbookAction = (id) => async(dispatch,getState) => {
     try {
-        dispatch({type:DELETE_BLOGINTRO_REQUEST})
+        dispatch({type:DELETE_EBOOK_REQUEST})
         const {userLogin:{userInfo}} = getState();
         const config = {
             headers:{
@@ -84,12 +83,12 @@ export const deleteIntroAction = (id) => async(dispatch,getState) => {
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogIntro/${id}`,config)
-        dispatch({type:DELETE_BLOGINTRO_SUCCESS,payload:data.data})
+        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/ebookGenerator/${id}`,config)
+        dispatch({type:DELETE_EBOOK_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
         dispatch({
-            type: DELETE_BLOGINTRO_FAILED,
+            type: DELETE_EBOOK_FAILED,
             payload:
               error.response && error.response.data.message
                 ? error.response.data.message
@@ -97,4 +96,3 @@ export const deleteIntroAction = (id) => async(dispatch,getState) => {
           });
     }
 }
-

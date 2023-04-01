@@ -48,6 +48,7 @@ import { addProductDescReducer, deleteProductDescReducer, getOneProductDescReduc
 import { addProductNameReducer, deleteProductNameReducer, getOneProductNameReducer, getProductNameReducer } from './reducers/backend/productNameReducer'
 import { addTweetReducer, deleteTweetReducer, getOneTweetReducer, getTweetReducer } from './reducers/backend/tweetReducer'
 import { addYoutubeReducer, deleteYoutubeReducer, getOneYoutubeReducer, getYoutubeReducer } from './reducers/backend/youtubeReducer'
+import { deleteEbookReducer, getEbookReducer, getOneEbookReducer, saveEbookReducer } from './reducers/backend/ebookReducer'
 
 
 const reducers = combineReducers({
@@ -197,6 +198,11 @@ const reducers = combineReducers({
     getYoutube:getYoutubeReducer,
     getOneYoutube:getOneYoutubeReducer,
     deleteYoutube:deleteYoutubeReducer,
+
+    saveEbook:saveEbookReducer,
+    getEbook:getEbookReducer,
+    getOneEbook:getOneEbookReducer,
+    deleteEbook:deleteEbookReducer,
             //ebook in store
    // AddEbook:addEbookReducer,
     viewEbook:viewEbookReucer,

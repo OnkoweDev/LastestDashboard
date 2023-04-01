@@ -100,6 +100,8 @@ import AllTweet from "./pages2/Tweet/Tweeter";
 import TweetMore from "./pages2/Tweet/TweetMore";
 import AllYoutube from "./pages2/Youtube/Youtube";
 import YoutubeMore from "./pages2/Youtube/YoutubeMore";
+import AllEbook from "./pages2/Ebook/Ebook";
+import EbookMore from "./pages2/Ebook/EbookMore";
 BlogMore
 function App() {
   return (
@@ -222,6 +224,9 @@ function App() {
 
         <Route path="all_youtube" element={<AllYoutube />} />
         <Route path="all_youtube/:id" element={<YoutubeMore />} />
+
+        <Route path="all_ebook" element={<AllEbook />} />
+        <Route path="all_ebook/:id" element={<EbookMore />} />
 
 
 

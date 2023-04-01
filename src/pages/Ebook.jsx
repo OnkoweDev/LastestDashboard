@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect, useRef } from "react";
 import { ProjectHeader, SideNav, TopNav } from "../components";
 import "./styles/Ebook.css";
 
@@ -17,6 +17,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { ebookAction } from "../actions/ai/ebookAction";
 import Loader from "../components/Loader";
 import axios from "axios";
+import { getProjectAction } from "../actions/backend/projectAction";
+import { addEbookAction } from "../actions/backend/ebookAction";
+import { useNavigate } from "react-router-dom";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -32,8 +35,13 @@ const Ebook = () => {
     const [generated, setGenerated] = useState([])
     const [loading, setIsLoading] = useState(false)
     const [error,setError] = useState()
+    const myDiv = useRef(null)
+    const [projectId, setProjectId] = useState()
+    const [saveTitle, setSaveTitle] = useState("")
+    const [saveDescription, setSaveDescription] = useState("")
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     // const  ebook = useSelector((state)=>state.ebook)
     // const {loading, error, ebooks } = ebook
 
@@ -41,6 +49,14 @@ const Ebook = () => {
     //     e.preventDefault()
     //     dispatch(ebookAction(title,description))
     // }
+    const getProject = useSelector((state)=>state.getProject)
+    const {loading:projectLoading,error:projectError, project} = getProject
+    const saveEbook = useSelector((state)=>state.saveEbook)
+    const {loading:ebookLoading, error:ebookError} = saveEbook
+  
+   useEffect(() => {
+      dispatch(getProjectAction())
+    }, [])
 
     const handleSubmit =async(e) =>{
       e.preventDefault()
@@ -63,6 +79,15 @@ const Ebook = () => {
           console.log(error)
           setIsLoading(false)
       }
+    }
+
+    const handleForm = (e) => {
+      e.preventDefault()
+      const divData = myDiv.current.innerText
+      console.log(divData,projectId,saveTitle,saveDescription)
+      dispatch(addEbookAction(divData,projectId,saveTitle,saveDescription))
+      navigate('/all_ebook')
+
     }
     
     
@@ -141,7 +166,6 @@ const Ebook = () => {
                     type="text"
                     id="book-title"
                     placeholder="Book Title"
-                    //onChange={insertBookTitle}
                   />
                   <textarea
                   onChange={(e)=>setDescription(e.target.value)}
@@ -153,7 +177,7 @@ const Ebook = () => {
                     //value={note}
                     //onChange={insertBookContent}
                     style={{ resize: "none" }}
-                  >{note}</textarea>
+                  ></textarea>
                   </div>
                   <br/>
                   <button className="article-btn" style={{ fontSize: "14px" }}>
@@ -162,111 +186,116 @@ const Ebook = () => {
                   </form>
                
                 
+               
+                <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
+                {ebookLoading && <Loader />}
+                {ebookError && <div>{ebookError}</div>}
+                {loading && <Loader />}
+                {error && <div className=' bar error'>{error}</div>} 
+                <form onSubmit={handleForm}>
                 
-                <div className="right" style={{ position: "relative", lineHeight:"3em" }}>
-                 {loading && <Loader />}
-                 {error && <div className=' bar error'>{error}</div>} 
-                  <h2
-                    id="book-title-heading"
-                    style={{
-                      margin: "20px 0",
-                    }}
-                  ></h2>
-                  { Array.isArray(generated) ? generated && generated.map((boo)=>(
-                        <p>
-                        <h2>{boo.title}</h2>
-                        {boo.generated_ebook}
-                        </p>
+                <h2
+                id="book-title-heading"
+                style={{
+                  margin: "20px 0",
+                }}
+                ></h2>
+                { Array.isArray(generated) ? generated && generated.map((boo)=>(
+                  <p ref={myDiv} contentEditable suppressContentEditableWarning>
+                  <h2>{boo.title}</h2>
+                  {boo.generated_ebook}
+                  </p>
                   )):null}
                   <button
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    border: "none",
+                    outline: "none",
+                    position: "absolute",
+                    top: "4%",
+                    right: "5%",
+                    background: "transparent",
+                    cursor: "pointer",
+                  }}
+                  id="dot-btn"
+                  >
+                  <ul className="drop-btn">
+                  <BsThreeDots
+                  className="dot-icon"
+                  style={{ fontSize: "16px", fontWeight: "900" }}
+                  />
+                  <div className="drop-content">
+                  <button className="drop_down">Download</button>
+                  <button className="drop_down">Share</button>
+                  </div>
+                  </ul>
+                  </button>
+                  <br />
+                  <select
+                   onChange={(e)=>setProjectId(e.target.value)} 
+                   value={projectId}
+                    name=""
+                    id=""
+                    className="select"
                     style={{
-                      display: "flex",
-                      alignItems: "center",
+                      display: "block",
+                      width: "100%",
+                      background: "var(--primary-blue)",
+                      borderRadius: "var(--border-radius-xs)",
                       border: "none",
                       outline: "none",
-                      position: "absolute",
-                      top: "4%",
-                      right: "5%",
-                      background: "transparent",
-                      cursor: "pointer",
+                      height: "10%",
+                      margin: "5px 0",
+                      padding: "5px",
+                      fontWeight: "400",
+                      fontSize: "14px",
+                      lineHeight: "21px",
+                      color: "rgba(0, 22, 51, 0.5)",
                     }}
-                    id="dot-btn"
                   >
-                    <ul className="drop-btn">
-                      <BsThreeDots
-                        className="dot-icon"
-                        style={{ fontSize: "16px", fontWeight: "900" }}
-                      />
-                      <div className="drop-content">
-                        <button className="drop_down">Download</button>
-                        <button className="drop_down">Share</button>
-                      </div>
-                    </ul>
+                  <option value="" selected disabled hidden>Select project</option>
+                  {
+                   project && project.map((pro, i)=>(
+                    <option key={i} value={pro.id}>{pro.name}</option>
+                    ))
+                   }
+                  </select>
+                    <br />
+                    <input
+                    onChange={(e)=>setSaveTitle(e.target.value)}
+                    value = {saveTitle}
+                    type="text"
+                    id="book-title"
+                    placeholder="Title"
+                    style={{ resize: "none", width: "100%", height: "50px", borderRadius:"15px", border:"none", borderColor: "rgba(255,255,255)"}}
+                  />
+                    <br />
+                    <textarea
+                      onChange={(e)=>setSaveDescription(e.target.value)}
+                      value = {saveDescription}
+                        name=""
+                        id="book-content-field"
+                        className="textarea"
+                        placeholder="Description"
+                    //value={note}
+                    //onChange={insertBookContent}
+                    style={{ resize: "none" }}
+                  ></textarea>
+                  <br />
+                  <button className="article-btn" style={{ fontSize: "14px" }}>
+                    save Ebook
                   </button>
+                  </form>
                   
-                      
-
-                </div>
+                  
+                  </div>
                
               </div>
           
             </div>
             
-            {/* {isVoice ? (
-              <div className="voice-div">
-                <button
-                  className="icon-div"
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                >
-                  <RiVoiceprintFill />
-                </button>
-                <button
-                  className="icon-div"
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                >
-                  <CiPause1 />
-                </button>
-                <button
-                  className="icon-div"
-                  onClick={(e) => {
-                    e.preventDefault();
-                  }}
-                >
-                  <FiStopCircle />
-                </button>
-                <button
-                  className="icon-div"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsVoice(false);
-                  }}
-                >
-                  <HiOutlinePencil />
-                </button>
-              </div>
-            ) : (
-              <div className="voice-div">
-                <button
-                  className="icon-div"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsVoice(true);
-                  }}
-                >
-                  <AiOutlineAudio />
-                </button>
-                <button
-                  className="icon-div"
-                 onClick={() => setIsListening(prevState => !prevState)}
-                >
-                  <HiOutlinePencil />
-                </button>
-              </div>
-            )} */}
+            
              { isListening ?  <RiVoiceprintFill /> : <FiStopCircle />}
                     <AiOutlineAudio
                         className="icon-div mic-icon"

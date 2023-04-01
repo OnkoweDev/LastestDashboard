@@ -1,34 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteIntroAction, getBlogintroAction } from "../../actions/backend/blogIntroAction";
-
 
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
+import { deleteEbookAction, getEbookAction } from "../../actions/backend/ebookAction";
 
-const ALLBlogIntro = () => {
+const AllEbook = () => {
   // state to hold the data comimg from the database / backend
   const [message, setMessage] = useState("");
 
   const dispatch = useDispatch()
-  const getBlogIntro = useSelector((state)=>state.getBlogIntro)
-  const {loading,error,blogs} = getBlogIntro
+  const getEbook = useSelector((state)=>state.getEbook)
+  const {loading,error,Ebooks} = getEbook
 
-//   const saveTitle = useSelector((state)=>state.saveTitle)
-//   const {error:googleError} = saveTitle
+  const saveTitle = useSelector((state)=>state.saveTitle)
+  const {error:googleError} = saveTitle
 
-  const deleteBlogIntro = useSelector((state)=>state.deleteBlogIntro)
-  const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteBlogIntro
+  const deleteEbook = useSelector((state)=>state.deleteEbook)
+  const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteEbook
 
   useEffect(() => {
-    dispatch(getBlogintroAction())
+    dispatch(getEbookAction())
   }, [deleteSuccess])
   
   const handleDelete = (id) =>{
     if(window.confirm(`Are you sure you want to delete Item`)){
-    dispatch(deleteIntroAction(id))
+    dispatch(deleteEbookAction(id))
     setMessage("Item deleted Successful")
     setTimeout(()=>{
         setMessage("")
@@ -55,19 +54,21 @@ const ALLBlogIntro = () => {
             padding:"5px",
             
         }} 
-        to='/blog-intro-generator'>Create Blog Intro</Link><br/>
+        to='/ebook'>Create Ebook</Link><br/>
 
 
               <div className="cards-container">
                {loading && <Loader />}
+               {googleError && <div className=' bar error'>{googleError}</div>}
                {error && <div className=' bar error'>{error}</div>}
                {message && <div className=' bar success'>{message}</div>}
 
-               {blogs && blogs.map((blog)=>(
-                <div className="card" key={blog.id}>
-                        <p>{blog.intro.slice(0,300)}.....</p>
-                        <Link to={`/all_intro/${blog.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(blog.id)} className="btn btn-danger">delete</a>
+               { Ebooks && Ebooks.map((face)=>(
+                <div className="card" key={face.id}>
+                        <h1>{face.title}</h1>
+                        <p>{face.generated_ebook.slice(0,300)}.....</p>
+                        <Link to={`/all_ebook/${face.id}`}>Read more</Link><br/>
+                        <a  onClick={()=>handleDelete(face.id)} className="btn btn-danger">delete</a>
 
                      
                 </div>
@@ -81,4 +82,4 @@ const ALLBlogIntro = () => {
   );
 };
 
-export default ALLBlogIntro;
+export default AllEbook;
