@@ -16,6 +16,7 @@ import { addLinkedin } from "../actions/ai/SocialMediaAction";
 import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addLinkAction } from "../actions/backend/linkPostAction";
+import { useNavigate } from "react-router-dom";
 
 const LinkedIn = () => {
   // state for audio option
@@ -28,6 +29,7 @@ const LinkedIn = () => {
   const myDiv = useRef(null)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const linkedin = useSelector((state)=>state.linkedin)
   const {loading, error, success, links} = linkedin
 
@@ -52,6 +54,7 @@ const LinkedIn = () => {
     const divData = myDiv.current.innerText
     console.log(divData)
     dispatch(addLinkAction(divData,projectId))
+    navigate('/all_link_post')
   }
 
   const handleAudio = () => {
@@ -169,7 +172,9 @@ const LinkedIn = () => {
                 { links && links.map((link)=>(
                   <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning>
                   <BCDIcons />
-                  {link.generated_posts}
+                  {link.generated_posts.map((d)=>(
+                    <p>{d}</p>
+                  ))}
                   </div>
                   ))}
                   <br />

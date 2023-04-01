@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
-import { getLinkAction } from "../../actions/backend/linkPostAction";
+import { deleteLinkAction, getLinkAction } from "../../actions/backend/linkPostAction";
 
 const AllLinkPost = () => {
   // state to hold the data comimg from the database / backend
@@ -17,8 +17,8 @@ const AllLinkPost = () => {
 //   const saveTitle = useSelector((state)=>state.saveTitle)
 //   const {error:googleError} = saveTitle
 
-  const deleteLandingPage = useSelector((state)=>state.deleteLandingPage)
-  const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteLandingPage
+  const deleteLinkPost = useSelector((state)=>state.deleteLinkPost)
+  const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteLinkPost
 
   useEffect(() => {
     dispatch(getLinkAction())
@@ -26,7 +26,7 @@ const AllLinkPost = () => {
   
   const handleDelete = (id) =>{
     if(window.confirm(`Are you sure you want to delete Item`)){
-    dispatch(deleteLandingPageAction(id))
+    dispatch(deleteLinkAction(id))
     setMessage("Item deleted Successful")
     setTimeout(()=>{
         setMessage("")
