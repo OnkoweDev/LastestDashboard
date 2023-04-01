@@ -33,31 +33,36 @@ const Ebook = () => {
     const [loading, setIsLoading] = useState(false)
     const [error,setError] = useState()
 
-    //const dispatch = useDispatch()
-    //const ebook = useSelector((state)=>state.ebook)
-    //const {loading,error,success,bobo} = ebook
+    // const dispatch = useDispatch()
+    // const  ebook = useSelector((state)=>state.ebook)
+    // const {loading, error, ebooks } = ebook
 
-    
+    // const handleSubmit = async(e) => {
+    //     e.preventDefault()
+    //     dispatch(ebookAction(title,description))
+    // }
 
-    const handleSubmit = async(e) => {
-         e.preventDefault()
-        // console.log(title)
-        // dispatch(ebookAction(title,description))
-       try {
-        setIsLoading(true)
-        const config = {
-            headers:{
-                'Content-type':'application/x-www-form-urlencoded'
-            },
-        };
-        const {data} = await axios.post(`http://44.203.107.96/ebook/`, {title,description},config)
-        setGenerated(data)
-        setIsLoading(false)
-       } catch (error) {
-            console.log(error)
-            setError(error)
-            setIsLoading(false)
-       }
+    const handleSubmit =async(e) =>{
+      e.preventDefault()
+      try {
+          const config = {
+              headers:{
+                  'Content-type':'application/x-www-form-urlencoded'
+              },
+          };
+          setIsLoading(true)
+          const {data} = await axios.post(`http://44.203.107.96/ebook/`, {title,description},config)
+          const arrData = [data]
+          arrData.forEach((data)=>{
+            setGenerated([data])
+          })
+          console.log(generated)
+          setIsLoading(false)
+      } catch (error) {
+         //setError("data not found")
+          console.log(error)
+          setIsLoading(false)
+      }
     }
     
     
@@ -158,20 +163,21 @@ const Ebook = () => {
                
                 
                 
-                <div className="right" style={{ position: "relative" }}>
-                {loading && <Loader />}
-                {/* {error && <div className=' bar error'>{error}</div>} */}
+                <div className="right" style={{ position: "relative", lineHeight:"3em" }}>
+                 {loading && <Loader />}
+                 {error && <div className=' bar error'>{error}</div>} 
                   <h2
                     id="book-title-heading"
                     style={{
                       margin: "20px 0",
                     }}
                   ></h2>
-                  { generated.map((boo)=>(
-                    <div id="book-content" style={{whiteSpace: 'pre-line'}}>
+                  { Array.isArray(generated) ? generated && generated.map((boo)=>(
+                        <p>
+                        <h2>{boo.title}</h2>
                         {boo.generated_ebook}
-                    </div>
-                  ))}
+                        </p>
+                  )):null}
                   <button
                     style={{
                       display: "flex",
