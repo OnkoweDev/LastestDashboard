@@ -2,24 +2,22 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getOneIntroAction } from "../../actions/backend/blogIntroAction";
+import { getOneYoutubeAction } from "../../actions/backend/youtubeAction";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
 
-const BlogIntroMore = () => {
-  // state to hold the data comimg from the database / backend
-  //const [data, setData] = useState(HomepageData);
-  const [article, setArticle] = useState([])
+const YoutubeMore = () => {
 
   const dispatch = useDispatch()
-  const getOneBlogIntro = useSelector((state)=>state.getOneBlogIntro)
-  const {loading,error,blog} = getOneBlogIntro
+  const getOneYoutube = useSelector((state)=>state.getOneYoutube)
+  const {loading,error,youtube} = getOneYoutube
 
   const {id} = useParams();
-  
+ 
+
   useEffect(() => {
-    dispatch(getOneIntroAction(id))
+    dispatch(getOneYoutubeAction(id))
   }, [])
   
  
@@ -33,15 +31,13 @@ const BlogIntroMore = () => {
           <div className="content">
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
-                {blog && blog.map((d)=>(
-                    <div key={d.id}className="cards-container">
-                        {d.intro} 
-                        <br />
-                                         
+                {youtube && youtube.map((sub)=>(
+                    <div key={sub.id}className="cards-container">
+                        {sub.youtube_intro}                                       
                     </div>
                 ))}
-                <Link to="/all_intro">Back</Link> 
-            {/* <Voice /> */}
+                <br />
+                <Link to="/all_youtube">Back</Link>     
           </div>
         </div>
       </main>
@@ -49,4 +45,4 @@ const BlogIntroMore = () => {
   );
 };
 
-export default BlogIntroMore;
+export default YoutubeMore;

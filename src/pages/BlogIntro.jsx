@@ -90,7 +90,7 @@ const handleForm  = (e) => {
   console.log(divData)
   console.log(projectId)
   dispatch(blogIntroAddAction(divData,projectId))
-  navigate('/all_blogs')
+  navigate('/all_intro')
 }
 
 useEffect(() => {

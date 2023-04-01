@@ -96,6 +96,10 @@ import AllBlogTopic from "./pages2/BlogTopic/AllBlogTopic";
 import BlogTopicMore from "./pages2/BlogTopic/BlogTopicMore";
 import AllProductName from "./pages2/ProductName/ProductName";
 import ProductMore from "./pages2/ProductName/ProductNameMore";
+import AllTweet from "./pages2/Tweet/Tweeter";
+import TweetMore from "./pages2/Tweet/TweetMore";
+import AllYoutube from "./pages2/Youtube/Youtube";
+import YoutubeMore from "./pages2/Youtube/YoutubeMore";
 BlogMore
 function App() {
   return (
@@ -213,22 +217,11 @@ function App() {
         <Route path="all_product_name" element={<AllProductName />} />
         <Route path="all_product_name/:id" element={<ProductMore />} />
 
+        <Route path="all_tweet" element={<AllTweet />} />
+        <Route path="all_tweet/:id" element={<TweetMore />} />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <Route path="all_youtube" element={<AllYoutube />} />
+        <Route path="all_youtube/:id" element={<YoutubeMore />} />
 
 
 

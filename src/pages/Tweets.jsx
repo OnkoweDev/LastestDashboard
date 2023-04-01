@@ -18,6 +18,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTwitter } from "../actions/ai/twitterAction";
 import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
+import { addTweetAction } from "../actions/backend/tweetAction";
+import { useNavigate } from "react-router-dom";
 
 const Tweets = () => {
   // state for audio option
@@ -29,8 +31,12 @@ const Tweets = () => {
   const [keywords, setKeywords] = useState([])
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const twitter = useSelector((state)=>state.twitter)
   const {loading, error,success, tweets} = twitter
+
+  const saveTweet = useSelector((state)=>state.saveTweet)
+  const {loading:tweetLoading,error:tweetError} = saveTweet
 
   const getProject = useSelector((state)=>state.getProject)
   const {loading:projectLoading,error:projectError, project} = getProject
@@ -49,6 +55,8 @@ const Tweets = () => {
     e.preventDefault()
     const divData = myDiv.current.innerText
     console.log(divData, projectId)
+    dispatch(addTweetAction(divData, projectId))
+    navigate('/all_tweet')
   }
   // handle audio option
   const handleAudio = () => {
@@ -165,7 +173,7 @@ const Tweets = () => {
                   </div>
                   ))}
                   <br />
-                    <p className="product-p">Select Project*</p>
+                          <p className="product-p">Select Project*</p>
                           <select
                         onChange={(e)=>setProjectId(e.target.value)} 
                         value={projectId}

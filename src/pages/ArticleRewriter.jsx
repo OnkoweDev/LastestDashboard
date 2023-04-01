@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./styles/GoogleAdTitle.css";
 import articleBlog from "../assets/article-blog.png";
+import ReactTextFormat from 'react-text-format';
 import {
   BCDIcons,
   OutputNumber,
@@ -183,61 +184,63 @@ const ArticleRewriter = () => {
                 </div>
                 {/*  */}
                 <div className="right">
+                <ReactTextFormat >
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
-
+                
                 {articleLoading && <Loader />}
                 {articleError && <div className=' bar error'>{articleError}</div>}
-
+                
                 
                 <form onSubmit={handleForm}>
                 {rewriters && rewriters.map((rewrite)=>(
                   <div className="sec-1" ref={myDiv} suppressContentEditableWarning={true} contentEditable  type='text'>
                   <BCDIcons />
-                        {rewrite.generated_article}
+                  {rewrite.generated_article}
                   </div>
                   ))}
-                 <br />
-                 
-                 <p className="product-p">Select Project*</p>
-                    <select
-                      onChange={(e)=>setProjectId(e.target.value)} 
-                      value={projectId}
-                       name=""
-                       id=""
-                       className="select"
-                       style={{
-                         display: "block",
-                         width: "100%",
-                         background: "var(--primary-blue)",
-                         borderRadius: "var(--border-radius-xs)",
-                         border: "none",
-                         outline: "none",
-                         height: "10%",
-                         margin: "5px 0",
-                         padding: "5px",
-                         fontWeight: "400",
-                         fontSize: "14px",
-                         lineHeight: "21px",
-                         color: "rgba(0, 22, 51, 0.5)",
-                       }}
-                     >
-                    <option value="" selected disabled hidden>Select project</option>
-
-                     {
-                      project && project.map((pro, i)=>(
-                       <option key={i} value={pro.id}>{pro.name}</option>
-                       ))
-                      }
-                     </select>
                   <br />
-                <button className="article-btn" style={{ fontSize: "14px" }}>
-                Save Article Rewriter
-              </button>
-                </form>
-                </div>
-              </div>
-            </div>
+                  
+                  <p className="product-p">Select Project*</p>
+                  <select
+                  onChange={(e)=>setProjectId(e.target.value)} 
+                  value={projectId}
+                  name=""
+                  id=""
+                  className="select"
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    background: "var(--primary-blue)",
+                    borderRadius: "var(--border-radius-xs)",
+                    border: "none",
+                    outline: "none",
+                    height: "10%",
+                    margin: "5px 0",
+                    padding: "5px",
+                    fontWeight: "400",
+                    fontSize: "14px",
+                    lineHeight: "21px",
+                    color: "rgba(0, 22, 51, 0.5)",
+                  }}
+                  >
+                  <option value="" selected disabled hidden>Select project</option>
+                  
+                  {
+                    project && project.map((pro, i)=>(
+                      <option key={i} value={pro.id}>{pro.name}</option>
+                      ))
+                    }
+                    </select>
+                    <br />
+                    <button className="article-btn" style={{ fontSize: "14px" }}>
+                    Save Article Rewriter
+                    </button>
+                    </form>
+                    </ReactTextFormat>
+                    </div>
+                    </div>
+                    </div>
           </div>
         </div>
       </main>

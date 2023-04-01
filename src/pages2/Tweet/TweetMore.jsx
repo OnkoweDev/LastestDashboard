@@ -2,24 +2,22 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getOneIntroAction } from "../../actions/backend/blogIntroAction";
+import { getOneTweetAction } from "../../actions/backend/tweetAction";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
 
-const BlogIntroMore = () => {
-  // state to hold the data comimg from the database / backend
-  //const [data, setData] = useState(HomepageData);
-  const [article, setArticle] = useState([])
+const TweetMore = () => {
 
   const dispatch = useDispatch()
-  const getOneBlogIntro = useSelector((state)=>state.getOneBlogIntro)
-  const {loading,error,blog} = getOneBlogIntro
+  const getOneTweet = useSelector((state)=>state.getOneTweet)
+  const {loading,error,tweeter} = getOneTweet
 
   const {id} = useParams();
-  
+ 
+
   useEffect(() => {
-    dispatch(getOneIntroAction(id))
+    dispatch(getOneTweetAction(id))
   }, [])
   
  
@@ -33,15 +31,13 @@ const BlogIntroMore = () => {
           <div className="content">
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
-                {blog && blog.map((d)=>(
-                    <div key={d.id}className="cards-container">
-                        {d.intro} 
-                        <br />
-                                         
+                {tweeter && tweeter.map((sub)=>(
+                    <div key={sub.id}className="cards-container">
+                        {sub.tweet}                                       
                     </div>
                 ))}
-                <Link to="/all_intro">Back</Link> 
-            {/* <Voice /> */}
+                <br />
+                <Link to="/all_tweet">Back</Link>     
           </div>
         </div>
       </main>
@@ -49,4 +45,4 @@ const BlogIntroMore = () => {
   );
 };
 
-export default BlogIntroMore;
+export default TweetMore;

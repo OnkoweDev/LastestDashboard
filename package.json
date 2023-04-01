@@ -20,6 +20,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.5.0",
     "react-speech-recognition": "^3.10.0",
+    "react-text-format": "^2.0.31",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "regenerator-runtime": "^0.13.11",

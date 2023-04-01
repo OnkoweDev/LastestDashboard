@@ -60,7 +60,6 @@ const AllBlog = () => {
                 <div className="card" key={blog.id}>
                         <p>{blog.article.slice(0,300)}....</p>
                         <Link to={`/allblogs/${blog.id}`}>Read more</Link><br/>
-                        <Link to={`/updateBlog/${blog.id}`}>Update</Link><br/>
                         <a onClick={()=>handleDelete(blog.id)}>Delete</a>
                         
                 </div>
