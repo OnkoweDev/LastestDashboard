@@ -20,7 +20,7 @@ const SideNav = () => {
       <SidebarRow Icon={BiFont} title={"Font"} link='/font' />
       <SidebarRow Icon={BiFile} title={"Resources"} link='/resources' />
       <SidebarRow Icon={BiGridAlt} title={"Theme"} link='/theme' />
-      <SidebarRow Icon={GiSoundWaves} title={"Transcribe"} link='/transcribe' />
+      <SidebarRow Icon={GiSoundWaves} title={"Transcribe"} link='/audio' />
     </div>
   );
 };
