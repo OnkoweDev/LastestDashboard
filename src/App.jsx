@@ -106,6 +106,8 @@ import AllLinkPost from "./pages2/LinkedinPost/Linkedin";
 import LinkMore from "./pages2/LinkedinPost/LinkPostMore";
 import Language from "./pages2/Language/Language";
 import LanguageMore from "./pages2/Language/LanguageMore";
+import Conclusion from "./pages2/Conclusion/Conclusion";
+import ConclusionMore from "./pages2/Conclusion/ConclusionMore";
 BlogMore
 function App() {
   return (
@@ -237,6 +239,9 @@ function App() {
 
         <Route path="language" element={<Language />} />
         <Route path="language/:id" element={<LanguageMore />} />
+
+        <Route path="conclusion" element={<Conclusion />} />
+        <Route path="conclusion/:id" element={<ConclusionMore />} />
 
 
 
