@@ -1,4 +1,4 @@
-import { ADD_BLOGSECTION_FAILED, ADD_BLOGSECTION_REQUEST, ADD_BLOGSECTION_SUCCESS, DELETE_BLOGSECTION_FAILED, DELETE_BLOGSECTION_REQUEST, DELETE_BLOGSECTION_SUCCESS, GETONE_BLOGSECTION_FAILED, GETONE_BLOGSECTION_REQUEST, GETONE_BLOGSECTION_SUCCESS, GET_BLOGSECTION_FAILED, GET_BLOGSECTION_REQUEST, GET_BLOGSECTION_SUCCESS, UPDATE_BLOGSECTION_FAILED, UPDATE_BLOGSECTION_REQUEST, UPDATE_BLOGSECTION_SUCCESS } from "../../constant/backend/blogSectionConstant";
+import { ADD_BLOGSECTION_FAILED, ADD_BLOGSECTION_REQUEST, ADD_BLOGSECTION_SUCCESS, DELETE_BLOGSECTION_FAILED, DELETE_BLOGSECTION_REQUEST, DELETE_BLOGSECTION_SUCCESS, GETONE_BLOGSECTION_FAILED, GETONE_BLOGSECTION_REQUEST, GETONE_BLOGSECTION_SUCCESS, GET_BLOGSECTION_FAILED, GET_BLOGSECTION_REQUEST, GET_BLOGSECTION_SUCCESS} from "../../constant/backend/blogSectionConstant";
 
 export const saveBlogSectionReducer = (state={}, action) => {
     switch (action.type) {
@@ -56,16 +56,3 @@ export const deleteBlogSectionReducer = (state={}, action) => {
     }
 }
 
-export const updateBlogSectionReducer = (state={}, action) => {
-    switch (action.type) {
-        case UPDATE_BLOGSECTION_REQUEST:
-            return {loading:true}
-        case UPDATE_BLOGSECTION_SUCCESS:
-            return {loading:false, success:true}
-        case UPDATE_BLOGSECTION_FAILED:
-            return {loading:false,success:false, error:action.payload}
-    
-        default:
-            return state;
-    }
-}

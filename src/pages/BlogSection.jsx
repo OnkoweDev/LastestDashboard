@@ -53,7 +53,7 @@ const Facebook = () => {
     e.preventDefault()
     console.log(topic, outputNumber)
     dispatch(blogSectionAction(topic,intro,outputNumber))
-   // dispatch(blogSectionAction())
+  
   }
 
   useEffect(() => {
@@ -104,6 +104,7 @@ const Facebook = () => {
     console.log(divData)
     console.log(projectId)
     dispatch(addSectionAction(divData,projectId))
+    navigate('/blogsection')
   }
 
   useEffect(() => {
@@ -238,7 +239,7 @@ const Facebook = () => {
                 <form onSubmit={handleForm}>
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
-                {blogsSec && blogsSec.slice(0,1).map((blog)=>(
+                {Array.isArray(blogsSec) ? blogsSec && blogsSec.map((blog)=>(
                   
                   <div className="sec-1" ref={myDiv}>
                   <BCDIcons />
@@ -246,7 +247,7 @@ const Facebook = () => {
                     <p>{d}</p>
                   ))}
                   </div>
-                  ))}
+                  )):null}
                   
                   <br />
                   <br />

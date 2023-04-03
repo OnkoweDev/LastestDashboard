@@ -108,6 +108,8 @@ import Language from "./pages2/Language/Language";
 import LanguageMore from "./pages2/Language/LanguageMore";
 import Conclusion from "./pages2/Conclusion/Conclusion";
 import ConclusionMore from "./pages2/Conclusion/ConclusionMore";
+import AllBlogSection from "./pages2/BlogSection/BlogSection";
+import BlogSectionMore from "./pages2/BlogSection/BlogSectionMore";
 BlogMore
 function App() {
   return (
@@ -242,6 +244,9 @@ function App() {
 
         <Route path="conclusion" element={<Conclusion />} />
         <Route path="conclusion/:id" element={<ConclusionMore />} />
+
+        <Route path="blogsection" element={<AllBlogSection />} />
+        <Route path="blogsection/:id" element={<BlogSectionMore />} />
 
 
 

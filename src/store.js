@@ -32,7 +32,7 @@ import { addProjectReducer, getProjectReducer } from './reducers/backend/project
 import {  addArticleWriterReducer, deleteArticleWriterReducer, getArticleWriterReducer, getOneArticleWriterReducer, updatdeArticleWriterReducer } from './reducers/backend/articleWriterReducer'
 import { addBlogWriterReducer, deleteBlogWriterReducer, getBlogWriterReducer, getOneBlogWriterReducer, updateBlogWriterReducer } from './reducers/backend/blogWriterReducer'
 import { deleteBlogIntroReducer, getNewBlogIntroReducer, getOneBlogIntroReducer, saveBlogIntroReducer } from './reducers/backend/blogIntroReducer'
-import { saveBlogSectionReducer } from './reducers/backend/blogSectionReducer'
+import { deleteBlogSectionReducer, getBlogSectionReducer, getOneBlogSectionReducer, saveBlogSectionReducer } from './reducers/backend/blogSectionReducer'
 import { deleteBlogTopicReducer, getBlogTopicReducer, getOneBlogTopicReducer, saveBlogTopicReducer } from './reducers/backend/blogTopicReducer'
 import { addContentReducer, deleteContentReducer, getContentReducer, getOneContentReducer } from './reducers/backend/contentRepreReducer'
 import { addEmailReducer, deleteEmailReducer, getEmailReducer, getOneEmailReducer } from './reducers/backend/emailGenReducer'
@@ -115,6 +115,9 @@ const reducers = combineReducers({
 
     //Blog Section
     saveBlogSection:saveBlogSectionReducer,
+    getBlogSection:getBlogSectionReducer,
+    getOneBlogSection:getOneBlogSectionReducer,
+    deleteBlogSection:deleteBlogSectionReducer,
 
     //Blog Topic
     saveBlogTopic: saveBlogTopicReducer,
