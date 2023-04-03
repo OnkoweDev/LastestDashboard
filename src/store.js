@@ -53,6 +53,7 @@ import { addLinkReducer, deleteLinkReducer, getLinkReducer, getOneLinkReducer } 
 import { addLanguageReducer, deleteLanguageReducer, getLanguageReducer, getOneLanguageReducer } from './reducers/backend/languageReducer'
 import { addConclusionReducer, deleteConclusionReducer, getConclusionReducer, getOneConclusionReducer } from './reducers/backend/conclusionReducer'
 import { addLinkAdsReducer, deleteLinkAdsReducer, getLinkAdsReducer, getOneLinkAdsReducer } from './reducers/backend/linkdinAdsReducer'
+import { addAudioReducer, deleteAudioReducer, getAudioReducer, getOneAudioReducer } from './reducers/backend/audioReducer'
 
 
 const reducers = combineReducers({
@@ -230,6 +231,11 @@ const reducers = combineReducers({
     getLinkedinAds:getLinkAdsReducer,
     getOneLinkedinAds:getOneLinkAdsReducer,
     deleteLinkedinAds:deleteLinkAdsReducer,
+
+    saveAudio:addAudioReducer,
+    getAudio:getAudioReducer,
+    getOneAudio:getOneAudioReducer,
+    deleteAudio:deleteAudioReducer,
             //ebook in store
    // AddEbook:addEbookReducer,
     viewEbook:viewEbookReucer,

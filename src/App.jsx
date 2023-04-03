@@ -112,6 +112,8 @@ import AllBlogSection from "./pages2/BlogSection/BlogSection";
 import BlogSectionMore from "./pages2/BlogSection/BlogSectionMore";
 import AllLinkAds from "./pages2/LinkedinAds/LinkedinAds";
 import LinkAdsMore from "./pages2/LinkedinAds/LinkedinAdsMore";
+import AllAudio from "./pages2/Audio/Audio";
+import AudioMore from "./pages2/Audio/AudioMore";
 BlogMore
 function App() {
   return (
@@ -252,6 +254,9 @@ function App() {
 
         <Route path="all_linkedin_ads" element={<AllLinkAds />} />
         <Route path="all_linkedin_ads/:id" element={<LinkAdsMore />} />
+
+        <Route path="all_audio" element={<AllAudio />} />
+        <Route path="all_audio/:id" element={<AudioMore />} />
 
 
 
