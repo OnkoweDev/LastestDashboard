@@ -104,6 +104,8 @@ import AllEbook from "./pages2/Ebook/Ebook";
 import EbookMore from "./pages2/Ebook/EbookMore";
 import AllLinkPost from "./pages2/LinkedinPost/Linkedin";
 import LinkMore from "./pages2/LinkedinPost/LinkPostMore";
+import Language from "./pages2/Language/Language";
+import LanguageMore from "./pages2/Language/LanguageMore";
 BlogMore
 function App() {
   return (
@@ -232,6 +234,9 @@ function App() {
 
         <Route path="all_link_post" element={<AllLinkPost />} />
         <Route path="all_link_post/:id" element={<LinkMore />} />
+
+        <Route path="language" element={<Language />} />
+        <Route path="language/:id" element={<LanguageMore />} />
 
 
 

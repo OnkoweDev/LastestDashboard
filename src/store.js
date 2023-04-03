@@ -50,6 +50,7 @@ import { addTweetReducer, deleteTweetReducer, getOneTweetReducer, getTweetReduce
 import { addYoutubeReducer, deleteYoutubeReducer, getOneYoutubeReducer, getYoutubeReducer } from './reducers/backend/youtubeReducer'
 import { deleteEbookReducer, getEbookReducer, getOneEbookReducer, saveEbookReducer } from './reducers/backend/ebookReducer'
 import { addLinkReducer, deleteLinkReducer, getLinkReducer, getOneLinkReducer } from './reducers/backend/linkdlenPostReducer'
+import { addLanguageReducer, deleteLanguageReducer, getLanguageReducer, getOneLanguageReducer } from './reducers/backend/languageReducer'
 
 
 const reducers = combineReducers({
@@ -209,6 +210,11 @@ const reducers = combineReducers({
     getLinkPost:getLinkReducer,
     getOneLinkPost:getOneLinkReducer,
     deleteLinkPost:deleteLinkReducer,
+
+    saveLanguage:addLanguageReducer,
+    getLanguage:getLanguageReducer,
+    getOneLanguage:getOneLanguageReducer,
+    deleteLanguage:deleteLanguageReducer,
             //ebook in store
    // AddEbook:addEbookReducer,
     viewEbook:viewEbookReucer,

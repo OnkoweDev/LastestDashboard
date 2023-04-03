@@ -20,6 +20,9 @@ import { blogTopicAction } from "../actions/ai/blogTopicAction";
 import Loader from "../components/Loader";
 import { landAction } from "../actions/ai/landAction";
 import axios from "axios";
+import { useRef } from "react";
+import { getProjectAction } from "../actions/backend/projectAction";
+import { addLanguageAction } from "../actions/backend/languageAction";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -36,6 +39,23 @@ const Chinese = () => {
   const [lands, setLands] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
+  const [projectId, setProjectId] = useState()
+  const [saveText, setSaveText] = useState('')
+  const [language,setLanguage] = useState('')
+  const myDiv = useRef(null)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const getProject = useSelector((state)=>state.getProject)
+  const {loading:projectLoading,error:projectError, project} = getProject
+
+  const saveLanguage = useSelector((state)=>state.saveLanguage)
+  const {loading, error, success} = saveLanguage
+
+
+  useEffect(() => {
+      dispatch(getProjectAction())
+  }, [])
 
 
 
@@ -63,13 +83,15 @@ const Chinese = () => {
 
     }
   }
-    
-  
-  useEffect(() => {
-   
-  }, [])
-  
 
+  const handleForm = (e) => {
+    e.preventDefault()
+    const divData = myDiv.current.innerText
+    console.log(divData,projectId)
+    dispatch(addLanguageAction(divData,projectId,language,saveText))
+    navigate('/language')
+  }
+    
 
   const [isListening, setIsListening] = useState(false)
   const [note, setNote] = useState([])
@@ -151,48 +173,7 @@ const Chinese = () => {
                       margin: "10px 0",
                     }}
                   >
-                    {/* {isAudio ? (
-                      <div className="audio">
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <RiVoiceprintFill />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <CiPause1 />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <FiStopCircle />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setIsAudio(false);
-                          }}
-                        >
-                          <HiOutlinePencil />
-                        </button>
-                      </div>
-                    ) : (
-                      <AiOutlineAudio
-                        className="icon-div mic-icon"
-                        onClick={handleAudio}
-                      />
-                    )} */}
+                    
                     {isListening ?  <RiVoiceprintFill className="icon-div mic-icon" /> :  <FiStopCircle className="icon-div mic-icon" />}
                      <AiOutlineAudio
                         className="icon-div mic-icon"
@@ -207,19 +188,107 @@ const Chinese = () => {
                 </div>
                 {/*  */}
                 <div className="right">
+                <form onSubmit={handleForm}>
                 {isLoading && <Loader />}
                 {errorMessage && <div className='bar error'>{errorMessage}</div>}
+                {loading && <Loader />}
+                {error && <div className='bar error'>{error}</div>}
                 {/* {console.log(lands.data)} */}
-                   {lands && lands?.map((blog)=>(
+                {lands && lands?.map((blog)=>(
+                  
+                  <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning>
+                  <BCDIcons />
+                    {blog.generated_translation}
+                  </div>
+                  ))}
+                  <br />
+                  <select
+                   onChange={(e)=>setProjectId(e.target.value)} 
+                   value={projectId}
+                    name=""
+                    id=""
+                    className="select"
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      background: "var(--primary-blue)",
+                      borderRadius: "var(--border-radius-xs)",
+                      border: "none",
+                      outline: "none",
+                      height: "10%",
+                      margin: "5px 0",
+                      padding: "5px",
+                      fontWeight: "400",
+                      fontSize: "14px",
+                      lineHeight: "21px",
+                      color: "rgba(0, 22, 51, 0.5)",
+                    }}
+                  >
+                  <option value="" selected disabled hidden>Select project</option>
+                  {
+                   project && project.map((pro, i)=>(
+                    <option key={i} value={pro.id}>{pro.name}</option>
+                    ))
+                   }
+                  </select>
+                    <br />
+                    <input
+                    onChange={(e)=>setLanguage(e.target.value)}
+                    value = {language}
+                    type="text"
+                    id="book-title"
+                    placeholder="Language"
 
-                        <div className="sec-1">
-                                 <BCDIcons />
-                            {blog.generated_translation}
-                         </div>
-                            ))}
-                 
-                </div>
-              </div>
+                    style={{
+                        resize: "none", 
+                        height: "30px",
+                        borderRadius:"15px", 
+                        border:"none",
+                        textAlign:"center",
+                        borderColor: "rgba(255,255,255)", 
+                        display: "block",
+                        width: "100%",
+                        background: "var(--primary-blue)",
+                        borderRadius: "var(--border-radius-xs)",
+                        border: "none",
+                        outline: "none",
+                        height: "15%",
+                        margin: "10px 0",
+                        padding: "10px",
+                        resize: "none",}}
+                      />
+                    <br />
+                    <textarea
+                      onChange={(e)=>setSaveText(e.target.value)}
+                      value = {saveText}
+                        name=""
+                        id="book-content-field"
+                        className="textarea"
+                        placeholder="Text"
+                    //value={note}
+                    //onChange={insertBookContent}
+                    style={{ 
+                    resize: "none",
+                    textAlign:"center",
+                    borderColor: "rgba(255,255,255)", 
+                    display: "block",
+                    width: "100%",
+                    background: "var(--primary-blue)",
+                    borderRadius: "var(--border-radius-xs)",
+                    border: "none",
+                    outline: "none",
+                    height: "15%",
+                    margin: "10px 0",
+                    padding: "10px",
+                    resize: "none",}}
+                  ></textarea>
+                  <br />
+                  <button className="article-btn" style={{ fontSize: "14px" }}>
+                    save Language
+                  </button>
+                  </form>
+                  </div>
+                  </div>
             </div>
           </div>
         </div>

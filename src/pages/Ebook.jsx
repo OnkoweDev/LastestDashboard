@@ -268,7 +268,20 @@ const Ebook = () => {
                     type="text"
                     id="book-title"
                     placeholder="Title"
-                    style={{ resize: "none", width: "100%", height: "50px", borderRadius:"15px", border:"none", borderColor: "rgba(255,255,255)"}}
+                    style={{ 
+                      resize: "none",
+                      textAlign:"center",
+                      borderColor: "rgba(255,255,255)", 
+                      display: "block",
+                      width: "100%",
+                      background: "var(--primary-blue)",
+                      borderRadius: "var(--border-radius-xs)",
+                      border: "none",
+                      outline: "none",
+                      height: "15%",
+                      margin: "10px 0",
+                      padding: "10px",
+                      resize: "none",}}
                   />
                     <br />
                     <textarea
@@ -280,7 +293,20 @@ const Ebook = () => {
                         placeholder="Description"
                     //value={note}
                     //onChange={insertBookContent}
-                    style={{ resize: "none" }}
+                    style={{ 
+                      resize: "none",
+                      textAlign:"center",
+                      borderColor: "rgba(255,255,255)", 
+                      display: "block",
+                      width: "100%",
+                      background: "var(--primary-blue)",
+                      borderRadius: "var(--border-radius-xs)",
+                      border: "none",
+                      outline: "none",
+                      height: "15%",
+                      margin: "10px 0",
+                      padding: "10px",
+                      resize: "none",}}
                   ></textarea>
                   <br />
                   <button className="article-btn" style={{ fontSize: "14px" }}>
