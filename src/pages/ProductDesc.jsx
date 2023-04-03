@@ -36,6 +36,7 @@ const ProductDesc = () => {
   const dispatch = useDispatch()
   const product = useSelector((state) => state.product)
   const {loading, error, success, products} = product
+  
   const getProject = useSelector((state)=>state.getProject)
   const {loading:projectLoading,error:projectError, project} = getProject
 

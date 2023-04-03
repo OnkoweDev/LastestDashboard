@@ -37,7 +37,7 @@ const EmailMore = () => {
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 {email && email.map((con)=>(
-                    <div key={con.id}className="cards-container">
+                    <div key={con.id}className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                         {con.email_generator}  
                                       
                     </div>

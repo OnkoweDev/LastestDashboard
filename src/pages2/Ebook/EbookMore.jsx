@@ -37,7 +37,7 @@ const EbookMore = () => {
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 {Ebook && Ebook.map((con)=>(
-                    <div key={con.id}className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
+                    <div key={con.id} className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                         
                         {con.generated_ebook}  
                                       

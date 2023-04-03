@@ -35,7 +35,7 @@ const FacebookMore = () => {
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 {facebook && facebook.map((sub)=>(
-                    <div key={sub.id}className="cards-container">
+                    <div key={sub.id}className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                         {sub.facebook_ad}                                       
                     </div>
                 ))}

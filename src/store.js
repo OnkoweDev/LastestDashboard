@@ -52,6 +52,7 @@ import { deleteEbookReducer, getEbookReducer, getOneEbookReducer, saveEbookReduc
 import { addLinkReducer, deleteLinkReducer, getLinkReducer, getOneLinkReducer } from './reducers/backend/linkdlenPostReducer'
 import { addLanguageReducer, deleteLanguageReducer, getLanguageReducer, getOneLanguageReducer } from './reducers/backend/languageReducer'
 import { addConclusionReducer, deleteConclusionReducer, getConclusionReducer, getOneConclusionReducer } from './reducers/backend/conclusionReducer'
+import { addLinkAdsReducer, deleteLinkAdsReducer, getLinkAdsReducer, getOneLinkAdsReducer } from './reducers/backend/linkdinAdsReducer'
 
 
 const reducers = combineReducers({
@@ -224,6 +225,11 @@ const reducers = combineReducers({
     getConclusion:getConclusionReducer,
     getOneConclusion:getOneConclusionReducer,
     deleteConclusion:deleteConclusionReducer,
+
+    saveLinkedinAds:addLinkAdsReducer,
+    getLinkedinAds:getLinkAdsReducer,
+    getOneLinkedinAds:getOneLinkAdsReducer,
+    deleteLinkedinAds:deleteLinkAdsReducer,
             //ebook in store
    // AddEbook:addEbookReducer,
     viewEbook:viewEbookReucer,

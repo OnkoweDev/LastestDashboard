@@ -32,7 +32,7 @@ const LandingHeadlineMore = () => {
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 {Land && Land.map((sub)=>(
-                    <div key={sub.id}className="cards-container">
+                    <div key={sub.id}className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                         {sub.headline}                                       
                     </div>
                 ))}

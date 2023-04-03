@@ -110,6 +110,8 @@ import Conclusion from "./pages2/Conclusion/Conclusion";
 import ConclusionMore from "./pages2/Conclusion/ConclusionMore";
 import AllBlogSection from "./pages2/BlogSection/BlogSection";
 import BlogSectionMore from "./pages2/BlogSection/BlogSectionMore";
+import AllLinkAds from "./pages2/LinkedinAds/LinkedinAds";
+import LinkAdsMore from "./pages2/LinkedinAds/LinkedinAdsMore";
 BlogMore
 function App() {
   return (
@@ -247,6 +249,9 @@ function App() {
 
         <Route path="blogsection" element={<AllBlogSection />} />
         <Route path="blogsection/:id" element={<BlogSectionMore />} />
+
+        <Route path="all_linkedin_ads" element={<AllLinkAds />} />
+        <Route path="all_linkedin_ads/:id" element={<LinkAdsMore />} />
 
 
 

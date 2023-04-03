@@ -38,7 +38,7 @@ const ArticleRewriterMore = () => {
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 {wroter && wroter.map((wrote)=>(
-                    <div key={wrote.id}className="cards-container">
+                    <div key={wrote.id}className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                         {wrote.article_rewriter} 
                         <br />
                                     

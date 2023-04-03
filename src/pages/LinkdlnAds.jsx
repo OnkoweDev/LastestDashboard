@@ -22,6 +22,7 @@ import { linkdlnAdsAction } from "../actions/ai/linkdlnAdsAction";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { useEffect } from "react";
 import { addLinkAdsAction } from "../actions/backend/linkdinAdsAction";
+import { useNavigate } from "react-router-dom";
 
 const LindlnAds = () => {
   // state to keep track of number of output
@@ -34,8 +35,12 @@ const LindlnAds = () => {
   const [isAudio, setIsAudio] = useState(false);
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const linkedinAds = useSelector((state) => state.linkedinAds)
   const {loading, error, success, ads} = linkedinAds
+
+  const saveLinkedinAds = useSelector((state)=>state.saveLinkedinAds)
+  const {loading:linkLoading,error:linkError} = saveLinkedinAds
 
   const getProject = useSelector((state)=>state.getProject)
   const {loading:projectLoading,error:projectError, project} = getProject
@@ -57,6 +62,7 @@ const LindlnAds = () => {
     const divData = myDiv.current.innerText
     console.log(divData)
     dispatch(addLinkAdsAction(divData,projectId))
+    navigate('/all_linkedin_ads')
   }
 
   // handle audio option
@@ -203,7 +209,9 @@ const LindlnAds = () => {
                 <div className="right">
                 <form onSubmit={handleForm}>
                 {loading && <Loader />}
+                {linkLoading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
+                {linkError && <div className='bar error'>{linkError}</div>}
                 {ads && ads.map((you)=>(
                   <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning>
                   <BCDIcons />

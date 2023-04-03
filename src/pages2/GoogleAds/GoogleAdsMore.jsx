@@ -32,7 +32,7 @@ const GoogleAdsMore = () => {
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 {GoogleAd && GoogleAd.map((sub)=>(
-                    <div key={sub.id}className="cards-container">
+                    <div key={sub.id}className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                         {sub.google_ad}                                       
                     </div>
                 ))}

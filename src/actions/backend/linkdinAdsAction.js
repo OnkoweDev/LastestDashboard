@@ -13,7 +13,7 @@ export const addLinkAdsAction = (linkedin_ad,project_id) => async(dispatch,getSt
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/linkdinads`, {linkedin_ad,project_id},config)
+        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/liinkedinAd`, {linkedin_ad,project_id},config)
         dispatch({type:ADD_LINKDINADS_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -37,7 +37,7 @@ export const getLinkAdsAction = () => async(dispatch,getState) => {
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/linkedinads`,config)
+        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/liinkedinAd`,config)
         dispatch({type:GET_LINKDINADS_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -61,7 +61,7 @@ export const getOneLinkAdsAction = (id) => async(dispatch,getState) => {
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/linkedinads/${id}`,config)
+        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/liinkedinAd/${id}`,config)
         dispatch({type:GETONE_LINKDINADS_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
@@ -85,7 +85,7 @@ export const deleteLinkAdsAction = (id) => async(dispatch,getState) => {
                 Authorization:`Bearer ${userInfo.data.token}`
             }
         }
-        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/linkedinads/${id}`,config)
+        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/liinkedinAd/${id}`,config)
         dispatch({type:DELETE_LINKDINADS_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {

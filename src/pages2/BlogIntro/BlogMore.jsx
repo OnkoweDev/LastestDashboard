@@ -34,7 +34,7 @@ const BlogIntroMore = () => {
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 {Array.isArray(blog) ? blog && blog?.map((d)=>(
-                    <div key={d.id}className="cards-container">
+                    <div key={d.id}className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                         {d.intro} 
                         <br />
                                          
