@@ -164,7 +164,7 @@ const LinkedIn = () => {
                   </form>
                 </div>
                 {/*  */}
-                <div className="right">
+                <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                 <form onSubmit={handleFrom}>
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}

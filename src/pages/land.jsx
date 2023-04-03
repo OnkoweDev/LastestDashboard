@@ -249,7 +249,7 @@ const Land = () => {
                   </form>
                 </div>
                 {/*  */}
-                <div className="right">
+                <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                 <form onSubmit={handleForm}>
                 
                 {isLoading && <Loader />}
