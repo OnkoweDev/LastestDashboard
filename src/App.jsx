@@ -114,6 +114,8 @@ import AllLinkAds from "./pages2/LinkedinAds/LinkedinAds";
 import LinkAdsMore from "./pages2/LinkedinAds/LinkedinAdsMore";
 import AllAudio from "./pages2/Audio/Audio";
 import AudioMore from "./pages2/Audio/AudioMore";
+import AllImage from "./pages2/Image/Image";
+import ImageMore from "./pages2/Image/ImageMore";
 BlogMore
 function App() {
   return (
@@ -257,6 +259,9 @@ function App() {
 
         <Route path="all_audio" element={<AllAudio />} />
         <Route path="all_audio/:id" element={<AudioMore />} />
+
+        <Route path="all_image" element={<AllImage />} />
+        <Route path="all_image/:id" element={<ImageMore />} />
 
 
 
