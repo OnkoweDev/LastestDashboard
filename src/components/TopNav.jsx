@@ -37,7 +37,6 @@ const NewProjectLinks = ({ link, displayImage, text }) => {
 
    
     
-    
   return (
     <Link
       to={link}
@@ -93,8 +92,13 @@ const TopNav = () => {
         </div>
         <div className="nav">
           <ul>
+          <li className="nav-link">
+              <NavLink to="/project" className="navLink">
+                Project
+              </NavLink>
+            </li>
             <li className="drop-btn">
-              New Project
+             Features
               <div className="drop-content">
                 <NewProjectLinks
                   link="/ebook"
@@ -394,8 +398,9 @@ const TopNav = () => {
                   <img src={profile} alt="" />
                 </aside>
                 <aside className="profile__details">
-                  <h3>Kendal Matthews</h3>
-                  <small>kendalmatt@gmail.com</small>
+                  <h3>{/*userInfo.data.full_name*/}
+                  wale ramson</h3>
+                  <small> waleramson123@gmail.com{/*userInfo.data.email*/}</small>
                 </aside>
               </section>
               <hr style={{ margin: "25px 0" }} />

@@ -97,11 +97,13 @@ const Project = () => {
               {/* header */}
               <ProjectHeader
                 image={articleBlog}
-                title="Article/Blog Conclusion"
+                title="Create Project"
               />
               {/* body container */}
               <div className="body-content">
-                <div className="left">
+                <div className="right">
+                    {loading && <Loader />}
+                    {error && <div className='bar error'>{error}</div>}
                     <form onSubmit={handSubmit}>
                   <p className="product-p">Project Name*</p>
                   <textarea
@@ -165,18 +167,7 @@ const Project = () => {
                   </form>
                 </div>
                 {/*  */}
-                <div className="right">
-                {loading && <Loader />}
-                {error && <div className='bar error'>{error}</div>}
-                  
-                  <div className="sec-1">
-                    <BCDIcons />
-                        <div className="txt-sec"></div>
-
-                   
-                  </div>
-                  
-                </div>
+               
               </div>
             </div>
           </div>
