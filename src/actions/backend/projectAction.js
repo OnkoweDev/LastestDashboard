@@ -13,7 +13,7 @@ export const projectAction = (name,status) => async(dispatch,getState) => {
         }
         const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/project`, {name,status},config)
         dispatch({type:ADD_PROJECT_SUCCESS,payload:data.data})
-        localStorage.setItem('projectInfo', JSON.stringify(data))
+        //localStorage.setItem('projectInfo', JSON.stringify(data))
         console.log(data.data)
     } catch (error) {
         dispatch({

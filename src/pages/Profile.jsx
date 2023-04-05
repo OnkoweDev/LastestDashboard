@@ -1,8 +1,41 @@
 import React from "react";
 import { SideNav, TopNav } from "../components";
 import "./styles/Profile.css";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const [fullname,setFullname] = useState('')
+  const [phone,setPhone] = useState('')
+  const [pic,setPicture] = useState('')
+  const [message,setMessage] = useState('')
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  // const userLogin  = useSelector((state)=>state.userLogin)
+  // const {userInfo} = userLogin
+
+  // const userUpdate  = useSelector((state)=>state.userUpdate)
+  // const {loading, error, success} = userUpdate
+
+  // useEffect(()=>{
+  //   if(!userInfo){
+  //     navigate('/')
+  //   }
+  //   else {
+  //     setFullname(userInfo.data.full_name)
+  //     setPhone()
+  //   }
+
+  // },[navigate])
+
+  const handleForm = (e) => {
+    e.preventDefault()
+    console.log(fullname)
+  }
   return (
     <>
       <main>
@@ -16,47 +49,27 @@ const Profile = () => {
               </section>
               <hr />
               <section className="form__container">
-                <form action="">
+                <form onSubmit={handleForm}>
                   <article>
                     <aside>
-                      <label htmlFor="FirstName">First Name</label>
-                      <input type="text" className="input" name="FirstName" />
+                      <label htmlFor="FirstName">Full Name</label>
+                      <input onChange={(e)=>setFullname(e.target.value)}  value={fullname} type="text" className="input" name="FirstName" />
                     </aside>
                     <aside>
-                      <label htmlFor="LastName">Last Name</label>
-                      <input type="text" className="input" name="LastName" />
+                      <label htmlFor="LastName">Phone Number</label>
+                      <input onChange={(e)=>setPhone(e.target.value)}  value={phone} type="text" className="input" name="LastName" />
                     </aside>
                   </article>
                   <article>
                     <aside>
-                      <label htmlFor="userName">Username</label>
-                      <input type="text" className="input" name="userName" />
-                    </aside>
-                    <aside>
-                      <label htmlFor="phoneNumber">Phone Number</label>
-                      <input type="tel" className="input" name="phoneNumber" />
-                    </aside>
-                  </article>
-                  <article>
-                    <aside>
-                      <label htmlFor="country">Country</label>
-                      <input type="text" className="input" name="country" />
-                    </aside>
-                    <aside>
-                      <label htmlFor="url">URL</label>
-                      <input type="url" className="input" name="url" />
-                    </aside>
-                  </article>
-                  <article>
-                    <aside>
-                      <label htmlFor="email">Email Address</label>
-                      <input type="email" className="input" name="email" />
+                      <label htmlFor="file">Picture</label>
+                      <input onChange={(e)=>setPicture(e.target.value)}  value={pic} type="file" className="input" name="upload" />
                     </aside>
                   </article>
                   <div className="textarea__div">
                     <aside>
                       <label htmlFor="about">About</label>
-                      <textarea name="about" id=""></textarea>
+                      <textarea onChange={(e)=>setMessage(e.target.value)}  value={message} name="about" id=""></textarea>
                       <small>Brief description for your profile</small>
                     </aside>
                   </div>

@@ -34,9 +34,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userAction";
 
 const NewProjectLinks = ({ link, displayImage, text }) => {
-
-   
-    
   return (
     <Link
       to={link}
@@ -74,13 +71,15 @@ const TopNav = () => {
     
     const dispatch = useDispatch()
     const userLogin = useSelector((state)=>state.userLogin)
-    const {userInfo} = userLogin
+    const {userInfo,error} = userLogin
+
+    const auth = undefined
 
     const handleLogout = () => {
         dispatch(logout())
     }
     
-
+    
     useEffect(() => {
         
     }, [userInfo])
@@ -398,9 +397,8 @@ const TopNav = () => {
                   <img src={profile} alt="" />
                 </aside>
                 <aside className="profile__details">
-                  <h3>{/*userInfo.data.full_name*/}
-                  wale ramson</h3>
-                  <small> waleramson123@gmail.com{/*userInfo.data.email*/}</small>
+                  <h3></h3>
+                  <small></small>
                 </aside>
               </section>
               <hr style={{ margin: "25px 0" }} />

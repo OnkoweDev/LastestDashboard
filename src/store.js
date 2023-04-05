@@ -249,14 +249,14 @@ const reducers = combineReducers({
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')):null
 
-const projectInfoFromStorage = localStorage.getItem('projectInfo') ? JSON.parse(localStorage.getItem('projectInfo')):null
+// const projectInfoFromStorage = localStorage.getItem('projectInfo') ? JSON.parse(localStorage.getItem('projectInfo')):null
 
 // const initialState = {
 //     userLogin:{ userInfo:userInfoFromStorage}}
 
 const initialState = {
     userLogin: { userInfo: userInfoFromStorage },
-    project: { projectInfo: projectInfoFromStorage },
+    //project: { projectInfo: projectInfoFromStorage },
   };
   
 const middleware = [thunk]
