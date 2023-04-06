@@ -16,6 +16,7 @@ import { RiVoiceprintFill } from "react-icons/ri";
 import {useDispatch, useSelector} from 'react-redux'
 import Loader from "../components/Loader";
 import { projectAction } from "../actions/backend/projectAction";
+import { useNavigate } from "react-router-dom";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -36,6 +37,7 @@ const Project = () => {
   const [status, setStatus] = useState("")
   
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const project = useSelector((state)=>state.project)
   const {loading,error,success,projects} = project 
 
@@ -43,6 +45,7 @@ const Project = () => {
     e.preventDefault()
     console.log(name,status)
     dispatch(projectAction(name,status))
+    navigate('/all_project')
   }
 
 

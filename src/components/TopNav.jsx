@@ -92,7 +92,7 @@ const TopNav = () => {
         <div className="nav">
           <ul>
           <li className="nav-link">
-              <NavLink to="/project" className="navLink">
+              <NavLink to="/all_project" className="navLink">
                 Project
               </NavLink>
             </li>

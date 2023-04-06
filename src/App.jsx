@@ -116,6 +116,8 @@ import AllAudio from "./pages2/Audio/Audio";
 import AudioMore from "./pages2/Audio/AudioMore";
 import AllImage from "./pages2/Image/Image";
 import ImageMore from "./pages2/Image/ImageMore";
+import AllProject from "./pages2/Project/Project";
+import ProjectMore from "./pages2/Project/ProjectMore";
 BlogMore
 function App() {
   return (
@@ -262,6 +264,9 @@ function App() {
 
         <Route path="all_image" element={<AllImage />} />
         <Route path="all_image/:id" element={<ImageMore />} />
+
+        <Route path="all_project" element={<AllProject />} />
+        <Route path="all_project/:id" element={<ProjectMore />} />
 
 
 

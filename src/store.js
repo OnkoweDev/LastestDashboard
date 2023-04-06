@@ -28,7 +28,7 @@ import { emailGeneratorReducer } from './reducers/ai/emailGenReducer'
 import { landingPageReducer } from './reducers/ai/landingPageReducer'
 import { blogtopicReducer } from './reducers/ai/blogTopicReducer'
 import { landingReducer } from './reducers/ai/landReducer'
-import { addProjectReducer, getProjectReducer } from './reducers/backend/projectReducer'
+import { addProjectReducer, deleteProjectReducer, getOneProjectReducer, getProjectReducer } from './reducers/backend/projectReducer'
 import {  addArticleWriterReducer, deleteArticleWriterReducer, getArticleWriterReducer, getOneArticleWriterReducer, updatdeArticleWriterReducer } from './reducers/backend/articleWriterReducer'
 import { addBlogWriterReducer, deleteBlogWriterReducer, getBlogWriterReducer, getOneBlogWriterReducer, updateBlogWriterReducer } from './reducers/backend/blogWriterReducer'
 import { deleteBlogIntroReducer, getNewBlogIntroReducer, getOneBlogIntroReducer, saveBlogIntroReducer } from './reducers/backend/blogIntroReducer'
@@ -95,6 +95,8 @@ const reducers = combineReducers({
     //Backend 
     project: addProjectReducer,
     getProject: getProjectReducer,
+    getOneProject:getOneProjectReducer,
+    deleteProject:deleteProjectReducer,
 
     //Article REWRITER
     articleWritter:addArticleWriterReducer,
