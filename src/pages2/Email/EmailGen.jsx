@@ -19,6 +19,9 @@ const EmailGen = () => {
   const deleteEmail = useSelector((state)=>state.deleteEmail)
   const {loading:deleteLoading,error:deleteError,success} = deleteEmail
 
+  const addEmail = useSelector((state)=>state.addEmail)
+  const  {loading:articleLoading,error:articleError} = addEmail
+
   useEffect(() => {
     dispatch(getEmailGenAction())
   }, [success])
@@ -57,6 +60,7 @@ const EmailGen = () => {
               <div className="cards-container">
                {loading && <Loader />}
                {error && <div className=' bar error'>{error}</div>}
+               {articleError && <div className=' bar error'>{articleError}</div>}
                {message && <div className=' bar error'>{message}</div>}
 
                {emails && emails.map((email)=>(

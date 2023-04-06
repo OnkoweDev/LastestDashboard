@@ -16,8 +16,8 @@ const AllTweet = () => {
   const getTweet = useSelector((state)=>state.getTweet)
   const {loading,error,tweeters} = getTweet
 
-//   const saveTitle = useSelector((state)=>state.saveTitle)
-//   const {error:googleError} = saveTitle
+  const saveTweet = useSelector((state)=>state.saveTweet)
+  const {error:googleError} = saveTweet
 
   const deleteTweet = useSelector((state)=>state.deleteTweet)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteTweet
@@ -60,6 +60,7 @@ const AllTweet = () => {
 
               <div className="cards-container">
                {loading && <Loader />}
+               {googleError && <div className=' bar error'>{googleError}</div>}
                {error && <div className=' bar error'>{error}</div>}
                {message && <div className=' bar success'>{message}</div>}
 

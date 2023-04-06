@@ -20,6 +20,9 @@ const AllEmailSubject = () => {
   const deleteSubject = useSelector((state)=>state.deleteSubject)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteSubject
 
+  const saveSubject = useSelector((state)=>state.saveSubject)
+  const  {loading:articleLoading,error:articleError} = saveSubject
+
   useEffect(() => {
     dispatch(getSubjectAction())
   }, [deleteSuccess])
@@ -60,6 +63,7 @@ const AllEmailSubject = () => {
               <div className="cards-container">
                {loading && <Loader />}
                {error && <div className=' bar error'>{error}</div>}
+               {articleError && <div className=' bar error'>{articleError}</div>}
                {message && <div className=' bar success'>{message}</div>}
 
                {subjects && subjects.map((subject)=>(

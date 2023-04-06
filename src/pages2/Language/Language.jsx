@@ -16,8 +16,8 @@ const Language = () => {
   const getLanguage = useSelector((state)=>state.getLanguage)
   const {loading,error,languages} = getLanguage
 
-//   const saveTitle = useSelector((state)=>state.saveTitle)
-//   const {error:googleError} = saveTitle
+  const saveLanguage = useSelector((state)=>state.saveLanguage)
+  const {error:googleError} = saveLanguage
 
   const deleteLanguage = useSelector((state)=>state.deleteLanguage)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteLanguage
@@ -51,6 +51,7 @@ const Language = () => {
               <div className="cards-container">
                {loading && <Loader />}
                {error && <div className=' bar error'>{error}</div>}
+               {googleError && <div className=' bar error'>{googleError}</div>}
                {message && <div className=' bar success'>{message}</div>}
 
                {languages && languages.map((face)=>(

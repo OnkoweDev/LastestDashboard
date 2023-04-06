@@ -52,7 +52,7 @@ const ArticleRewriter = () => {
   const {loading:projectLoading,error:projectError, project} = getProject
 
   const articleWritter = useSelector((state)=>state.articleWritter)
-  const  {loading:articleLoading,error:articleError, writer} = articleWritter
+  const  {loading:articleLoading,error:articleError} = articleWritter
 
 
 

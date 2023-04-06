@@ -17,6 +17,9 @@ const AllBlogTopic = () => {
   const deleteBlogTopic = useSelector((state)=>state.deleteBlogTopic)
   const {loading:deleteLoading,error:deleteError,success} = deleteBlogTopic
 
+  const saveBlogTopic = useSelector((state)=>state.saveBlogTopic)
+  const  {loading:articleLoading,error:articleError} = saveBlogTopic
+
   useEffect(() => {
     dispatch(getBlogTopicAction())
   }, [success])
@@ -54,6 +57,7 @@ const AllBlogTopic = () => {
 
               <div className="cards-container">
                {loading && <Loader />}
+               {articleError && <div className=' bar error'>{articleError}</div>}
                {error && <div className=' bar error'>{error}</div>}
 
                {topics && topics.slice(0,10).map((blog)=>(

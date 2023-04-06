@@ -17,6 +17,9 @@ const ALLArticleRewritter = () => {
   const deleteArticleWriter = useSelector((state)=>state.deleteArticleWriter)
   const {loading:deleteLoading,error:deleteError,success} = deleteArticleWriter
 
+  const articleWritter = useSelector((state)=>state.articleWritter)
+  const  {loading:articleLoading,error:articleError} = articleWritter
+
   useEffect(() => {
     dispatch(getArticleAction())
   }, [success])
@@ -55,6 +58,7 @@ const ALLArticleRewritter = () => {
               <div className="cards-container">
                {loading && <Loader />}
                {error && <div className=' bar error'>{error}</div>}
+               {articleError && <div className=' bar error'>{articleError}</div>}
 
                {writer && writer.map((write)=>(
                 <div className="card" key={write.id}>

@@ -16,8 +16,8 @@ const AllYoutube = () => {
   const getYoutube = useSelector((state)=>state.getYoutube)
   const {loading,error,youtubes} = getYoutube
 
-//   const saveTitle = useSelector((state)=>state.saveTitle)
-//   const {error:googleError} = saveTitle
+  const saveYoutube = useSelector((state)=>state.saveYoutube)
+  const {error:googleError} = saveYoutube
 
   const deleteYoutube = useSelector((state)=>state.deleteYoutube)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteYoutube
@@ -61,6 +61,7 @@ const AllYoutube = () => {
               <div className="cards-container">
                {loading && <Loader />}
                {error && <div className=' bar error'>{error}</div>}
+               {googleError && <div className=' bar error'>{googleError}</div>}
                {message && <div className=' bar success'>{message}</div>}
 
                {youtubes && youtubes.map((face)=>(

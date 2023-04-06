@@ -18,6 +18,9 @@ const AllContentRepre = () => {
   const deleteRepresal = useSelector((state)=>state.deleteRepresal)
   const {loading:deleteLoading,error:deleteError,success} = deleteRepresal
 
+  const saveContent = useSelector((state)=>state.saveContent)
+  const  {loading:articleLoading,error:articleError} = saveContent
+
   useEffect(() => {
     dispatch(getContentRepreAction())
   }, [success])
@@ -55,6 +58,7 @@ const AllContentRepre = () => {
 
               <div className="cards-container">
                {loading && <Loader />}
+               {articleError && <div className=' bar error'>{articleError}</div>}
                {error && <div className=' bar error'>{error}</div>}
 
                {content && content.map((con)=>(

@@ -17,6 +17,9 @@ const AllBlog = () => {
   const deleteBlogWriter = useSelector((state)=>state.deleteBlogWriter)
   const {loading:deleteLoading,error:deleteError,success} = deleteBlogWriter
 
+  const addBlogWriter = useSelector((state)=>state.addBlogWriter)
+  const  {loading:articleLoading,error:articleError} = addBlogWriter
+
   useEffect(() => {
     dispatch(getBlogWriterAction())
   }, [success])
@@ -55,6 +58,7 @@ const AllBlog = () => {
               <div className="cards-container">
                {loading && <Loader />}
                {error && <div className=' bar error'>{error}</div>}
+               {articleError && <div className=' bar error'>{articleError}</div>}
 
                {blogs && blogs.slice(0,10).map((blog)=>(
                 <div className="card" key={blog.id}>

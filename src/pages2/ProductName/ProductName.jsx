@@ -16,8 +16,8 @@ const AllProductName = () => {
   const getProductName = useSelector((state)=>state.getProductName)
   const {loading,error,productNames} = getProductName
 
-//   const saveTitle = useSelector((state)=>state.saveTitle)
-//   const {error:googleError} = saveTitle
+  const saveProductName = useSelector((state)=>state.saveProductName)
+  const {error:googleError} = saveProductName
 
   const deleteProductName = useSelector((state)=>state.deleteProductName)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteProductName
@@ -60,6 +60,7 @@ const AllProductName = () => {
 
               <div className="cards-container">
                {loading && <Loader />}
+               {googleError && <div className=' bar error'>{googleError}</div>}
                {error && <div className=' bar error'>{error}</div>}
                {message && <div className=' bar success'>{message}</div>}
 

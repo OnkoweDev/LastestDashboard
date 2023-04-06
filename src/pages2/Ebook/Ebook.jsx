@@ -15,11 +15,11 @@ const AllEbook = () => {
   const getEbook = useSelector((state)=>state.getEbook)
   const {loading,error,Ebooks} = getEbook
 
-  const saveTitle = useSelector((state)=>state.saveTitle)
-  const {error:googleError} = saveTitle
-
   const deleteEbook = useSelector((state)=>state.deleteEbook)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteEbook
+
+  const saveEbook = useSelector((state)=>state.saveEbook)
+  const  {loading:articleLoading,error:articleError} = saveEbook
 
   useEffect(() => {
     dispatch(getEbookAction())
@@ -59,8 +59,8 @@ const AllEbook = () => {
 
               <div className="cards-container">
                {loading && <Loader />}
-               {googleError && <div className=' bar error'>{googleError}</div>}
                {error && <div className=' bar error'>{error}</div>}
+               {articleError && <div className=' bar error'>{articleError}</div>}
                {message && <div className=' bar success'>{message}</div>}
 
                { Ebooks && Ebooks.map((face)=>(

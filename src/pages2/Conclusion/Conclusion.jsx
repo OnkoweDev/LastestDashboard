@@ -21,6 +21,9 @@ const Conclusion = () => {
   const deleteConclusion = useSelector((state)=>state.deleteConclusion)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteConclusion
 
+  const saveConclusion = useSelector((state)=>state.saveConclusion)
+  const  {loading:articleLoading,error:articleError} = saveConclusion
+
   useEffect(() => {
     dispatch(getConclusionAction())
   }, [deleteSuccess])
@@ -60,6 +63,7 @@ const Conclusion = () => {
               <div className="cards-container">
                {loading && <Loader />}
                {error && <div className=' bar error'>{error}</div>}
+               {articleError && <div className=' bar error'>{articleError}</div>}
                {message && <div className=' bar success'>{message}</div>}
 
                {conclusions && conclusions.map((face)=>(

@@ -22,6 +22,9 @@ const ALLBlogIntro = () => {
   const deleteBlogIntro = useSelector((state)=>state.deleteBlogIntro)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteBlogIntro
 
+  const saveBlogIntro = useSelector((state)=>state.saveBlogIntro)
+  const  {loading:articleLoading,error:articleError} = saveBlogIntro
+
   useEffect(() => {
     dispatch(getBlogintroAction())
   }, [deleteSuccess])
@@ -61,6 +64,7 @@ const ALLBlogIntro = () => {
               <div className="cards-container">
                {loading && <Loader />}
                {error && <div className=' bar error'>{error}</div>}
+               {articleError && <div className=' bar error'>{articleError}</div>}
                {message && <div className=' bar success'>{message}</div>}
 
                {blogs && blogs.map((blog)=>(

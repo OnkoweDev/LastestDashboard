@@ -14,8 +14,8 @@ const AllLinkAds = () => {
   const getLinkedinAds = useSelector((state)=>state.getLinkedinAds)
   const {loading,error,links} = getLinkedinAds
 
-//   const saveTitle = useSelector((state)=>state.saveTitle)
-//   const {error:googleError} = saveTitle
+  const saveLinkedinAds = useSelector((state)=>state.saveLinkedinAds)
+  const {error:googleError} = saveLinkedinAds
 
   const deleteLinkedinAds = useSelector((state)=>state.deleteLinkedinAds)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteLinkedinAds
@@ -58,6 +58,7 @@ const AllLinkAds = () => {
 
               <div className="cards-container">
                {loading && <Loader />}
+               {googleError && <div className=' bar error'>{googleError}</div>}
                {error && <div className=' bar error'>{error}</div>}
                {deleteError && <div className=' bar error'>{deleteError}</div>}
                {message && <div className=' bar success'>{message}</div>}

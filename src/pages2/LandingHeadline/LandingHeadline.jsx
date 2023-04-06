@@ -16,8 +16,8 @@ const LandingHeadline = () => {
   const getHeadline = useSelector((state)=>state.getHeadline)
   const {loading,error,Landings} = getHeadline
 
-//   const saveTitle = useSelector((state)=>state.saveTitle)
-//   const {error:googleError} = saveTitle
+  const saveHealines = useSelector((state)=>state.saveHealines)
+  const {error:googleError} = saveHealines
 
   const deleteHeadline = useSelector((state)=>state.deleteHeadline)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteHeadline
@@ -60,6 +60,7 @@ const LandingHeadline = () => {
 
               <div className="cards-container">
                {loading && <Loader />}
+               {googleError && <div className=' bar error'>{googleError}</div>}
                {error && <div className=' bar error'>{error}</div>}
                {message && <div className=' bar success'>{message}</div>}
 

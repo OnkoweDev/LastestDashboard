@@ -16,8 +16,8 @@ const ALLPARAGRAPHWRITER = () => {
   const getParagraph = useSelector((state)=>state.getParagraph)
   const {loading,error,paragraphs} = getParagraph
 
-//   const saveTitle = useSelector((state)=>state.saveTitle)
-//   const {error:googleError} = saveTitle
+  const saveParagraph = useSelector((state)=>state.saveParagraph)
+  const {error:googleError} = saveParagraph
 
   const deleteParagraph = useSelector((state)=>state.deleteParagraph)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteParagraph
@@ -60,6 +60,7 @@ const ALLPARAGRAPHWRITER = () => {
 
               <div className="cards-container">
                {loading && <Loader />}
+               {googleError && <div className=' bar error'>{googleError}</div>}
                {error && <div className=' bar error'>{error}</div>}
                {message && <div className=' bar success'>{message}</div>}
 

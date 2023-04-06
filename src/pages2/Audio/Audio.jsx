@@ -15,8 +15,8 @@ const AllAudio = () => {
   const getAudio = useSelector((state)=>state.getAudio)
   const {loading,error,audios} = getAudio
 
-//   const saveTitle = useSelector((state)=>state.saveTitle)
-//   const {error:googleError} = saveTitle
+  const saveAudio = useSelector((state)=>state.saveAudio)
+  const {error:googleError} = saveAudio
 
   const deleteAudio = useSelector((state)=>state.deleteAudio)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteAudio
@@ -59,6 +59,7 @@ const AllAudio = () => {
 
               <div className="cards-container">
                {loading && <Loader />}
+               {googleError && <div className=' bar error'>{googleError}</div>}
                {error && <div className=' bar error'>{error}</div>}
                {message && <div className=' bar success'>{message}</div>}
 

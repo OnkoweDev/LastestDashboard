@@ -16,8 +16,8 @@ const AllLandingPage = () => {
   const getLandingPage = useSelector((state)=>state.getLandingPage)
   const {loading,error,LandingPages} = getLandingPage
 
-//   const saveTitle = useSelector((state)=>state.saveTitle)
-//   const {error:googleError} = saveTitle
+  const saveLandingPage = useSelector((state)=>state.saveLandingPage)
+  const {error:googleError} = saveLandingPage
 
   const deleteLandingPage = useSelector((state)=>state.deleteLandingPage)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteLandingPage
@@ -61,6 +61,7 @@ const AllLandingPage = () => {
               <div className="cards-container">
                {loading && <Loader />}
                {error && <div className=' bar error'>{error}</div>}
+               {googleError && <div className=' bar error'>{googleError}</div>}
                {message && <div className=' bar success'>{message}</div>}
 
                {LandingPages && LandingPages.map((face)=>(

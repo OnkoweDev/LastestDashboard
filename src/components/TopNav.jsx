@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import logo from "../assets/Logo.png";
-//import ebook from "../assets/ebookIcon.png";
+import profile from "../assets/dummyprofile.png";
+import ebook from "../assets/ebookIcon.png";
 import blog1 from "../assets/article.png";
 import blog3 from "../assets/blog-writer.png";
 import blog2 from "../assets/blog-section.png";
@@ -393,7 +394,7 @@ const TopNav = () => {
             <div className="dropdown-link dropdown-btn-link">
               <section className="top">
                 <aside className="profile__img">
-                  
+                  <img src={profile} alt="" />
                 </aside>
                 <aside className="profile__details">
                   <h3></h3>

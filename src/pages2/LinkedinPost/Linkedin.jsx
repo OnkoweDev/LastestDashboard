@@ -14,8 +14,8 @@ const AllLinkPost = () => {
   const getLinkPost = useSelector((state)=>state.getLinkPost)
   const {loading,error,links} = getLinkPost
 
-//   const saveTitle = useSelector((state)=>state.saveTitle)
-//   const {error:googleError} = saveTitle
+  const saveLinkPost = useSelector((state)=>state.saveLinkPost)
+  const {error:googleError} = saveLinkPost
 
   const deleteLinkPost = useSelector((state)=>state.deleteLinkPost)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteLinkPost
@@ -58,6 +58,7 @@ const AllLinkPost = () => {
 
               <div className="cards-container">
                {loading && <Loader />}
+               {googleError && <div className=' bar error'>{googleError}</div>}
                {error && <div className=' bar error'>{error}</div>}
                {message && <div className=' bar success'>{message}</div>}
 

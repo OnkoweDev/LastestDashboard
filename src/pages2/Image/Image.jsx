@@ -15,8 +15,8 @@ const AllImage = () => {
   const getImage = useSelector((state)=>state.getImage)
   const {loading,error,images} = getImage
 
-  const saveTitle = useSelector((state)=>state.saveTitle)
-  const {error:googleError} = saveTitle
+  const saveImage = useSelector((state)=>state.saveImage)
+  const {error:googleError} = saveImage
 
   const deleteImage = useSelector((state)=>state.deleteImage)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteImage

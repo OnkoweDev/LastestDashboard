@@ -15,8 +15,8 @@ const AllInstagram = () => {
   const getInstagram = useSelector((state)=>state.getInstagram)
   const {loading,error,instagrams} = getInstagram
 
-  const saveTitle = useSelector((state)=>state.saveTitle)
-  const {error:googleError} = saveTitle
+  const saveInstagram = useSelector((state)=>state.saveInstagram)
+  const {error:googleError} = saveInstagram
 
   const deleteInstagram = useSelector((state)=>state.deleteInstagram)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteInstagram

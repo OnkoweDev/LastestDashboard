@@ -17,6 +17,9 @@ const AllBlogSection = () => {
   const deleteBlogSection = useSelector((state)=>state.deleteBlogSection)
   const {loading:deleteLoading,error:deleteError,success} = deleteBlogSection
 
+  const saveBlogSection = useSelector((state)=>state.saveBlogSection)
+  const  {loading:articleLoading,error:articleError} = saveBlogSection
+
   useEffect(() => {
     dispatch(getSectionAction())
   }, [success])
@@ -55,6 +58,7 @@ const AllBlogSection = () => {
               <div className="cards-container">
                {loading && <Loader />}
                {error && <div className=' bar error'>{error}</div>}
+               {articleError && <div className=' bar error'>{articleError}</div>}
                {message && <div className=' bar success'>{message}</div>}
 
                {blogs && blogs.slice(0,10).map((blog)=>(
