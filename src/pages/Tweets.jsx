@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import {
   BCDIcons,
@@ -17,22 +17,46 @@ import { RiVoiceprintFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { addTwitter } from "../actions/ai/twitterAction";
 import Loader from "../components/Loader";
+import { getProjectAction } from "../actions/backend/projectAction";
+import { addTweetAction } from "../actions/backend/tweetAction";
+import { useNavigate } from "react-router-dom";
 
 const Tweets = () => {
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
+  const [projectId, setProjectId] = useState()
+  const myDiv = useRef(null)
 
   const [topic, setTopic] = useState([])
   const [keywords, setKeywords] = useState([])
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const twitter = useSelector((state)=>state.twitter)
   const {loading, error,success, tweets} = twitter
+
+  const saveTweet = useSelector((state)=>state.saveTweet)
+  const {loading:tweetLoading,error:tweetError} = saveTweet
+
+  const getProject = useSelector((state)=>state.getProject)
+  const {loading:projectLoading,error:projectError, project} = getProject
+
+  useEffect(() => {
+    dispatch(getProjectAction())
+}, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(topic,keywords)
     dispatch(addTwitter(topic,keywords))
+  }
+
+  const handleForm = (e) => {
+    e.preventDefault()
+    const divData = myDiv.current.innerText
+    console.log(divData, projectId)
+    dispatch(addTweetAction(divData, projectId))
+    navigate('/all_tweet')
   }
   // handle audio option
   const handleAudio = () => {
@@ -135,16 +159,56 @@ const Tweets = () => {
                   </form>
                 </div>
                 {/*  */}
-                <div className="right">
-                    {loading && <Loader />}
-                    {error && <div className='bar error'>{error}</div>}
-                    {tweets && tweets.map((tweet)=>(
-
-                  <div className="sec-1">
-                    <BCDIcons />
-                    {tweet.generated_tweets}
+                <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
+                <form onSubmit={handleForm}>
+                {loading && <Loader />}
+                {error && <div className='bar error'>{error}</div>}
+                {tweets && tweets.map((tweet)=>(
+                  
+                  <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
+               
+                  {tweet.generated_tweets.map((d)=>(
+                    <p>{d}</p>
+                  ))}
                   </div>
-                    ))}
+                  ))}
+                  <br />
+                          <p className="product-p">Select Project*</p>
+                          <select
+                        onChange={(e)=>setProjectId(e.target.value)} 
+                        value={projectId}
+                        name=""
+                        id=""
+                        className="select"
+                        style={{
+                          display: "block",
+                          width: "100%",
+                          background: "var(--primary-blue)",
+                          borderRadius: "var(--border-radius-xs)",
+                          border: "none",
+                          outline: "none",
+                          height: "10%",
+                          margin: "5px 0",
+                          padding: "5px",
+                          fontWeight: "400",
+                          fontSize: "14px",
+                          lineHeight: "21px",
+                          color: "rgba(0, 22, 51, 0.5)",
+                        }}
+                        >
+                        <option value="" selected disabled hidden>Select project</option>
+                        
+                        {
+                          project && project.map((pro, i)=>(
+                            <option key={i} value={pro.id}>{pro.name}</option>
+                            ))
+                          }
+                          </select>
+                          <br />
+                    <button className="article-btn" style={{ fontSize: "12px" }}>
+                    Save Tweet
+                  </button>
+                  </form>
                   {/* <div className="sec-2">
                     <BCDIcons />
                     <div className="txt-sec"></div>

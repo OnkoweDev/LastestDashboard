@@ -44,7 +44,7 @@ const SignIn = () => {
             
           <h5>Welcome Back!</h5>
           <small>Ready to gather the thought once again?</small>
-             {loading && <Loader />}
+            
              {error && <div className=' bar error'>{error}</div>}
           <form onSubmit={handleLogin}>
             <label  htmlFor="email">Email Address</label>
@@ -73,7 +73,7 @@ const SignIn = () => {
             </div>
             {/* btn */}
             <button type="submit" className="btn article-btn" style={{ fontSize: "16px" }}>
-              Login
+              { loading ? "Authenticating...." : "Login"}
             </button>
           </form>
           {/* other sign up options */}

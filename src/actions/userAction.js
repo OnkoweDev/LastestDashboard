@@ -1,4 +1,5 @@
-import { USERS_LOGIN_REQUEST, USERS_LOGIN_SUCCESS, USERS_LOGIN_FAILED, USERS_REGISTER_REQUEST, USERS_REGISTER_FAILED, USERS_REGISTER_SUCCESS, USERS_LOGOUT } from "../constant/userConstant"
+import { async } from "regenerator-runtime";
+import { USERS_LOGIN_REQUEST, USERS_LOGIN_SUCCESS, USERS_LOGIN_FAILED, USERS_REGISTER_REQUEST, USERS_REGISTER_FAILED, USERS_REGISTER_SUCCESS, USERS_LOGOUT} from "../constant/userConstant"
 import axios from 'axios'
 
 export const login = (email,password) => async(dispatch) => {
@@ -23,6 +24,7 @@ export const login = (email,password) => async(dispatch) => {
                 : error.message,
           });
         }
+        //const res2 = await axios.get(`http://localhost:8000/task/${userInfo.id}/runs`);
 }
 
 export const register = (full_name,email,password) => async(dispatch) =>{
@@ -56,7 +58,3 @@ export const logout = ()=> async (dispatch) => {
         dispatch({ type: USERS_LOGOUT });
 };
 
-// export const logout = () => async (dispatch) => {
-//     localStorage.removeItem("userInfo");
-//     dispatch({ type: USER_LOGOUT });
-//   };

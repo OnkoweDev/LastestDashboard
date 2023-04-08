@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   BCDIcons,
   OutputNumber,
@@ -18,6 +18,9 @@ import { RiVoiceprintFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { InstagramAction } from "../actions/ai/instagramAction";
 import Loader from "../components/Loader";
+import { getProjectAction } from "../actions/backend/projectAction";
+import { addInstagramCapAction } from "../actions/backend/instagramCapAction";
+import { useNavigate } from "react-router-dom";
 
 const Instagram = () => {
   // state for audio option
@@ -25,15 +28,38 @@ const Instagram = () => {
   // state to keep track of number of output
   const [product, setProduct] = useState([])
   const [tone, setTone] = useState()
+  const [projectId, setProjectId] = useState()
+
+  const myDiv = useRef(null) 
+  const navegate = useNavigate()
 
   const dispatch = useDispatch()
   const instagram = useSelector((state)=>state.instagram)
   const {loading, error,success,instagrams} = instagram
 
+
+  const saveInstagram = useSelector((state)=>state.saveInstagram)
+  const {loading:instaLoading, error:instaError,success:instaSuccess} = saveInstagram
+
+  const getProject = useSelector((state)=>state.getProject)
+  const {loading:projectLoading,error:projectError, project} = getProject
+
+  useEffect(() => {
+    dispatch(getProjectAction())
+}, [])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(product,tone)
     dispatch(InstagramAction(product,tone))
+  }
+  const handleForm  = (e) => {
+    e.preventDefault()
+    const divData = myDiv.current.innerText
+    console.log(divData,projectId)
+    dispatch(addInstagramCapAction(divData,projectId))
+    navegate('/allinstagram')
+
   }
 
   // handle audio option
@@ -153,7 +179,8 @@ const Instagram = () => {
                       lineHeight: "21px",
                       color: "rgba(0, 22, 51, 0.5)",
                     }}
-                  >
+                  > 
+                    <option value="" selected disabled hidden>Select Tone</option>
                     <option value="Funny">Funny</option>
                     <option value="Excited">Excited</option>
                     <option value="Professional">Professional</option>
@@ -168,15 +195,56 @@ const Instagram = () => {
                   </form>
                 </div>
                 {/*  */}
-                <div className="right">
+                <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
+                <form onSubmit={handleForm}>
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 {instagrams && instagrams.map((inst)=>(
-                  <div className="sec-1">
-                    <BCDIcons />
-                        {inst.generated_captions}
-                  </div>
-                ))}
+                  <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
+                  <BCDIcons />
+                  {inst.generated_captions.map((d)=>(
+                    <p>{d}</p>
+                    ))}
+                    </div>
+                    ))}
+
+                    <br />
+                      <p className="product-p">Select Project*</p>
+                        <select
+                      onChange={(e)=>setProjectId(e.target.value)} 
+                      value={projectId}
+                      name=""
+                      id=""
+                      className="select"
+                      style={{
+                        display: "block",
+                        width: "100%",
+                        background: "var(--primary-blue)",
+                        borderRadius: "var(--border-radius-xs)",
+                        border: "none",
+                        outline: "none",
+                        height: "10%",
+                        margin: "5px 0",
+                        padding: "5px",
+                        fontWeight: "400",
+                        fontSize: "14px",
+                        lineHeight: "21px",
+                        color: "rgba(0, 22, 51, 0.5)",
+                      }}
+                      >
+                      <option value="" selected disabled hidden>Select project</option>
+                      
+                      {
+                        project && project.map((pro, i)=>(
+                          <option key={i} value={pro.id}>{pro.name}</option>
+                          ))
+                        }
+                        </select>
+                    <br />
+                    <button className="article-btn" style={{ fontSize: "12px" }}>
+                    Save Instagram Caption
+                  </button>
+                    </form>
                   {/* <div className="sec-2">
                     <BCDIcons />
                     <div className="txt-sec"></div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   BCDIcons,
   OutputNumber,
@@ -19,6 +19,9 @@ import { AiOutlineAudio } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import { emailGenAction } from "../actions/ai/emailGenAction";
+import { getProjectAction } from "../actions/backend/projectAction";
+import { addEmailGenAction } from "../actions/backend/emailGeneratorAction";
+import { useNavigate } from "react-router-dom";
 
 
 const EmailGenerator = () => {
@@ -26,18 +29,40 @@ const EmailGenerator = () => {
   const [reciepient, setReciepient] = useState([])
   const [reciepientPos, setReciepientPos] = useState([])
   const [description, setDescription] = useState([])
+  const myDiv = useRef(null)
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
+  const [projectId, setProjectId] = useState()
 
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const emailGenerator = useSelector((state) => state.emailGenerator)
   const {loading, error, success, gene} = emailGenerator
+
+  const getProject = useSelector((state)=>state.getProject)
+  const {loading:projectLoading,error:projectError, project} = getProject
+
+  const addEmail = useSelector((state)=>state.addEmail)
+  const {loading:emailLoading,error:emailError} = addEmail
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(description)
     dispatch(emailGenAction(reciepient,reciepientPos,description))
 
+  }
+
+  useEffect(() => {
+    dispatch(getProjectAction())
+  }, [])
+
+  const handleForm = (e) => {
+    e.preventDefault()
+    const divData = myDiv.current.innerText
+    console.log(divData,projectId)
+    dispatch(addEmailGenAction(divData,projectId))
+    navigate('/email')
   }
 
   // handle audio option
@@ -185,21 +210,53 @@ const EmailGenerator = () => {
 
                 </div>
 
-                <div className="right">
+                <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
-                {gene && gene.map((you)=>(
-                  <div className="sec-1">
+                <form onSubmit={handleForm}>
+                  {gene && gene.map((you)=>(
+                    <div className="sec-1" ref={myDiv} contentEditable>
                     
-                    {you.generated_emails.map((d)=>(
-                        
-                             <p>
-                            <BCDIcons />
-                            {d}
-                            </p>
-                    ))}
-                  </div>
-                ))}
+                      {you.generated_emails}
+                      </div>
+                      ))}
+                      <br />
+                      
+                 <p className="product-p">Select Project*</p>
+                 <select
+                   onChange={(e)=>setProjectId(e.target.value)} 
+                   value={projectId}
+                    name=""
+                    id=""
+                    className="select"
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      background: "var(--primary-blue)",
+                      borderRadius: "var(--border-radius-xs)",
+                      border: "none",
+                      outline: "none",
+                      height: "10%",
+                      margin: "5px 0",
+                      padding: "5px",
+                      fontWeight: "400",
+                      fontSize: "14px",
+                      lineHeight: "21px",
+                      color: "rgba(0, 22, 51, 0.5)",
+                    }}
+                  >
+                  <option value="" selected disabled hidden>Select project</option>
+                  {
+                   project && project.map((pro, i)=>(
+                    <option key={i} value={pro.id}>{pro.name}</option>
+                    ))
+                   }
+                  </select>
+               <br />
+                      <button className="article-btn" style={{ fontSize: "12px" }}>
+                      Save Email
+                    </button>
+                    </form>
                   {/* <div className="sec-2">
                     <BCDIcons />
                     <div className="txt-sec"></div>

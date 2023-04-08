@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./styles/GoogleAdTitle.css";
 import articleBlog from "../assets/article-blog.png";
+import ReactTextFormat from 'react-text-format';
 import {
   BCDIcons,
   OutputNumber,
@@ -17,6 +18,9 @@ import {useDispatch, useSelector} from 'react-redux'
 import { addArticleBlog } from "../actions/ai/articleBlogAction";
 import Loader from "../components/Loader";
 import { addArticleRewriter } from "../actions/ai/artcleRewriterAction";
+import { getProjectAction } from "../actions/backend/projectAction";
+import { articleAddAction } from "../actions/backend/articleWritterAction";
+import { useNavigate } from "react-router-dom";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -28,22 +32,54 @@ mic.lang = 'en-US'
 
 const ArticleRewriter = () => {
   // state for audio option
+  const myDiv = useRef(null);
   const [isAudio, setIsAudio] = useState(false);
 
   const[isListening, setIsListening] = useState(false)
   const [note, setNote] = useState([])
 
   const [content, setContent] = useState([])
+
+  const [article, setArticle] = useState()
+  const [projectId, setProjectId] = useState()
   
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const articleRewriter = useSelector((state)=>state.articleRewriter)
   const {loading,error,success,rewriters} = articleRewriter 
 
+  const getProject = useSelector((state)=>state.getProject)
+  const {loading:projectLoading,error:projectError, project} = getProject
+
+  const articleWritter = useSelector((state)=>state.articleWritter)
+  const  {loading:articleLoading,error:articleError} = articleWritter
+
+
+
+  const handleForm = (e) => {
+    e.preventDefault()
+    const divData = myDiv.current.innerText;
+      setArticle(divData)
+      console.log(divData) 
+      console.log(projectId) 
+      dispatch(articleAddAction(divData,projectId))
+      navigate('/allArticle') 
+      
+  }
+  
+  useEffect(() => {
+    dispatch(getProjectAction())
+  }, [])
+  
+
+  
   const handSubmit = (e) => {
     e.preventDefault()
     console.log("loading")
     dispatch(addArticleRewriter(content))
   }
+
+ 
 
 
   useEffect(() => {
@@ -120,6 +156,9 @@ const ArticleRewriter = () => {
                       margin: "10px 0",
                       padding: "10px",
                       resize: "none",
+                      overflow:"auto",
+                       border:"0px",
+                       outline:"0px",
                     }}
                   ></textarea>
                   <div
@@ -130,48 +169,7 @@ const ArticleRewriter = () => {
                       margin: "10px 0",
                     }}
                   >
-                    {/* {isAudio ? (
-                      <div className="audio">
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <RiVoiceprintFill />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <CiPause1 />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <FiStopCircle />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setIsAudio(false);
-                          }}
-                        >
-                          <HiOutlinePencil />
-                        </button>
-                      </div>
-                    ) : (
-                      <AiOutlineAudio
-                        className="icon-div mic-icon"
-                        onClick={handleAudio}
-                      />
-                    )} */}
+                   
                     {isListening ? <RiVoiceprintFill  className="icon-div mic-icon" /> : <FiStopCircle  className="icon-div mic-icon" />}
                      <AiOutlineAudio
                         className="icon-div mic-icon"
@@ -185,22 +183,64 @@ const ArticleRewriter = () => {
                   </form>
                 </div>
                 {/*  */}
-                <div className="right">
-                  {loading && <Loader />}
-                  {error && <div className=' bar error'>{error}</div>}
-                  {rewriters && rewriters.map((rewrite)=>(
-                  <div className="sec-1">
-                    <BCDIcons />
-                    {rewrite.generated_article}
+                <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
+                <ReactTextFormat >
+                {loading && <Loader />}
+                {error && <div className=' bar error'>{error}</div>}
+                
+                {articleLoading && <Loader />}
+                {articleError && <div className=' bar error'>{articleError}</div>}
+                
+                
+                <form onSubmit={handleForm}>
+                {rewriters && rewriters.map((rewrite)=>(
+                  <div className="sec-1" ref={myDiv} suppressContentEditableWarning={true} contentEditable  type='text'>
+                  <BCDIcons />
+                  {rewrite.generated_article}
                   </div>
                   ))}
-                  {/* <div className="sec-2">
-                    <BCDIcons />
-                    <div className="txt-sec"></div>
-                  </div> */}
-                </div>
-              </div>
-            </div>
+                  <br />
+                  
+                  <p className="product-p">Select Project*</p>
+                  <select
+                  onChange={(e)=>setProjectId(e.target.value)} 
+                  value={projectId}
+                  name=""
+                  id=""
+                  className="select"
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    background: "var(--primary-blue)",
+                    borderRadius: "var(--border-radius-xs)",
+                    border: "none",
+                    outline: "none",
+                    height: "10%",
+                    margin: "5px 0",
+                    padding: "5px",
+                    fontWeight: "400",
+                    fontSize: "14px",
+                    lineHeight: "21px",
+                    color: "rgba(0, 22, 51, 0.5)",
+                  }}
+                  >
+                  <option value="" selected disabled hidden>Select project</option>
+                  
+                  {
+                    project && project.map((pro, i)=>(
+                      <option key={i} value={pro.id}>{pro.name}</option>
+                      ))
+                    }
+                    </select>
+                    <br />
+                    <button className="article-btn" style={{ fontSize: "14px" }}>
+                    Save Article Rewriter
+                    </button>
+                    </form>
+                    </ReactTextFormat>
+                    </div>
+                    </div>
+                    </div>
           </div>
         </div>
       </main>

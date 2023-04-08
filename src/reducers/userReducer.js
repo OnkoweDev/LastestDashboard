@@ -1,4 +1,4 @@
-import { USERS_LOGIN_FAILED, USERS_LOGIN_REQUEST, USERS_LOGIN_SUCCESS, USERS_LOGOUT, USERS_REGISTER_FAILED, USERS_REGISTER_REQUEST, USERS_REGISTER_SUCCESS } from "../constant/userConstant";
+import { USERS_LOGIN_FAILED, USERS_LOGIN_REQUEST, USERS_LOGIN_SUCCESS, USERS_LOGOUT, USERS_REGISTER_FAILED, USERS_REGISTER_REQUEST, USERS_REGISTER_SUCCESS} from "../constant/userConstant";
 
 export const userLoginReducer = (state={},action) => {
     switch (action.type) {
@@ -27,3 +27,4 @@ export const userRegisterReducer = (state={},action) => {
             return state;
     }
 }
+

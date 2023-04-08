@@ -16,6 +16,10 @@ import { RiVoiceprintFill } from "react-icons/ri";
 import {useDispatch, useSelector} from 'react-redux'
 import { addArticleBlog } from "../actions/ai/articleBlogAction";
 import Loader from "../components/Loader";
+import { useRef } from "react";
+import { getProjectAction } from "../actions/backend/projectAction";
+import { addConclusionAction } from "../actions/backend/conclusionAction";
+import { useNavigate } from "react-router-dom";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -34,15 +38,36 @@ const GoogleAdTitile = () => {
 
   const [article, setArticle] = useState([])
   const [outputNumber, setOutputNumber] = useState(1);
+  const [projectId, setProjectId] = useState()
+  const myDiv = useRef(null)
   
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const articleBlogs = useSelector((state)=>state.articleBlogs)
   const {loading,error,success,conclusions} = articleBlogs 
+
+  const getProject = useSelector((state)=>state.getProject)
+  const {loading:projectLoading,error:projectError, project} = getProject
+
+  const saveConclusion = useSelector((state)=>state.saveConclusion)
+  const {loading:conLoading,error:conError} = saveConclusion
+
+ useEffect(() => {
+    dispatch(getProjectAction())
+  }, [])
 
   const handSubmit = (e) => {
     e.preventDefault()
     console.log("loading")
     dispatch(addArticleBlog(article,outputNumber))
+  }
+
+  const handleForm = (e) => {
+    e.preventDefault()
+    const divData = myDiv.current.innerText
+    console.log(divData,projectId)
+    dispatch(addConclusionAction(divData,projectId))
+    navigate('/conclusion')
   }
 
 
@@ -191,22 +216,60 @@ const GoogleAdTitile = () => {
                   </form>
                 </div>
                 {/*  */}
-                <div className="right">
-                  {loading && <Loader />}
-                  {error && <div className=' bar error'>{error}</div>}
-                  {conclusions && conclusions.map((conclusion)=>(
-                  <div className="sec-1">
-                    <BCDIcons />
-                    {conclusion.generated_conclusions.map((d)=>(
-                        <div className="txt-sec">{d}</div>
-
+                <div className="right"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
+                <form onSubmit={handleForm}>
+                {loading && <Loader />}
+                {error && <div className=' bar error'>{error}</div>}
+                {conclusions && conclusions.map((conclusion)=>(
+                  
+                  <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning>
+                  <BCDIcons />
+                  {conclusion.generated_conclusions.map((d)=>(
+                    <p>{d}</p>
+                    
                     ))}
-                  </div>
-                  ))}
-                  {/* <div className="sec-2">
-                    <BCDIcons />
-                    <div className="txt-sec"></div>
-                  </div> */}
+                    </div>
+                    ))}
+
+                    <br />
+                  
+                    <p className="product-p">Select Project*</p>
+                    <select
+                    onChange={(e)=>setProjectId(e.target.value)} 
+                    value={projectId}
+                    name=""
+                    id=""
+                    className="select"
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      background: "var(--primary-blue)",
+                      borderRadius: "var(--border-radius-xs)",
+                      border: "none",
+                      outline: "none",
+                      height: "10%",
+                      margin: "5px 0",
+                      padding: "5px",
+                      fontWeight: "400",
+                      fontSize: "14px",
+                      lineHeight: "21px",
+                      color: "rgba(0, 22, 51, 0.5)",
+                    }}
+                    >
+                    <option value="" selected disabled hidden>Select project</option>
+                    
+                    {
+                      project && project.map((pro, i)=>(
+                        <option key={i} value={pro.id}>{pro.name}</option>
+                        ))
+                      }
+                      </select>
+                      <br />
+                      <button className="article-btn" style={{ fontSize: "14px" }}>
+                      Save Article Conclusion
+                      </button>
+                    
+                </form>
                 </div>
               </div>
             </div>

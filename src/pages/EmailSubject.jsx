@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   BCDIcons,
   OutputNumber,
@@ -19,24 +19,52 @@ import { AiOutlineAudio } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import { emailSubjectAction } from "../actions/ai/emailSubjectAction";
+import { getProjectAction } from "../actions/backend/projectAction";
+import { addSubjectAction } from "../actions/backend/emailSubjectAction";
 
 
 const EmailSubject = () => {
   // state to keep track of number of output
   const [productName, setProductName] = useState([])
   const [emailDesc, setEmailDesc] = useState([])
+  const myDiv = useRef(null)
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
+  const [projectId, setProjectId] = useState()
+  const [message, setMessage] = useState("")
+
 
   const dispatch = useDispatch()
   const emailSubject = useSelector((state) => state.emailSubject)
   const {loading, error, success, email} = emailSubject
+
+  const getProject = useSelector((state)=>state.getProject)
+  const {loading:projectLoading,error:projectError, project} = getProject
+
+  const saveSubject = useSelector((state)=>state.saveSubject)
+  const {loading:subjectLoading,error:subjectError,success:subjectSuccess} = saveSubject
+
+  useEffect(() => {
+      dispatch(getProjectAction())
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(emailDesc)
    dispatch(emailSubjectAction(productName,emailDesc))
 
+  }
+
+  const handleForm = (e) => {
+    e.preventDefault()
+    const divData = myDiv.current.innerText
+    console.log(divData,projectId)
+    dispatch(addSubjectAction(divData,projectId))
+    setMessage("Saved successfully")
+    setTimeout(()=>{
+      setMessage("")
+    },4000)
+    navigate('/allEmailSubject')
   }
 
   // handle audio option
@@ -56,7 +84,7 @@ const EmailSubject = () => {
               {/* header */}
               <ProjectHeader
                 image={product}
-                title="Facebook Ad Generator"
+                title="Email Subject"
               />
               {/* body container */}
               <div className="body-content">
@@ -164,25 +192,62 @@ const EmailSubject = () => {
 
                 </div>
 
-                <div className="right">
+                <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
+                <form onSubmit={handleForm}>
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
+
+                {subjectLoading && <Loader />}
+                {subjectSuccess && <div className='bar success'>{message}</div>}
                 {email && email.map((you)=>(
-                  <div className="sec-1">
+                  <div className="sec-1" contentEditable suppressContentEditableWarning={true} ref={myDiv}>
+                  <BCDIcons />
+                  {you.generated_lines.map((d)=>(
+                                        
+                    <p>
+                     {d}
+                    </p>
                     
-                    {you.generated_lines.map((d)=>(
-                        
-                         <div className="txt-sec">
-                            <BCDIcons />
-                            {d}
-                            </div>
                     ))}
-                  </div>
-                ))}
-                  {/* <div className="sec-2">
-                    <BCDIcons />
-                    <div className="txt-sec"></div>
-                  </div> */}
+                    </div>
+                    ))}
+                    <br />
+                      <p className="product-p">Select Project*</p>
+                        <select
+                      onChange={(e)=>setProjectId(e.target.value)} 
+                      value={projectId}
+                      name=""
+                      id=""
+                      className="select"
+                      style={{
+                        display: "block",
+                        width: "100%",
+                        background: "var(--primary-blue)",
+                        borderRadius: "var(--border-radius-xs)",
+                        border: "none",
+                        outline: "none",
+                        height: "10%",
+                        margin: "5px 0",
+                        padding: "5px",
+                        fontWeight: "400",
+                        fontSize: "14px",
+                        lineHeight: "21px",
+                        color: "rgba(0, 22, 51, 0.5)",
+                      }}
+                      >
+                      <option value="" selected disabled hidden>Select project</option>
+                      
+                      {
+                        project && project.map((pro, i)=>(
+                          <option key={i} value={pro.id}>{pro.name}</option>
+                          ))
+                        }
+                        </select>
+                      <br />
+                      <button className="article-btn" style={{ fontSize: "14px" }}>
+                      Save Article Rewriter
+                      </button>
+                      </form>
                 </div>
               </div>
             </div>

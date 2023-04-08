@@ -1,11 +1,11 @@
 .cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 10px;
+    gap: 15px;
 }
 
 .card {
-    padding: 15px 20px 30px;
+   
     border-radius: var(--border-radius-sm);
     background: var(--background-grey);
     box-shadow: var(--shadow);
@@ -33,4 +33,12 @@
     line-height: 21px;
     color: var(--black);
     margin: 30px 0 40px;
+}
+.card img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    display: block;
+    object-fit: cover;
+    padding:2px
 }

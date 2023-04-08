@@ -61,7 +61,64 @@ import Portugish from "./Language/Portugish";
 import Italian from "./Language/Italian";
 import Japanese from "./Language/Japanese";
 import Chinese from "./Language/Chinese";
-
+import Project from "./pages/Project";
+import Test from "./pages2/Test";
+import ArticleRewriter2 from "./pages/ArticleRewriter2";
+import ALLArticleRewritter from "./pages2/ArticleRewriter/ArticleRewritter";
+import ArticleRewriterMore from "./pages2/ArticleRewriter/ArticleRewriterMore";
+import UpdateArticle from "./pages2/ArticleRewriter/UpdateArticle";
+import AllBlog from "./pages2/BlogWriter/blogwriter";
+import BlogMore from "./pages2/BlogWriter/blogWritermore";
+import UpdateBlog from "./pages2/BlogWriter/updateBlog";
+import AllContentRepre from "./pages2/ContentRepresal/ContentRepresal";
+import ContentRepreMore from "./pages2/ContentRepresal/ContentRepreMore";
+import EmailGen from "./pages2/Email/EmailGen";
+import EmailMore from "./pages2/Email/EmailMore";
+import AllEmailSubject from "./pages2/EmailSubject/EmailSubject";
+import EmailSubjectMore from "./pages2/EmailSubject/EmailSubjectMore";
+import FacebookAds from "./pages2/FacebookAds/FacebookAds";
+import FacebookMore from "./pages2/FacebookAds/FacebookMore";
+import ALLGoogleAds from "./pages2/GoogleAds/GoogleAds";
+import GoogleAdsMore from "./pages2/GoogleAds/GoogleAdsMore";
+import AllTitles from "./pages2/GoogleTitles/GoogleTitles";
+import GoogleTitleMore from "./pages2/GoogleTitles/GoogleTitleMore";
+import AllInstagram from "./pages2/Instagram/Instagram";
+import InstagramMore from "./pages2/Instagram/InstagramMore";
+import AllLandingPage from "./pages2/LangingPage/LandingPage";
+import LandingMore from "./pages2/LangingPage/LandPageMore";
+import LandingHeadline from "./pages2/LandingHeadline/LandingHeadline";
+import LandingHeadlineMore from "./pages2/LandingHeadline/LandingHeadlineMore";
+import ALLPARAGRAPHWRITER from "./pages2/ParagraphWriter/ParagraphWriter";
+import ParagraphMore from "./pages2/ParagraphWriter/ParagraphMore";
+import ALLBlogIntro from "./pages2/BlogIntro/BlogIntro";
+import BlogIntroMore from "./pages2/BlogIntro/BlogMore";
+import AllBlogTopic from "./pages2/BlogTopic/AllBlogTopic";
+import BlogTopicMore from "./pages2/BlogTopic/BlogTopicMore";
+import AllProductName from "./pages2/ProductName/ProductName";
+import ProductMore from "./pages2/ProductName/ProductNameMore";
+import AllTweet from "./pages2/Tweet/Tweeter";
+import TweetMore from "./pages2/Tweet/TweetMore";
+import AllYoutube from "./pages2/Youtube/Youtube";
+import YoutubeMore from "./pages2/Youtube/YoutubeMore";
+import AllEbook from "./pages2/Ebook/Ebook";
+import EbookMore from "./pages2/Ebook/EbookMore";
+import AllLinkPost from "./pages2/LinkedinPost/Linkedin";
+import LinkMore from "./pages2/LinkedinPost/LinkPostMore";
+import Language from "./pages2/Language/Language";
+import LanguageMore from "./pages2/Language/LanguageMore";
+import Conclusion from "./pages2/Conclusion/Conclusion";
+import ConclusionMore from "./pages2/Conclusion/ConclusionMore";
+import AllBlogSection from "./pages2/BlogSection/BlogSection";
+import BlogSectionMore from "./pages2/BlogSection/BlogSectionMore";
+import AllLinkAds from "./pages2/LinkedinAds/LinkedinAds";
+import LinkAdsMore from "./pages2/LinkedinAds/LinkedinAdsMore";
+import AllAudio from "./pages2/Audio/Audio";
+import AudioMore from "./pages2/Audio/AudioMore";
+import AllImage from "./pages2/Image/Image";
+import ImageMore from "./pages2/Image/ImageMore";
+import AllProject from "./pages2/Project/Project";
+import ProjectMore from "./pages2/Project/ProjectMore";
+BlogMore
 function App() {
   return (
     <React.Fragment>
@@ -125,6 +182,96 @@ function App() {
         <Route path="italian" element={<Italian />} />
         <Route path="japanese" element={<Japanese />} />
         <Route path="chinese" element={<Chinese />} />
+        <Route path="project" element={<Project />} />
+        <Route path="art" element={<ArticleRewriter2 />} />
+
+        // pages2
+
+        <Route path="allArticle" element={<ALLArticleRewritter />} />
+        <Route path="allArticle/:id" element={<ArticleRewriterMore />} />
+        <Route path="update/:id" element={<UpdateArticle />} />
+
+        <Route path="allblogs" element={<AllBlog />} />
+        <Route path="allblogs/:id" element={<BlogMore />} />
+        <Route path="updateBlog/:id" element={<UpdateBlog />} />
+
+        <Route path="content" element={<AllContentRepre />} />
+        <Route path="content/:id" element={<ContentRepreMore />} />
+
+
+        <Route path="email" element={<EmailGen />} />
+        <Route path="email/:id" element={<EmailMore />} />
+
+        <Route path="allEmailSubject" element={<AllEmailSubject />} />
+        <Route path="allEmailSubject/:id" element={<EmailSubjectMore />} />
+
+        <Route path="allfacebookads" element={<FacebookAds />} />
+        <Route path="allfacebookads/:id" element={<FacebookMore />} />
+
+        <Route path="allgoogleads" element={<ALLGoogleAds />} />
+        <Route path="allgoogleads/:id" element={<GoogleAdsMore />} />
+
+        <Route path="alltitle" element={<AllTitles />} />
+        <Route path="alltitle/:id" element={<GoogleTitleMore />} />
+
+        <Route path="allinstagram" element={<AllInstagram />} />
+        <Route path="allinstagram/:id" element={<InstagramMore />} />
+
+        <Route path="all_landing" element={<AllLandingPage />} />
+        <Route path="all_landing/:id" element={<LandingMore />} />
+
+        <Route path="all_landing_headline" element={<LandingHeadline />} />
+        <Route path="all_landing_headline/:id" element={<LandingHeadlineMore />} />
+
+        <Route path="all_paragraph" element={<ALLPARAGRAPHWRITER />} />
+        <Route path="all_paragraph/:id" element={<ParagraphMore />} />
+
+        <Route path="all_intro" element={<ALLBlogIntro />} />
+        <Route path="all_intro/:id" element={<BlogIntroMore />} />
+
+        <Route path="all_blog_topic" element={<AllBlogTopic />} />
+        <Route path="all_blog_topic/:id" element={<BlogTopicMore />} />
+
+        <Route path="all_product_name" element={<AllProductName />} />
+        <Route path="all_product_name/:id" element={<ProductMore />} />
+
+        <Route path="all_tweet" element={<AllTweet />} />
+        <Route path="all_tweet/:id" element={<TweetMore />} />
+
+        <Route path="all_youtube" element={<AllYoutube />} />
+        <Route path="all_youtube/:id" element={<YoutubeMore />} />
+
+        <Route path="all_ebook" element={<AllEbook />} />
+        <Route path="all_ebook/:id" element={<EbookMore />} />
+
+        <Route path="all_link_post" element={<AllLinkPost />} />
+        <Route path="all_link_post/:id" element={<LinkMore />} />
+
+        <Route path="language" element={<Language />} />
+        <Route path="language/:id" element={<LanguageMore />} />
+
+        <Route path="conclusion" element={<Conclusion />} />
+        <Route path="conclusion/:id" element={<ConclusionMore />} />
+
+        <Route path="blogsection" element={<AllBlogSection />} />
+        <Route path="blogsection/:id" element={<BlogSectionMore />} />
+
+        <Route path="all_linkedin_ads" element={<AllLinkAds />} />
+        <Route path="all_linkedin_ads/:id" element={<LinkAdsMore />} />
+
+        <Route path="all_audio" element={<AllAudio />} />
+        <Route path="all_audio/:id" element={<AudioMore />} />
+
+        <Route path="all_image" element={<AllImage />} />
+        <Route path="all_image/:id" element={<ImageMore />} />
+
+        <Route path="all_project" element={<AllProject />} />
+        <Route path="all_project/:id" element={<ProjectMore />} />
+
+
+
+        
+
 
       </Routes>
     </React.Fragment>

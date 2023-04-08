@@ -7,7 +7,9 @@ import {
   MdOutlineContentCopy,
 } from "react-icons/md";
 
-
+const handleClick = (e) => {
+  console.log("copying")
+}
 
 const BCDIcons = ({ handleBookmark, handleDelete, handleCopy }) => {
     const handle = () => {
@@ -15,14 +17,14 @@ const BCDIcons = ({ handleBookmark, handleDelete, handleCopy }) => {
     }
   return (
     <div className="right-icons-container-fa">
-      <button className="icon-contain">
+      <button className="icon-contain" onClick={handleClick}>
         <MdBookmarkBorder onClick={handleBookmark} className="icon" />
       </button>
       <button className="icon-contain">
         <MdDeleteOutline onClick={handleDelete} className="icon" />
       </button>
       <button className="icon-contain">
-        <MdOutlineContentCopy onClick={handleCopy} className="icon" />
+        <MdOutlineContentCopy  onClick={handleClick} className="icon" />
       </button>
     </div>
   );

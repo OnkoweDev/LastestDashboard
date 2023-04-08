@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   BCDIcons,
   OutputNumber,
@@ -19,24 +19,50 @@ import { AiOutlineAudio } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import { linkdlnAdsAction } from "../actions/ai/linkdlnAdsAction";
+import { getProjectAction } from "../actions/backend/projectAction";
+import { useEffect } from "react";
+import { addLinkAdsAction } from "../actions/backend/linkdinAdsAction";
+import { useNavigate } from "react-router-dom";
 
 const LindlnAds = () => {
   // state to keep track of number of output
   const [productName, setProductName] = useState([])
   const [productDesc, setProductDesc] = useState([])
   const [keywords, setKeywords] = useState([])
+  const [projectId, setProjectId] = useState()
+  const myDiv = useRef(null)
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const linkedinAds = useSelector((state) => state.linkedinAds)
   const {loading, error, success, ads} = linkedinAds
+
+  const saveLinkedinAds = useSelector((state)=>state.saveLinkedinAds)
+  const {loading:linkLoading,error:linkError} = saveLinkedinAds
+
+  const getProject = useSelector((state)=>state.getProject)
+  const {loading:projectLoading,error:projectError, project} = getProject
+
+
+  useEffect(() => {
+      dispatch(getProjectAction())
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(productName)
     dispatch(linkdlnAdsAction(productName,productDesc,keywords))
 
+  }
+
+  const handleForm = (e) => {
+    e.preventDefault()
+    const divData = myDiv.current.innerText
+    console.log(divData)
+    dispatch(addLinkAdsAction(divData,projectId))
+    navigate('/all_linkedin_ads')
   }
 
   // handle audio option
@@ -180,17 +206,58 @@ const LindlnAds = () => {
 
                 </div>
 
-                <div className="right">
+                <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
+                <form onSubmit={handleForm}>
                 {loading && <Loader />}
+                {linkLoading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
+                {linkError && <div className='bar error'>{linkError}</div>}
                 {ads && ads.map((you)=>(
-                  <div className="sec-1">
-                    <BCDIcons />
-                    {you.generated_descriptions.map((d)=>(
-                         <div className="txt-sec">{d}</div>
+                  <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning>
+                  <BCDIcons />
+                  {you.generated_descriptions.map((d)=>(
+                    <p>{d}</p>
                     ))}
-                  </div>
-                ))}
+                    </div>
+                    ))}
+                    <br />
+                    <p className="product-p">Select Project*</p>
+                      <select
+                    onChange={(e)=>setProjectId(e.target.value)} 
+                    value={projectId}
+                    name=""
+                    id=""
+                    className="select"
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      background: "var(--primary-blue)",
+                      borderRadius: "var(--border-radius-xs)",
+                      border: "none",
+                      outline: "none",
+                      height: "10%",
+                      margin: "5px 0",
+                      padding: "5px",
+                      fontWeight: "400",
+                      fontSize: "14px",
+                      lineHeight: "21px",
+                      color: "rgba(0, 22, 51, 0.5)",
+                    }}
+                    >
+                    <option value="" selected disabled hidden>Select project</option>
+                    
+                    {
+                      project && project.map((pro, i)=>(
+                        <option key={i} value={pro.id}>{pro.name}</option>
+                        ))
+                      }
+                      </select>
+                   
+                    <br/>
+                    <button className="article-btn" style={{ fontSize: "12px" }}>
+                    Save Linkdln Ads
+                  </button>
+                    </form>
                   {/* <div className="sec-2">
                     <BCDIcons />
                     <div className="txt-sec"></div>
