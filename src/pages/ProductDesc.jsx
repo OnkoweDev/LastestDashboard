@@ -184,7 +184,9 @@ const ProductDesc = () => {
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                 <form onSubmit={handleForm}>
                     {loading && <Loader />}
+                    {productLoading && <Loader />}
                     {error && <div className=' bar error'>{error}</div>}
+                    {productError && <div className=' bar error'>{productError}</div>}
                     {products && products.map((item)=>(
                       <div className="sec-1" contentEditable suppressContentEditableWarning={true} ref={myDiv}>
                         {item.generated_descriptions.map((d)=>(
