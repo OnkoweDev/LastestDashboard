@@ -22,6 +22,7 @@ import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { useEffect } from "react";
 import { addProductDescAction } from "../actions/backend/productDescAction";
+import { useNavigate } from "react-router-dom";
 
 const ProductDesc = () => {
   // state to keep track of number of output
@@ -34,6 +35,7 @@ const ProductDesc = () => {
   
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const product = useSelector((state) => state.product)
   const {loading, error, success, products} = product
   
@@ -59,6 +61,7 @@ const ProductDesc = () => {
     const divData = myDiv.current.innerText
     console.log(divData)
     dispatch(addProductDescAction(divData,projectId))
+    navigate('/all_productDesc')
   }
 
   // handle audio option
