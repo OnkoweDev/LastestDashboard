@@ -13,7 +13,7 @@ const Modal = ({ closeModal }) => {
         </div>
         <div className="modal__body">
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Lorem ipsum dolor sit, ok amet consectetur adipisicing elit.
             Reiciendis, harum impedit similique, libero ex blanditiis explicabo
             expedita magni earum qui eum voluptas voluptatum, aut ipsum?
           </p>
