@@ -37,6 +37,7 @@ import Profile from "../pages/Profile";
 import Notification from "../pages/Notification";
 import Preference from "../pages/Preference";
 import Password from "../pages/Password";
+import Modal from "./Modal";
 
 export {
   TopNav,
@@ -75,4 +76,5 @@ export {
   Notification,
   Password,
   Preference,
+  Modal,
 };
