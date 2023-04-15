@@ -22,6 +22,7 @@ import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { useEffect } from "react";
 import { addProductDescAction } from "../actions/backend/productDescAction";
+import { useNavigate } from "react-router-dom";
 
 const ProductDesc = () => {
   // state to keep track of number of output
@@ -34,6 +35,7 @@ const ProductDesc = () => {
   
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const product = useSelector((state) => state.product)
   const {loading, error, success, products} = product
   
@@ -59,6 +61,7 @@ const ProductDesc = () => {
     const divData = myDiv.current.innerText
     console.log(divData)
     dispatch(addProductDescAction(divData,projectId))
+    navigate('/all_productDesc')
   }
 
   // handle audio option
@@ -184,7 +187,9 @@ const ProductDesc = () => {
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                 <form onSubmit={handleForm}>
                     {loading && <Loader />}
+                    {productLoading && <Loader />}
                     {error && <div className=' bar error'>{error}</div>}
+                    {productError && <div className=' bar error'>{productError}</div>}
                     {products && products.map((item)=>(
                       <div className="sec-1" contentEditable suppressContentEditableWarning={true} ref={myDiv}>
                         {item.generated_descriptions.map((d)=>(

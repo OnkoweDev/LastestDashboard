@@ -118,6 +118,8 @@ import AllImage from "./pages2/Image/Image";
 import ImageMore from "./pages2/Image/ImageMore";
 import AllProject from "./pages2/Project/Project";
 import ProjectMore from "./pages2/Project/ProjectMore";
+import AllProductDesc from "./pages2/ProductDesc/ProductDesc";
+import ProductDescMore from "./pages2/ProductDesc/ProductDescMore";
 BlogMore
 function App() {
   return (
@@ -267,6 +269,10 @@ function App() {
 
         <Route path="all_project" element={<AllProject />} />
         <Route path="all_project/:id" element={<ProjectMore />} />
+
+        <Route path="all_productDesc" element={<AllProductDesc />} />
+        <Route path="all_productDesc/:id" element={<ProductDescMore />} />
+
 
 
 
