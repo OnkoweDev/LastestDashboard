@@ -5,8 +5,13 @@ import { IoClose } from "react-icons/io5";
 
 const Modal = ({ closeModal }) => {
   return (
-    <article className="modal__background">
-      <div className="modal__container">
+    <article className="modal__background" onClick={closeModal}>
+      <div
+        className="modal__container"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <IoClose className="close__modal__btn" onClick={closeModal} />
         <div className="modal__title">
           <h2>How to guide on how to use the Olukowe App</h2>
