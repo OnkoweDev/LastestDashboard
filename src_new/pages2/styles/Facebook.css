@@ -1,0 +1,103 @@
+.facebook-container .body-content .left input {
+  border: none;
+  outline: none;
+  background: var(--input-bg);
+  color: var(--light-grey2);
+  font-weight: 600;
+  display: block;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.facebook-container .body-content .left input::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--light-grey2);
+}
+
+.facebook-container .body-content .left .product-name,
+.facebook-container .body-content .left .product-summary,
+.facebook-container .body-content .left .product-purpose,
+.facebook-container .body-content .left .promotion {
+  border: 1px solid var(--light-grey);
+  background: var(--white);
+  margin: 5px 0 10px;
+  position: relative;
+}
+
+.facebook-container .body-content .left .product-name {
+  /* height: 70px; */
+  height: 20%;
+}
+
+.facebook-container .body-content .left .product-summary,
+.facebook-container .body-content .left .product-purpose {
+  /* height: 60px; */
+  height: 15%;
+}
+
+.facebook-container .body-content .left .promotion {
+  /* height: 70px; */
+  height: 15%;
+}
+
+.facebook-container .body-content .left .product-name-input,
+.facebook-container .body-content .left .product-summary-input,
+.facebook-container .body-content .left .product-purpose-input,
+.facebook-container .body-content .left .promotion-input {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 10px;
+}
+
+.product-p {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--black);
+}
+
+.product-p span {
+  color: #ff2626;
+}
+
+.product-left-icon {
+  /* border: 1px solid red; */
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.product-left-icon .write-icon,
+.product-left-icon .mute-icon {
+    background: var(--light-grey3);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    border-radius: var(--border-radius-half);
+    transition: all var(--transition);
+    cursor: pointer;
+}
+
+.product-left-icon .write-icon:hover,
+.product-left-icon .mute-icon:hover {
+    background: var(--light-grey);
+}
+
+
+
+

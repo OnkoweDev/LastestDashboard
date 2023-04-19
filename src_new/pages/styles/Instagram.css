@@ -1,0 +1,57 @@
+.instagram-ad .body-content .left input {
+  border: none;
+  outline: none;
+  background: var(--input-bg);
+  color: var(--light-grey2);
+  font-weight: 600;
+  display: block;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.instagram-ad .body-content .left input::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--light-grey2);
+}
+
+.instagram-ad .body-content .left .product-name,
+.instagram-ad .body-content .left .product-summary {
+  border: 1px solid var(--light-grey);
+  background: var(--white);
+  margin: 5px 0 10px;
+  position: relative;
+}
+
+.instagram-ad .body-content .left .product-name,
+.instagram-ad .body-content .left .product-summary {
+  height: 25%;
+}
+
+.instagram-ad .body-content .left .product-name-input,
+.instagram-ad .body-content .left .product-summary-input {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 10px;
+}
+
+.product-p {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--black);
+}
+
+.product-p span {
+  color: #ff2626;
+}
+
+.select > option {
+  background: white;
+}

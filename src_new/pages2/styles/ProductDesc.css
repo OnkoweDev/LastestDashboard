@@ -1,0 +1,24 @@
+.audio {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon-div {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--active);
+  font-size: 17px;
+  transition: var(--transition);
+}
+
+.mic-icon {
+  font-size: 18px;
+}
+
+.icon-div:hover,
+.icon-div:active {
+  color: var(--hover-blue);
+}

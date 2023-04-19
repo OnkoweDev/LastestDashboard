@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
-import "../styles/Home.css";
+import "../styles/Home2.css";
 import { deleteImageAction, getImageAction } from "../../actions/backend/imageAction";
 
 const AllImage = () => {
