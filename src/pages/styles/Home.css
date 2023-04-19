@@ -12,7 +12,11 @@
     transition: all var(--transition);
     cursor: pointer;
 
+<<<<<<< HEAD
     display: table-column;
+=======
+    display: flex;
+>>>>>>> 146c70d3e52d88efd3a19773ffe8e61774ce8f60
     align-items: center;
     justify-content: center;
 }
@@ -21,6 +25,7 @@
     /* transform: translateY(-3px);
     background: var(--hover-blue);
     background: rgb(211, 209, 209); */
+<<<<<<< HEAD
 }
 
 .card .icon {
@@ -28,6 +33,15 @@
     padding: 10px;
 }
 
+=======
+}
+
+.card .icon {
+    font-size: 95px;
+    padding: 10px;
+}
+
+>>>>>>> 146c70d3e52d88efd3a19773ffe8e61774ce8f60
 /* .card h2 {
     font-weight: 500;
     font-size: 12px;
@@ -43,7 +57,11 @@
     line-height: 21px;
     color: var(--black);
     margin: 30px 0 40px;
+<<<<<<< HEAD
 } 
+=======
+} */
+>>>>>>> 146c70d3e52d88efd3a19773ffe8e61774ce8f60
 /* .card img {
     max-width: 100%;
     max-height: 100%;
