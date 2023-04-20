@@ -50,7 +50,7 @@ const Home = () => {
               <div className="card">
                 <Link to="/all_youtube">
                   {/* <img src={youtube} /> */}
-                  <FaYoutube className="icon" style={{ color: "red" }} />
+                  {/* <FaYoutube className="icon" style={{ color: "red" }} /> */}
                 </Link>
               </div>
               <div className="card">
