@@ -5,6 +5,7 @@ import { IoClose } from "react-icons/io5";
 
 const Modal = ({ closeModal }) => {
   const [count, setCount] = useState(0);
+  const [disable, setDisable] = useState(false);
 
   // modal contents
   const modalContent = [
@@ -39,9 +40,13 @@ const Modal = ({ closeModal }) => {
     } else {
       setCount(modalContent.length - 1);
     }
-  };
 
-  console.log(modalContent.length);
+    // disable continue button when end of modal is reached
+    if (count === modalContent.length - 1) {
+      setDisable(true);
+      console.log(disable);
+    }
+  };
 
   return (
     <article className="modal__background" onClick={closeModal}>
@@ -59,24 +64,27 @@ const Modal = ({ closeModal }) => {
           <p>{modalContent[count].first}</p>
           <p>{modalContent[count].second}</p>
         </div>
-        {/* {modalContent.map((item) => {
-          return (
-            <div className="wrapper">
-              <div className="modal__title">
-                <h2>{item[count]?.title}</h2>
-              </div>
-              <div className="modal__body">
-                <p>{item[count].first}</p>
-                <p>{item[count].second}</p>
-              </div>
-            </div>
-          );
-        })} */}
+
         <div className="modal__footer">
           <button onClick={closeModal} id="cancle__btn">
             Skip
           </button>
-          <button onClick={handleNext}>Continue</button>
+          <button
+            onClick={handleNext}
+            disabled={disable}
+            style={
+              disable
+                ? {
+                    cursor: "not-allowed",
+                    background: "grey",
+                    color: "#faf",
+                    borderColor: "transparent",
+                  }
+                : { cursor: "pointer" }
+            }
+          >
+            Continue
+          </button>
         </div>
       </div>
     </article>
