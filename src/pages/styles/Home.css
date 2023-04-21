@@ -12,9 +12,15 @@
     transition: all var(--transition);
     cursor: pointer;
 
-    display: flex;
+    display: table-column;
+
+
+   
     align-items: center;
     justify-content: center;
+    text-align: center;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .card:hover {
@@ -65,3 +71,6 @@
     object-fit: cover;
     padding:2px
 } */
+.card img {
+    width: 100px;
+}

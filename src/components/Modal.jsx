@@ -48,6 +48,8 @@ const Modal = ({ closeModal }) => {
     }
   };
 
+  console.log(modalContent.length);
+
   return (
     <article className="modal__background" onClick={closeModal}>
       <div
@@ -66,25 +68,16 @@ const Modal = ({ closeModal }) => {
         </div>
 
         <div className="modal__footer">
+        <button onClick={count ? handleBack : closeModal}>back</button>
+          <button onClick={handleNext}>Next</button>
           <button onClick={closeModal} id="cancle__btn">
+<<<<<<< HEAD
+          Skip
+        </button>
+=======
             Skip
           </button>
-          <button
-            onClick={handleNext}
-            disabled={disable}
-            style={
-              disable
-                ? {
-                    cursor: "not-allowed",
-                    background: "grey",
-                    color: "#faf",
-                    borderColor: "transparent",
-                  }
-                : { cursor: "pointer" }
-            }
-          >
-            Continue
-          </button>
+          <button onClick={handleNext}>Continue</button>
         </div>
       </div>
     </article>
