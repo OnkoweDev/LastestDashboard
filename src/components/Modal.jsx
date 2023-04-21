@@ -9,9 +9,15 @@ const Modal = ({ closeModal }) => {
   // modal contents
   const modalContent = [
     {
+<<<<<<< HEAD
       title: "How it works",
       first:
         "1. Hey everyone! Are you ready to learn about the fascinating and mysterious world of SS? In this video, I'll show you how to use SS with the target keywords to get the most out of it. So let's get started and dive right in! 2. Hi there! Are you ready to explore the incredible world of SS? In this video, I'll show you how to use SS with the target keywords to take your experience to the next level. So let's get going and have some fun! 3. Hi everyone! Are you ready to unlock the power of SS? In this video, I'll show you how to use SS with the target keywords and get the most out of it. So let's get started and find out how SS can benefit you!",
+=======
+      title: "Heading 1",
+      first:
+        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis, harum impedit similique, libero ex blanditiis explicabo expedita magni earum qui eum voluptas voluptatum, aut ipsum? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis, harum impedit similique, libero ex blanditiis explicabo expedita magni earum qui eum voluptas voluptatum, aut ipsum?",
+>>>>>>> 1614edb561dc47d257d4763ac550a96e03a46f20
       second:
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis, harum impedit similique, libero ex blanditiis explicabo expedita magni earum qui eum voluptas voluptatum, aut ipsum? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis, harum impedit similique, libero ex blanditiis explicabo expedita magni earum qui eum voluptas voluptatum, aut ipsum?",
     },
@@ -41,6 +47,7 @@ const Modal = ({ closeModal }) => {
     }
   };
 
+<<<<<<< HEAD
   const handleBack = (e) => {
     e.preventDefault();
     if (count < modalContent.length + 1) {
@@ -51,6 +58,8 @@ const Modal = ({ closeModal }) => {
     }
   };
 
+=======
+>>>>>>> 1614edb561dc47d257d4763ac550a96e03a46f20
   console.log(modalContent.length);
 
   return (
@@ -86,8 +95,14 @@ const Modal = ({ closeModal }) => {
         <button onClick={count ? handleBack : closeModal}>back</button>
           <button onClick={handleNext}>Next</button>
           <button onClick={closeModal} id="cancle__btn">
+<<<<<<< HEAD
           Skip
         </button>
+=======
+            Skip
+          </button>
+          <button onClick={handleNext}>Continue</button>
+>>>>>>> 1614edb561dc47d257d4763ac550a96e03a46f20
         </div>
       </div>
     </article>
