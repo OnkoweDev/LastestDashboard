@@ -5,6 +5,7 @@ import { IoClose } from "react-icons/io5";
 
 const Modal = ({ closeModal }) => {
   const [count, setCount] = useState(0);
+  const [disable, setDisable] = useState(false);
 
   // modal contents
   const modalContent = [
@@ -42,7 +43,6 @@ const Modal = ({ closeModal }) => {
     } else {
       setCount(modalContent.length - 1);
     }
-  };
 
   const handleBack = (e) => {
     e.preventDefault();
@@ -88,14 +88,14 @@ const Modal = ({ closeModal }) => {
         <div className="modal__footer">
         <button onClick={count ? handleBack : closeModal}>back</button>
           <button onClick={handleNext}>Next</button>
-          <button onClick={closeModal} id="cancle__btn">
-          Skip
-        </button>
-          
+          <button onClick={closeModal} id="cancle__btn">Skip</button>
+
+      
         </div>
-      </div>
-    </article>
-  );
-};
+        </div>
+      </article>
+    );
+  };
+}
 
 export default Modal;
