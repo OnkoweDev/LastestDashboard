@@ -41,47 +41,52 @@ const Modal = ({ closeModal }) => {
       setCount(modalContent.length - 1);
     }
 
-    // disable continue button when end of modal is reached
-    if (count === modalContent.length - 1) {
-      setDisable(true);
-      console.log(disable);
-    }
+    const handleBack = (e) => {
+      e.preventDefault();
+      if (count < modalContent.length + 1) {
+        setCount((count) => (count -= 1));
+        console.log(count);
+      } else {
+        setCount(modalContent.length + 1);
+      }
+
+      // disable continue button when end of modal is reached
+      if (count === modalContent.length - 1) {
+        setDisable(true);
+        console.log(disable);
+      }
+    };
+
+    console.log(modalContent.length);
+
+    return (
+      <article className="modal__background" onClick={closeModal}>
+        <div
+          className="modal__container"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <IoClose className="close__modal__btn" onClick={closeModal} />
+          <div className="modal__title">
+            <h2>{modalContent[count].title}</h2>
+          </div>
+          <div className="modal__body">
+            <p>{modalContent[count].first}</p>
+            <p>{modalContent[count].second}</p>
+          </div>
+
+          <div className="modal__footer">
+            <button onClick={count ? handleBack : closeModal}>back</button>
+            <button onClick={handleNext}>Next</button>
+            <button onClick={closeModal} id="cancle__btn">
+              Skip
+            </button>
+          </div>
+        </div>
+      </article>
+    );
   };
-
-  console.log(modalContent.length);
-
-  return (
-    <article className="modal__background" onClick={closeModal}>
-      <div
-        className="modal__container"
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      >
-        <IoClose className="close__modal__btn" onClick={closeModal} />
-        <div className="modal__title">
-          <h2>{modalContent[count].title}</h2>
-        </div>
-        <div className="modal__body">
-          <p>{modalContent[count].first}</p>
-          <p>{modalContent[count].second}</p>
-        </div>
-
-        <div className="modal__footer">
-        <button onClick={count ? handleBack : closeModal}>back</button>
-          <button onClick={handleNext}>Next</button>
-          <button onClick={closeModal} id="cancle__btn">
-<<<<<<< HEAD
-          Skip
-        </button>
-=======
-            Skip
-          </button>
-          <button onClick={handleNext}>Continue</button>
-        </div>
-      </div>
-    </article>
-  );
-};
+}
 
 export default Modal;
