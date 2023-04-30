@@ -160,36 +160,7 @@ const TopNav = () => {
                 />
               </div>
             </li>
-            <li className="drop-btn">
-              Publish
-              <div className="drop-content">
-                <p
-                  style={{
-                    color: "rgba(8, 18, 43, 0.56)",
-                    fontSize: "10px",
-                    lineHeight: "15px",
-                    letterSpacing: "1.5px",
-                    fontWeight: "400",
-                    textAlign: "left",
-                    padding: "10px 16px",
-                  }}
-                >
-                  convert to:
-                </p>
-                <Link
-                  to="/pdf-download"
-                  className="dropdown-link dropdown-btn-link"
-                >
-                  Pdf
-                </Link>
-                <Link
-                  to="/MSword-download"
-                  className="dropdown-link dropdown-btn-link"
-                >
-                  ms word
-                </Link>
-              </div>
-            </li>
+           
             <li className="nav-link">
               <NavLink to="/draft" className="navLink">
                 Draft
@@ -379,11 +350,7 @@ const TopNav = () => {
                 </button>
               </div>
             </li>
-            <li className="nav-link">
-              <NavLink to="/collaborate" className="navLink">
-                Collaborate
-              </NavLink>
-            </li>
+            
           </ul>
         </div>
         {/*  */}

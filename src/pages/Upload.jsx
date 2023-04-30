@@ -8,7 +8,7 @@ import Loader from "../components/Loader";
 
 const Upload = () => {
 
-  const [upload, setUpload] = useState()
+  const [upload, setUpload] = useState([])
   const dispatch = useDispatch()
   
   const handleChange = (event) => {

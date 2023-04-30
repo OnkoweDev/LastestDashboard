@@ -120,6 +120,8 @@ import AllProject from "./pages2/Project/Project";
 import ProjectMore from "./pages2/Project/ProjectMore";
 import AllProductDesc from "./pages2/ProductDesc/ProductDesc";
 import ProductDescMore from "./pages2/ProductDesc/ProductDescMore";
+import Help from "./pages/Help";
+import Suggest from "./pages/Suggest";
 BlogMore
 function App() {
   return (
@@ -272,6 +274,9 @@ function App() {
 
         <Route path="all_productDesc" element={<AllProductDesc />} />
         <Route path="all_productDesc/:id" element={<ProductDescMore />} />
+
+        <Route path="help" element={<Help />} />
+        <Route path="suggest" element={<Suggest />} />
 
 
 
