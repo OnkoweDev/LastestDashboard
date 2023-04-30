@@ -73,7 +73,6 @@ const TopNav = () => {
     const userLogin = useSelector((state)=>state.userLogin)
     const {userInfo,error} = userLogin
 
-    const auth = undefined
 
     const handleLogout = () => {
         dispatch(logout())
@@ -397,8 +396,8 @@ const TopNav = () => {
                   <img src={profile} alt="" />
                 </aside>
                 <aside className="profile__details">
-                  <h3></h3>
-                  <small></small>
+                  <h3>{userInfo.data?.full_name}</h3>
+                  <small>{userInfo.data?.email}</small>
                 </aside>
               </section>
               <hr style={{ margin: "25px 0" }} />

@@ -1,4 +1,3 @@
-import { async } from "regenerator-runtime";
 import { USERS_LOGIN_REQUEST, USERS_LOGIN_SUCCESS, USERS_LOGIN_FAILED, USERS_REGISTER_REQUEST, USERS_REGISTER_FAILED, USERS_REGISTER_SUCCESS, USERS_LOGOUT} from "../constant/userConstant"
 import axios from 'axios'
 
