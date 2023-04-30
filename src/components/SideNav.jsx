@@ -13,6 +13,7 @@ import {
 
 import { GiSoundWaves } from "react-icons/gi";
 import { MdOutlineSettingsSuggest } from "react-icons/md";
+import { GrNotification } from "react-icons/gr";
 
 const SideNav = () => {
   return (
@@ -25,6 +26,7 @@ const SideNav = () => {
       <SidebarRow Icon={GiSoundWaves} title={"Transcribe"} link='/audio' />
       <SidebarRow Icon={BiHelpCircle} title={"Help"} link='/help' />
       <SidebarRow Icon={MdOutlineSettingsSuggest} title={"Suggest Feature"} link='/suggest' />
+      <SidebarRow Icon={GrNotification} title={"Notification"} link='/notification' />
 
     </div>
   );

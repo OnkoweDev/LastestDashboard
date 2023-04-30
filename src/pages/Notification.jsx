@@ -9,7 +9,7 @@ const Notification = () => {
         <TopNav />
         <div className="container">
           <SideNav />
-          <div className="content">Notification</div>
+          <div className="content">No New Notification</div>
         </div>
       </main>
     </>
