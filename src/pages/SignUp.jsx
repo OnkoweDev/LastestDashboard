@@ -1,12 +1,18 @@
 import React, { useState,useEffect } from "react";
 import "./styles/SignInUp.css";
 
-import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEyeInvisible, AiOutlineEye, AiFillGooglePlusSquare } from "react-icons/ai";
 import image from "../assets/signInImage.png";
 import { Link,useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/userAction";
 import Loader from "../components/Loader";
+import { GrFacebook, GrFacebookOption, GrGoogle } from "react-icons/gr";
+import { FcGoogle } from "react-icons/fc";
+import { BsFacebook } from "react-icons/bs";
+import { FaTwitter } from "react-icons/fa";
+
+
 
 
 const SignUp = () => {
@@ -72,7 +78,7 @@ const SignUp = () => {
               </article>
             </div>
             <div className="checkbox__div">
-              <input type="checkbox" name="consent" id="consent" />
+              <input type="checkbox" name="consent" id="consent"  required/>
               <label htmlFor="consent">
                 I’ve agree to the Terms and have read and acknowledge our
                 Privacy
@@ -86,9 +92,9 @@ const SignUp = () => {
           {/* other sign up options */}
           <p className="sign__up__option__text">Or sign Up with </p>
           <div className="sign__up__options">
-            <button>Y</button>
-            <button>Y</button>
-            <button>Y</button>
+            <button  style={{ color: "red",size:'50px'}}> <FcGoogle /></button>
+            <button style={{ color: "#4267B2"}}><BsFacebook /></button>
+            <button style={{ color: "#1DA1F2"}}><FaTwitter /></button>
           </div>
           <p
             style={{ textAlign: "center", margin: "10px 0" }}

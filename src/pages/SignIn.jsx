@@ -7,6 +7,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/userAction";
 import Loader from "../components/Loader";
+import { FcGoogle } from "react-icons/fc";
+import { BsFacebook } from "react-icons/bs";
+import { FaTwitter } from "react-icons/fa";
 
 const SignIn = () => {
     const [email,setEmail] = useState({})
@@ -80,9 +83,9 @@ const SignIn = () => {
           {/* other sign up options */}
           <p className="sign__up__option__text">Or Log in with </p>
           <div className="sign__up__options">
-            <button>Y</button>
-            <button>Y</button>
-            <button>Y</button>
+          <button  style={{ color: "red",size:'50px'}}> <FcGoogle /></button>
+          <button style={{ color: "#4267B2"}}><BsFacebook /></button>
+          <button style={{ color: "#1DA1F2"}}><FaTwitter /></button>
           </div>
           <p
             style={{ textAlign: "center", margin: "10px 0" }}

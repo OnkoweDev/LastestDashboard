@@ -25,7 +25,6 @@ const SideNav = () => {
     {  /*<SidebarRow Icon={BiCloudUpload} title={"Upload"} link='/upload' />
   <SidebarRow Icon={BiFont} title={"Font"} link='/font' />*/}
      { /*<SidebarRow Icon={BiFile} title={"Resources"} link='/resources' />*/}
-      <SidebarRow Icon={BiGridAlt} title={"Theme"} link='/theme' />
       <SidebarRow Icon={GiSoundWaves} title={"Transcribe"} link='/audio' />
       <SidebarRow Icon={BiHelpCircle} title={"Help"} link='/help' />
       <SidebarRow Icon={MdOutlineSettingsSuggest} title={"Suggest Feature"} link='/suggest' />
