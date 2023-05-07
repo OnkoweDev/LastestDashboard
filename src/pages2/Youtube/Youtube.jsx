@@ -64,7 +64,7 @@ const AllYoutube = () => {
                {googleError && <div className=' bar error'>{googleError}</div>}
                {message && <div className=' bar success'>{message}</div>}
 
-               {youtubes && youtubes.map((face)=>(
+               {youtubes ? youtubes && youtubes.map((face)=>(
                 <div className="card" key={face.id}>
                         <p>{face.youtube_intro.slice(0,300)}.....</p>
                         <Link to={`/all_youtube/${face.id}`}>Read more</Link><br/>
@@ -72,7 +72,7 @@ const AllYoutube = () => {
 
                      
                 </div>
-                ))}
+                )): "Please add new youtube intro"}
               </div>
             {/* <Voice /> */}
           </div>
