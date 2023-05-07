@@ -52,7 +52,7 @@ const Suggest = () => {
                     <aside>
                       <label htmlFor="about">Message</label>
                       <textarea onChange={(e)=>setBody(e.target.value)}  value={body} name="about" id=""></textarea>
-                      <small>How can we help you</small>
+                      <small>You can help suggest a Feature</small>
                     </aside>
                   </div>
                   <button
