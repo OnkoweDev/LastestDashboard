@@ -35,6 +35,7 @@ const Home = () => {
 
   const [openModal, setOpenModal] = useState(true);
 
+
   // mapped data
   // const mappedData = data.map(({title, content}, index) => {
   //   return (

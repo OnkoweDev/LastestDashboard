@@ -56,6 +56,7 @@ import { addLinkAdsReducer, deleteLinkAdsReducer, getLinkAdsReducer, getOneLinkA
 import { addAudioReducer, deleteAudioReducer, getAudioReducer, getOneAudioReducer } from './reducers/backend/audioReducer'
 import { addImageReducer, deleteImageReducer, getImageReducer, getOneImageReducer } from './reducers/backend/imageReducer'
 import { addUploadReducer, deleteUploadReducer, getOneUploadReducer, getUploadReducer } from './reducers/backend/uploadReducer'
+import { updateProfileReducer } from './reducers/backend/profileReducer'
 
 
 const reducers = combineReducers({
@@ -250,6 +251,8 @@ const reducers = combineReducers({
     getUpload:getUploadReducer,
     getOneUpload:getOneUploadReducer,
     deleteUpload:deleteUploadReducer,
+
+    updateProfile:updateProfileReducer,
             //ebook in store
    // AddEbook:addEbookReducer,
     viewEbook:viewEbookReucer,

@@ -381,12 +381,12 @@ const TopNav = () => {
                   link="/notification"
                   text={"Something new"}
                 />
-                <ProfileRow
+                {/*<ProfileRow
                   Icon={BiHomeAlt}
                   title={"Prefrences"}
                   link="/preference"
                   text={"Manage your prefrences"}
-                />
+              />*/}
                 <ProfileRow
                   Icon={BiHomeAlt}
                   title={"Password"}
@@ -394,8 +394,8 @@ const TopNav = () => {
                   text={"Change password"}
                 />
                <Link  to='/' onClick={handleLogout} Icon={BiLogOut} >Logout</Link>
-                  {/* <ProfileRow  onClick={handleLogout} Icon={BiLogOut} title={"Log Out"} link ='/' /> 
-               </Link> */}
+                   <ProfileRow  onClick={handleLogout} Icon={BiLogOut} title={"Log Out"} link ='/' /> 
+
               </section>
             </div>
           </div>

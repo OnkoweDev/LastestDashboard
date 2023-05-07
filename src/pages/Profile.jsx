@@ -2,40 +2,39 @@ import React from "react";
 import { SideNav, TopNav } from "../components";
 import "./styles/Profile.css";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProfileAction } from "../actions/backend/profileAction";
 
 const Profile = () => {
   const [fullname,setFullname] = useState('')
   const [phone,setPhone] = useState('')
-  const [pic,setPicture] = useState('')
+  const [upload, setUpload] = useState([])
   const [message,setMessage] = useState('')
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const updateProfile = useSelector((state)=>state.updateProfile)
+  const {loading,success, error} = updateProfile
 
-  // const userLogin  = useSelector((state)=>state.userLogin)
-  // const {userInfo} = userLogin
+  const handleChange = (event) => {
+    setUpload(event.target.files[0])
+}
 
-  // const userUpdate  = useSelector((state)=>state.userUpdate)
-  // const {loading, error, success} = userUpdate
-
-  // useEffect(()=>{
-  //   if(!userInfo){
-  //     navigate('/')
-  //   }
-  //   else {
-  //     setFullname(userInfo.data.full_name)
-  //     setPhone()
-  //   }
-
-  // },[navigate])
-
-  const handleForm = (e) => {
+  const handleProfile = async(e) => {
     e.preventDefault()
-    console.log(fullname)
+    const formData = new FormData();
+    formData.append('file', upload);
+    formData.append('fileName', upload.name);
+    //console.log(message,phone,upload,message)
+    dispatch(updateProfileAction(fullname,message,phone,formData))
   }
+
+
+
+  
   return (
     <>
       <main>
@@ -49,7 +48,7 @@ const Profile = () => {
               </section>
               <hr />
               <section className="form__container">
-                <form onSubmit={handleForm}>
+                <form onSubmit={handleProfile}>
                   <article>
                     <aside>
                       <label htmlFor="FirstName">Full Name</label>
@@ -63,7 +62,7 @@ const Profile = () => {
                   <article>
                     <aside>
                       <label htmlFor="file">Picture</label>
-                      <input onChange={(e)=>setPicture(e.target.value)}  value={pic} type="file" className="input" name="upload" />
+                      <input onChange={handleChange}  type="file" className="input" name="upload" />
                     </aside>
                   </article>
                   <div className="textarea__div">

@@ -26,6 +26,7 @@ const SignIn = () => {
        try {
         if(userInfo){
             navigate('/dashboard')
+            
         }
        } catch (error) {
         console.log(error)

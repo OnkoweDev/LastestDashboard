@@ -80,7 +80,7 @@ const SignUp = () => {
             </div>
             {/* btn */}
             <button className="btn article-btn" style={{ fontSize: "16px" }}>
-              Sign Up
+             {loading ? "Loading please wait": "Sign Up" }
             </button>
           </form>
           {/* other sign up options */}
@@ -94,7 +94,7 @@ const SignUp = () => {
             style={{ textAlign: "center", margin: "10px 0" }}
             className="login__text"
           >
-            Already have account? <Link to="/login">Login</Link>
+            Already have account? <Link to="/">Login</Link>
           </p>
         </div>
       </section>
