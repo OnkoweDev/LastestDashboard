@@ -24,7 +24,7 @@ const Suggest = () => {
     },4000)
     setLoading(false)
    } catch (error) {
-    setMsg(data.message)
+    setMsg("failed please try again")
    }
   }
   return (

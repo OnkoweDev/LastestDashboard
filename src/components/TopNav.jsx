@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import logo from "../assets/Logo.png";
-import profile from "../assets/dummyprofile.png";
+import profile from "../assets/dummyProfile.png";
 import ebook from "../assets/ebookIcon.png";
 import blog1 from "../assets/article.png";
 import blog3 from "../assets/blog-writer.png";

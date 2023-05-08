@@ -21,6 +21,7 @@ import Loader from "../components/Loader";
 import { emailSubjectAction } from "../actions/ai/emailSubjectAction";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addSubjectAction } from "../actions/backend/emailSubjectAction";
+import {useNavigate} from "react-router-dom"
 
 
 const EmailSubject = () => {
@@ -32,6 +33,7 @@ const EmailSubject = () => {
   const [isAudio, setIsAudio] = useState(false);
   const [projectId, setProjectId] = useState()
   const [message, setMessage] = useState("")
+  const navigate = useNavigate()
 
 
   const dispatch = useDispatch()
