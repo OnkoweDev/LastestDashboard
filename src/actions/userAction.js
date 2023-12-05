@@ -9,7 +9,7 @@ export const login = (email,password) => async(dispatch) => {
               "Content-type": "application/json",
             },
           };
-        const {data} = await axios.post(`http://3.237.101.152/api/auth/login`,{email,password},config)
+        const {data} = await axios.post(`https://dev.olukowe.co/api/auth/login`,{email,password},config)
         dispatch({type:USERS_LOGIN_SUCCESS,payload:data.data})
         localStorage.setItem('userInfo',JSON.stringify(data))
 
@@ -35,7 +35,7 @@ export const register = (full_name,email,password) => async(dispatch) =>{
                 'Content-type':'application/json',
             },
         };
-        const {data} = await axios.post(`http://3.237.101.152/api/auth/register`,{full_name,email,password},config)
+        const {data} = await axios.post(`https://dev.olukowe.co/api/auth/register`,{full_name,email,password},config)
         dispatch({type:USERS_REGISTER_SUCCESS,payload:data.data})
         dispatch({type:USERS_LOGIN_SUCCESS,payload:data.data})
         localStorage.setItem('userInfo',JSON.stringify(data))

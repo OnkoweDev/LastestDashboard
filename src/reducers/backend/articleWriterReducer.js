@@ -6,12 +6,15 @@ export const addArticleWriterReducer = (state={art:[]},action) => {
             return {loading:true}
         case ADD_ARTICLEWRITTER_SUCCESS:
             return {loading:false, art:action.payload}
+            
         case ADD_ARTICLEWRITTER_FAILED:
             return {loading:false, error:action.payload}
         default:
             return state;
     }   
 }
+
+
 
 export const getArticleWriterReducer = (state={writer:[]},action) => {
     switch(action.type){
