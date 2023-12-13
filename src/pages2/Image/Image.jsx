@@ -68,7 +68,7 @@ const AllImage = () => {
                         <h3>{face.prompt}</h3>
                         <img src={face.generated_url} />
                         <Link to={`/all_image/${face.id}`}>Enlarge</Link><br/>
-                        <a  onClick={()=>handleDelete(face.id)} className="btn btn-danger">delete</a>
+                        <a  onClick={()=>handleDelete(face.id)}>delete</a>
 
                      
                 </div>

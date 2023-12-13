@@ -68,7 +68,7 @@ const AllEbook = () => {
                         <h1>{face.title}</h1>
                         <p>{face.generated_ebook.slice(0,300)}.....</p>
                         <Link to={`/all_ebook/${face.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(face.id)} className="btn btn-danger">delete</a>
+                        <a  onClick={()=>handleDelete(face.id)}>delete</a>
 
                      
                 </div>

@@ -68,7 +68,7 @@ const AllAudio = () => {
                         <h2>{face.uploaded_url}</h2>
                         <p>{face.generated_transcription.slice(0,300)}.....</p>
                         <Link to={`/all_audio/${face.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(face.id)} className="btn btn-danger">delete</a>
+                        <a  onClick={()=>handleDelete(face.id)}>delete</a>
 
                      
                 </div>

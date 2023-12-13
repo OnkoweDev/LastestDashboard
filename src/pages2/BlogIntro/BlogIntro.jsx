@@ -71,7 +71,7 @@ const ALLBlogIntro = () => {
                 <div className="card" key={blog.id}>
                         <p>{blog.intro}.....</p>
                         <Link to={`/all_intro/${blog.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(blog.id)} className="btn btn-danger">delete</a>
+                        <a  onClick={()=>handleDelete(blog.id)}>delete</a>
 
                      
                 </div>

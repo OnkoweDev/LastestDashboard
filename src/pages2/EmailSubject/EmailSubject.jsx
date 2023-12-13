@@ -70,7 +70,7 @@ const AllEmailSubject = () => {
                 <div className="card" key={subject.id}>
                         <p>{subject.email_subject.slice(0,300)}.....</p>
                         <Link to={`/allEmailSubject/${subject.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(subject.id)} className="btn btn-danger">delete</a>
+                        <a  onClick={()=>handleDelete(subject.id)}>delete</a>
 
                      
                 </div>

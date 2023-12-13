@@ -67,7 +67,7 @@ const AllLinkAds = () => {
                 <div className="card" key={face.id}>
                         <p>{face.linkedin_ad.slice(0,300)}.....</p>
                         <Link to={`/all_linkedin_ads/${face.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(face.id)} className="btn btn-danger">delete</a>
+                        <a  onClick={()=>handleDelete(face.id)}>delete</a>
 
                      
                 </div>

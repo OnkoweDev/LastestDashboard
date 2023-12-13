@@ -60,7 +60,7 @@ const Language = () => {
                         <h2>{face.text.slice(0,100)}....</h2>
                         <p>{face.generated_translation.slice(0,300)}.....</p>
                         <Link to={`/language/${face.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(face.id)} className="btn btn-danger">delete</a>
+                        <a  onClick={()=>handleDelete(face.id)}>delete</a>
 
                      
                 </div>

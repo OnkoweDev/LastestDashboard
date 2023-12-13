@@ -67,7 +67,7 @@ const ALLGoogleAds = () => {
                 <div className="card" key={face.id}>
                         <p>{face.google_ad.slice(0,300)}.....</p>
                         <Link to={`/allgoogleads/${face.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(face.id)} className="btn btn-danger">delete</a>
+                        <a  onClick={()=>handleDelete(face.id)}>delete</a>
 
                      
                 </div>

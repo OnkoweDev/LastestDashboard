@@ -64,7 +64,7 @@ const ALLArticleRewritter = () => {
                 <div className="card" key={write.id}>
                         <p>{write.article_rewriter.slice(0,300)}.....</p>
                         <Link to={`/allArticle/${write.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(write.id)} className="btn btn-danger">delete</a>
+                        <a  onClick={()=>handleDelete(write.id)} >delete</a>
                 </div>
                 ))}
               </div>

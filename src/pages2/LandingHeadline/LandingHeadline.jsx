@@ -68,7 +68,7 @@ const LandingHeadline = () => {
                 <div className="card" key={face.id}>
                         <p>{face.headline.slice(0,300)}.....</p>
                         <Link to={`/all_landing_headline/${face.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(face.id)} className="btn btn-danger">delete</a>
+                        <a  onClick={()=>handleDelete(face.id)}>delete</a>
 
                      
                 </div>

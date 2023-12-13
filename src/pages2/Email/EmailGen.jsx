@@ -67,7 +67,7 @@ const EmailGen = () => {
                 <div className="card" key={email.id}>
                         <p>{email.email_generator.slice(0,300)}.....</p>
                         <Link to={`/email/${email.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(email.id)} className="btn btn-danger">delete</a>
+                        <a  onClick={()=>handleDelete(email.id)}>delete</a>
 
                      
                 </div>

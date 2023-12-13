@@ -65,7 +65,7 @@ const AllContentRepre = () => {
                 <div className="card" key={con.id}>
                         <p>{con.content.slice(0,300)}.....</p>
                         <Link to={`/content/${con.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(con.id)} className="btn btn-danger">delete</a>
+                        <a  onClick={()=>handleDelete(con.id)}>delete</a>
                      
                 </div>
                 ))}

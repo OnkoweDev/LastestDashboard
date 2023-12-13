@@ -66,7 +66,7 @@ const AllLinkPost = () => {
                 <div className="card" key={face.id}>
                         <p>{face.post.slice(0,300)}.....</p>
                         <Link to={`/all_link_post/${face.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(face.id)} className="btn btn-danger">delete</a>
+                        <a  onClick={()=>handleDelete(face.id)}>delete</a>
 
                      
                 </div>
