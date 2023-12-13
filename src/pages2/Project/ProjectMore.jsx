@@ -31,7 +31,8 @@ const ProjectMore = () => {
           <div className="content">
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
-                {proj && proj.map((sub)=>(
+                
+                {proj && proj?.map((sub)=>(
                     <div key={sub.id}className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                         {sub.name}                                       
                     </div>

@@ -79,9 +79,9 @@ const Collaborate = () => {
             <div className="inner-container team">
               <section className="team-row top-section">
                 <article className="left">
-                  <h4>Team</h4>
+                  <h4>Comming Soon</h4>
                   <small>
-                    Create a team for your new project blah blah blah
+                    collaboration coming soon
                   </small>
                 </article>
                 <article className="right">

@@ -3,16 +3,30 @@
   align-items: center;
   justify-content: space-between;
   height: 100vh;
-  overflow: hidden;
+
+  @media(max-width:768px) {
+    flex-direction: column;
+    margin: 20px;
+  }
 }
 
 .sign__container .form__section {
   flex-basis: 60%;
+
+  @media(max-width:768px) {
+    width: 100%;
+  }
 }
 
 .form__section__wrapper {
   width: 60%;
   margin: 0 auto;
+
+  @media(max-width:768px) {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
 }
 
 .form__section h5 {
@@ -49,10 +63,18 @@
 
 .form__section input {
   margin-bottom: 20px;
+  
+  @media(max-width:768px) {
+    width: 100%;
+  }
 }
 
 .input__wrapper {
   position: relative;
+
+  @media(max-width:768px) {
+    width: 100%;
+  }
 }
 
 .input__wrapper .icon {
@@ -125,6 +147,10 @@
   cursor: pointer;
 }
 
+.s-icon {
+  width: 50px;
+}
+
 .sign__up__options button 
 
 .login__text {
@@ -139,5 +165,10 @@
 }
 
 .sign__container .image__section img {
-  width: 100%;
+  width: 55vw;
+  height: 100vh;
+  object-fit: cover;
+  @media(max-width: 768px){
+    display: none;
+  }
 }

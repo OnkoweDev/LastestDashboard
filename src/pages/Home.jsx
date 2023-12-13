@@ -51,13 +51,13 @@ const Home = () => {
       <main>
         <TopNav />
         {/* modal overlay on home page */}
-        {openModal && (
+       {/* {openModal && (
           <Modal
             closeModal={() => {
               setOpenModal(false);
             }}
           />
-        )}
+          )}*/}
         <div className="container">
           <SideNav />
           <div className="content">

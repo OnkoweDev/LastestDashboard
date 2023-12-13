@@ -5,13 +5,25 @@ export const blogIntroAddAction = (intro,project_id) => async(dispatch,getState)
     try {
         dispatch({type:ADD_BLOGINTRO_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+
+        const token = userInfo?.token;
+        console.log('Token:', token); 
+
+        const accountId = userInfo?.account_id;
+
+        if (!token) {
+            console.log("User token not found");
         }
-        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogIntro`, {intro,project_id},config)
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/blogIntro`, {intro,project_id},config)
+
+        const data = response.data
         dispatch({type:ADD_BLOGINTRO_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -29,13 +41,24 @@ export const getBlogintroAction = () => async(dispatch,getState) => {
     try {
         dispatch({type:GET_BLOGINTRO_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogIntro`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/blogIntro`,config)
+
+        const data = response.data
+
         dispatch({type:GET_BLOGINTRO_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -53,14 +76,26 @@ export const getBlogintroAction = () => async(dispatch,getState) => {
 export const getOneIntroAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:GETONE_BLOGINTRO_REQUEST})
+
+
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+         if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogIntro/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/blogIntro/${id}`,config)
+
+        const data = response.data
+        
         dispatch({type:GETONE_BLOGINTRO_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
@@ -78,13 +113,24 @@ export const deleteIntroAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:DELETE_BLOGINTRO_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogIntro/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/blogIntro/${id}`,config)
+
+        const data = response.data
+        
         dispatch({type:DELETE_BLOGINTRO_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {

@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+.container {
+    display: flex;
+}
+main {
+    width:100%;
+    margin: 0px;
+    margin-left: 30px;
+    
+}
+.sidebar {
+    background-color: #000;
+    color: #fff;
+    height: 100vh;
+    width: 200px;
+    transition: all 0.5s;
+}
+.top-side {
+    display: flex;
+    align-items: center;
+    padding: 20px 15px;
+}
+.logo {
+    font-size: 25px;
+}
+.bars {
+    display: flex;
+    font-size: 25px;
+    margin-left: 50px;
+    cursor: pointer;
+    
+}
+.link {
+    display: flex;
+    padding: 10px 15px;
+    color: #fff;
+    gap: 15px;
+    transition: all 0.5s;
+}
+.link:hover {
+    background-color: lightskyblue;
+    color:#000;
+    transition: all 0.5s;
+}
+.active {
+    background-color: lightskyblue;
+    color: #000;
+}
+
+.icon,.link-name  {
+    font-size: 20px;
+}

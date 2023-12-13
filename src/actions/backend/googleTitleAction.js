@@ -7,13 +7,21 @@ export const addGoogleTitleAction = (title,project_id) => async(dispatch,getStat
     try {
         dispatch({type:ADD_GOOGLETITLE_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/googleAdTitle`, {title,project_id},config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/googleAdTitle`, {title,project_id},config)
+        const data = response.data
         dispatch({type:ADD_GOOGLETITLE_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
@@ -31,13 +39,22 @@ export const getGoogleTitleAction = () => async(dispatch,getState) => {
     try {
         dispatch({type:GET_GOOGLETITLE_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/googleAdTitle`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/googleAdTitle`,config)
+        const data = response.data
+
         dispatch({type:GET_GOOGLETITLE_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -55,13 +72,21 @@ export const getOneGoogleTilteAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:GETONE_GOOGLETITLE_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/googleAdTitle/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/googleAdTitle/${id}`,config)
+        const data = response.data
         dispatch({type:GETONE_GOOGLETITLE_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
@@ -79,13 +104,23 @@ export const deleteGoogleTitleAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:DELETE_GOOGLETITLE_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/googleAdTitle/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/googleAdTitle/${id}`,config)
+
+        const data = response.data
+        
         dispatch({type:DELETE_GOOGLETITLE_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {

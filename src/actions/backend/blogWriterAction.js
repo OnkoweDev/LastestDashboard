@@ -5,13 +5,24 @@ export const blogWriterAddAction = (article,project_id) => async(dispatch,getSta
     try {
         dispatch({type:ADD_BLOGWRITER_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogArticle`, {article,project_id},config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/blogArticle`, {article,project_id},config)
+
+        const data = response.data
+
         dispatch({type:ADD_BLOGWRITER_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -29,13 +40,21 @@ export const getBlogWriterAction = () => async(dispatch,getState) => {
     try {
         dispatch({type:GET_BLOGWRITER_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+         if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogArticle`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/blogArticle`,config)
+        const data = response.data
         dispatch({type:GET_BLOGWRITER_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -54,13 +73,22 @@ export const getOneBlogAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:GETONE_BLOGWRITER_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogArticle/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/blogArticle/${id}`,config)
+        const data = response.data
+
         dispatch({type:GETONE_BLOGWRITER_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
@@ -78,13 +106,22 @@ export const deleteBlogAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:DELETE_BLOGWRITER_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+         if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogArticle/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/blogArticle/${id}`,config)
+
+        const data = response.data
         dispatch({type:DELETE_BLOGWRITER_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -102,13 +139,23 @@ export const updateBlogAction = (article) => async(dispatch,getState) => {
     try {
         dispatch({type:UPDATE_BLOGWRITER_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.put(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogArticle/${article}`,{article},config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.put(`https://dev.olukowe.co/api/account/${accountId}/blogArticle/${article}`,{article},config)
+
+        const data = response.data
         dispatch({type:UPDATE_BLOGWRITER_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {

@@ -1,0 +1,25 @@
+.App-header {
+    min-height: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: rgb(20, 19, 19);
+    margin-bottom: 5vh;
+    text-align: center;
+    padding: 12px;
+   }
+
+   /* .wrapper-class {
+    height: 100%;
+  } */
+  .editor-class {
+    background-color:transparent;
+    border: 1px solid transparent;
+    width: 100%;
+    height: 100%;
+  }
+  .toolbar-class {
+    border: 1px solid #ccc;
+  }

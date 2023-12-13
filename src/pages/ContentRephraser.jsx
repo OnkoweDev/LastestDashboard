@@ -113,7 +113,7 @@ const GoogleAdDesc = () => {
       <main>
         <TopNav />
         <div className="container">
-          <SideNav />
+        <SideNav />
           <div className="content">
             <div className="google-ad inner-page-container">
               {/* header */}

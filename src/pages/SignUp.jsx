@@ -11,6 +11,8 @@ import { GrFacebook, GrFacebookOption, GrGoogle } from "react-icons/gr";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { FaTwitter } from "react-icons/fa";
+import loginImage from "../assets/loginImage.jpg";
+
 
 
 
@@ -86,15 +88,16 @@ const SignUp = () => {
             </div>
             {/* btn */}
             <button className="btn article-btn" style={{ fontSize: "16px" }}>
+            
              {loading ? "Loading please wait": "Sign Up" }
             </button>
           </form>
           {/* other sign up options */}
           <p className="sign__up__option__text">Or sign Up with </p>
           <div className="sign__up__options">
-            <button  style={{ color: "red",size:'50px'}}> <FcGoogle /></button>
-            <button style={{ color: "#4267B2"}}><BsFacebook /></button>
-            <button style={{ color: "#1DA1F2"}}><FaTwitter /></button>
+            <button  style={{ color: "red",size:'100px'}}> <FcGoogle className="s-icon" /></button>
+            <button style={{ color: "#4267B2"}}><BsFacebook className="s-icon" /></button>
+            <button style={{ color: "#1DA1F2"}}><FaTwitter className="s-icon" /></button>
           </div>
           <p
             style={{ textAlign: "center", margin: "10px 0" }}
@@ -105,7 +108,7 @@ const SignUp = () => {
         </div>
       </section>
       <section className="image__section">
-        <img src={image} alt="" />
+        <img src={loginImage} alt="" />
       </section>
     </div>
   );

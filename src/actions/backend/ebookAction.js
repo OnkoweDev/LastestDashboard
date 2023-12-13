@@ -5,13 +5,21 @@ export const addEbookAction = (generated_ebook,project_id,title,description) => 
     try {
         dispatch({type:ADD_EBOOK_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/ebookGenerator`, {generated_ebook,project_id,title,description},config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/ebookGenerator`, {generated_ebook,project_id,title,description},config)
+        const data = response.data
         dispatch({type:ADD_EBOOK_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -29,13 +37,21 @@ export const getEbookAction = () => async(dispatch,getState) => {
     try {
         dispatch({type:GET_EBOOK_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/ebookGenerator`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/ebookGenerator`,config)
+        const data = response.data
         dispatch({type:GET_EBOOK_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -53,13 +69,23 @@ export const getOneEbookAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:GETONE_EBOOK_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/ebookGenerator/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/ebookGenerator/${id}`,config)
+
+        const data = response.data
         dispatch({type:GETONE_EBOOK_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
@@ -77,13 +103,22 @@ export const deleteEbookAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:DELETE_EBOOK_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/ebookGenerator/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/ebookGenerator/${id}`,config)
+
+        const data = response.data
         dispatch({type:DELETE_EBOOK_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {

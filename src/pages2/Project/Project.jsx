@@ -69,8 +69,8 @@ const AllProject= () => {
                         <h1>{face.name}</h1> 
                         <b style={{color:"red"}}>status : {face.status}</b>
                         <br/>
-                        <Link to={`/all_project/${face.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(face.id)} className="btn btn-danger">delete</a>
+                        {/*<Link to={`/all_project/${face.id}`}>Read more</Link><br/>*/}
+                        <a  onClick={()=>handleDelete(face.id)}>delete</a>
 
                      
                 </div>

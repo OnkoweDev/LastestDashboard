@@ -5,13 +5,24 @@ export const addSectionAction = (section,project_id) => async(dispatch,getState)
     try {
         dispatch({type:ADD_BLOGSECTION_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogSection`, {section,project_id},config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/blogSection`, {section,project_id},config)
+
+        const data = response.data
+
         dispatch({type:ADD_BLOGSECTION_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -29,13 +40,23 @@ export const getSectionAction = () => async(dispatch,getState) => {
     try {
         dispatch({type:GET_BLOGSECTION_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+
+         if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogSection`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/blogSection`,config)
+
+        const data = response.data
         dispatch({type:GET_BLOGSECTION_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -53,13 +74,22 @@ export const getOneSectionAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:GETONE_BLOGSECTION_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogSection/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/blogSection/${id}`,config)
+
+        const data = response.data
         dispatch({type:GETONE_BLOGSECTION_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
@@ -77,13 +107,23 @@ export const deleteSectionAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:DELETE_BLOGSECTION_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/blogSection/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/blogSection/${id}`,config)
+
+        const data = response.data
         dispatch({type:DELETE_BLOGSECTION_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {

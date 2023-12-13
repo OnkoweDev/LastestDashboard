@@ -124,7 +124,6 @@ const ArticleRewriter2 = () => {
       <main>
         <TopNav />
         <div className="container">
-          <SideNav />
           <div className="content">
             <div className="google-ad inner-page-container">
               {/* header */}

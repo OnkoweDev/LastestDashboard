@@ -3,6 +3,8 @@ import "./styles/SignInUp.css";
 
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import image from "../assets/signInImage.png";
+import loginImage from "../assets/loginImage.jpg";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/userAction";
@@ -91,12 +93,14 @@ const SignIn = () => {
             style={{ textAlign: "center", margin: "10px 0" }}
             className="login__text"
           >
-            Don’t have an account? <Link to="/sign-up">Sign Up</Link>
+            Don’t have an account? <Link to="/sign-up"><b>Sign Up</b></Link>
+            <br />
+            <Link to="/forgetpassword"><b>Forgot password</b></Link>
           </p>
         </div>
       </section>
       <section className="image__section">
-        <img src={image} alt="" />
+        <img src={loginImage} alt="" />
       </section>
     </div>
   );

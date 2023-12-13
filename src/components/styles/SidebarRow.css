@@ -4,6 +4,10 @@
     margin: 10px 0;
     padding: 10px 20px;
     border-radius: var(--border-radius-xl);
+
+    @media(max-width: 768px){
+        width: 100px;
+    }
 }
 
 .sidebar-row:hover {
@@ -14,8 +18,17 @@
 .sidebar-row .icon {
     font-size: 20px;
     margin-right: 15px;
+
+    @media(max-width: 768px){
+        font-size: 10px;
+    }
 }
 
 .sidebar-row p {
     font-size: 16px;
+
+    
+    @media(max-width: 768px){
+        font-size: 10px;
+    }
 }

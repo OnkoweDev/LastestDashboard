@@ -19,7 +19,9 @@ import Loader from "../components/Loader";
 import { useRef } from "react";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addConclusionAction } from "../actions/backend/conclusionAction";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ProjectModal from "../pages/ProjectModal"
+import '../pages/styles/projectModal.css';
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -32,6 +34,8 @@ mic.lang = 'en-US'
 const GoogleAdTitile = () => {
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
+
+  const [openModal, setOpenModal] = useState(false);
 
   const[isListening, setIsListening] = useState(false)
   const [note, setNote] = useState([])
@@ -103,7 +107,9 @@ const GoogleAdTitile = () => {
           }
       }
   }
-
+  const handleModal = () => {
+      console.log('this is the pop for creating project')
+  }
 
   // state to keep track of number of output
   // handle audio option
@@ -116,7 +122,7 @@ const GoogleAdTitile = () => {
       <main>
         <TopNav />
         <div className="container">
-          <SideNav />
+        <SideNav />
           <div className="content">
             <div className="google-ad inner-page-container">
               {/* header */}
@@ -155,48 +161,7 @@ const GoogleAdTitile = () => {
                       margin: "10px 0",
                     }}
                   >
-                    {/* {isAudio ? (
-                      <div className="audio">
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <RiVoiceprintFill />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <CiPause1 />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <FiStopCircle />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setIsAudio(false);
-                          }}
-                        >
-                          <HiOutlinePencil />
-                        </button>
-                      </div>
-                    ) : (
-                      <AiOutlineAudio
-                        className="icon-div mic-icon"
-                        onClick={handleAudio}
-                      />
-                    )} */}
+                    
                     {isListening ? <RiVoiceprintFill  className="icon-div mic-icon" /> : <FiStopCircle  className="icon-div mic-icon" />}
                      <AiOutlineAudio
                         className="icon-div mic-icon"
@@ -233,7 +198,8 @@ const GoogleAdTitile = () => {
 
                     <br />
                   
-                    <p className="product-p">Select Project*</p>
+                    <Link onClick={setOpenModal} style={{backgroundColor:"blue", padding:"5px",paddingBottom:"4px", color:'#fff'}} className="openModal" >Create Project</Link>
+                    {openModal && <ProjectModal closeModal={setOpenModal} />}
                     <select
                     onChange={(e)=>setProjectId(e.target.value)} 
                     value={projectId}

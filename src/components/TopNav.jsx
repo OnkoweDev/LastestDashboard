@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { BiMenu } from "react-icons/bi";
 import logo from "../assets/Logo.png";
 import profile from "../assets/dummyProfile.png";
 import ebook from "../assets/ebookIcon.png";
@@ -68,7 +69,11 @@ const NewProjectLinks = ({ link, displayImage, text }) => {
 };
 
 const TopNav = () => {
-    
+  const [showMenu, setShowMenu] = useState(false);
+
+  const handleMenuToggle = () => {
+    setShowMenu(!showMenu);
+  };
     const dispatch = useDispatch()
     const userLogin = useSelector((state)=>state.userLogin)
     const {userInfo,error} = userLogin
@@ -83,6 +88,8 @@ const TopNav = () => {
         
     }, [userInfo])
   return (
+    <div className="mycontainer">
+    
     <nav className="top-nav">
       <div className="inner-container">
         <div className="logo">
@@ -90,267 +97,7 @@ const TopNav = () => {
         </div>
         <div className="nav">
           <ul>
-          <li className="nav-link">
-              <NavLink to="/all_project" className="navLink">
-                Project
-              </NavLink>
-            </li>
-            <li className="drop-btn">
-             Features
-              <div className="drop-content">
-                <NewProjectLinks
-                  link="/ebook"
-                  displayImage={ebook}
-                  text="Ebook Writing"
-                />
-                <NewProjectLinks
-                  link="/blog-intro-generator"
-                  displayImage={blog1}
-                  text="Blog Intro Generation"
-                />
-                <NewProjectLinks
-                  link="/blog-section-generator"
-                  displayImage={blog2}
-                  text="Blog Section Generation"
-                />
-                <NewProjectLinks
-                  link="/blog-article-writer"
-                  displayImage={blog3}
-                  text="Blog Article Writer"
-                />
-                <NewProjectLinks
-                  link="/content-rephraser"
-                  displayImage={content}
-                  text="Content Rephraser"
-                />
-                <NewProjectLinks
-                  link="/article-blog-conclusion"
-                  displayImage={articleBlog}
-                  text="Article/Blog Conclusion"
-                />
-                <NewProjectLinks
-                  link="/paragraph-writer"
-                  displayImage={paragraph}
-                  text="Paragraph Writer"
-                />
-                <NewProjectLinks
-                  link="/short-LinkedIn-posts"
-                  displayImage={linkedin}
-                  text="Short LinkedIn Posts"
-                />
-                <NewProjectLinks
-                  link="/tweets-generation"
-                  displayImage={tweet}
-                  text="Tweets Generation"
-                />
-                <NewProjectLinks
-                  link="/youtube-intro-generator"
-                  displayImage={youtube}
-                  text="Youtube Intro Generator"
-                />
-                <NewProjectLinks
-                  link="/instagram"
-                  displayImage={instagram}
-                  text="Instagram Captions Generator"
-                />
-                <NewProjectLinks
-                  link="/product"
-                  displayImage={product}
-                  text="Products description"
-                />
-              </div>
-            </li>
-           
-            <li className="nav-link">
-              <NavLink to="/draft" className="navLink">
-                Draft
-              </NavLink>
-            </li>
-            <li className="drop-btn">
-              Translate
-              <div className="drop-content">
-                <button
-                  href=""
-                  style={{
-                    textTransform: "capitalize",
-                    fontWeight: "700",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                  }}
-                  className="dropdown-link dropdown-btn-link"
-                >
-                  <img src={german} alt="german" />
-                 <Link to='/german'>
-                 <p>German</p>
-                 </Link> 
-                </button>
-                <button
-                  href=""
-                  style={{
-                    textTransform: "capitalize",
-                    fontWeight: "700",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                  }}
-                  className="dropdown-link dropdown-btn-link"
-                >
-                  <img src={russia} alt="russia" />
-                  <Link to='/russian'>
-                    <p>Russia</p>
-                  </Link>
-                </button>
-                <button
-                  href=""
-                  style={{
-                    textTransform: "capitalize",
-                    fontWeight: "700",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                  }}
-                  className="dropdown-link dropdown-btn-link"
-                >
-                  <img src={spain} alt="german" />
-                  <Link to='/spanish'>
-                     <p>Spain</p>
-                  </Link>
-                </button>
-                <button
-                  href=""
-                  style={{
-                    textTransform: "capitalize",
-                    fontWeight: "700",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                  }}
-                  className="dropdown-link dropdown-btn-link"
-                >
-                  <img src={portugal} alt="german" />
-                  <Link to='/portugish'>
-                    <p>Portuguese</p>
-                  </Link>
-                </button>
-                <button
-                  href=""
-                  style={{
-                    textTransform: "capitalize",
-                    fontWeight: "700",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                  }}
-                  className="dropdown-link dropdown-btn-link"
-                >
-                  <img src={italy} alt="german" />
-                  <Link to='/italian'>
-                  <p>Italian</p>
-                  </Link>
-                </button>
-                <button
-                  href=""
-                  style={{
-                    textTransform: "capitalize",
-                    fontWeight: "700",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                  }}
-                  className="dropdown-link dropdown-btn-link"
-                >
-                  <img src={japan} alt="german" />
-                  <Link to='/japanese'>
-                  <p>Japanese</p>
-                  </Link>
-                </button>
-                <button
-                  href=""
-                  style={{
-                    textTransform: "capitalize",
-                    fontWeight: "700",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                  }}
-                  className="dropdown-link dropdown-btn-link"
-                >
-                  <img src={china} alt="german" />
-                  <Link to='/chinese'>
-                     <p>Chinese</p>
-                  </Link>
-                </button>
-                <button
-                  href=""
-                  style={{
-                    textTransform: "capitalize",
-                    fontWeight: "700",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                  }}
-                  className="dropdown-link dropdown-btn-link"
-                >
-                  <img src={france} alt="german" />
-                  <Link to='/french'>
-                   <p>French</p>
-                  </Link>
-                </button>
-
-                <button
-                href=""
-                style={{
-                  textTransform: "capitalize",
-                  fontWeight: "700",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                }}
-                className="dropdown-link dropdown-btn-link"
-              >
-                <img src={nigeria} alt="german" />
-                <Link to='/igbo'>
-                 <p>Igbo</p>
-                </Link>
-                </button>
-
-                <button
-                href=""
-                style={{
-                  textTransform: "capitalize",
-                  fontWeight: "700",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                }}
-                className="dropdown-link dropdown-btn-link"
-              >
-                <img src={nigeria} alt="german" />
-                <Link to='/yoruba'>
-                 <p>Yoruba</p>
-                </Link>
-                </button>
-
-                <button
-                href=""
-                style={{
-                  textTransform: "capitalize",
-                  fontWeight: "700",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                }}
-                className="dropdown-link dropdown-btn-link"
-              >
-                <img src={nigeria} alt="german" />
-                <Link to='/hausa'>
-                 <p>Hausa</p>
-                </Link>
-                </button>
-              </div>
-            </li>
-            
+                          
           </ul>
         </div>
         {/*  */}
@@ -363,8 +110,8 @@ const TopNav = () => {
                   <img src={profile} alt="" />
                 </aside>
                 <aside className="profile__details">
-                  <h3>{userInfo.data?.full_name}</h3>
-                  <small>{userInfo.data?.email}</small>
+                  <h3>username</h3>
+                  <small>email</small>
                 </aside>
               </section>
               <hr style={{ margin: "25px 0" }} />
@@ -393,15 +140,24 @@ const TopNav = () => {
                   link="/password"
                   text={"Change password"}
                 />
-               <Link  to='/' onClick={handleLogout} Icon={BiLogOut} >Logout</Link>
-                   <ProfileRow  onClick={handleLogout} Icon={BiLogOut} title={"Log Out"} link ='/' /> 
+                {<Link  to='/' onClick={handleLogout} >
+                  <div className="logout-con">
+                    <BiLogOut className="logout-icon" /> 
+                    <p className="logout-text">Logo out</p>
+                  </div>
+                </Link>}
+                  { /*<ProfileRow  onClick={handleLogout} Icon={BiLogOut} title={"Log Out"} link='/' /> */}
 
               </section>
             </div>
           </div>
         </div>
       </div>
+
+    
+      
     </nav>
+    </div>
   );
 };
 

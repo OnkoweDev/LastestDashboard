@@ -6,13 +6,21 @@ export const addLandingHeadlineAction = (headline,project_id) => async(dispatch,
     try {
         dispatch({type:ADD_LANDINGHEADLINE_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/landingPageHeadline`, {headline,project_id},config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/landingPageHeadline`, {headline,project_id},config)
+        const data = response.data
         dispatch({type:ADD_LANDINGHEADLINE_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
@@ -30,13 +38,21 @@ export const getLandingHeadlineAction = () => async(dispatch,getState) => {
     try {
         dispatch({type:GET_LANDINGHEADLINE_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/landingPageHeadline`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/landingPageHeadline`,config)
+        const data = response.data
         dispatch({type:GET_LANDINGHEADLINE_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -54,13 +70,21 @@ export const getOneLandingHeadlineAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:GETONE_LANDINGHEADLINE_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/landingPageHeadline/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/landingPageHeadline/${id}`,config)
+        const data = response.data
         dispatch({type:GETONE_LANDINGHEADLINE_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
@@ -78,13 +102,21 @@ export const deleteLandingHeadlineAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:DELETE_LANDINGHEADLINE_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/landingPageHeadline/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/landingPageHeadline/${id}`,config)
+        const data = response.data
         dispatch({type:DELETE_LANDINGHEADLINE_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {

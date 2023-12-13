@@ -1,0 +1,60 @@
+.google-ad .body-content .left input {
+  border: none;
+  outline: none;
+  background: var(--input-bg);
+  color: var(--light-grey2);
+  font-weight: 600;
+  display: block;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.google-ad .body-content .left input::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--light-grey2);
+}
+
+.google-ad .body-content .left .product-name,
+.google-ad .body-content .left .company-name,
+.google-ad .body-content .left .product-summary {
+  border: 1px solid var(--light-grey);
+  background: var(--white);
+  margin: 5px 0 10px;
+  position: relative;
+}
+
+.google-ad .body-content .left .product-name,
+.google-ad .body-content .left .product-summary {
+  height: 18%;
+}
+
+.google-ad .body-content .left .company-name,
+.google-ad .body-content .left .product-name {
+  height: 14%;
+}
+
+.google-ad .body-content .left .product-name-input,
+.google-ad .body-content .left .company-name-input,
+.google-ad .body-content .left .product-summary-input {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 10px;
+}
+
+.product-p {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--black);
+}
+
+.product-p span {
+  color: #ff2626;
+}

@@ -74,7 +74,7 @@ const LinkedIn = () => {
       <main>
         <TopNav />
         <div className="container">
-          <SideNav />
+        <SideNav />
           <div className="content">
             <div className="inner-page-container">
               {/* header */}

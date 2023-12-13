@@ -1,0 +1,37 @@
+.voice-div {
+  position: fixed;
+  bottom: 10%;
+  left: 65%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border: 1px solid var(--light-grey);
+  border-radius: var(--border-radius-md);
+  padding: 10px;
+}
+
+.voice-div .icon-div {
+  background: var(--background);
+  padding: 10px;
+  /* border-radius: var(--border-radius-half); */
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition);
+}
+
+.voice-div .icon {
+  font-size: 18px;
+  color: var(--black);
+}
+
+.voice-div .icon-div:hover {
+  background: var(--active);
+}
+
+.voice-div .icon-div:hover .icon {
+  color: var(--background);
+}

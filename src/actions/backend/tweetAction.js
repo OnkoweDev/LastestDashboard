@@ -5,13 +5,21 @@ export const addTweetAction = (tweet,project_id) => async(dispatch,getState) => 
     try {
         dispatch({type:ADD_TWEETGEN_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/tweetGenerator`, {tweet,project_id},config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/tweetGenerator`, {tweet,project_id},config)
+        const data = response.data
         dispatch({type:ADD_TWEETGEN_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -29,13 +37,21 @@ export const getTweetAction = () => async(dispatch,getState) => {
     try {
         dispatch({type:GET_TWEETGEN_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/tweetGenerator`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/tweetGenerator`,config)
+        const data = response.data
         dispatch({type:GET_TWEETGEN_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -53,13 +69,21 @@ export const getOneTweetAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:GETONE_TWEETGEN_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/tweetGenerator/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/tweetGenerator/${id}`,config)
+        const data = response.data
         dispatch({type:GETONE_TWEETGEN_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
@@ -77,13 +101,21 @@ export const deleteTweetAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:DELETE_TWEETGEN_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/tweetGenerator/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/tweetGenerator/${id}`,config)
+        const data = response.data
         dispatch({type:DELETE_TWEETGEN_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {

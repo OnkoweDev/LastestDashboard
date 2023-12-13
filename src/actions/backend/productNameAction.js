@@ -6,13 +6,21 @@ export const addProductNameAction = (product_name,project_id) => async(dispatch,
     try {
         dispatch({type:ADD_PRODUCTNAME_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/productName`, {product_name,project_id},config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/productName`, {product_name,project_id},config)
+        const data = response.data
         dispatch({type:ADD_PRODUCTNAME_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -30,13 +38,21 @@ export const getProductNameAction = () => async(dispatch,getState) => {
     try {
         dispatch({type:GET_PRODUCTNAME_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/productName`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/productName`,config)
+        const data = response.data
         dispatch({type:GET_PRODUCTNAME_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -54,13 +70,21 @@ export const getOneProductNameAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:GETONE_PRODUCTNAME_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/productName/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/productName/${id}`,config)
+        const data = response.data
         dispatch({type:GETONE_PRODUCTNAME_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
@@ -78,13 +102,21 @@ export const deleteProductNameAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:DELETE_PRODUCTNAME_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/productName/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/productName/${id}`,config)
+        const data = response.data
         dispatch({type:DELETE_PRODUCTNAME_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {

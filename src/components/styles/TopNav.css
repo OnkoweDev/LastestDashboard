@@ -2,18 +2,45 @@
   height: 10vh;
   padding: 10px 0;
   background: var(--primary-blue);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  margin-bottom: 90px;
+
+  @media(max-width: 768px){
+    max-width: 100%;
+ }
+}
+
+.top {
+  @media(max-width: 768px){
+    max-width: 100%;
+ }
 }
 
 .inner-container {
-  max-width: 95%;
-  width: 100%;
+  max-width: 100%;
+  width: 1000px;
   margin: 0 auto;
+  
+  
+
+  @media(max-width: 768px){
+    max-width: 100%;
+    margin-bottom: 10px;
+ }
 }
 
 .top-nav .inner-container {
   display: flex;
   align-items: center;
   position: relative;
+
+  @media(max-width: 768px){
+    font-size: 10px;
+
+ }
 }
 
 .top-nav .logo,
@@ -27,6 +54,7 @@
 .top-nav .inner-container .nav {
   flex: 1;
   text-align: right;
+  width: 100%;
 }
 
 .top-nav .inner-container .nav ul {
@@ -39,6 +67,8 @@
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
+
+  
 }
 
 .top-nav .inner-container .navLink {
@@ -53,6 +83,10 @@
 .top-nav .profile {
   margin-left: 20px;
   cursor: pointer;
+
+  @media(max-width: 768px){
+   width: 50px;
+ }
 }
 
 /* dropdowm */
@@ -141,3 +175,77 @@
 
   text-transform: lowercase;
 }
+
+/* Update existing styles and add media queries for responsiveness */
+/* ... (your existing styles) */
+
+/* Define a breakpoint for mobile responsiveness */
+@media (max-width: 768px) {
+  .inner-container {
+    display: flex;
+    max-width: 100%;
+   /* Stack items vertically */
+  }
+
+  .nav {
+    text-align: center; /* Center align for smaller screens */
+    margin-top: 20px; /* Adjust spacing */
+   
+  }
+
+  .nav ul {
+    flex-direction: row; /* Stack navigation items vertically */
+  }
+
+  .nav ul li {
+    padding: 10px 0; /* Adjust padding */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .drop-btn {
+    position: relative;
+  }
+
+  .drop-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none; /* Initially hide dropdown */
+    width: 100%;
+    background-color: var(--background);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-sm);
+    z-index: 1;
+  }
+
+  /* Display dropdown content on hover or click */
+  .drop-btn:hover .drop-content,
+  .drop-btn:focus .drop-content {
+    display: block;
+  }
+
+  /* Adjust other styles for smaller screens */
+  /* ... */
+}
+
+.logout-icon {
+  font-size: 15px;
+  margin-right: 15px;
+}
+.logout-con {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  right: 5px;
+}
+
+.logout-text {
+  letter-spacing: 1.5px;
+  color: var(--active);
+  text-transform: none;
+}
+
+
+

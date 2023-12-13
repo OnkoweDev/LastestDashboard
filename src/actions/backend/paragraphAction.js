@@ -7,13 +7,21 @@ export const addParagraphAction = (paragraph,project_id) => async(dispatch,getSt
     try {
         dispatch({type:ADD_PARAGRAPH_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/paragraphWriter`, {paragraph,project_id},config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/paragraphWriter`, {paragraph,project_id},config)
+        const data = response.data
         dispatch({type:ADD_PARAGRAPH_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
@@ -31,13 +39,21 @@ export const getParagraphAction = () => async(dispatch,getState) => {
     try {
         dispatch({type:GET_PARAGRAPH_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/paragraphWriter`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/paragraphWriter`,config)
+        const data = response.data
         dispatch({type:GET_PARAGRAPH_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -55,13 +71,21 @@ export const getOneParagraphAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:GETONE_PARAGRAPH_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/paragraphWriter/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/paragraphWriter/${id}`,config)
+        const data = response.data
         dispatch({type:GETONE_PARAGRAPH_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
@@ -79,13 +103,21 @@ export const deleteParagraphAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:DELETE_PARAGRAPH_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/paragraphWriter/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/paragraphWriter/${id}`,config)
+        const data = response.data
         dispatch({type:DELETE_PARAGRAPH_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {

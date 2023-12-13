@@ -4,14 +4,28 @@ import { ADD_ARTICLEWRITTER_FAILED, ADD_ARTICLEWRITTER_REQUEST, ADD_ARTICLEWRITT
 export const articleAddAction = (article_rewriter,project_id) => async(dispatch,getState) => {
     try {
         dispatch({type:ADD_ARTICLEWRITTER_REQUEST})
-        const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+        const {userLogin:{userInfo}} = getState()
+        console.log('UserInfo:', userInfo); 
+
+        const token = userInfo?.token;
+        console.log('Token:', token); 
+
+        const accountId = userInfo?.account_id;
+
+        if (!token) {
+            console.log("User token not found");
         }
-        const {data} = await axios.post(`http://3.237.101.152/api/account/${userInfo.data.account_id}/articleRewriter`, {article_rewriter,project_id},config)
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/articleRewriter`, {article_rewriter,project_id},config)
+
+        const data = response.data;
+        
         dispatch({type:ADD_ARTICLEWRITTER_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -29,13 +43,23 @@ export const getArticleAction = () => async(dispatch,getState) => {
     try {
         dispatch({type:GET_ARTICLEWRITTER_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/articleRewriter`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/articleRewriter`,config)
+
+        const data =  response.data
         dispatch({type:GET_ARTICLEWRITTER_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -53,13 +77,22 @@ export const getOneArticleAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:GETONE_ARTICLEWRITTER_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.get(`http://3.237.101.152/api/account/${userInfo.data.account_id}/articleRewriter/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/articleRewriter/${id}`,config)
+        const data = response.data;
         dispatch({type:GETONE_ARTICLEWRITTER_SUCCESS,payload:[data.data]})
         console.log(data.data)
     } catch (error) {
@@ -77,13 +110,24 @@ export const updateArticleAction = (id,article_rewriter) => async(dispatch,getSt
     try {
         dispatch({type:UPDATE_ARTICLEWRITTER_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.put(`http://3.237.101.152/api/account/${userInfo.data.account_id}/articleRewriter/${id}`,{article_rewriter},config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.put(`https://dev.olukowe.co/api/account/${accountId}/articleRewriter/${id}`,{article_rewriter},config)
+
+        const data = response.data;
+
         dispatch({type:UPDATE_ARTICLEWRITTER_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {
@@ -102,13 +146,23 @@ export const deleteArticleAction = (id) => async(dispatch,getState) => {
     try {
         dispatch({type:DELETE_ARTICLEWRITTER_REQUEST})
         const {userLogin:{userInfo}} = getState();
-        const config = {
-            headers:{
-                "Content-Type": "application/json",
-                Authorization:`Bearer ${userInfo.data.token}`
-            }
+
+        if (!userInfo || !userInfo.token) {
+            throw new Error("Session expired please login again");
         }
-        const {data} = await axios.delete(`http://3.237.101.152/api/account/${userInfo.data.account_id}/articleRewriter/${id}`,config)
+
+        const token = userInfo.token;
+        const accountId = userInfo.account_id;
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/articleRewriter/${id}`,config)
+
+        const data = response.data
         dispatch({type:DELETE_ARTICLEWRITTER_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {

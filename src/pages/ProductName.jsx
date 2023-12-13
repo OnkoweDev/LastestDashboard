@@ -82,7 +82,7 @@ const ProductName = () => {
               {/* header */}
               <ProjectHeader
                 image={product}
-                title="Facebook Ad Generator"
+                title="Product Name Generator"
               />
               {/* body container */}
               <div className="body-content">
@@ -91,7 +91,7 @@ const ProductName = () => {
 
                 
                   {/* product description */}
-                  <p className="product-p">Product Description*</p>
+                  <p className="product-p">Product Name*</p>
                   <textarea
                    onChange={(e)=>setProductDesc(e.target.value)}
                    value={productDesc}
