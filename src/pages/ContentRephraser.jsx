@@ -128,6 +128,7 @@ const GoogleAdDesc = () => {
                   value ={content}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

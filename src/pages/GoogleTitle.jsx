@@ -90,12 +90,13 @@ const GoogleTitle = () => {
                 <div className="left">
                     <form onSubmit={handleSubmit}>
 
-                  <p className="product-p">Company Name*</p>
+                  <p className="product-p">Product/Service*</p>
                   <input
                     onChange={(e)=>setCompanyName(e.target.value)}
                     value={companyName}
                     type="text"
-                    placeholder="Title"
+                    placeholder="Product/Service"
+                    required
                     style={{
                       display: "block",
                       background: "var(--primary-blue)",
@@ -114,6 +115,7 @@ const GoogleTitle = () => {
                    value={productDesc}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -134,6 +136,7 @@ const GoogleTitle = () => {
                    value={keywords}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

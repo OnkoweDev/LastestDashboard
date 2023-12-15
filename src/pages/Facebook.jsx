@@ -92,11 +92,12 @@ const Facebook = () => {
                 <div className="left">
                     <form onSubmit={handleSubmit}>
 
-                  <p className="product-p">Product Name*</p>
+                  <p className="product-p">Product/Service Description*</p>
                   <input
                     onChange={(e)=>setProductName(e.target.value)}
                     value={productName}
                     type="text"
+                    required
                     style={{
                       display: "block",
                       background: "var(--primary-blue)",
@@ -115,6 +116,7 @@ const Facebook = () => {
                    value={productDesc}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -135,6 +137,8 @@ const Facebook = () => {
                    value={occasion}
                     name=""
                     id=""
+                    required
+                    placeholder="e.g Christmas Sales, Flash Sales or N/A "
                     style={{
                       display: "block",
                       width: "100%",
@@ -155,6 +159,8 @@ const Facebook = () => {
                    value={promotion}
                     name=""
                     id=""
+                    required
+                    placeholder="e.g 20% Discount, 10% Discount or N/A"
                     style={{
                       display: "block",
                       width: "100%",

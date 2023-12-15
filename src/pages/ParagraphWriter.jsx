@@ -81,13 +81,14 @@ const ParagraphWriter = () => {
                 <div className="left">
                 <form onSubmit={handleSubmit}>
                   <p className="product-p">Topic*</p>
-                  <input type="text" className="input" onChange={(e)=>setTitle(e.target.value)} value={title}  />
+                  <input type="text" required className="input" onChange={(e)=>setTitle(e.target.value)} value={title}  />
                   <p className="product-p">Keyword*</p>
                   <textarea
                     onChange={(e)=>setKeyword(e.target.value)} 
                     value={keyword}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -167,6 +168,7 @@ const ParagraphWriter = () => {
                     value={tone}
                     name=""
                     id=""
+                    required
                     className="select"
                     style={{
                         display: "block",

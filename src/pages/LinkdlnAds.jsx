@@ -89,12 +89,13 @@ const LindlnAds = () => {
                 <div className="left">
                     <form onSubmit={handleSubmit}>
 
-                  <p className="product-p">Product Name*</p>
+                  <p className="product-p">Product/Service *</p>
                   <input
                     onChange={(e)=>setProductName(e.target.value)}
                     value={productName}
                     type="text"
-                    placeholder="Title"
+                    required
+                    placeholder="Product/Service "
                     style={{
                       display: "block",
                       background: "var(--primary-blue)",
@@ -113,6 +114,7 @@ const LindlnAds = () => {
                    value={productDesc}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -133,6 +135,7 @@ const LindlnAds = () => {
                    value={keywords}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

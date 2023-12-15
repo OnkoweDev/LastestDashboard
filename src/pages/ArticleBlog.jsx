@@ -37,8 +37,9 @@ const GoogleAdTitile = () => {
 
   const [openModal, setOpenModal] = useState(false);
 
-  const[isListening, setIsListening] = useState(false)
-  const [note, setNote] = useState([])
+  const [isListening, setIsListening] = useState(false);
+  const [spokenText, setSpokenText] = useState('');
+
 
   const [article, setArticle] = useState([])
   const [outputNumber, setOutputNumber] = useState(1);
@@ -56,23 +57,6 @@ const GoogleAdTitile = () => {
   const saveConclusion = useSelector((state)=>state.saveConclusion)
   const {loading:conLoading,error:conError} = saveConclusion
 
- useEffect(() => {
-    dispatch(getProjectAction())
-  }, [])
-
-  const handSubmit = (e) => {
-    e.preventDefault()
-    console.log("loading")
-    dispatch(addArticleBlog(article,outputNumber))
-  }
-
-  const handleForm = (e) => {
-    e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData,projectId)
-    dispatch(addConclusionAction(divData,projectId))
-    navigate('/conclusion')
-  }
 
 
   useEffect(() => {
@@ -98,15 +82,43 @@ const GoogleAdTitile = () => {
           console.log('Mics is on')
       }
 
-      mic.onresult = event => {
-          const transcript = Array.from(event.results).map(result => result[0]).map(result=> result.transcript).join('')
-          console.log(transcript)
-          setNote(transcript)
-          mic.onerror = event => {
-              console.log(event.error)
-          }
-      }
+      mic.onresult = (event) => {
+        const transcript = Array.from(event.results)
+          .map((result) => result[0])
+          .map((result) => result.transcript)
+          .join('');
+  
+        setSpokenText(transcript); // Set the spoken text
+  
+        // Update the content in the textarea with spoken words
+        setArticle((prevContent) => prevContent + ' ' + transcript);
+      };
+  
   }
+
+ useEffect(() => {
+    dispatch(getProjectAction())
+  }, [])
+
+  const handSubmit = (e) => {
+    e.preventDefault()
+    console.log("loading")
+    dispatch(addArticleBlog(article,outputNumber))
+  }
+
+  const handleForm = (e) => {
+    e.preventDefault()
+    const divData = myDiv.current.innerText
+    console.log(divData,projectId)
+    dispatch(addConclusionAction(divData,projectId))
+    navigate('/conclusion')
+  }
+
+
+  
+  
+
+ 
   const handleModal = () => {
       console.log('this is the pop for creating project')
   }
@@ -122,8 +134,12 @@ const GoogleAdTitile = () => {
       <main>
         <TopNav />
         <div className="container">
+
         <SideNav />
           <div className="content">
+
+          
+
             <div className="google-ad inner-page-container">
               {/* header */}
               <ProjectHeader
@@ -134,12 +150,13 @@ const GoogleAdTitile = () => {
               <div className="body-content">
                 <div className="left">
                     <form onSubmit={handSubmit}>
-                  <p className="product-p">Article/Blog*</p>
+                  <p className="product-p">Description of Article/Blog*</p>
                   <textarea
                     onChange={(e)=>setArticle(e.target.value)}
                     value={article}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -152,6 +169,7 @@ const GoogleAdTitile = () => {
                       padding: "10px",
                       resize: "none",
                     }}
+                    
                   ></textarea>
                   <div
                     className="mic"
@@ -162,11 +180,11 @@ const GoogleAdTitile = () => {
                     }}
                   >
                     
-                    {isListening ? <RiVoiceprintFill  className="icon-div mic-icon" /> : <FiStopCircle  className="icon-div mic-icon" />}
-                     <AiOutlineAudio
-                        className="icon-div mic-icon"
-                        onClick={()=>setIsListening(prevState => !prevState)}
-                      />
+                  {isListening ? <RiVoiceprintFill  className="icon-div mic-icon" /> : <FiStopCircle  className="icon-div mic-icon" />}
+                  <AiOutlineAudio
+                     className="icon-div mic-icon"
+                     onClick={()=>setIsListening(prevState => !prevState)}
+                   />
                   </div>
                   {/*  number of output*/}
                   <OutputNumber

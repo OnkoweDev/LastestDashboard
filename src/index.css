@@ -61,6 +61,7 @@ body {
   @media(max-width:768px) {
     display: flex;
     flex-direction: column;
+    
   }
 }
 
@@ -69,7 +70,7 @@ body {
   height: 100%;
   width: 100%;
   @media(max-width:768px) {
-   
+    margin-bottom: 20px;
   }
 }
 
@@ -91,9 +92,7 @@ body {
   padding: 20px;
   border: 1px solid var(--light-grey);
 
-  @media(max-width:768px) {
-    width: 100%;
-  }
+
 }
 
 .body-content .left input {
@@ -133,6 +132,7 @@ body {
 
   @media(max-width:768px) {
     width: 100%;
+    margin: 10px;
   }
 }
 

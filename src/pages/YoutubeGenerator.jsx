@@ -69,6 +69,7 @@ const YoutubeGenerator = () => {
                   value={title}
                     type="text"
                     placeholder="Title"
+                    required
                     style={{
                       display: "block",
                       background: "var(--primary-blue)",
@@ -87,6 +88,7 @@ const YoutubeGenerator = () => {
                    value={keywords}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

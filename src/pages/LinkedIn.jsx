@@ -83,13 +83,14 @@ const LinkedIn = () => {
               <div className="body-content">
                 <div className="left">
                     <form onSubmit={handleSubmit}>
-                  <p className="product-p">Product name*</p>
-                  <input type="text" className="input" onChange={(e)=>setProductName(e.target.value)} value={productName} />
-                  <p className="product-p">Product/ServiceDescription*</p>
+                  <p className="product-p">Post Title*</p>
+                  <input type="text" required className="input" onChange={(e)=>setProductName(e.target.value)} value={productName} />
+                  <p className="product-p">Post Description*</p>
                   <textarea
                    onChange={(e)=>setProductDescription(e.target.value)} value={productDescription}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

@@ -37,6 +37,7 @@ const ArticleRewriter = () => {
 
   const[isListening, setIsListening] = useState(false)
   const [note, setNote] = useState([])
+  const [spokenText, setSpokenText] = useState('');
 
   const [content, setContent] = useState([])
 
@@ -105,14 +106,18 @@ const ArticleRewriter = () => {
           console.log('Mics is on')
       }
 
-      mic.onresult = event => {
-          const transcript = Array.from(event.results).map(result => result[0]).map(result=> result.transcript).join('')
-          console.log(transcript)
-          setNote(transcript)
-          mic.onerror = event => {
-              console.log(event.error)
-          }
-      }
+      mic.onresult = (event) => {
+        const transcript = Array.from(event.results)
+          .map((result) => result[0])
+          .map((result) => result.transcript)
+          .join('');
+  
+        setSpokenText(transcript); // Set the spoken text
+  
+        // Update the content in the textarea with spoken words
+        setContent((prevContent) => prevContent + ' ' + transcript);
+      };
+  
   }
 
 
@@ -145,6 +150,7 @@ const ArticleRewriter = () => {
                     value={content}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

@@ -81,12 +81,13 @@ const Youtube = () => {
                 <div className="left">
                     <form onSubmit={handleSubmit}>
                   <p className="product-p">Title*</p>
-                  <input type="text" className="input" onChange={(e)=>setTitle(e.target.value)}  value={title}/>
+                  <input required type="text" className="input" onChange={(e)=>setTitle(e.target.value)}  value={title}/>
                   <p className="product-p">Video hook*</p>
                   <textarea
                   onChange={(e)=>setHook(e.target.value)}  value={hook}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -152,7 +153,7 @@ const Youtube = () => {
                   </div>
                   {/* keywords */}
                   <p className="product-p">Keywords*</p>
-                  <input type="text" onChange={(e)=>setKeywords(e.target.value)}  value={keywords}/>
+                  <input required type="text" onChange={(e)=>setKeywords(e.target.value)}  value={keywords}/>
                   {/* tone of voice */}
                   <p className="product-p">Tone of voice*</p>
 
@@ -160,6 +161,7 @@ const Youtube = () => {
                   onChange={(e)=>setTone(e.target.value)}  value={tone}
                     name=""
                     id=""
+                    required
                     className="select"
                     style={{
                       display: "block",

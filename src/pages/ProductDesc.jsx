@@ -94,6 +94,7 @@ const ProductDesc = () => {
                   value={name}
                     type="text"
                     placeholder="Title"
+                    required
                     style={{
                       display: "block",
                       background: "var(--primary-blue)",
@@ -112,6 +113,7 @@ const ProductDesc = () => {
                    value={feature}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

@@ -7,6 +7,10 @@
   margin-right: 10px;
   width: 25px;
   height: 25px;
+
+  @media(max-width:768px) {
+    margin: 20px;
+  }
 }
 
 .project-header .img img {

@@ -152,6 +152,7 @@ const handleForm = (e) => {
                     value={prompt}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

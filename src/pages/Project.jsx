@@ -114,6 +114,7 @@ const Project = () => {
                     value={name}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -134,6 +135,7 @@ const Project = () => {
                     value={status}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

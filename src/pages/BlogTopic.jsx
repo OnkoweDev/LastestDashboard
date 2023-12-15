@@ -33,6 +33,8 @@ const BlogTopic = () => {
   const [isAudio, setIsAudio] = useState(false);
   const myDiv = useRef(null)
   const [projectId, setProjectId] = useState()
+  
+
 
   const [topic, setTopic] = useState([])
   const [outputNumber, setOutputNumber] = useState(1);
@@ -76,40 +78,46 @@ const BlogTopic = () => {
 
 
   const [isListening, setIsListening] = useState(false)
+  const [spokenText, setSpokenText] = useState('');
+
   const [note, setNote] = useState([])
 
   useEffect(() => {
     handleListening()
   }, [isListening])
+ 
   const handleListening = () => {
-      if(isListening){
-          mic.start()
-          mic.onend = () => {
-              console.log('continue ...')
-              mic.start()
-          }
-      }
-      else{
-          mic.stop()
-          mic.onend = () => {
-              console.log('stoped')
-          }
-      }
-      mic.onstart = () => {
-          console.log('Mics is on')
-      }
+    if(isListening){
+        mic.start()
+        mic.onend = () => {
+            console.log('continue ...')
+            mic.start()
+        }
+    }
+    else{
+        mic.stop()
+        mic.onend = () => {
+            console.log('stoped')
+        }
+    }
+    mic.onstart = () => {
+        console.log('Mics is on')
+    }
 
-      mic.onresult = event => {
-          const transcript = Array.from(event.results).map(result => result[0]).map(result=> result.transcript).join('')
-          console.log(transcript)
-          setNote(transcript)
-          mic.onerror = event => {
-              console.log(event.error)
-          }
-      }
-  }
-  // state to keep track of number of output
-  // handle audio option
+    mic.onresult = (event) => {
+      const transcript = Array.from(event.results)
+        .map((result) => result[0])
+        .map((result) => result.transcript)
+        .join('');
+
+      setSpokenText(transcript); // Set the spoken text
+
+      // Update the content in the textarea with spoken words
+      setTopic((prevContent) => prevContent + ' ' + transcript);
+    };
+
+}
+
   const handleAudio = () => {
     console.log("Mic is clicked");
     setIsAudio(true);
@@ -134,6 +142,7 @@ const BlogTopic = () => {
                     value={topic}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

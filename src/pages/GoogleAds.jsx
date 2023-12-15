@@ -87,12 +87,13 @@ const GoogleAds = () => {
                 <div className="left">
                     <form onSubmit={handleSubmit}>
 
-                  <p className="product-p">Company Name*</p>
+                  <p className="product-p">Product/Service Name*</p>
                   <input
                     onChange={(e)=>setCompanyName(e.target.value)}
                     value={companyName}
                     type="text"
-                    placeholder="Title"
+                    placeholder="Product/Service Name"
+                    required
                     style={{
                       display: "block",
                       background: "var(--primary-blue)",
@@ -111,6 +112,7 @@ const GoogleAds = () => {
                    value={productDesc}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

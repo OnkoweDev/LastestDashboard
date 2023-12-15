@@ -78,14 +78,15 @@ const Tweets = () => {
               <div className="body-content">
                 <div className="left">
                     <form onSubmit={handleSubmit}>
-                  <p className="product-p">Topic*</p>
-                  <input type="text" className="input" onChange={(e)=>setTopic(e.target.value)} value={topic} />
+                  <p className="product-p">Tweet Title*</p>
+                  <input type="text" required className="input" onChange={(e)=>setTopic(e.target.value)} value={topic} />
                   <p className="product-p">Keyword*</p>
                   <textarea
                   onChange={(e)=>setKeywords(e.target.value)}
                   value = {keywords}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

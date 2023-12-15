@@ -88,12 +88,13 @@ const LandingPage = () => {
                 <div className="left">
                     <form onSubmit={handleSubmit}>
 
-                    <p className="product-p">Product Name*</p>
+                    <p className="product-p">Product/Service Name*</p>
                     <textarea
                     onChange={(e)=>setProductName(e.target.value)}
                     value={productName}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -108,12 +109,13 @@ const LandingPage = () => {
                     }}
                   ></textarea>
                   {/* product description */}
-                  <p className="product-p">Product Description*</p>
+                  <p className="product-p">Product/Service Description*</p>
                   <textarea
                    onChange={(e)=>setProductDesc(e.target.value)}
                    value={productDesc}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

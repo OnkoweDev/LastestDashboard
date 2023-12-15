@@ -24,6 +24,12 @@
   cursor: pointer;
   position: relative;
   z-index: 0;
+  text-align: center;
+
+  @media(max-width: 768px){
+    width: 100%;
+    padding: 10px 40px;
+  }
 }
 
 .article-btn::after {

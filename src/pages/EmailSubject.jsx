@@ -95,12 +95,13 @@ const EmailSubject = () => {
 
                 
                   {/* product description */}
-                  <p className="product-p">Product Name*</p>
+                  <p className="product-p">Email Title*</p>
                   <textarea
                    onChange={(e)=>setProductName(e.target.value)}
                    value={productName}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -121,6 +122,7 @@ const EmailSubject = () => {
                    value={emailDesc}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

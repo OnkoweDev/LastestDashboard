@@ -13,6 +13,8 @@ import google from "../assets/icon/3.png";
 import feed from "../assets/icon/15.png";
 import audio from "../assets/icon/31.png";
 import image from "../assets/icon/36.png";
+import paragraph from "../assets/icon/29.png";
+import ebook from "../assets/icon/23.png";
 
 import { Link } from "react-router-dom";
 
@@ -117,15 +119,14 @@ const Home = () => {
 
               <div className="card">
                 <Link to="/all_paragraph">
-                  {/* <img src={instagram} alt="" /> */}
-                  <FaParagraph className="icon" style={{ color: "#4267b2" }} />
+                  { <img src={paragraph} alt="" /> }
                   <b>Paragraph</b>
                 </Link>
               </div>
 
               <div className="card">
                 <Link to="/all_ebook">
-                  <GiWhiteBook className="icon" style={{ color: "#4267b2" }} />
+                { <img src={ebook} alt="" /> }
                   <b>Ebook</b>
                 </Link>
               </div>

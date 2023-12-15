@@ -63,11 +63,20 @@ const Facebook = () => {
 
 
   const [isListening, setIsListening] = useState(false)
-  const [note, setNote] = useState([])
+  const [isListening_new, setIsListening_new] = useState(false)
+  const [spokenText, setSpokenText] = useState('');
+  const [spokenText_new, setSpokenText_new] = useState('');
+
 
   useEffect(() => {
+    
+    handleListening_two()
+  }, [isListening_new,success])
+  
+  useEffect(() =>{
     handleListening()
-  }, [isListening])
+  },[isListening])
+
   const handleListening = () => {
       if(isListening){
           mic.start()
@@ -86,17 +95,51 @@ const Facebook = () => {
           console.log('Mics is on')
       }
 
-      mic.onresult = event => {
-          const transcript = Array.from(event.results).map(result => result[0]).map(result=> result.transcript).join('')
-          console.log(transcript)
-          setNote(transcript)
-          mic.onerror = event => {
-              console.log(event.error)
-          }
-      }
+      mic.onresult = (event) => {
+        const transcript = Array.from(event.results)
+          .map((result) => result[0])
+          .map((result) => result.transcript)
+          .join('');
+  
+        setSpokenText(transcript); // Set the spoken text
+  
+        // Update the content in the textarea with spoken words
+        setIntro((prevContent) => prevContent + ' ' + transcript);
+      };
+  
   }
-  // state to keep track of number of output
-  // handle audio option
+
+  const handleListening_two = () => {
+    if(isListening_new){
+        mic.start()
+        mic.onend = () => {
+            console.log('continue ...')
+            mic.start()
+        }
+    }
+    else{
+        mic.stop()
+        mic.onend = () => {
+            console.log('stoped')
+        }
+    }
+    mic.onstart = () => {
+        console.log('Mics is on')
+    }
+
+    mic.onresult = (event) => {
+      const transcript = Array.from(event.results)
+        .map((result) => result[0])
+        .map((result) => result.transcript)
+        .join('');
+
+        setSpokenText_new(transcript); // Set the spoken text
+
+      setTopic((prevContent) => prevContent + ' ' + transcript);
+    };
+
+}
+  
   
   const handleForm = (e) => {
     e.preventDefault()
@@ -131,6 +174,7 @@ const Facebook = () => {
                     value={topic}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -143,7 +187,22 @@ const Facebook = () => {
                       padding: "10px",
                       resize: "none",
                     }}
-                  >{note}</textarea>
+                  ></textarea>
+                  <div
+                    className="mic"
+                    style={{
+                      display: "block",
+                      textAlign: "right",
+                      margin: "10px 0",
+                    }}
+                  >
+                  
+                    {isListening_new ? <RiVoiceprintFill  className="icon-div mic-icon" /> : <FiStopCircle  className="icon-div mic-icon" />}
+                    <AiOutlineAudio
+                      className="icon-div mic-icon"
+                      onClick={()=>setIsListening_new(prevState => !prevState)}
+                    />
+                </div>
 
                   <p className="product-p">Intro*</p>
 
@@ -152,6 +211,7 @@ const Facebook = () => {
                          value={intro}
                         name=""
                         id=""
+                        required
                         style={{
                       display: "block",
                       width: "100%",
@@ -164,7 +224,7 @@ const Facebook = () => {
                       padding: "10px",
                       resize: "none",
                     }}
-                  >{note}
+                  >
                      </textarea>
                   <div
                     className="mic"
@@ -174,53 +234,12 @@ const Facebook = () => {
                       margin: "10px 0",
                     }}
                   >
-                    {/* {isAudio ? (
-                      <div className="audio">
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <RiVoiceprintFill />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <CiPause1 />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <FiStopCircle />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setIsAudio(false);
-                          }}
-                        >
-                          <HiOutlinePencil />
-                        </button>
-                      </div>
-                    ) : (
-                      <AiOutlineAudio
-                        className="icon-div mic-icon"
-                        onClick={handleAudio}
-                      />
-                    )} */}
-                    {isListening ?  <RiVoiceprintFill className="icon-div mic-icon" /> :  <FiStopCircle className="icon-div mic-icon" />}
-                     <AiOutlineAudio
-                        className="icon-div mic-icon"
-                        onClick={()=>setIsListening(prevState =>!prevState)}
-                      />
+                    
+                  {isListening ? <RiVoiceprintFill  className="icon-div mic-icon" /> : <FiStopCircle  className="icon-div mic-icon" />}
+                  <AiOutlineAudio
+                     className="icon-div mic-icon"
+                     onClick={()=>setIsListening(prevState => !prevState)}
+                   />
                   </div>
                   {/*  number of output*/}
                   <OutputNumber

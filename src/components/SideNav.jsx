@@ -81,7 +81,7 @@ const SideNav = () => {
     {
       name: 'Home',
       icon: <BiHomeAlt />,
-      path:'/'
+      path:'/dashboard'
     },
     {
       name: 'Transcribe',

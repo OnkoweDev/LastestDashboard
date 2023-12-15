@@ -12,6 +12,7 @@ import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { FaTwitter } from "react-icons/fa";
 import loginImage from "../assets/loginImage.jpg";
+import logo from "../assets/logo.png"
 
 
 
@@ -47,23 +48,24 @@ const SignUp = () => {
     };
   return (
     <div className="sign__container">
-      <section className="form__section">
-        <div className="form__section__wrapper">
-          <h5>Sign Up</h5>
-          {loading && <Loader />}
-             {error && <div className=' bar error'>{error}</div>}
-          <form onSubmit={handleRegister}>
+    <img src={logo} alt="Logo" className="logo" />
+    <section className="form__section">
+    <div className="form__section__wrapper">
+    <h5>Sign Up</h5>
+    {error && <div className='bar error'>{error}</div>}
+    <form onSubmit={handleRegister}>
             <label htmlFor="fullName">Full Name</label>
-            <input type="text" name="fullName" className="input" 
+            <input required type="text" name="fullName" className="input" 
             //value={full_name} 
             onChange={(e)=>setFullname(e.target.value)} />
             <label htmlFor="email">Email Address</label>
-            <input type="email" name="email" className="input" //value={email} 
+            <input required type="email" name="email" className="input" //value={email} 
             onChange={(e)=>setEmail(e.target.value)} />
             <label htmlFor="Password">Password</label>
             <div className="input__container">
               <article className="input__wrapper">
                 <input
+                  required
                   type={showPassowrd ? "text" : "password"}
                   className="input"
                   //value={password}
@@ -80,24 +82,23 @@ const SignUp = () => {
               </article>
             </div>
             <div className="checkbox__div">
-              <input type="checkbox" name="consent" id="consent"  required/>
-              <label htmlFor="consent">
+              <input type="checkbox" required/>
+              <p>
                 I’ve agree to the Terms and have read and acknowledge our
                 Privacy
-              </label>
+              </p>
             </div>
-            {/* btn */}
             <button className="btn article-btn" style={{ fontSize: "16px" }}>
             
-             {loading ? "Loading please wait": "Sign Up" }
+             {loading ? "Processing please wait": "Sign Up" }
             </button>
           </form>
           {/* other sign up options */}
           <p className="sign__up__option__text">Or sign Up with </p>
           <div className="sign__up__options">
-            <button  style={{ color: "red",size:'100px'}}> <FcGoogle className="s-icon" /></button>
-            <button style={{ color: "#4267B2"}}><BsFacebook className="s-icon" /></button>
-            <button style={{ color: "#1DA1F2"}}><FaTwitter className="s-icon" /></button>
+          <button  style={{ color: "red",size:'50px'}}> <FcGoogle style={{width:'30px', height:'30px'}} /></button>
+          <button style={{ color: "#4267B2"}}><BsFacebook style={{width:'30px', height:'30px'}} /></button>
+          <button style={{ color: "#1DA1F2"}}><FaTwitter style={{width:'30px', height:'30px'}} /></button>
           </div>
           <p
             style={{ textAlign: "center", margin: "10px 0" }}

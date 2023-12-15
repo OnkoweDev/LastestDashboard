@@ -97,6 +97,7 @@ const EmailGenerator = () => {
                    value={reciepient}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -117,6 +118,7 @@ const EmailGenerator = () => {
                    value={reciepientPos}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -137,6 +139,7 @@ const EmailGenerator = () => {
                    value={description}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

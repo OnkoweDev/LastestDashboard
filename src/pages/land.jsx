@@ -120,17 +120,18 @@ const Land = () => {
           <div className="content">
             <div className="facebook-container inner-page-container">
               {/* header */}
-              <ProjectHeader image={blog2} title="Landing Page Generator" />
+              <ProjectHeader image={blog2} title="Landing Page Copy Generator" />
               {/* body */}
               <div className="body-content">
                 <div className="left">
                     <form onSubmit={handleSubmit}>
-                  <p className="product-p">Product Name*</p>
+                  <p className="product-p">Product/Service Name*</p>
                   <textarea
                     onChange={(e)=>setProductName(e.target.value)}
                     value={product_name}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -151,6 +152,7 @@ const Land = () => {
                     value={product_description}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

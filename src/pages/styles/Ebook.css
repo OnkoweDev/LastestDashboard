@@ -1,4 +1,4 @@
-.ebook-container .body-content .left input {
+ .body-content .left input {
   border: none;
   outline: none;
   background: var(--input-bg);
@@ -11,8 +11,8 @@
   padding: 10px;
 }
 
-.ebook-container .body-content .left input::placeholder,
-.ebook-container .body-content .left .textarea::placeholder {
+ .body-content .left input::placeholder,
+ .body-content .left .textarea::placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
@@ -65,4 +65,10 @@
   .ebook-container .body-content .left .textarea {
     height: 85%;
   }
+}
+
+.left {
+  width: 100%;
+  margin: 10px;
+  padding: 20px;
 }

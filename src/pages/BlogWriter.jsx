@@ -139,7 +139,7 @@ useEffect(() => {
                     <form onSubmit={handleArticle}>
                        
                         <p className="product-p">Title*</p>
-                        <input type="text" className="input"  onChange={(e)=>setTitle(e.target.value)} value={title}/>
+                        <input required type="text" className="input"  onChange={(e)=>setTitle(e.target.value)} value={title}/>
                         <p className="product-p">Intro*</p>
                         <textarea
                             onChange={(e)=>setIntro(e.target.value)}
@@ -166,6 +166,7 @@ useEffect(() => {
                             value={sections}
                             name=""
                             id=""
+                            required
                             style={{
                             display: "block",
                             width: "100%",

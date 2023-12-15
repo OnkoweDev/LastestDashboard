@@ -85,12 +85,13 @@ const Instagram = () => {
               <div className="body-content">
                 <div className="left">
                     <form onSubmit={handleSubmit}>
-                  <p className="product-p">Product description*</p>
+                  <p className="product-p">Caption Description*</p>
                   <textarea
                     onChange={(e)=>setProduct(e.target.value)}
                     value={product}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -163,6 +164,7 @@ const Instagram = () => {
                     value={tone}
                     name=""
                     id=""
+                    required
                     className="select"
                     style={{
                       display: "block",

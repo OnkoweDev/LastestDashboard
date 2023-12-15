@@ -4,6 +4,8 @@ import "./styles/SignInUp.css";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import image from "../assets/signInImage.png";
 import loginImage from "../assets/loginImage.jpg";
+import logo from "../assets/logo.png"
+
 
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,22 +47,25 @@ const SignIn = () => {
   };
   return (
     <div className="sign__container">
+    <img src={logo} alt="Logo" className="logo" />
       <section className="form__section">
         <div className="form__section__wrapper">
             
           <h5>Welcome Back!</h5>
+          <br />
           <small>Ready to gather the thought once again?</small>
             
              {error && <div className=' bar error'>{error}</div>}
           <form onSubmit={handleLogin}>
             <label  htmlFor="email">Email Address</label>
-            <input placeholder="email" type="email" name="email" className="input"
+            <input required placeholder="email" type="email" name="email" className="input"
             // value={email} 
              onChange={(e)=>setEmail(e.target.value)} />
             <label htmlFor="Password">Password</label>
             <div className="input__container">
               <article className="input__wrapper">
                 <input
+                  required
                   type={showPassowrd ? "text" : "password"}
                   className="input"
                   //value={password}
@@ -85,9 +90,9 @@ const SignIn = () => {
           {/* other sign up options */}
           <p className="sign__up__option__text">Or Log in with </p>
           <div className="sign__up__options">
-          <button  style={{ color: "red",size:'50px'}}> <FcGoogle /></button>
-          <button style={{ color: "#4267B2"}}><BsFacebook /></button>
-          <button style={{ color: "#1DA1F2"}}><FaTwitter /></button>
+          <button  style={{ color: "red",size:'50px'}}> <FcGoogle style={{width:'30px', height:'30px'}} /></button>
+          <button style={{ color: "#4267B2"}}><BsFacebook style={{width:'30px', height:'30px'}} /></button>
+          <button style={{ color: "#1DA1F2"}}><FaTwitter style={{width:'30px', height:'30px'}} /></button>
           </div>
           <p
             style={{ textAlign: "center", margin: "10px 0" }}

@@ -41,6 +41,8 @@ const TTR = () => {
 
   const [title, setTitle] = useState([])
   const [outputNumber, setOutputNumber] = useState(1);
+  const [spokenText, setSpokenText] = useState('');
+
 
 //   const [number_of_outputs,setNumber_of_outputs] = useState([])
 
@@ -66,23 +68,7 @@ const TTR = () => {
   const getProject = useSelector((state)=>state.getProject)
   const {loading:projectLoading,error:projectError, project} = getProject
 
-  //const data = []
-//   newBlogs && newBlogs.forEach(function(blog){
-//         if(Array.isArray(blog)){
-//             blog.forEach(function(intro){
-//                 //console.log(intro)
-//                 data.push(intro)
-//                 console.log(data)
-//             })
-//         }
-//      })
-//const data =[newBlogs];
-///console.log(data)
-//  arr.forEach((blogs)=>{
-//   data.push(blogs)
-//   console.log(data)
-// })
-
+ 
 
 const handleForm  = (e) => {
   e.preventDefault()
@@ -105,7 +91,7 @@ useEffect(() => {
             navigate('/')
         } 
        
-    }, [success])
+    }, [])
     
     
   const handleIntro = (e) =>{
@@ -115,6 +101,43 @@ useEffect(() => {
         navigate('/blog-intro-generator')
        // dispatch(addBlog())
         
+  }
+
+  useEffect(() => {
+    handleListening()
+  }, [isListening,success])
+  
+
+  const handleListening = () => {
+      if(isListening){
+          mic.start()
+          mic.onend = () => {
+              console.log('continue ...')
+              mic.start()
+          }
+      }
+      else{
+          mic.stop()
+          mic.onend = () => {
+              console.log('stoped')
+          }
+      }
+      mic.onstart = () => {
+          console.log('Mics is on')
+      }
+
+      mic.onresult = (event) => {
+        const transcript = Array.from(event.results)
+          .map((result) => result[0])
+          .map((result) => result.transcript)
+          .join('');
+  
+        setSpokenText(transcript); // Set the spoken text
+  
+        // Update the content in the textarea with spoken words
+        setTitle((prevContent) => prevContent + ' ' + transcript);
+      };
+  
   }
 
   
@@ -152,6 +175,7 @@ useEffect(() => {
                     onChange={(e)=>setTitle(e.target.value)}
                     value={title}
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -174,8 +198,11 @@ useEffect(() => {
                     }}
                   >
                     
-                    {isListening ?  <RiVoiceprintFill /> :  <FiStopCircle />}
-                    <AiOutlineAudio onClick={()=>setIsListening(prevState =>!prevState)} />
+                  {isListening ? <RiVoiceprintFill  className="icon-div mic-icon" /> : <FiStopCircle  className="icon-div mic-icon" />}
+                  <AiOutlineAudio
+                     className="icon-div mic-icon"
+                     onClick={()=>setIsListening(prevState => !prevState)}
+                   />
                   </div>
                   {/*  number of output*/}
                   <OutputNumber

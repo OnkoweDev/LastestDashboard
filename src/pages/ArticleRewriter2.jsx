@@ -141,6 +141,7 @@ const ArticleRewriter2 = () => {
                     value={content}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

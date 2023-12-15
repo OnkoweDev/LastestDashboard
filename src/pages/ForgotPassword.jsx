@@ -3,6 +3,8 @@ import { SideNav, TopNav } from "../components";
 import "./styles/Password.css";
 
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { TfiEmail } from "react-icons/tfi";
+import { Link } from "react-router-dom";
 
 const ForgetPassword = () => {
   const [showPassowrd, setShowPassword] = useState(false);
@@ -22,88 +24,43 @@ const ForgetPassword = () => {
       <main>
         <div className="container">
           <div className="content">
-            <div className="inner-page-container">
+            <div>
               <section className="password__wrapper">
-                <h3>Password</h3>
+                <h3>Email</h3>
                 <small>
-                  Please enter your current password to change your password.
+                  Please enter the email you used to register.
                 </small>
                 {/* form */}
                 <form action="">
                   <div className="input__container">
-                    <label htmlFor="currentPassword">Current password</label>
+                    <label htmlFor="currentPassword">Email</label>
 
                     <article className="input__wrapper">
                       <input
-                        type={showPassowrd ? "text" : "password"}
+                        required
+                        type="email"
                         className="input"
                       />
                       {showPassowrd ? (
-                        <AiOutlineEyeInvisible
+                        <TfiEmail 
                           className="icon"
-                          onClick={showPassword}
+                        
                         />
-                      ) : (
-                        <AiOutlineEye className="icon" onClick={showPassword} />
-                      )}
+                      ) : null}
                     </article>
+                   
                   </div>
                   {/*  */}
-                  <div className="input__container">
-                    <label htmlFor="newPassword">New password</label>
-
-                    <article className="input__wrapper">
-                      <input
-                        type={newPassowrd ? "text" : "password"}
-                        className="input"
-                      />
-                      {newPassowrd ? (
-                        <AiOutlineEyeInvisible
-                          className="icon"
-                          onClick={showNewPassword}
-                        />
-                      ) : (
-                        <AiOutlineEye
-                          className="icon"
-                          onClick={showNewPassword}
-                        />
-                      )}
-                    </article>
-                    <small>
-                      Your new password must be more than 8 characters
-                    </small>
-                  </div>
-                  {/*  */}
-                  <div className="input__container">
-                    <label htmlFor="newPasswordConfirm">
-                      Confirm new password
-                    </label>
-
-                    <article className="input__wrapper">
-                      <input
-                        type={confirmPassowrd ? "text" : "password"}
-                        className="input"
-                      />
-                      {confirmPassowrd ? (
-                        <AiOutlineEyeInvisible
-                          className="icon"
-                          onClick={showConfirmPassword}
-                        />
-                      ) : (
-                        <AiOutlineEye
-                          className="icon"
-                          onClick={showConfirmPassword}
-                        />
-                      )}
-                    </article>
-                  </div>
+                 
                   {/* btn */}
                   <button
-                    className="btn article-btn"
+                    className="button"
                     style={{ fontSize: "16px" }}
                   >
-                    Update password
+                    Submit
                   </button>
+                  <br />
+                  <Link to='/'>Back</Link>
                 </form>
               </section>
             </div>

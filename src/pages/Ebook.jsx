@@ -153,7 +153,7 @@ const Ebook = () => {
         <div className="container">
           <SideNav />
           <div className="content">
-            <div className="ebook-container inner-page-container">
+            <div className="inner-page-container">
               {/* header */}
               <ProjectHeader image={ebook} title="Ebook Writing" />
               {/* ebook body content */}
@@ -166,6 +166,8 @@ const Ebook = () => {
                     type="text"
                     id="book-title"
                     placeholder="Book Title"
+                    required
+                    style={{padding:'20px', borderRadius:'5px'}}
                   />
                   <textarea
                   onChange={(e)=>setDescription(e.target.value)}
@@ -174,15 +176,18 @@ const Ebook = () => {
                     id="book-content-field"
                     className="textarea"
                     placeholder="Content"
+                    required
                     //value={note}
                     //onChange={insertBookContent}
                     style={{ resize: "none" }}
                   ></textarea>
-                  </div>
-                  <br/>
+                  <br />
                   <button className="article-btn" style={{ fontSize: "14px" }}>
                     Create Ebook
                   </button>
+                  </div>
+                 
+                  
                   </form>
                
                 

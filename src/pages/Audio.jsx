@@ -165,6 +165,7 @@ const handleChange = (event) => {
                     name=""
                     id=""
                     type="file"
+                    required
                   />
 
                   <div

@@ -4,17 +4,23 @@
   justify-content: space-between;
   height: 100vh;
 
+
+
   @media(max-width:768px) {
     flex-direction: column;
     margin: 20px;
+    max-width: 100%;
   }
 }
 
+
 .sign__container .form__section {
   flex-basis: 60%;
+  
 
   @media(max-width:768px) {
-    width: 100%;
+    max-width: 100%;
+    margin-top:10px;
   }
 }
 
@@ -36,7 +42,7 @@
   font-size: 36px;
   line-height: 54px;
   letter-spacing: 0.5px;
-  margin-bottom: 20px;
+  margin-top: 65px;
 }
 
 .form__section__wrapper small {
@@ -90,8 +96,14 @@
 
 .checkbox__div {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  align-items: center;
+
+  @media(max-width:768px) {
+    margin: 0px;
+  }
+}
+.text {
+  text-align: center;
 }
 
 .checkbox__div input {
@@ -117,6 +129,15 @@
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 50px; 
+  height: auto; 
+  z-index: 1000;
 }
 
 .sign__up__option__text::after,
@@ -145,6 +166,7 @@
   outline: none;
   border: none;
   cursor: pointer;
+  
 }
 
 .s-icon {

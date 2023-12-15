@@ -33,6 +33,7 @@ import { BiHomeAlt, BiBell, BiLogOut } from "react-icons/bi";
 import { ProfileRow } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userAction";
+import { FcCollaboration } from "react-icons/fc";
 
 const NewProjectLinks = ({ link, displayImage, text }) => {
   return (
@@ -128,6 +129,13 @@ const TopNav = () => {
                   link="/notification"
                   text={"Something new"}
                 />
+
+                <ProfileRow
+                Icon={FcCollaboration}
+                title={"Collaboration"}
+                link="/notification"
+                text={"Something new"}
+              />
                 {/*<ProfileRow
                   Icon={BiHomeAlt}
                   title={"Prefrences"}

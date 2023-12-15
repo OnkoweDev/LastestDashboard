@@ -97,6 +97,8 @@ const ProductName = () => {
                    value={productDesc}
                     name=""
                     id=""
+                    required
+                    placeholder="e.g Baseball, Digital Camera..etc"
                     style={{
                       display: "block",
                       width: "100%",
@@ -117,6 +119,8 @@ const ProductName = () => {
                    value={keywords}
                     name=""
                     id=""
+                    required
+                    placeholder="Include one or more features of the product separated by comma"
                     style={{
                       display: "block",
                       width: "100%",
