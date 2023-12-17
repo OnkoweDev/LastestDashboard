@@ -36,6 +36,7 @@ const ImageGen = () => {
   const [isAudio, setIsAudio] = useState(false);
 
   const [prompt, setPrompt] = useState([])
+  const [quality, setQuality] = useState([])
   const [lands, setLands] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
@@ -67,7 +68,7 @@ const ImageGen = () => {
         };
         setIsLoading(true)
         const {data} = await axios.post(`https://api.olukowe.co/image-generator/
-        `, {prompt},config)
+        `, {prompt,quality},config)
         const arrData = [data]
         arrData.forEach((data)=>{
             setLands([data])
@@ -96,38 +97,7 @@ const handleForm = (e) => {
   const [isListening, setIsListening] = useState(false)
   const [note, setNote] = useState([])
 
-//   useEffect(() => {
-//     handleListening()
-//   }, [isListening])
-//   const handleListening = () => {
-//       if(isListening){
-//           mic.start()
-//           mic.onend = () => {
-//               console.log('continue ...')
-//               mic.start()
-//           }
-//       }
-//       else{
-//           mic.stop()
-//           mic.onend = () => {
-//               console.log('stoped')
-//           }
-//       }
-//       mic.onstart = () => {
-//           console.log('Mics is on')
-//       }
 
-//       mic.onresult = event => {
-//           const transcript = Array.from(event.results).map(result => result[0]).map(result=> result.transcript).join('')
-//           console.log(transcript)
-//           setNote(transcript)
-//           mic.onerror = event => {
-//               console.log(event.error)
-//           }
-//       }
-//   }
-  // state to keep track of number of output
-  // handle audio option
   const handleAudio = () => {
     console.log("Mic is clicked");
     setIsAudio(true);
@@ -175,55 +145,42 @@ const handleForm = (e) => {
                       margin: "10px 0",
                     }}
                   >
-                    {/* {isAudio ? (
-                      <div className="audio">
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <RiVoiceprintFill />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <CiPause1 />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <FiStopCircle />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setIsAudio(false);
-                          }}
-                        >
-                          <HiOutlinePencil />
-                        </button>
-                      </div>
-                    ) : (
-                      <AiOutlineAudio
-                        className="icon-div mic-icon"
-                        onClick={handleAudio}
-                      />
-                    )} */}
+                   
                     {isListening ?  <RiVoiceprintFill className="icon-div mic-icon" /> :  <FiStopCircle className="icon-div mic-icon" />}
                      <AiOutlineAudio
                         className="icon-div mic-icon"
                        // onClick={()=>setIsListening(prevState =>!prevState)}
                       />
                   </div>
-                  {/*  number of output*/}
+                  <p className="product-p">Quality*</p>
+
+                  <select
+                    onChange={(e)=>setQuality(e.target.value)}
+                    value={quality}
+                    name=""
+                    id=""
+                    required
+                    className="select"
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      background: "var(--primary-blue)",
+                      borderRadius: "var(--border-radius-xs)",
+                      border: "none",
+                      outline: "none",
+                      height: "10%",
+                      margin: "10px 0",
+                      padding: "10px",
+                      fontWeight: "400",
+                      fontSize: "14px",
+                      lineHeight: "21px",
+                      color: "rgba(0, 22, 51, 0.5)",
+                    }}
+                  > 
+                    <option value="" selected disabled hidden>Select Quality</option>
+                    <option value="hd">HD</option>
+                    <option value="standard">Standard</option>
+                  </select>
                   <button className="article-btn" style={{ fontSize: "14px" }}>
                     Generate Image
                   </button>
@@ -240,7 +197,6 @@ const handleForm = (e) => {
                 {lands && lands?.map((blog)=>(
                   
                   <div className="sec-1" ref={myDiv}>
-                  {blog.generated_image}
                   <img src={blog.generated_image} width="100%" height="20%" />
                   </div>
                   ))}
