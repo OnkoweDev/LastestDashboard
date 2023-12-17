@@ -205,7 +205,7 @@ const handleForm = (e) => {
                   
                   <div className="sec-1" ref={myDiv}>
                   <p>
-                    {blog.generated_image}
+                    {/*blog.generated_image*/}
                   </p>
                   <img src={blog.generated_image} width="100%" height="20%" />
                   </div>
