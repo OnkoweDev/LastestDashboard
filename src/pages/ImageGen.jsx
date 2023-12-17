@@ -77,6 +77,9 @@ const ImageGen = () => {
         setIsLoading(false)
     } catch (error) {
         setErrorMessage("image not found")
+        setTimeout(()=>{
+          setErrorMessage("")
+        },500)
         console.log(errorMessage)
         setIsLoading(false)
 
@@ -96,7 +99,11 @@ const handleForm = (e) => {
 
   const [isListening, setIsListening] = useState(false)
   const [note, setNote] = useState([])
+  const [imageLink, showImageLink] = useState(true)
 
+  const handleShowImageLink = () => {
+      showImageLink(false)
+  }
 
   const handleAudio = () => {
     console.log("Mic is clicked");
@@ -192,11 +199,14 @@ const handleForm = (e) => {
                 {isLoading && <Loader />}
                 {loading && <Loader />}
                 {errorMessage && <div className='bar error'>{errorMessage}</div>}
-                {error && <div className='bar error'>{error}</div>}
                 
+                {/* {console.log(lands.data)} */}
                 {lands && lands?.map((blog)=>(
                   
                   <div className="sec-1" ref={myDiv}>
+                  <p>
+                    {blog.generated_image}
+                  </p>
                   <img src={blog.generated_image} width="100%" height="20%" />
                   </div>
                   ))}
