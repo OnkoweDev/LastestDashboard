@@ -4,7 +4,7 @@ import "./styles/SignInUp.css";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import image from "../assets/signInImage.png";
 import loginImage from "../assets/loginImage.jpg";
-import logo from "../assets/logo.png"
+import logo from "./../assets/logo.png"
 
 
 import { Link, useNavigate } from "react-router-dom";
