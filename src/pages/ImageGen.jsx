@@ -193,7 +193,7 @@ const handleForm = (e) => {
                 {loading && <Loader />}
                 {errorMessage && <div className='bar error'>{errorMessage}</div>}
                 {error && <div className='bar error'>{error}</div>}
-                {/* {console.log(lands.data)} */}
+                
                 {lands && lands?.map((blog)=>(
                   
                   <div className="sec-1" ref={myDiv}>
