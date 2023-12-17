@@ -8,10 +8,10 @@ import logo from "./../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/userAction";
-import Loader from "../components/Loader";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { FaTwitter } from "react-icons/fa";
+import Button from "../components/Button";
 
 const SignIn = () => {
   const [email, setEmail] = useState({});
@@ -90,16 +90,13 @@ const SignIn = () => {
               </article>
             </div>
             {/* btn */}
-            <button
-              type="submit"
-              className="btn article-btn"
-              style={{ fontSize: "16px" }}
-            >
+            <Button type="submit" className="my-3 mb-5">
+              {" "}
               {loading ? "Authenticating...." : "Login"}
-            </button>
+            </Button>
           </form>
           {/* other sign up options */}
-          <p className="sign__up__option__text">Or Log in with </p>
+          <p className="text-center my-3">Or Log in with </p>
 
           <div className="sign__up__options">
             <button style={{ color: "red", size: "50px" }}>
@@ -113,19 +110,20 @@ const SignIn = () => {
               <FaTwitter style={{ width: "30px", height: "30px" }} />
             </button>
           </div>
-          <p style={{ textAlign: "center", margin: "10px 0" }} className="">
+
+          <p className="text-center m-5">
             Don’t have an account?{" "}
             <Link to="/sign-up">
-              <b>Sign Up</b>
+              <span className="text-blue-100">Sign Up</span>
             </Link>
             <br />
             <Link to="/forgetpassword">
-              <b>Forgot password</b>
+              <span className="text-blue-100">Forgot password</span>
             </Link>
           </p>
         </div>
       </section>
-      <section className="">
+      <section className="md:block hidden">
         <img src={loginImage} alt="" />
       </section>
     </div>
