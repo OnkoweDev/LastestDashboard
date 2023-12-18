@@ -6,19 +6,19 @@ import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
 const ForgetPassword = () => {
-  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    setPassword(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    if (!email) {
-      return toast.error("Please enter a valid email address");
+    if (!password) {
+      return toast.error("Please enter new password!");
     }
 
     try {
@@ -28,11 +28,11 @@ const ForgetPassword = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({ email: password }),
         };
 
         const response = await fetch(
-          "https://dev.olukowe.co/api/auth/forgot-password",
+          "https://dev.olukowe.co/api/auth/reset-password",
           config
         );
 
@@ -76,10 +76,10 @@ const ForgetPassword = () => {
           </section>
           <section>
             <h3 className="font-extrabold text-3xl capitalize mt-3 text-center">
-              Forgot Password?
+              Reset Password
             </h3>
             <p className="text-[#001633B2] text-sm py-2">
-              No worries, we’ll send you reset instructions
+              Take back control with a password reset
             </p>
           </section>
 
@@ -89,16 +89,16 @@ const ForgetPassword = () => {
           >
             <section>
               <label htmlFor="email" className="capitalize py-2">
-                Email Address
+                New Password
               </label>
 
               <input
                 required
-                type="email"
-                value={email}
+                type="password"
+                value={password}
                 onChange={handleEmailChange}
                 className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300 flex items-center"
-                placeholder="Enter your email address"
+                placeholder="Enter your new password"
               />
             </section>
             <br />
