@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { BiMenu } from "react-icons/bi";
-import logo from "./../assets/logo.png";
 import profile from "../assets/dummyProfile.png";
-import { Link, NavLink } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 import "./styles/TopNav.css";
 
-import { BiHomeAlt, BiBell, BiLogOut } from "react-icons/bi";
+import { BiHomeAlt, BiBell, BiLogOut, BiMenu } from "react-icons/bi";
 
 import { ProfileRow } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userAction";
 import { FcCollaboration } from "react-icons/fc";
+import MobileMenu from "./MobileMenu";
 
 const NewProjectLinks = ({ link, displayImage, text }) => {
   return (
@@ -63,42 +61,44 @@ const TopNav = () => {
   };
 
   useEffect(() => {}, [userInfo]);
-  return (
 
-    <div className="mycontainer">    
-    <nav className="top-nav">
-      <div className="inner-container">
-        {/*profile dropdown  */}
+  return (
+    <div className="mycontainer">
+      <nav className="top-nav">
+        <div className="inner-container">
+          <div className="hambuger" onClick={handleMenuToggle}>
+            <BiMenu className="icon" />
+          </div>
+          {/*profile dropdown  */}
           <div className="profile drop-btn">
             <div className="image">
               <img src={profile} alt="" style={{ width: "100%" }} />
             </div>
-          <div className="drop-content">
-            <div className="dropdown-link dropdown-btn-link">
-              <section className="top">
-                <aside className="profile__img">
-                  <img src={profile} alt="" />
-                </aside>
-                <aside className="profile__details">
-                  <h3>username</h3>
-                  <small>email</small>
-                </aside>
-              </section>
-              <hr style={{ margin: "25px 0" }} />
-              <section className="botttom">
-                <ProfileRow
-                  Icon={BiHomeAlt}
-                  title={"Profile"}
-                  link="/profile"
-                  text={"Personal information"}
-                />
-                <ProfileRow
-                  Icon={BiBell}
-                  title={"Notifications"}
-                  link="/notification"
-                  text={"Something new"}
-                />
-
+            <div className="drop-content">
+              <div className="dropdown-link dropdown-btn-link">
+                <section className="top">
+                  <aside className="profile__img">
+                    <img src={profile} alt="" />
+                  </aside>
+                  <aside className="profile__details">
+                    <h3>username</h3>
+                    <small>email</small>
+                  </aside>
+                </section>
+                <hr style={{ margin: "25px 0" }} />
+                <section className="botttom">
+                  <ProfileRow
+                    Icon={BiHomeAlt}
+                    title={"Profile"}
+                    link="/profile"
+                    text={"Personal information"}
+                  />
+                  <ProfileRow
+                    Icon={BiBell}
+                    title={"Notifications"}
+                    link="/notification"
+                    text={"Something new"}
+                  />
 
                   <ProfileRow
                     Icon={FcCollaboration}
@@ -132,6 +132,9 @@ const TopNav = () => {
             </div>
           </div>
         </div>
+
+        {/* mobile menu */}
+        <MobileMenu showMenu={showMenu} />
       </nav>
     </div>
   );

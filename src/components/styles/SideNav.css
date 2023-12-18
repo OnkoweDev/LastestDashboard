@@ -9,6 +9,10 @@
   max-width: 100%; /* Adjust width as needed */
   z-index: 100; /* Ensure it's above other content */
   overflow-y: auto;
+
+  @media (max-width: 700px) {
+    display: none;
+  }
 }
 
 .top {

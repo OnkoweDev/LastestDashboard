@@ -1,5 +1,5 @@
-import "./components/styles/error.css"
-import 'regenerator-runtime/runtime';
+import "./components/styles/error.css";
+import "regenerator-runtime/runtime";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -123,12 +123,19 @@ import ProductDescMore from "./pages2/ProductDesc/ProductDescMore";
 import Help from "./pages/Help";
 import Suggest from "./pages/Suggest";
 import ForgotPassword from "./pages/ForgotPassword";
+
+import ResetPassword from "./pages/ResetPassword";
+
+BlogMore
+
 import SocialMedia from "./pages/SocialMedia";
 import Commerce from "./pages/Commerce";
 import BlogAndArticle from "./pages/BlogAndArticle";
-BlogMore
+import LandingP from "./pages/LandingP";
+import Translate from "./pages/Translate";
+import Email from "./pages/Email";
+
 function App() {
-  
   return (
     <React.Fragment>
       {/* <SignUp /> */}
@@ -140,6 +147,7 @@ function App() {
         <Route path="/upload" element={<Upload />} />
         <Route path="font" element={<Font />} />
         <Route path="forgetpassword" element={<ForgotPassword />} />
+        <Route path="reset-password" element={<ResetPassword />} />
         <Route path="resources" element={<Resources />} />
         <Route path="theme" element={<Theme />} />
         <Route path="transcribe" element={<Transcribe />} />
@@ -174,7 +182,7 @@ function App() {
         <Route path="productname" element={<ProductName />} />
         <Route path="emailsubject" element={<EmailSubject />} />
         <Route path="emailgenerator" element={<EmailGenerator />} />
-        {/* <Route path="landingpage" element={<LandingPage />} /> */}
+        <Route path="landingpage" element={<LandingPage />} />
         <Route path="blogtopic" element={<BlogTopic />} />
         <Route path="land" element={<Land />} />
         <Route path="image" element={<ImageGen />} />
@@ -196,7 +204,9 @@ function App() {
         <Route path="social_media" element={<SocialMedia />} />
         <Route path="blog-and-articles" element={<BlogAndArticle />} />
         <Route path="commerce" element={<Commerce />} />
-        <Route path="landing_page" element={<LandingPage />} />
+        <Route path="landing_page" element={<LandingP />} />
+        <Route path="translate" element={<Translate />} />
+        <Route path="email" element={<Email />} />
         // pages2
         <Route path="allArticle" element={<ALLArticleRewritter />} />
         <Route path="allArticle/:id" element={<ArticleRewriterMore />} />
