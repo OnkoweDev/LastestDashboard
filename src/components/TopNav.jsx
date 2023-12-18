@@ -2,29 +2,8 @@ import React, { useEffect, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import logo from "./../assets/logo.png";
 import profile from "../assets/dummyProfile.png";
-import ebook from "../assets/ebookIcon.png";
-import blog1 from "../assets/article.png";
-import blog3 from "../assets/blog-writer.png";
-import blog2 from "../assets/blog-section.png";
-import content from "../assets/content.png";
-import articleBlog from "../assets/article-blog.png";
-import paragraph from "../assets/paragraph.png";
-import tweet from "../assets/tweet.png";
-import instagram from "../assets/instagram.png";
-import linkedin from "../assets/linkedin.png";
-import product from "../assets/product.png";
-import youtube from "../assets/youtube.png";
 import { Link, NavLink } from "react-router-dom";
 
-import german from "../assets/german.png";
-import france from "../assets/france.png";
-import italy from "../assets/italy.png";
-import japan from "../assets/japan.png";
-import portugal from "../assets/portugal.png";
-import russia from "../assets/russia.png";
-import spain from "../assets/spain.png";
-import nigeria from "../assets/nigeria.png";
-import china from "../assets/china.png";
 
 import "./styles/TopNav.css";
 
@@ -85,43 +64,41 @@ const TopNav = () => {
 
   useEffect(() => {}, [userInfo]);
   return (
-    <div className="mycontainer">
-      <nav className="top-nav">
-        <div className="inner-container">
-          <div className="logo">
-            <img src={logo} alt="" style={{ width: "100%" }} />
-          </div>
-          <div className="nav">
-            <ul></ul>
-          </div>
-          {/*  */}
+
+    <div className="mycontainer">    
+    <nav className="top-nav">
+      <div className="inner-container">
+        {/*profile dropdown  */}
           <div className="profile drop-btn">
-            <img src={profile} alt="" style={{ width: "100%" }} />
-            <div className="drop-content">
-              <div className="dropdown-link dropdown-btn-link">
-                <section className="top">
-                  <aside className="profile__img">
-                    <img src={profile} alt="" />
-                  </aside>
-                  <aside className="profile__details">
-                    <h3>username</h3>
-                    <small>email</small>
-                  </aside>
-                </section>
-                <hr style={{ margin: "25px 0" }} />
-                <section className="botttom">
-                  <ProfileRow
-                    Icon={BiHomeAlt}
-                    title={"Profile"}
-                    link="/profile"
-                    text={"Personal information"}
-                  />
-                  <ProfileRow
-                    Icon={BiBell}
-                    title={"Notifications"}
-                    link="/notification"
-                    text={"Something new"}
-                  />
+            <div className="image">
+              <img src={profile} alt="" style={{ width: "100%" }} />
+            </div>
+          <div className="drop-content">
+            <div className="dropdown-link dropdown-btn-link">
+              <section className="top">
+                <aside className="profile__img">
+                  <img src={profile} alt="" />
+                </aside>
+                <aside className="profile__details">
+                  <h3>username</h3>
+                  <small>email</small>
+                </aside>
+              </section>
+              <hr style={{ margin: "25px 0" }} />
+              <section className="botttom">
+                <ProfileRow
+                  Icon={BiHomeAlt}
+                  title={"Profile"}
+                  link="/profile"
+                  text={"Personal information"}
+                />
+                <ProfileRow
+                  Icon={BiBell}
+                  title={"Notifications"}
+                  link="/notification"
+                  text={"Something new"}
+                />
+
 
                   <ProfileRow
                     Icon={FcCollaboration}
