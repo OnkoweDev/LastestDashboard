@@ -58,13 +58,14 @@
   color: #fff;
   margin: 5px;
 }
+
 .input_container {
   display: flex;
   margin: 0px;
   align-items: center;
   justify-content: center;
 }
-
+b
 .input {
   display: flex;
   flex-direction: column;

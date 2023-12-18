@@ -4,23 +4,19 @@
   justify-content: space-between;
   height: 100vh;
 
-
-
-  @media(max-width:768px) {
+  @media (max-width: 768px) {
     flex-direction: column;
-    margin: 20px;
     max-width: 100%;
   }
 }
 
-
 .sign__container .form__section {
   flex-basis: 60%;
-  
+  width: 100% ;
 
-  @media(max-width:768px) {
-    max-width: 100%;
-    margin-top:10px;
+  @media (max-width: 768px) {
+    width: 90%;
+    margin-top: 10px;
   }
 }
 
@@ -28,11 +24,10 @@
   width: 60%;
   margin: 0 auto;
 
-  @media(max-width:768px) {
+  @media (max-width: 768px) {
     width: 100%;
     margin: 0 auto;
   }
-  
 }
 
 .form__section h5 {
@@ -69,8 +64,8 @@
 
 .form__section input {
   margin-bottom: 20px;
-  
-  @media(max-width:768px) {
+
+  @media (max-width: 768px) {
     width: 100%;
   }
 }
@@ -78,7 +73,7 @@
 .input__wrapper {
   position: relative;
 
-  @media(max-width:768px) {
+  @media (max-width: 768px) {
     width: 100%;
   }
 }
@@ -98,7 +93,7 @@
   display: flex;
   align-items: center;
 
-  @media(max-width:768px) {
+  @media (max-width: 768px) {
     margin: 0px;
   }
 }
@@ -123,20 +118,20 @@
   color: var(--black);
 
   width: 40%;
-  margin: -15px auto 0;
+  margin: -10px auto 0;
   text-align: center;
 
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 50px;
 }
 
 .logo {
   position: absolute;
   top: 20px;
   left: 20px;
-  width: 50px; 
-  height: auto; 
+  width: 50px;
+  height: auto;
   z-index: 1000;
 }
 
@@ -166,16 +161,13 @@
   outline: none;
   border: none;
   cursor: pointer;
-  
 }
 
 .s-icon {
   width: 50px;
 }
 
-.sign__up__options button 
-
-.login__text {
+.sign__up__options button .login__text {
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
@@ -190,7 +182,7 @@
   width: 55vw;
   height: 100vh;
   object-fit: cover;
-  @media(max-width: 768px){
+  @media (max-width: 768px) {
     display: none;
   }
 }
