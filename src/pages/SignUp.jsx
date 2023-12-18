@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./styles/SignInUp.css";
 
-import {
-  AiOutlineEyeInvisible,
-  AiOutlineEye,
-  AiFillGooglePlusSquare,
-} from "react-icons/ai";
-import image from "../assets/signInImage.png";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/userAction";
-import Loader from "../components/Loader";
-import { GrFacebook, GrFacebookOption, GrGoogle } from "react-icons/gr";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { FaTwitter } from "react-icons/fa";
-import loginImage from "../assets/loginImage.jpg";
+import loginImage from "./../assets/signInImage.png";
 import logo from "../assets/logo.png";
+import Button from "../components/Button";
 
 const SignUp = () => {
   const [full_name, setFullname] = useState({});
@@ -45,63 +39,91 @@ const SignUp = () => {
     setShowPassword(!showPassowrd);
   };
   return (
-    <div className="sign__container">
+    <div className="sign__container bg-[#FCFCFC]">
       <img src={logo} alt="Logo" className="logo" />
       <section className="form__section">
         <div className="form__section__wrapper">
           <h5>Sign Up</h5>
           {error && <div className="bar error">{error}</div>}
           <form onSubmit={handleRegister}>
-            <label htmlFor="fullName">Full Name</label>
+            <label htmlFor="fullName" className="py-2">
+              Full Name
+            </label>
             <input
               required
               type="text"
+              placeholder="Enter your fullname"
               name="fullName"
-              className="input"
+              className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300"
               //value={full_name}
               onChange={(e) => setFullname(e.target.value)}
             />
-            <label htmlFor="email">Email Address</label>
+            <label htmlFor="email" className="py-2">
+              Email Address
+            </label>
             <input
               required
               type="email"
               name="email"
-              className="input" //value={email}
+              placeholder="Enter your email address"
+              className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label htmlFor="Password">Password</label>
+            <label htmlFor="Password" className="py-2">
+              Password
+            </label>
             <div className="input__container">
               <article className="input__wrapper">
                 <input
                   required
                   type={showPassowrd ? "text" : "password"}
-                  className="input"
+                  placeholder="Enter your password"
+                  className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300 flex items-center"
                   //value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 {showPassowrd ? (
                   <AiOutlineEyeInvisible
-                    className="icon"
+                    className="icon w-5 h-5"
                     onClick={showPassword}
                   />
                 ) : (
-                  <AiOutlineEye className="icon" onClick={showPassword} />
+                  <AiOutlineEye
+                    className="icon w-5 h-5"
+                    onClick={showPassword}
+                  />
                 )}
               </article>
             </div>
-            <div className="checkbox__div">
-              <input type="checkbox" required />
-              <p>
-                I’ve agree to the Terms and have read and acknowledge our
+            <div className="flex items-center md:inline">
+              <section className="md:hidden block">
+                <input
+                  type="checkbox"
+                  required
+                  className="inline transform scale-150 mr-2"
+                />
+              </section>
+              <input
+                type="checkbox"
+                required
+                className="md:inline hidden transform scale-150 mr-2"
+              />
+              <p className="inline md:px-3 px-2">
+                I’ve agreed to the Terms and have read and acknowledged our
                 Privacy
               </p>
             </div>
-            <button className="btn article-btn" style={{ fontSize: "16px" }}>
-              {loading ? "Processing please wait" : "Sign Up"}
-            </button>
+            <br />
+
+            <Button> {loading ? "Processing please wait" : "Sign Up"}</Button>
           </form>
           {/* other sign up options */}
-          <p className="sign__up__option__text">Or sign Up with </p>
+          <p className="sign__up__option__text my-3 md:flex hidden">
+            Or sign Up with{" "}
+          </p>
+
+          <p className="my-3 md:hidden block text-center"> Or sign Up with </p>
+
           <div className="sign__up__options">
             <button style={{ color: "red", size: "50px" }}>
               {" "}
@@ -118,7 +140,10 @@ const SignUp = () => {
             style={{ textAlign: "center", margin: "10px 0" }}
             className="login__text"
           >
-            Already have account? <Link to="/">Login</Link>
+            Already have account?{" "}
+            <Link to="/" className="text-blue-100">
+              Login
+            </Link>
           </p>
         </div>
       </section>
