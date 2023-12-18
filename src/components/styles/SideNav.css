@@ -1,77 +1,80 @@
 .side-nav {
-    background: var(--primary-blue);
-    padding: 20px;
-    transition: all 0.5s;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    max-width: 100%; /* Adjust width as needed */
-    z-index: 1000; /* Ensure it's above other content */
-    overflow-y: auto;
-  }
-  
-  .top {
-    display: flex;
-    align-items: center;
-    padding: 20px 15px;
-    cursor: pointer;
-  }
-  .top h1 {
-    font-size: 16px;
-  }
-  
-  .bars {
-    display: flex;
-    font-size: 25px;
-    margin-left: 15px;
-  }
-  
-  .link {
-    display: flex;
-    padding: 10px 15px;
-    color: #fff;
-    gap: 15px;
-    transition: all 0.5s;
-    cursor: pointer;
-  }
-  
-  .link:hover {
-    background-color: lightskyblue;
-    color: #000;
-    transition: all 0.5s;
-  }
-  
-  .active,
-  .sub-link:hover {
-    background-color: lightskyblue;
-    color: #000;
-  }
-  
-  .icon
-  {
-    font-size: 16px;
-    color: #000;
-  }
+  background: var(--primary-blue);
+  padding: 20px;
+  transition: all 0.5s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  max-width: 100%; /* Adjust width as needed */
+  z-index: 100; /* Ensure it's above other content */
+  overflow-y: auto;
 
-  
-  .link-name {
-    font-size: 14px;
-    color: #000;
+  @media (max-width: 700px) {
+    display: none;
   }
-  
-  .sub-menu {
-    padding-left: 30px;
-    display: block;
-    z-index: 2;
-    transition: all 0.5s;
-    
-  }
-  
-  .sub-link {
-    padding-left: 30px;
-    cursor: pointer;
-    font-size: 10px;
-    padding: 20px;
-  }
-  
+}
+
+.top {
+  width: 2.5rem;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+.top h1 {
+  font-size: 16px;
+}
+
+.bars {
+  display: flex;
+  font-size: 25px;
+  margin-left: 15px;
+}
+
+.link {
+  display: flex;
+  padding: 10px 15px;
+  color: #fff;
+  gap: 15px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.link:hover {
+  background-color: lightskyblue;
+  color: #000;
+  transition: all 0.5s;
+}
+
+.active,
+.sub-link:hover {
+  background-color: lightskyblue;
+  color: #000;
+}
+
+.icon {
+  font-size: 16px;
+  color: #000;
+}
+
+.link-name {
+  font-size: 14px;
+  color: #000;
+}
+
+.sub-menu {
+  padding-left: 30px;
+  display: block;
+  z-index: 2;
+  transition: all 0.5s;
+}
+
+.sub-link {
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 10px;
+  padding: 20px;
+}

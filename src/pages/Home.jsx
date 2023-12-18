@@ -18,16 +18,6 @@ import ebook from "../assets/icon/23.png";
 
 import { Link } from "react-router-dom";
 
-import { FaFacebookF, FaYoutube, FaMailBulk, FaBloggerB } from "react-icons/fa";
-import { GiWhiteBook } from "react-icons/gi";
-import { TfiWrite } from "react-icons/tfi";
-import { BsImages, BsLinkedin, BsTwitter } from "react-icons/bs";
-import { FaParagraph } from "react-icons/fa";
-import { AiOutlineLinkedin, AiTwotoneAudio } from "react-icons/ai";
-import { FiInstagram } from "react-icons/fi";
-import { GrGoogle } from "react-icons/gr";
-import { FaGooglePlus } from "react-icons/fa";
-import { FaBlog } from "react-icons/fa";
 
 const Home = () => {
   // state to hold the data comimg from the database / backend
@@ -35,31 +25,11 @@ const Home = () => {
 
   console.log(data);
 
-  const [openModal, setOpenModal] = useState(true);
-
-
-  // mapped data
-  // const mappedData = data.map(({title, content}, index) => {
-  //   return (
-  //     <div className="card" key={index}>
-  //       <h2>{title}</h2>
-  //       <p>{content}</p>
-  //     </div>
-  //   );
-  // });
-
   return (
     <>
       <main>
         <TopNav />
-        {/* modal overlay on home page */}
-       {/* {openModal && (
-          <Modal
-            closeModal={() => {
-              setOpenModal(false);
-            }}
-          />
-          )}*/}
+
         <div className="container">
           <SideNav />
           <div className="content">
@@ -119,14 +89,14 @@ const Home = () => {
 
               <div className="card">
                 <Link to="/all_paragraph">
-                  { <img src={paragraph} alt="" /> }
+                  {<img src={paragraph} alt="" />}
                   <b>Paragraph</b>
                 </Link>
               </div>
 
               <div className="card">
                 <Link to="/all_ebook">
-                { <img src={ebook} alt="" /> }
+                  {<img src={ebook} alt="" />}
                   <b>Ebook</b>
                 </Link>
               </div>

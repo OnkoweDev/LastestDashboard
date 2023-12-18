@@ -30,21 +30,6 @@
      }
 }
 
-.card:hover {
-    /* transform: translateY(-3px);
-    background: var(--hover-blue);
-    background: rgb(211, 209, 209); */
-}
-
-.card .icon {
-    /* font-size: 95px; */
-    /* padding: 10px; */
-    /* font-size: 40px; */
-    /* aspect-ratio: 1/1; */
-
-    /* border: 2px solid red; */
-}
-
 .card img {
     width: 100px;
 }

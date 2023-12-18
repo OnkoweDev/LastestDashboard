@@ -1,5 +1,5 @@
-import "./components/styles/error.css"
-import 'regenerator-runtime/runtime';
+import "./components/styles/error.css";
+import "regenerator-runtime/runtime";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -123,11 +123,19 @@ import ProductDescMore from "./pages2/ProductDesc/ProductDescMore";
 import Help from "./pages/Help";
 import Suggest from "./pages/Suggest";
 import ForgotPassword from "./pages/ForgotPassword";
+
 import ResetPassword from "./pages/ResetPassword";
 
 BlogMore
+
+import SocialMedia from "./pages/SocialMedia";
+import Commerce from "./pages/Commerce";
+import BlogAndArticle from "./pages/BlogAndArticle";
+import LandingP from "./pages/LandingP";
+import Translate from "./pages/Translate";
+import Email from "./pages/Email";
+
 function App() {
-  
   return (
     <React.Fragment>
       {/* <SignUp /> */}
@@ -150,9 +158,7 @@ function App() {
         <Route path="blog-section-generator" element={<BlogSection />} />
         <Route path="instagram" element={<Instagram />} />
         <Route path="short-LinkedIn-posts" element={<LinkedIn />} />
-        
         <Route path="blog-article-writer" element={<BlogWriter />} />
-        
         <Route path="content-rephraser" element={<ContentRephraser />} />
         <Route path="youtube-intro-generator" element={<Youtube />} />
         <Route path="product" element={<ProductDesc />} />
@@ -194,102 +200,75 @@ function App() {
         <Route path="chinese" element={<Chinese />} />
         <Route path="project" element={<Project />} />
         <Route path="art" element={<ArticleRewriter2 />} />
-
+        {/*  */}
+        <Route path="social_media" element={<SocialMedia />} />
+        <Route path="blog-and-articles" element={<BlogAndArticle />} />
+        <Route path="commerce" element={<Commerce />} />
+        <Route path="landing_page" element={<LandingP />} />
+        <Route path="translate" element={<Translate />} />
+        <Route path="email" element={<Email />} />
         // pages2
-
         <Route path="allArticle" element={<ALLArticleRewritter />} />
         <Route path="allArticle/:id" element={<ArticleRewriterMore />} />
         <Route path="update/:id" element={<UpdateArticle />} />
-
         <Route path="allblogs" element={<AllBlog />} />
         <Route path="allblogs/:id" element={<BlogMore />} />
         <Route path="updateBlog/:id" element={<UpdateBlog />} />
-
         <Route path="content" element={<AllContentRepre />} />
         <Route path="content/:id" element={<ContentRepreMore />} />
-
-
         <Route path="email" element={<EmailGen />} />
         <Route path="email/:id" element={<EmailMore />} />
-
         <Route path="allEmailSubject" element={<AllEmailSubject />} />
         <Route path="allEmailSubject/:id" element={<EmailSubjectMore />} />
-
         <Route path="allfacebookads" element={<FacebookAds />} />
         <Route path="allfacebookads/:id" element={<FacebookMore />} />
-
         <Route path="allgoogleads" element={<ALLGoogleAds />} />
         <Route path="allgoogleads/:id" element={<GoogleAdsMore />} />
-
         <Route path="alltitle" element={<AllTitles />} />
         <Route path="alltitle/:id" element={<GoogleTitleMore />} />
-
         <Route path="allinstagram" element={<AllInstagram />} />
         <Route path="allinstagram/:id" element={<InstagramMore />} />
-
         <Route path="all_landing" element={<AllLandingPage />} />
         <Route path="all_landing/:id" element={<LandingMore />} />
-
         <Route path="all_landing_headline" element={<LandingHeadline />} />
-        <Route path="all_landing_headline/:id" element={<LandingHeadlineMore />} />
-
+        <Route
+          path="all_landing_headline/:id"
+          element={<LandingHeadlineMore />}
+        />
         <Route path="all_paragraph" element={<ALLPARAGRAPHWRITER />} />
         <Route path="all_paragraph/:id" element={<ParagraphMore />} />
-
         <Route path="all_intro" element={<ALLBlogIntro />} />
         <Route path="all_intro/:id" element={<BlogIntroMore />} />
-
         <Route path="all_blog_topic" element={<AllBlogTopic />} />
         <Route path="all_blog_topic/:id" element={<BlogTopicMore />} />
-
         <Route path="all_product_name" element={<AllProductName />} />
         <Route path="all_product_name/:id" element={<ProductMore />} />
-
         <Route path="all_tweet" element={<AllTweet />} />
         <Route path="all_tweet/:id" element={<TweetMore />} />
-
         <Route path="all_youtube" element={<AllYoutube />} />
         <Route path="all_youtube/:id" element={<YoutubeMore />} />
-
         <Route path="all_ebook" element={<AllEbook />} />
         <Route path="all_ebook/:id" element={<EbookMore />} />
-
         <Route path="all_link_post" element={<AllLinkPost />} />
         <Route path="all_link_post/:id" element={<LinkMore />} />
-
         <Route path="language" element={<Language />} />
         <Route path="language/:id" element={<LanguageMore />} />
-
         <Route path="conclusion" element={<Conclusion />} />
         <Route path="conclusion/:id" element={<ConclusionMore />} />
-
         <Route path="blogsection" element={<AllBlogSection />} />
         <Route path="blogsection/:id" element={<BlogSectionMore />} />
-
         <Route path="all_linkedin_ads" element={<AllLinkAds />} />
         <Route path="all_linkedin_ads/:id" element={<LinkAdsMore />} />
-
         <Route path="all_audio" element={<AllAudio />} />
         <Route path="all_audio/:id" element={<AudioMore />} />
-
         <Route path="all_image" element={<AllImage />} />
         <Route path="all_image/:id" element={<ImageMore />} />
-
         <Route path="all_project" element={<AllProject />} />
         <Route path="all_project/:id" element={<ProjectMore />} />
-
         <Route path="all_productDesc" element={<AllProductDesc />} />
         <Route path="all_productDesc/:id" element={<ProductDescMore />} />
-
         <Route path="help" element={<Help />} />
         <Route path="suggest" element={<Suggest />} />
-
-
-
-
-        
-
-
       </Routes>
     </React.Fragment>
   );
