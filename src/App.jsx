@@ -1,5 +1,5 @@
-import "./components/styles/error.css"
-import 'regenerator-runtime/runtime';
+import "./components/styles/error.css";
+import "regenerator-runtime/runtime";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -126,9 +126,11 @@ import ForgotPassword from "./pages/ForgotPassword";
 import SocialMedia from "./pages/SocialMedia";
 import Commerce from "./pages/Commerce";
 import BlogAndArticle from "./pages/BlogAndArticle";
-BlogMore
+import LandingP from "./pages/LandingP";
+import Translate from "./pages/Translate";
+import Email from "./pages/Email";
+BlogMore;
 function App() {
-  
   return (
     <React.Fragment>
       {/* <SignUp /> */}
@@ -174,7 +176,7 @@ function App() {
         <Route path="productname" element={<ProductName />} />
         <Route path="emailsubject" element={<EmailSubject />} />
         <Route path="emailgenerator" element={<EmailGenerator />} />
-        {/* <Route path="landingpage" element={<LandingPage />} /> */}
+        <Route path="landingpage" element={<LandingPage />} />
         <Route path="blogtopic" element={<BlogTopic />} />
         <Route path="land" element={<Land />} />
         <Route path="image" element={<ImageGen />} />
@@ -196,7 +198,9 @@ function App() {
         <Route path="social_media" element={<SocialMedia />} />
         <Route path="blog-and-articles" element={<BlogAndArticle />} />
         <Route path="commerce" element={<Commerce />} />
-        <Route path="landing_page" element={<LandingPage />} />
+        <Route path="landing_page" element={<LandingP />} />
+        <Route path="translate" element={<Translate />} />
+        <Route path="email" element={<Email />} />
         // pages2
         <Route path="allArticle" element={<ALLArticleRewritter />} />
         <Route path="allArticle/:id" element={<ArticleRewriterMore />} />
