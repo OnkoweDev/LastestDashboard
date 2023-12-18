@@ -57,6 +57,7 @@ import { addAudioReducer, deleteAudioReducer, getAudioReducer, getOneAudioReduce
 import { addImageReducer, deleteImageReducer, getImageReducer, getOneImageReducer } from './reducers/backend/imageReducer'
 import { addUploadReducer, deleteUploadReducer, getOneUploadReducer, getUploadReducer } from './reducers/backend/uploadReducer'
 import { updateProfileReducer } from './reducers/backend/profileReducer'
+import { changePasswordReducer } from './reducers/backend/changePasswordReducer'
 
 
 const reducers = combineReducers({
@@ -64,6 +65,9 @@ const reducers = combineReducers({
     userLogin:userLoginReducer,
     userRegister:userRegisterReducer,
 
+    //changePassword
+    changePassword:changePasswordReducer,
+    
     //This is the AI backend Reducers
     addBlogIntro:addBlogIntroReducer,
 
