@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SidebarRow from "./SidebarRow";
 import "./styles/SideNav.css";
-import logo from "../assets/logo.png";
+import logo from "./../assets/logo.png";
 
 
 
