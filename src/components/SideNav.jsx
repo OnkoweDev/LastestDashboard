@@ -160,81 +160,12 @@ const SideNav = () => {
       name: "Blog & Article",
       icon: <FaBloggerB />,
       path: "/blog-and-articles",
-      // subItems: [
-      //   {
-      //     name: "Blog Topic Generator",
-      //     path: "/blogtopic",
-      //     icon: <FaBloggerB />,
-      //   },
-      //   {
-      //     name: " Blog Intro Generator",
-      //     path: "/blog-intro-generator",
-      //     icon: <FaBloggerB />,
-      //   },
-
-      //   {
-      //     name: " Blog Section Generator",
-      //     path: "/blog-section-generator",
-      //     icon: <FaBloggerB />,
-      //   },
-      //   {
-      //     name: "Blog Article Writer",
-      //     path: "/blog-article-writer",
-      //     icon: <FaBloggerB />,
-      //   },
-      // ],
     },
-
-    // {
-    //   name: "Article",
-    //   icon: <FaArtstation />,
-    //   path: "/article",
-    //   // subItems: [
-    //   //   {
-    //   //     name: " Content Rephraser",
-    //   //     path: "/content-rephraser",
-    //   //     icon: <FaChartPie />,
-    //   //   },
-    //   //   {
-    //   //     name: " Article/Blog Conclusion Generator",
-    //   //     path: "/article-blog-conclusion",
-    //   //     icon: <FaArtstation />,
-    //   //   },
-
-    //   //   {
-    //   //     name: " Article Rewriter",
-    //   //     path: "/articleRewriter",
-    //   //     icon: <FaChartBar />,
-    //   //   },
-    //   //   {
-    //   //     name: "Article/Blog Summary Generator",
-    //   //     path: "/blog-article-writer",
-    //   //     icon: <FaRegGrinHearts />,
-    //   //   },
-    //   //   {
-    //   //     name: "Paragraph Writer",
-    //   //     path: "/paragraph-writer",
-    //   //     icon: <FaChartArea />,
-    //   //   },
-    //   // ],
-    // },
 
     {
       name: "Commerce",
       icon: <FaProductHunt />,
       path: "/commerce",
-      // subItems: [
-      //   {
-      //     name: "Product Description Generator",
-      //     path: "/product",
-      //     icon: <FaChartPie />,
-      //   },
-      //   {
-      //     name: " Product Name Generator",
-      //     path: "/productname",
-      //     icon: <FaNutritionix />,
-      //   },
-      // ],
     },
 
     {
