@@ -123,6 +123,8 @@ import ProductDescMore from "./pages2/ProductDesc/ProductDescMore";
 import Help from "./pages/Help";
 import Suggest from "./pages/Suggest";
 import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+
 BlogMore
 function App() {
   
@@ -137,6 +139,7 @@ function App() {
         <Route path="/upload" element={<Upload />} />
         <Route path="font" element={<Font />} />
         <Route path="forgetpassword" element={<ForgotPassword />} />
+        <Route path="reset-password" element={<ResetPassword />} />
         <Route path="resources" element={<Resources />} />
         <Route path="theme" element={<Theme />} />
         <Route path="transcribe" element={<Transcribe />} />
