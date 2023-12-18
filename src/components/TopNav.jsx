@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BiMenu } from "react-icons/bi";
-import logo from "../assets/Logo.png";
+import logo from "./../assets/logo.png";
 import profile from "../assets/dummyProfile.png";
 import { Link, NavLink } from "react-router-dom";
 
@@ -54,20 +54,17 @@ const TopNav = () => {
   const handleMenuToggle = () => {
     setShowMenu(!showMenu);
   };
-    const dispatch = useDispatch()
-    const userLogin = useSelector((state)=>state.userLogin)
-    const {userInfo,error} = userLogin
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo, error } = userLogin;
 
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
-    const handleLogout = () => {
-        dispatch(logout())
-    }
-    
-    
-    useEffect(() => {
-        
-    }, [userInfo])
+  useEffect(() => {}, [userInfo]);
   return (
+
     <div className="mycontainer">    
     <nav className="top-nav">
       <div className="inner-container">
@@ -102,41 +99,40 @@ const TopNav = () => {
                   text={"Something new"}
                 />
 
-                <ProfileRow
-                Icon={FcCollaboration}
-                title={"Collaboration"}
-                link="/notification"
-                text={"Something new"}
-              />
-                {/*<ProfileRow
+
+                  <ProfileRow
+                    Icon={FcCollaboration}
+                    title={"Collaboration"}
+                    link="/notification"
+                    text={"Something new"}
+                  />
+                  {/*<ProfileRow
                   Icon={BiHomeAlt}
                   title={"Prefrences"}
                   link="/preference"
                   text={"Manage your prefrences"}
               />*/}
-                <ProfileRow
-                  Icon={BiHomeAlt}
-                  title={"Password"}
-                  link="/password"
-                  text={"Change password"}
-                />
-                {<Link  to='/' onClick={handleLogout} >
-                  <div className="logout-con">
-                    <BiLogOut className="logout-icon" /> 
-                    <p className="logout-text">Logo out</p>
-                  </div>
-                </Link>}
-                  { /*<ProfileRow  onClick={handleLogout} Icon={BiLogOut} title={"Log Out"} link='/' /> */}
-
-              </section>
+                  <ProfileRow
+                    Icon={BiHomeAlt}
+                    title={"Password"}
+                    link="/password"
+                    text={"Change password"}
+                  />
+                  {
+                    <Link to="/" onClick={handleLogout}>
+                      <div className="logout-con">
+                        <BiLogOut className="logout-icon" />
+                        <p className="logout-text">Logo out</p>
+                      </div>
+                    </Link>
+                  }
+                  {/*<ProfileRow  onClick={handleLogout} Icon={BiLogOut} title={"Log Out"} link='/' /> */}
+                </section>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-    
-      
-    </nav>
+      </nav>
     </div>
   );
 };

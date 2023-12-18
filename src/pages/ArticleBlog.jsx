@@ -223,6 +223,7 @@ const GoogleAdTitile = () => {
                     value={projectId}
                     name=""
                     id=""
+                    required
                     className="select"
                     style={{
                       display: "block",
