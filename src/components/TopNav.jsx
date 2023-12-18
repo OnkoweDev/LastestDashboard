@@ -2,29 +2,8 @@ import React, { useEffect, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import logo from "../assets/Logo.png";
 import profile from "../assets/dummyProfile.png";
-import ebook from "../assets/ebookIcon.png";
-import blog1 from "../assets/article.png";
-import blog3 from "../assets/blog-writer.png";
-import blog2 from "../assets/blog-section.png";
-import content from "../assets/content.png";
-import articleBlog from "../assets/article-blog.png";
-import paragraph from "../assets/paragraph.png";
-import tweet from "../assets/tweet.png";
-import instagram from "../assets/instagram.png";
-import linkedin from "../assets/linkedin.png";
-import product from "../assets/product.png";
-import youtube from "../assets/youtube.png";
 import { Link, NavLink } from "react-router-dom";
 
-import german from "../assets/german.png";
-import france from "../assets/france.png";
-import italy from "../assets/italy.png";
-import japan from "../assets/japan.png";
-import portugal from "../assets/portugal.png";
-import russia from "../assets/russia.png";
-import spain from "../assets/spain.png";
-import nigeria from "../assets/nigeria.png";
-import china from "../assets/china.png";
 
 import "./styles/TopNav.css";
 
@@ -89,21 +68,14 @@ const TopNav = () => {
         
     }, [userInfo])
   return (
-    <div className="mycontainer">
-    
+    <div className="mycontainer">    
     <nav className="top-nav">
       <div className="inner-container">
-        <div className="logo">
-          <img src={logo} alt="" style={{ width: "100%" }} />
-        </div>
-        <div className="nav">
-          <ul>
-                          
-          </ul>
-        </div>
-        {/*  */}
-        <div className="profile drop-btn">
-          <img src={profile} alt="" style={{ width: "100%" }} />
+        {/*profile dropdown  */}
+          <div className="profile drop-btn">
+            <div className="image">
+              <img src={profile} alt="" style={{ width: "100%" }} />
+            </div>
           <div className="drop-content">
             <div className="dropdown-link dropdown-btn-link">
               <section className="top">
