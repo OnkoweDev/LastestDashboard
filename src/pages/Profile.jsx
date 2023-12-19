@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfileAction } from "../actions/backend/profileAction";
+import { userProfileAction } from "../actions/userAction";
 
 const Profile = () => {
   const [fullname,setFullname] = useState('')
@@ -16,8 +17,22 @@ const Profile = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const updateProfile = useSelector((state)=>state.updateProfile)
-  const {loading,success, error} = updateProfile
+  const userProfile = useSelector((state)=>state.userProfile)
+  const {loading,success, error} = userProfile
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading:loginLoading, userInfo, error:loginError } = userLogin;
+
+  useEffect(()=>{
+    if(!userInfo){
+      navigate('/')
+    }
+    else {
+      setFullname(userInfo?.full_name)
+      setPhone(userInfo?.phone_number)
+      setMessage(userInfo?.about)
+    }
+  },[navigate,userInfo])
 
   const handleChange = (event) => {
     setUpload(event.target.files[0])
@@ -28,8 +43,8 @@ const Profile = () => {
     const formData = new FormData();
     formData.append('file', upload);
     formData.append('fileName', upload.name);
-    //console.log(message,phone,upload,message)
-    dispatch(updateProfileAction(fullname,message,phone,formData))
+    console.log(message,phone,upload,message)
+    dispatch(userProfileAction(fullname,message,phone,formData))
   }
 
 
@@ -49,6 +64,8 @@ const Profile = () => {
               <hr />
               <section className="form__container">
                 <form onSubmit={handleProfile}>
+                {success ? <p style={{color:"green"}}>Profile updated successfully</p>:'failed'}
+                {error && <div className='bar error'>{error}</div>}
                   <article>
                     <aside>
                       <label htmlFor="FirstName">Full Name</label>
@@ -76,7 +93,7 @@ const Profile = () => {
                     className="btn article-btn"
                     style={{ fontSize: "16px" }}
                   >
-                    Update Information
+                    {loading ? "Updating..." : "update"}
                   </button>
                 </form>
               </section>
