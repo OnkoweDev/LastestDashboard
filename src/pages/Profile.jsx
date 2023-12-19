@@ -18,7 +18,7 @@ const Profile = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const userProfile = useSelector((state)=>state.userProfile)
-  const {loading,success, error} = userProfile
+  const {loading,success, error,userInfo:profileInfo} = userProfile
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading:loginLoading, userInfo, error:loginError } = userLogin;
@@ -28,9 +28,9 @@ const Profile = () => {
       navigate('/')
     }
     else {
-      setFullname(userInfo?.full_name)
-      setPhone(userInfo?.phone_number)
-      setMessage(userInfo?.about)
+      setFullname(profileInfo?.full_name)
+      setPhone(profileInfo?.phone_number)
+      setMessage(profileInfo?.about)
     }
   },[navigate,userInfo])
 

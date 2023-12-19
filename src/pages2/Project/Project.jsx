@@ -14,10 +14,15 @@ const AllProject= () => {
   const dispatch = useDispatch()
 
   const getProject = useSelector((state)=>state.getProject)
-  const {loading,error,project} = getProject
+  const {loading,error,project:Babawale} = getProject
+
+  const project = useSelector((state)=>state.project)
+  const {loading:wale,error:waleError,success,projects} = project 
 
   const saveProductName = useSelector((state)=>state.saveProductName)
   const {error:googleError} = saveProductName
+
+  
 
   const deleteProject = useSelector((state)=>state.deleteProject)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteProject
@@ -35,6 +40,8 @@ const AllProject= () => {
     },4000)
     }
 }
+
+
 
 
 
@@ -64,13 +71,12 @@ const AllProject= () => {
                {error && <div className=' bar error'>{error}</div>}
                {message && <div className=' bar success'>{message}</div>}
 
-               {Array.isArray(project) ? project && project.map((face)=>(
+               {Array.isArray(Babawale) ? Babawale && Babawale.map((face)=>(
                 <div className="card" key={face.id}>
                         <h1>{face.name}</h1> 
-                        <b style={{color:"red"}}>status : {face.status}</b>
                         <br/>
                         {/*<Link to={`/all_project/${face.id}`}>Read more</Link><br/>*/}
-                        <a  onClick={()=>handleDelete(face.id)}>delete</a>
+                        <a style={{color:"red"}}  onClick={()=>handleDelete(face.id)}>Delete</a>
 
                      
                 </div>

@@ -41,11 +41,22 @@ const Project = () => {
   const project = useSelector((state)=>state.project)
   const {loading,error,success,projects} = project 
 
+  const [message, setMessage] = useState("")
+
   const handSubmit = (e) => {
     e.preventDefault()
     console.log(name,status)
     dispatch(projectAction(name,status))
-    navigate('/all_project')
+    if(success){
+      setMessage("Project Created Successfully!")
+    
+      setTimeout(()=>{
+          setMessage("")
+          navigate('/all_project')
+      },5000)
+    }
+   
+
   }
 
 
@@ -107,6 +118,7 @@ const Project = () => {
                 <div className="right">
                     {loading && <Loader />}
                     {error && <div className='bar error'>{error}</div>}
+                    {message && <div className='bar success'>{message}</div>}
                     <form onSubmit={handSubmit}>
                   <p className="product-p">Project Name*</p>
                   <textarea
