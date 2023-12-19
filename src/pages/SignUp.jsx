@@ -13,9 +13,9 @@ import logo from "../assets/logo.png";
 import Button from "../components/Button";
 
 const SignUp = () => {
-  const [full_name, setFullname] = useState({});
-  const [email, setEmail] = useState({});
-  const [password, setPassword] = useState({});
+  const [full_name, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
@@ -26,6 +26,7 @@ const SignUp = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     dispatch(register(full_name, email, password));
+    console.log(full_name)
   };
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const SignUp = () => {
         <div className="form__section__wrapper">
           <h5>Sign Up</h5>
           {error && <div className="bar error">{error}</div>}
-          <form onSubmit={handleRegister}>
+          <form onSubmit={handleRegister} novalidate>
             <label htmlFor="fullName" className="py-2">
               Full Name
             </label>
@@ -57,6 +58,7 @@ const SignUp = () => {
               className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300"
               //value={full_name}
               onChange={(e) => setFullname(e.target.value)}
+              value={full_name}
             />
             <label htmlFor="email" className="py-2">
               Email Address
@@ -68,6 +70,7 @@ const SignUp = () => {
               placeholder="Enter your email address"
               className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300"
               onChange={(e) => setEmail(e.target.value)}
+              value={email}
             />
             <label htmlFor="Password" className="py-2">
               Password
@@ -76,11 +79,13 @@ const SignUp = () => {
               <article className="input__wrapper">
                 <input
                   required
+                  name="password"
                   type={showPassowrd ? "text" : "password"}
                   placeholder="Enter your password"
                   className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300 flex items-center"
                   //value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  value={password}
                 />
                 {showPassowrd ? (
                   <AiOutlineEyeInvisible
@@ -96,17 +101,13 @@ const SignUp = () => {
               </article>
             </div>
             <div className="flex items-center md:inline">
-              <section className="md:hidden block">
-                <input
-                  type="checkbox"
-                  required
-                  className="inline transform scale-150 mr-2"
-                />
-              </section>
+              
               <input
                 type="checkbox"
                 required
-                className="md:inline hidden transform scale-150 mr-2"
+                className="md:inline transform scale-150 mr-2"
+                name="checkbox"
+                id="checkboxId"
               />
               <p className="inline md:px-3 px-2">
                 I’ve agreed to the Terms and have read and acknowledged our
@@ -114,7 +115,6 @@ const SignUp = () => {
               </p>
             </div>
             <br />
-
             <Button> {loading ? "Processing please wait" : "Sign Up"}</Button>
           </form>
           {/* other sign up options */}

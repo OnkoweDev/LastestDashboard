@@ -14,8 +14,8 @@ import { FaTwitter } from "react-icons/fa";
 import Button from "../components/Button";
 
 const SignIn = () => {
-  const [email, setEmail] = useState({});
-  const [password, setPassword] = useState({});
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -62,6 +62,7 @@ const SignIn = () => {
               name="email"
               className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300"
               onChange={(e) => setEmail(e.target.value)}
+              value={email}
             />
 
             <label htmlFor="Password" className="py-2">
@@ -75,6 +76,7 @@ const SignIn = () => {
                   className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300 flex items-center"
                   placeholder="password"
                   onChange={(e) => setPassword(e.target.value)}
+                  value={password}
                 />
                 {showPassowrd ? (
                   <AiOutlineEyeInvisible

@@ -129,26 +129,7 @@ const Project = () => {
                     }}
                   ></textarea>
 
-                  <p className="product-p">Project Status*</p>
-                  <textarea
-                    onChange={(e)=>setStatus(e.target.value)}
-                    value={status}
-                    name=""
-                    id=""
-                    required
-                    style={{
-                      display: "block",
-                      width: "100%",
-                      background: "var(--primary-blue)",
-                      borderRadius: "var(--border-radius-xs)",
-                      border: "none",
-                      outline: "none",
-                      height: "40%",
-                      margin: "10px 0",
-                      padding: "10px",
-                      resize: "none",
-                    }}
-                  ></textarea>
+                 
                   <div
                     className="mic"
                     style={{

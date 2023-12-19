@@ -28,7 +28,7 @@ const Translate = () => {
     {
       name: "Spain",
       path: "/spanish",
-      img: <img src={spain} alt="" />,
+      img: <img src='../assets/spain.png' alt="" />,
     },
 
     {
