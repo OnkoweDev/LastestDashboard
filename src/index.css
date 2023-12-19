@@ -58,6 +58,7 @@ body {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   height: 90vh;
+  width: 100%;
 }
 
 .content {
@@ -66,11 +67,16 @@ body {
   grid-column-end: 7;
   padding: 20px 40px;
   border-radius: var(--border-radius-sm);
-  margin-top: 60px;
-  /* position: relative; */
+  margin: 5rem auto 0;
+
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
+
+    grid-column-start: 1;
+    width: 100%;
+
+    padding: 0px;
   }
 }
 
@@ -78,6 +84,7 @@ body {
 .inner-page-container {
   height: 100%;
   width: 100%;
+
   @media (max-width: 768px) {
     margin-bottom: 20px;
   }
@@ -92,14 +99,23 @@ body {
 
   @media (max-width: 768px) {
     flex-direction: column;
+    margin: 0;
+    padding: 0;
   }
 }
 
 .inner-page-container .body-content .left {
-  flex-basis: 25%;
+  flex-basis: 20%;
   height: 90%;
   padding: 20px;
   border: 1px solid var(--light-grey);
+
+  @media (max-width: 768px) {
+    flex-basis: 50%;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .body-content .left input {
@@ -138,8 +154,9 @@ body {
   position: relative;
 
   @media (max-width: 768px) {
+    flex-basis: 50%;
     width: 100%;
-    margin: 10px;
+    margin: 0px;
   }
 }
 
@@ -183,8 +200,4 @@ body {
   .inner-page-container .body-content .left {
     padding: 10px;
   }
-}
-
-.sss {
-  border: 1px solid red;
 }

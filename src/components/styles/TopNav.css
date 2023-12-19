@@ -37,58 +37,14 @@
   aspect-ratio: 1/1;
 }
 
-/* .inner-container {
-  width: 100%;
-  margin: 0 auto;
-  z-index: 20;
-  
-  @media(max-width: 768px){
-    max-width: 100%;
-    margin-bottom: 10px;
- }
-} */
-
-/* .top-nav .inner-container {
-  display: flex;
-  align-items: center;
-  position: relative;
-
-  @media(max-width: 768px){
-    font-size: 10px;
- }
-} */
-
-.profile .image {
+.top-nav .image {
   width: 50px;
   height: 50px;
   border-radius: var(--border-radius-half);
   overflow: hidden;
-  float: right;
-  margin-right: 2rem;
 
-  @media (max-width: 700px) {
-    float: left;
-    margin: 0;
-  }
-}
-
-/* .top-nav .inner-container .nav {
-  flex: 1;
-  text-align: right;
-  width: 100%;
-} */
-
-/* .top-nav .inner-container .nav ul {
-  display: inline-flex;
-  align-items: center;
-} */
-
-/* .top-nav .inner-container .nav ul li {
-  padding: 10px 25px;
-  font-size: 16px;
-  font-weight: 400;
   cursor: pointer;
-} */
+}
 
 .top-nav .inner-container .navLink {
   color: var(--black);
@@ -110,22 +66,21 @@
 /* dropdowm */
 
 .drop-content {
-  display: none;
   position: absolute;
-  top: 80%;
-  margin-right: 1rem;
+  top: 100%;
+  right: 1rem;
   padding: 1rem;
   background-color: var(--background);
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   border-radius: var(--border-radius-sm);
   overflow: hidden;
-  z-index: 1;
+  z-index: 2;
 
   @media (max-width: 700px) {
-    min-width: 200px;
+    max-width: 300px;
     width: 100%;
-    right: 0;
-    margin: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
@@ -156,28 +111,12 @@
   cursor: pointer;
 }
 
-.drop-btn:hover .drop-content {
-  display: block;
-}
-
 /* profile */
 
 .profile .drop-content .dropdown-link .top {
   display: flex;
   align-items: center;
   gap: 20px;
-}
-
-.profile .drop-content .dropdown-link .top .profile__img {
-  width: 50px;
-  aspect-ratio: 1/1;
-  overflow: hidden;
-
-  border-radius: var(--border-radius-half);
-}
-
-.profile .drop-content .dropdown-link .top .profile__img img {
-  width: 100%;
 }
 
 .profile .top h3 {
@@ -226,24 +165,6 @@
 
   .drop-btn {
     position: relative;
-  }
-
-  .drop-content {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    display: none; /* Initially hide dropdown */
-    width: 100%;
-    background-color: var(--background);
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    border-radius: var(--border-radius-sm);
-    z-index: 1;
-  }
-
-  /* Display dropdown content on hover or click */
-  .drop-btn:hover .drop-content,
-  .drop-btn:focus .drop-content {
-    display: block;
   }
 
   /* Adjust other styles for smaller screens */

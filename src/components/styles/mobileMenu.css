@@ -1,0 +1,18 @@
+.mobile_menu-wrapper {
+  width: 100%;
+  height: 100%;
+  margin: 1rem 0 4rem;
+}
+
+.mobile_menu-wrapper .link {
+  width: 100%;
+  margin: 0.45rem 0;
+}
+
+.mobile_menu-wrapper .icon {
+  font-size: 1.3rem;
+}
+
+.mobile_menu-wrapper .link-name {
+  font-size: 1rem;
+}

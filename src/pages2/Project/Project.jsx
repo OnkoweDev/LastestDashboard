@@ -55,7 +55,7 @@ const AllProject= () => {
           <Link className="article-btn"  
           style={{ 
             fontSize: "14px",
-            width:"20%",
+            width:"100%",
             textAlign:"center",
             justifyContent:"center",
             alignItems:"center",

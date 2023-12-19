@@ -8,6 +8,8 @@ import { NavLink } from "react-router-dom";
 
 import ebook from "../assets/ebookIcon.png";
 
+import "./styles/mobileMenu.css";
+
 const MobileMenu = ({ showMenu }) => {
   const menuItems = [
     {
@@ -77,12 +79,12 @@ const MobileMenu = ({ showMenu }) => {
   return (
     <div>
       {showMenu && (
-        <div>
+        <div className="mobile_menu-wrapper">
           {menuItems.map((item, index) => (
             <div key={index}>
               <NavLink to={item.path} key={index} className="link">
                 <div className="icon">{item.icon}</div>
-                <div style={{ display: "block" }} className="link-name">
+                <div className="link-name">
                   {item.name}
                 </div>
               </NavLink>
