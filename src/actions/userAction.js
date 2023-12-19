@@ -66,7 +66,7 @@ export const logout = ()=> async (dispatch) => {
         dispatch({ type: USERS_LOGOUT });
 };
 
-export const userProfileAction = (id,about,phone_number,first_name,avatar) => async(dispatch,getState) => {
+export const userProfileAction = (id,about,first_name,phone_number,avatar) => async(dispatch,getState) => {
     try {
         dispatch({type:USERS_PROFILE_REQUEST})
         const {userLogin:{userInfo}} = getState();
@@ -83,8 +83,8 @@ export const userProfileAction = (id,about,phone_number,first_name,avatar) => as
         }
 
         const userData = {
-            about,first_name,phone_number,avatar
-          };
+            about,phone_number,first_name,avatar
+          }
       
         const response = await axios.put(`https://dev.olukowe.co/api/account/${accountId}/profile/${userid}`,userData,config)
 
@@ -92,7 +92,6 @@ export const userProfileAction = (id,about,phone_number,first_name,avatar) => as
         console.log(data)
 
         dispatch({type:USERS_PROFILE_SUCCESS, payload:data.data})
-        dispatch({type:USERS_LOGIN_SUCCESS,payload:data.data})
         localStorage.setItem('userInfo', JSON.stringify(data));
 
 

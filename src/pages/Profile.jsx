@@ -63,7 +63,7 @@ const Profile = () => {
               </section>
               <hr />
               <section className="form__container">
-                <form onSubmit={handleProfile}>
+                <form onSubmit={handleProfile} enctype="multipart/form-data">
                 {success ? <p style={{color:"green"}}>Profile updated successfully</p>:'failed'}
                 {error && <div className='bar error'>{error}</div>}
                   <article>
