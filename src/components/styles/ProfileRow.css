@@ -1,8 +1,8 @@
 .profile__row {
   display: flex;
   align-items: center;
-  margin: 10px 0;
-  padding: 10px 20px;
+  margin: 10px 0 10px -10px;
+  padding: .2rem .6rem;
   border-radius: var(--border-radius-xl);
   transition: var(--transition);
 }
