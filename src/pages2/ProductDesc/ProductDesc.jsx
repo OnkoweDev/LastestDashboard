@@ -55,7 +55,7 @@ const AllProductDesc = () => {
             padding:"5px",
             
         }} 
-        to='/productname'>Create Product Description</Link><br/>
+        to='/product'>Create Product Description</Link><br/>
 
 
               <div className="cards-container">

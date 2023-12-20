@@ -17,6 +17,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import Loader from "../components/Loader";
 import { projectAction } from "../actions/backend/projectAction";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -48,7 +49,7 @@ const Project = () => {
     console.log(name,status)
     dispatch(projectAction(name,status))
     if(success){
-      setMessage("Project Created Successfully!")
+      toast.success("projecct created successfuly");
     
       setTimeout(()=>{
           setMessage("")
@@ -119,6 +120,7 @@ const Project = () => {
                     {loading && <Loader />}
                     {error && <div className='bar error'>{error}</div>}
                     {message && <div className='bar success'>{message}</div>}
+                    <Toaster />
                     <form onSubmit={handSubmit}>
                   <p className="product-p">Project Name*</p>
                   <textarea

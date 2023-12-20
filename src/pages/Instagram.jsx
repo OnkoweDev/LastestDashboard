@@ -21,6 +21,7 @@ import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addInstagramCapAction } from "../actions/backend/instagramCapAction";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const Instagram = () => {
   // state for audio option
@@ -58,7 +59,14 @@ const Instagram = () => {
     const divData = myDiv.current.innerText
     console.log(divData,projectId)
     dispatch(addInstagramCapAction(divData,projectId))
-    navegate('/allinstagram')
+    
+
+    if(instaSuccess){
+      toast.success("instagram caption saved successfuly");
+      setTimeout(()=>{
+        navegate('/allinstagram')
+      },5000)
+    }
 
   }
 
@@ -201,6 +209,7 @@ const Instagram = () => {
                 <form onSubmit={handleForm}>
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
+                <Toaster />
                 {instagrams && instagrams.map((inst)=>(
                   <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
                   <BCDIcons />

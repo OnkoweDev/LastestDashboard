@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   BCDIcons,
   OutputNumber,
@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProductAction } from "../actions/ai/productAction";
 import Loader from "../components/Loader";
 import { youtubeDescAction } from "../actions/ai/youtubeDescriptionAction";
+import { getProjectAction } from "../actions/backend/projectAction";
 
 const YoutubeGenerator = () => {
   // state to keep track of number of output
@@ -27,10 +28,20 @@ const YoutubeGenerator = () => {
   const [keywords, setKeywords] = useState([])
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
+  const [projectId, setProjectId] = useState()
+  const myDiv = useRef(null)
 
   const dispatch = useDispatch()
   const youtubeDesc = useSelector((state) => state.youtubeDesc)
   const {loading, error, success, yous} = youtubeDesc
+
+  const getProject = useSelector((state)=>state.getProject)
+  const {loading:projectLoading,error:projectError, project} = getProject
+
+  useEffect(() => {
+    dispatch(getProjectAction())
+}, [])
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -165,12 +176,50 @@ const YoutubeGenerator = () => {
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
+                <form>
+                
                 {yous && yous.map((you)=>(
-                  <div className="sec-1">
+                  <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
                     <BCDIcons />
                     {you.generated_descriptions}
                   </div>
                 ))}
+                <p className="product-p">Select Project*</p>
+                  <select
+                onChange={(e)=>setProjectId(e.target.value)} 
+                value={projectId}
+                name=""
+                id=""
+                className="select"
+                style={{
+                  display: "block",
+                  width: "100%",
+                  background: "var(--primary-blue)",
+                  borderRadius: "var(--border-radius-xs)",
+                  border: "none",
+                  outline: "none",
+                  height: "10%",
+                  margin: "5px 0",
+                  padding: "5px",
+                  fontWeight: "400",
+                  fontSize: "14px",
+                  lineHeight: "21px",
+                  color: "rgba(0, 22, 51, 0.5)",
+                }}
+                >
+                <option value="" selected disabled hidden>Select project</option>
+                
+                {
+                  project && project.map((pro, i)=>(
+                    <option key={i} value={pro.id}>{pro.name}</option>
+                    ))
+                  }
+                  </select>
+                  <br />
+            <button className="article-btn" style={{ fontSize: "12px" }}>
+            Save Youtube Intro
+          </button>
+                </form>
                   {/* <div className="sec-2">
                     <BCDIcons />
                     <div className="txt-sec"></div>

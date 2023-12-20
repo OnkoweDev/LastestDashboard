@@ -19,6 +19,7 @@ import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addContentRepreAction } from "../actions/backend/contentRepreAction";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -47,7 +48,7 @@ const GoogleAdDesc = () => {
   const {loading:projectLoading,error:projectError, project} = getProject
 
    const saveContent = useSelector((state)=>state.saveContent)
-   const {loading:contentLoading,error:contentError} = saveContent
+   const {loading:contentLoading,error:contentError,success:conSuccess} = saveContent
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -61,7 +62,13 @@ const GoogleAdDesc = () => {
     console.log(divData)
     console.log(projectId)
     dispatch(addContentRepreAction(divData,projectId))
-    navigate('/content')
+   
+    if(conSuccess){
+      toast.success("Content Rephraser saved successfuly");
+      setTimeout(()=>{
+        navigate('/content')
+      },5000)
+    }
   }
 
   useEffect(() => {
@@ -217,6 +224,7 @@ const GoogleAdDesc = () => {
                     {error && <div className=' bar error'>{error}</div>}
                     {contentLoading && <Loader />}
                     {contentError && <div className=' bar error'>{contentError}</div>}
+                    <Toaster />
                     <form onSubmit={handleForm}>
                         {rephesals && rephesals.map((rephesal)=>(
                           

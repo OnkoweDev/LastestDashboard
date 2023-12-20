@@ -19,6 +19,8 @@ import { blogSectionAction } from "../actions/ai/blogSectionAction";
 import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addSectionAction } from "../actions/backend/blogSectionAction";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -147,7 +149,13 @@ const Facebook = () => {
     console.log(divData)
     console.log(projectId)
     dispatch(addSectionAction(divData,projectId))
-    navigate('/blogsection')
+    
+    if(blogSuccess){
+      toast.success("Blog section save successfuly");
+      setTimeout(()=>{
+        navigate('/blogsection')
+      },5000)
+    }
   }
 
   useEffect(() => {
@@ -258,6 +266,7 @@ const Facebook = () => {
                 <form onSubmit={handleForm}>
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
+                <Toaster />
                 {Array.isArray(blogsSec) ? blogsSec && blogsSec.map((blog)=>(
                   
                   <div className="sec-1" ref={myDiv}>

@@ -20,6 +20,7 @@ import { addBlog, getBlogIntroAction } from "../actions/ai/blogIntroAction";
 import Loader from '../components/Loader'
 import { getProjectAction } from "../actions/backend/projectAction";
 import { blogIntroAddAction } from "../actions/backend/blogIntroAction";
+import toast, { Toaster } from "react-hot-toast";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -76,7 +77,15 @@ const handleForm  = (e) => {
   console.log(divData)
   console.log(projectId)
   dispatch(blogIntroAddAction(divData,projectId))
-  navigate('/all_intro')
+
+  
+  if(success){
+    toast.success("Blog intro save successfuly");
+    setTimeout(()=>{
+      navigate('/all_intro')
+    },5000)
+  }
+  
 }
 
 useEffect(() => {
@@ -221,10 +230,8 @@ useEffect(() => {
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
+                <Toaster />
                 
-               
-
-
                 <form onSubmit={handleForm}>
                 
                 {

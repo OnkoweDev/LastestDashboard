@@ -23,6 +23,7 @@ import { facebookAction } from "../actions/ai/facebookAction";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addFacebookAction } from "../actions/backend/facebookAction";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const Facebook = () => {
   // state to keep track of number of output
@@ -61,7 +62,14 @@ const Facebook = () => {
     console.log(divData)
     console.log(projectId)
     dispatch(addFacebookAction(divData,projectId))
-    navegate('/allfacebookads')
+    
+
+    if(faceSuccess){
+      toast.success("Facebook ads saved successfuly");
+      setTimeout(()=>{
+        navegate('/allfacebookads')
+      },5000)
+    }
   }
 
   useEffect(() => {
@@ -240,6 +248,7 @@ const Facebook = () => {
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
                 {faceLoading && <Loader />}
+                <Toaster />
                 {face && face.map((you)=>(
                   <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
                   

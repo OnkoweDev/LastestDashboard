@@ -22,6 +22,7 @@ import { googleTitleAction } from "../actions/ai/googleTitleAction";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addGoogleTitleAction } from "../actions/backend/googleTitleAction";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const GoogleTitle = () => {
   // state to keep track of number of output
@@ -62,7 +63,12 @@ const GoogleTitle = () => {
     const divData = myDiv.current.innerText
     console.log(divData)
     dispatch(addGoogleTitleAction(divData,projectId))
-    navegate('/alltitle')
+    if(titleSuccess){
+      toast.success("google ads title saved successfuly");
+      setTimeout(()=>{
+        navegate('/alltitle')
+      },5000)
+    }
 
   }
 
@@ -216,6 +222,7 @@ const GoogleTitle = () => {
                 {loading && <Loader />}
                 {titleLoading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
+                <Toaster />
                 {title && title.map((you)=>(
                   <div className="sec-1" contentEditable suppressContentEditableWarning={true} ref={myDiv}>
                   

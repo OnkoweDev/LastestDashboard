@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addParagraphAction } from "../actions/backend/paragraphAction";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const ParagraphWriter = () => {
   // state for audio option
@@ -35,7 +36,7 @@ const ParagraphWriter = () => {
   const {loading, error, paragraphs,success} = paragraphWriter
 
   const saveParagraph = useSelector((state)=>state.saveParagraph)
-  const {loading:paragraphLoading, error:paragraphError} = saveParagraph
+  const {loading:paragraphLoading, error:paragraphError,success:paraSuccess} = saveParagraph
 
   const getProject = useSelector((state)=>state.getProject)
   const {loading:projectLoading,error:projectError, project} = getProject
@@ -55,7 +56,14 @@ const ParagraphWriter = () => {
     const divData = myDiv.current.innerText
     console.log(divData,projectId)
     dispatch(addParagraphAction(divData,projectId))
-    navegate('/all_paragraph')
+   
+
+    if(paraSuccess){
+      toast.success("Paragraph writer saved successfuly");
+      setTimeout(()=>{
+        navegate('/all_paragraph')
+      },5000)
+    }
   }
 
   // handle audio option
@@ -205,6 +213,7 @@ const ParagraphWriter = () => {
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 {paragraphError && <div className=' bar error'>{paragraphError}</div>}
+                <Toaster />
                 {paragraphs && paragraphs.map((para)=>(
                   <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
                   <BCDIcons />

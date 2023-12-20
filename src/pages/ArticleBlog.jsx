@@ -22,6 +22,7 @@ import { addConclusionAction } from "../actions/backend/conclusionAction";
 import { Link, useNavigate } from "react-router-dom";
 import ProjectModal from "../pages/ProjectModal"
 import '../pages/styles/projectModal.css';
+import toast, { Toaster } from "react-hot-toast";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -106,12 +107,20 @@ const GoogleAdTitile = () => {
     dispatch(addArticleBlog(article,outputNumber))
   }
 
+
   const handleForm = (e) => {
     e.preventDefault()
     const divData = myDiv.current.innerText
     console.log(divData,projectId)
     dispatch(addConclusionAction(divData,projectId))
-    navigate('/conclusion')
+   
+    if(success){
+      toast.success("Blog Article saved successfuly");
+    
+      setTimeout(()=>{
+          navigate('/conclusion')
+      },5000)
+    }
   }
 
 
@@ -203,6 +212,8 @@ const GoogleAdTitile = () => {
                 <form onSubmit={handleForm}>
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
+                <Toaster />
+
                 {conclusions && conclusions.map((conclusion)=>(
                   
                   <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning>

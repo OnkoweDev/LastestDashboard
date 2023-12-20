@@ -22,6 +22,7 @@ import { landAction } from "../actions/ai/landAction";
 import axios from "axios";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addLandingPageAction } from "../actions/backend/landingPageAction";
+import toast, { Toaster } from "react-hot-toast";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -51,7 +52,7 @@ const Land = () => {
   const {loading:projectLoading,error:projectError, project} = getProject
 
   const saveLandingPage = useSelector((state)=>state.saveLandingPage)
-  const {loading,error,LandingPages} = saveLandingPage
+  const {loading,error,LandingPages,success} = saveLandingPage
 
 
 
@@ -65,7 +66,13 @@ const Land = () => {
     const divData = myDiv.current.innerText
     console.log(divData,projectId)
     dispatch(addLandingPageAction(divData,projectId))
-    navegate('/all_landing')
+
+    if(success){
+      toast.success("Landing page saved successfuly");
+      setTimeout(()=>{
+        navegate('/all_landing')
+      },5000)
+    }
   }
 
 
@@ -256,6 +263,7 @@ const Land = () => {
                 
                 {isLoading && <Loader />}
                 {errorMessage && <div className='bar error'>{errorMessage}</div>}
+                <Toaster />
                 {/* {console.log(lands.data)} */}
                    {lands && lands?.map((blog)=>(
 

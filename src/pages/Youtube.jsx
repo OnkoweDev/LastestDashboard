@@ -20,6 +20,7 @@ import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addYoutubeAction } from "../actions/backend/youtubeAction";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const Youtube = () => {
     const [title, setTitle] = useState([])
@@ -39,7 +40,7 @@ const Youtube = () => {
 
     
     const saveYoutube = useSelector((state)=>state.saveYoutube)
-    const {loading:youtubeLoading,error:youtubeError} = saveYoutube
+    const {loading:youtubeLoading,error:youtubeError,success:youtubeSuccess} = saveYoutube
 
   useEffect(() => {
     dispatch(getProjectAction())
@@ -56,7 +57,14 @@ const Youtube = () => {
       const divData = myDiv.current.innerText
       console.log(divData,projectId)
       dispatch(addYoutubeAction(divData,projectId))
-      navigate('/all_youtube')
+      
+      
+    if(youtubeSuccess){
+      toast.success("YouTube Intro successfuly");
+      setTimeout(()=>{
+        navigate('/all_youtube')
+      },5000)
+    }
     }
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
@@ -199,6 +207,7 @@ const Youtube = () => {
                 <form onSubmit={handleForm}>
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
+                <Toaster />
                 {Array.isArray(youtubes) ?youtubes && youtubes.map((yout)=>(
                   <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
                   {yout.generated_intros.map((d)=>(

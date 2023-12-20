@@ -76,45 +76,7 @@ const TopNav = () => {
             <BiMenu className="icon" />
           </div>
           {/*profile dropdown  */}
-<<<<<<< HEAD
-          <div className="profile drop-btn">
-            <div className="image">
-              <img src={profile} alt="" style={{ width: "100%" }} />
-            </div>
-            <div className="drop-content">
-              <div className="dropdown-link dropdown-btn-link">
-                <section className="top">
-                  <aside className="profile__img">
-                    <img src={profile} alt="" />
-                  </aside>
-                  <aside className="profile__details">
-                    <h3>{userInfo.full_name}</h3>
-                    <small>{userInfo.email}</small>
-                  </aside>
-                </section>
-                <hr style={{ margin: "25px 0" }} />
-                <section className="botttom">
-                  <ProfileRow
-                    Icon={BiHomeAlt}
-                    title={"Profile"}
-                    link="/profile"
-                    text={"Personal information"}
-                  />
-                  <ProfileRow
-                    Icon={BiBell}
-                    title={"Notifications"}
-                    link="/notification"
-                    text={"Something new"}
-                  />
 
-                  <ProfileRow
-                    Icon={FcCollaboration}
-                    title={"Collaboration"}
-                    link="/notification"
-                    text={"Something new"}
-                  />
-                  {/*<ProfileRow
-=======
           <div className="image" onClick={toggleDropDown}>
             <img src={profile} alt="" style={{ width: "100%" }} />
           </div>
@@ -128,15 +90,14 @@ const TopNav = () => {
                 <aside className="profile__img">
                   <img src={profile} alt="" />
                 </aside>
-                <aside className="profile__details">
-                  <h3>username</h3>
-                  <small>email</small>
+                <aside style={{marginLeft:'70px'}} className="profile__details">
+                  <h3>{userInfo.full_name}</h3>
+                  <small>{userInfo.email}</small>
                 </aside>
               </section>
               <hr style={{ margin: "25px 0" }} />
               <section className="botttom">
                 <ProfileRow
->>>>>>> 17d2372465bc27d5ec915d9b7724c36c71a01812
                   Icon={BiHomeAlt}
                   title={"Profile"}
                   link="/profile"

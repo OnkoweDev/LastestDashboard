@@ -17,6 +17,7 @@ import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addLinkAction } from "../actions/backend/linkPostAction";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const LinkedIn = () => {
   // state for audio option
@@ -37,7 +38,7 @@ const LinkedIn = () => {
   const {loading:projectLoading,error:projectError, project} = getProject
   
   const saveLinkPost = useSelector((state)=>state.saveLinkPost)
-  const {loading:linkLoading, error:linkError} = saveLinkPost
+  const {loading:linkLoading, error:linkError,success:linkSuccess} = saveLinkPost
 
   useEffect(() => {
       dispatch(getProjectAction())
@@ -54,7 +55,13 @@ const LinkedIn = () => {
     const divData = myDiv.current.innerText
     console.log(divData)
     dispatch(addLinkAction(divData,projectId))
-    navigate('/all_link_post')
+   
+    if(linkSuccess){
+      toast.success("Shot Linkdin post saved successfuly");
+      setTimeout(()=>{
+        navigate('/all_link_post')
+      },5000)
+    }
   }
 
   const handleAudio = () => {
@@ -170,6 +177,7 @@ const LinkedIn = () => {
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 {linkError && <div className=' bar error'>{linkError}</div>}
+                <Toaster />
                 { links && links.map((link)=>(
                   <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning>
                   <BCDIcons />

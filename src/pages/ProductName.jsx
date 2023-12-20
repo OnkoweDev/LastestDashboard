@@ -23,6 +23,7 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { useEffect } from "react";
 import { addProductNameAction } from "../actions/backend/productNameAction";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 
 const ProductName = () => {
@@ -43,7 +44,7 @@ const ProductName = () => {
   const {loading:projectLoading,error:projectError, project} = getProject
 
   const saveProductName = useSelector((state) => state.saveProductName)
-  const {loading:productLoading,error:productError} = saveProductName
+  const {loading:productLoading,error:productError,success:productSuccess} = saveProductName
 
   useEffect(() => {
       dispatch(getProjectAction())
@@ -61,7 +62,14 @@ const ProductName = () => {
     const divData = myDiv.current.innerText
     console.log(divData,projectId)
     dispatch(addProductNameAction(divData,projectId))
-    navigate('/all_product_name')
+    
+
+    if(productSuccess){
+      toast.success("Product name saved successfuly");
+      setTimeout(()=>{
+        navigate('/all_product_name')
+      },5000)
+    }
   }
   
 
@@ -198,6 +206,7 @@ const ProductName = () => {
                 <form onSubmit={handleForm}>
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
+                <Toaster />
                 {
                   Array.isArray(product) ?
                 product && product.map((you)=>(

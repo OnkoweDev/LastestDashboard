@@ -216,7 +216,7 @@ function App() {
         <Route path="updateBlog/:id" element={<UpdateBlog />} />
         <Route path="content" element={<AllContentRepre />} />
         <Route path="content/:id" element={<ContentRepreMore />} />
-        <Route path="email" element={<EmailGen />} />
+        <Route path="allemail" element={<EmailGen />} />
         <Route path="email/:id" element={<EmailMore />} />
         <Route path="allEmailSubject" element={<AllEmailSubject />} />
         <Route path="allEmailSubject/:id" element={<EmailSubjectMore />} />

@@ -19,6 +19,8 @@ import { addArticleWriter } from "../actions/ai/blogArticleAction";
 import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { blogWriterAddAction } from "../actions/backend/blogWriterAction";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -107,6 +109,13 @@ useEffect(() => {
     console.log(projectId)
     dispatch(blogWriterAddAction(divData, projectId))
     navigate('/allBlogs')
+
+    if(blogSuccess){
+      toast.success("Blog Writer saved successfuly");
+      setTimeout(()=>{
+        navigate('/allBlogs')
+      },5000)
+    }
   }
 
  
@@ -246,6 +255,7 @@ useEffect(() => {
                 {/*  */}
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                 {loading && <Loader />}
+                <Toaster />
                 <form onSubmit={handleForm}>
                   {writers && writers.map((writer)=>(
                     <div className="sec-1" ref={myDiv} suppressContentEditableWarning={true} contentEditable>

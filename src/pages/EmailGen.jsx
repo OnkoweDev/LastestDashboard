@@ -22,6 +22,7 @@ import { emailGenAction } from "../actions/ai/emailGenAction";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addEmailGenAction } from "../actions/backend/emailGeneratorAction";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 
 const EmailGenerator = () => {
@@ -43,7 +44,7 @@ const EmailGenerator = () => {
   const {loading:projectLoading,error:projectError, project} = getProject
 
   const addEmail = useSelector((state)=>state.addEmail)
-  const {loading:emailLoading,error:emailError} = addEmail
+  const {loading:emailLoading,error:emailError,success:emailSuccess} = addEmail
 
 
   const handleSubmit = (e) => {
@@ -62,7 +63,14 @@ const EmailGenerator = () => {
     const divData = myDiv.current.innerText
     console.log(divData,projectId)
     dispatch(addEmailGenAction(divData,projectId))
-    navigate('/email')
+    
+
+    if(emailSuccess){
+      toast.success("Email saved successfuly");
+      setTimeout(()=>{
+        navigate('/allemail')
+      },5000)
+    }
   }
 
   // handle audio option
@@ -216,6 +224,7 @@ const EmailGenerator = () => {
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
+                <Toaster />
                 <form onSubmit={handleForm}>
                   {gene && gene.map((you)=>(
                     <div className="sec-1" ref={myDiv} contentEditable>

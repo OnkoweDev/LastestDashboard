@@ -22,6 +22,7 @@ import { emailSubjectAction } from "../actions/ai/emailSubjectAction";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addSubjectAction } from "../actions/backend/emailSubjectAction";
 import {useNavigate} from "react-router-dom"
+import toast, { Toaster } from "react-hot-toast";
 
 
 const EmailSubject = () => {
@@ -62,11 +63,14 @@ const EmailSubject = () => {
     const divData = myDiv.current.innerText
     console.log(divData,projectId)
     dispatch(addSubjectAction(divData,projectId))
-    setMessage("Saved successfully")
-    setTimeout(()=>{
-      setMessage("")
-    },4000)
-    navigate('/allEmailSubject')
+    
+
+    if(subjectSuccess){
+      toast.success("Email subject saved successfuly");
+      setTimeout(()=>{
+        navigate('/allEmailSubject')
+      },5000)
+    }
   }
 
   // handle audio option
@@ -202,7 +206,8 @@ const EmailSubject = () => {
                 {error && <div className='bar error'>{error}</div>}
 
                 {subjectLoading && <Loader />}
-                {subjectSuccess && <div className='bar success'>{message}</div>}
+               
+                <Toaster />
                 {email && email.map((you)=>(
                   <div className="sec-1" contentEditable suppressContentEditableWarning={true} ref={myDiv}>
                   <BCDIcons />

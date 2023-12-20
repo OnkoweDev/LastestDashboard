@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./styles/GoogleAdTitle.css";
 import articleBlog from "../assets/article-blog.png";
+import toast, { Toaster } from "react-hot-toast";
+
 import {
   BCDIcons,
   OutputNumber,

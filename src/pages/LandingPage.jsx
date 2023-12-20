@@ -23,6 +23,7 @@ import { useEffect } from "react";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addLandingHeadlineAction } from "../actions/backend/landingHeadlineAction";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 
 const LandingPage = () => {
@@ -61,6 +62,13 @@ const LandingPage = () => {
     console.log(divData)
     dispatch(addLandingHeadlineAction(divData,projectId))
     navegate('/all_landing_headline')
+    
+    if(success){
+      toast.success("Landing page saved successfuly");
+      setTimeout(()=>{
+        navegate('/all_landing')
+      },5000)
+    }
 
   }
 
@@ -193,7 +201,7 @@ const LandingPage = () => {
                 <form onSubmit={handleForm}>
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
-                {pages && pages.map((you)=>(
+                {pages && pages?.map((you)=>(
                   <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
                   <BCDIcons />
                   

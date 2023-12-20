@@ -20,6 +20,7 @@ import axios from "axios";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addEbookAction } from "../actions/backend/ebookAction";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const SpeechRecognision =
   window.speechRecognition || window.webkitSpeechRecognition;
@@ -52,7 +53,7 @@ const Ebook = () => {
   const getProject = useSelector((state) => state.getProject);
   const { loading: projectLoading, error: projectError, project } = getProject;
   const saveEbook = useSelector((state) => state.saveEbook);
-  const { loading: ebookLoading, error: ebookError } = saveEbook;
+  const { loading: ebookLoading, error: ebookError,success } = saveEbook;
 
   useEffect(() => {
     dispatch(getProjectAction());
@@ -90,7 +91,13 @@ const Ebook = () => {
     const divData = myDiv.current.innerText;
     console.log(divData, projectId, saveTitle, saveDescription);
     dispatch(addEbookAction(divData, projectId, saveTitle, saveDescription));
-    navigate("/all_ebook");
+    
+    if(success){
+      toast.success("Ebook saved successfuly");
+      setTimeout(()=>{
+        navigate("/all_ebook");
+      },5000)
+    }
   };
 
   const [isListening, setIsListening] = useState(false);
@@ -201,6 +208,7 @@ const Ebook = () => {
                   {ebookLoading && <Loader />}
                   {ebookError && <div>{ebookError}</div>}
                   {loading && <Loader />}
+                  <Toaster />
                   {error && <div className=" bar error">{error}</div>}
                   <form onSubmit={handleForm}>
                     <h2

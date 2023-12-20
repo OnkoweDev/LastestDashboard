@@ -23,6 +23,7 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { useEffect } from "react";
 import { addLinkAdsAction } from "../actions/backend/linkdinAdsAction";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const LindlnAds = () => {
   // state to keep track of number of output
@@ -40,7 +41,7 @@ const LindlnAds = () => {
   const {loading, error, success, ads} = linkedinAds
 
   const saveLinkedinAds = useSelector((state)=>state.saveLinkedinAds)
-  const {loading:linkLoading,error:linkError} = saveLinkedinAds
+  const {loading:linkLoading,error:linkError,success:linkSuccess} = saveLinkedinAds
 
   const getProject = useSelector((state)=>state.getProject)
   const {loading:projectLoading,error:projectError, project} = getProject
@@ -62,7 +63,14 @@ const LindlnAds = () => {
     const divData = myDiv.current.innerText
     console.log(divData)
     dispatch(addLinkAdsAction(divData,projectId))
-    navigate('/all_linkedin_ads')
+    
+
+    if(linkSuccess){
+      toast.success("Landing page saved successfuly");
+      setTimeout(()=>{
+        navigate('/all_linkedin_ads')
+      },5000)
+    }
   }
 
   // handle audio option
@@ -215,6 +223,7 @@ const LindlnAds = () => {
                 {linkLoading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
                 {linkError && <div className='bar error'>{linkError}</div>}
+                <Toaster />
                 {ads && ads.map((you)=>(
                   <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning>
                   <BCDIcons />
@@ -230,6 +239,7 @@ const LindlnAds = () => {
                     value={projectId}
                     name=""
                     id=""
+                    required
                     className="select"
                     style={{
                       display: "block",

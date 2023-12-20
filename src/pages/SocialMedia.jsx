@@ -44,6 +44,12 @@ const SocialMedia = () => {
       path: "/linkdlnads",
       icon: <TiSocialLinkedin />,
     },
+
+    {
+      name: "Short Linkdln Posts",
+      path: "/short-LinkedIn-posts",
+      icon: <TiSocialLinkedin />,
+    },
     {
       name: "Google Ad Title Generator",
       path: "/googletitle",

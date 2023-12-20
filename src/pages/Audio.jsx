@@ -23,6 +23,8 @@ import axios from "axios";
 import { useRef } from "react";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addAudioAction } from "../actions/backend/audioAction";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -49,7 +51,7 @@ const Audio = () => {
   const {loading:projectLoading,error:projectError, project} = getProject
 
   const saveAudio = useSelector((state)=>state.saveAudio)
-  const {loading:Loading,error:error} = saveAudio
+  const {loading:Loading,error:error,success} = saveAudio
 
     useEffect(() => {
       dispatch(getProjectAction())
@@ -74,7 +76,7 @@ const handleChange = (event) => {
             },
         };
         setIsLoading(true)
-        const {data} = await axios.post(`https://api.olukowe.co/audio-transcription/
+        const {data} = await axios.post(`https://api.olukowe.co/api/audio-transcription/
         `, formData,config)
         const arrData = [data]
         arrData.forEach((data)=>{
@@ -101,7 +103,14 @@ const handleChange = (event) => {
     const divData = myDiv.current.innerText
     console.log(divData,projectId,upload)
     dispatch(addAudioAction(divData,projectId,upload))
-    navigate('/all_audio')
+    
+
+    if(success){
+      toast.success("Audio saved successfuly");
+      setTimeout(()=>{
+        navigate('/all_audio')
+      },5000)
+    }
   }
   
 
@@ -236,6 +245,7 @@ const handleChange = (event) => {
                 {isLoading && <Loader />}
                 {Loading && <Loader />}
                 {errorMessage && <div className='bar error'>{errorMessage}</div>}
+                <Toaster />
                 {/* {console.log(lands.data)} */}
                 {lands && lands?.map((blog)=>(
                   

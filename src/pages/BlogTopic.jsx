@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./styles/Facebook.css";
 import blog2 from "../assets/blog-section.png";
+import toast, { Toaster } from "react-hot-toast";
+
 import {
   BCDIcons,
   OutputNumber,
@@ -63,7 +65,14 @@ const BlogTopic = () => {
     console.log(divData)
     console.log(projectId)
     dispatch(blogTopicAddAction(divData,projectId))
-    navigate('/all_blog_topic')
+   
+
+    if(topicSuccess){
+      toast.success("Blog Topic saved successfuly");
+      setTimeout(()=>{
+        navigate('/all_blog_topic')
+      },5000)
+    }
   }
 
   useEffect(() => {
@@ -189,6 +198,7 @@ const BlogTopic = () => {
                 <form onSubmit={handleForm}>
                   {loading && <Loader />}
                   {error && <div className='bar error'>{error}</div>}
+                  <Toaster />
                   {  Array.isArray(topics) ? 
                     topics.map((blog)=>(
                     <div className="sec-1" ref={myDiv} suppressContentEditableWarning contentEditable>

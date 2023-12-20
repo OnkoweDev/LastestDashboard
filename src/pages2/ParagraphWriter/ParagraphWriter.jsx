@@ -55,7 +55,7 @@ const ALLPARAGRAPHWRITER = () => {
             padding:"5px",
             
         }} 
-        to='/land'>Create paragraph writer</Link><br/>
+        to='/paragraph-writer'>Create paragraph writer</Link><br/>
 
 
               <div className="cards-container">

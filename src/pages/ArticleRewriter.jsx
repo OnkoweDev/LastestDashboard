@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import "./styles/GoogleAdTitle.css";
 import articleBlog from "../assets/article-blog.png";
 import ReactTextFormat from 'react-text-format';
+import toast, { Toaster } from "react-hot-toast";
+
 import {
   BCDIcons,
   OutputNumber,
@@ -64,7 +66,15 @@ const ArticleRewriter = () => {
       console.log(divData) 
       console.log(projectId) 
       dispatch(articleAddAction(divData,projectId))
-      navigate('/allArticle') 
+
+      if(success){
+        toast.success("Article rewriter saved successfuly");
+      
+        setTimeout(()=>{
+          navigate('/allArticle') 
+        },5000)
+      }
+     
       
   }
   
@@ -196,6 +206,7 @@ const ArticleRewriter = () => {
                 
                 {articleLoading && <Loader />}
                 {articleError && <div className=' bar error'>{articleError}</div>}
+                <Toaster />
                 
                 
                 <form onSubmit={handleForm}>

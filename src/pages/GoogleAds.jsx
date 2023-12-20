@@ -22,6 +22,7 @@ import { googleadsAction } from "../actions/ai/googleAdsAction";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addGoogleAdsAction } from "../actions/backend/googleAdsAction";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const GoogleAds = () => {
   // state to keep track of number of output
@@ -60,7 +61,13 @@ const GoogleAds = () => {
     const divData = myDiv.current.innerText
     console.log(divData)
     dispatch(addGoogleAdsAction(divData,projectId))
-    navegate('/allgoogleads')
+    
+    if(adsSuccess){
+      toast.success("google ads saved successfuly");
+      setTimeout(()=>{
+        navegate('/allgoogleads')
+      },5000)
+    }
   }
 
   // handle audio option
@@ -192,6 +199,7 @@ const GoogleAds = () => {
                 <form onSubmit={handleForm}>
                   {loading && <Loader />}
                   {error && <div className='bar error'>{error}</div>}
+                  <Toaster />
                   {google && google.map((you)=>(
                     <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}> 
                     <BCDIcons />

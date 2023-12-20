@@ -20,6 +20,7 @@ import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addTweetAction } from "../actions/backend/tweetAction";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const Tweets = () => {
   // state for audio option
@@ -36,7 +37,7 @@ const Tweets = () => {
   const {loading, error,success, tweets} = twitter
 
   const saveTweet = useSelector((state)=>state.saveTweet)
-  const {loading:tweetLoading,error:tweetError} = saveTweet
+  const {loading:tweetLoading,error:tweetError,success:tweetSuccess} = saveTweet
 
   const getProject = useSelector((state)=>state.getProject)
   const {loading:projectLoading,error:projectError, project} = getProject
@@ -56,7 +57,14 @@ const Tweets = () => {
     const divData = myDiv.current.innerText
     console.log(divData, projectId)
     dispatch(addTweetAction(divData, projectId))
-    navigate('/all_tweet')
+    
+
+    if(tweetSuccess){
+      toast.success("Tweet saved successfuly");
+      setTimeout(()=>{
+        navigate('/all_tweet')
+      },5000)
+    }
   }
   // handle audio option
   const handleAudio = () => {
@@ -164,6 +172,7 @@ const Tweets = () => {
                 <form onSubmit={handleForm}>
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
+                <Toaster />
                 {tweets && tweets.map((tweet)=>(
                   
                   <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
