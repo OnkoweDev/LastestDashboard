@@ -76,7 +76,7 @@ const handleChange = (event) => {
             },
         };
         setIsLoading(true)
-        const {data} = await axios.post(`https://api.olukowe.co/api/audio-transcription/
+        const {data} = await axios.post(`https://api.olukowe.co/audio-transcription/
         `, formData,config)
         const arrData = [data]
         arrData.forEach((data)=>{
