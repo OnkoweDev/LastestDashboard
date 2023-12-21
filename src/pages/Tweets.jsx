@@ -176,10 +176,14 @@ const Tweets = () => {
                 {tweets && tweets.map((tweet)=>(
                   
                   <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
-               
+                  <div className="sec-2">
+                  
                   {tweet.generated_tweets.map((d)=>(
-                    <p>{d}</p>
+              
+                    <div  className="txt-sec"><BCDIcons />{d}</div>
                   ))}
+                </div>
+                  
                   </div>
                   ))}
                   <br />
@@ -219,10 +223,7 @@ const Tweets = () => {
                     Save Tweet
                   </button>
                   </form>
-                  {/* <div className="sec-2">
-                    <BCDIcons />
-                    <div className="txt-sec"></div>
-                  </div> */}
+                  
                 </div>
               </div>
             </div>

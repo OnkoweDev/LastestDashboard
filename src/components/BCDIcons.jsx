@@ -1,30 +1,15 @@
+// BCDIcons.js
 import React from "react";
 import "./styles/BCDIcons.css";
+import { MdOutlineContentCopy } from "react-icons/md";
 
-import {
-  MdBookmarkBorder,
-  MdDeleteOutline,
-  MdOutlineContentCopy,
-} from "react-icons/md";
 
-const handleClick = (e) => {
-  console.log("copying")
-}
 
-const BCDIcons = ({ handleBookmark, handleDelete, handleCopy }) => {
-    const handle = () => {
-        console.log('clicked copy')
-    }
+const BCDIcons = () => {
   return (
     <div className="right-icons-container-fa">
-      <button className="icon-contain" onClick={handleClick}>
-        <MdBookmarkBorder onClick={handleBookmark} className="icon" />
-      </button>
       <button className="icon-contain">
-        <MdDeleteOutline onClick={handleDelete} className="icon" />
-      </button>
-      <button className="icon-contain">
-        <MdOutlineContentCopy  onClick={handleClick} className="icon" />
+        <MdOutlineContentCopy className="icon" />
       </button>
     </div>
   );

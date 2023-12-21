@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./styles/GoogleAdTitle.css";
 import articleBlog from "../assets/article-blog.png";
 import {
-  BCDIcons,
   OutputNumber,
   ProjectHeader,
   SideNav,
@@ -24,6 +23,11 @@ import ProjectModal from "../pages/ProjectModal"
 import '../pages/styles/projectModal.css';
 import toast, { Toaster } from "react-hot-toast";
 
+import { MdOutlineContentCopy } from "react-icons/md";
+import "../components/styles/BCDIcons.css";
+import { Typewriter } from 'react-simple-typewriter';
+
+
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
 
@@ -33,6 +37,11 @@ mic.lang = 'en-US'
 
 
 const GoogleAdTitile = () => {
+
+  const TypeWriterEffect = ({ text }) => {
+    return <Typewriter deleteSpeed={false} words={[text]}  cursor />; // Adjust options as needed
+  };
+
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
 
@@ -45,7 +54,19 @@ const GoogleAdTitile = () => {
   const [article, setArticle] = useState([])
   const [outputNumber, setOutputNumber] = useState(1);
   const [projectId, setProjectId] = useState()
-  const myDiv = useRef(null)
+  const myDiv = useRef('')
+
+  //copy function
+
+  const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
+    if (divData) {
+      navigator.clipboard.writeText(divData.innerText);
+      toast.success('copied');
+    }
+  };
+
   
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -57,6 +78,15 @@ const GoogleAdTitile = () => {
 
   const saveConclusion = useSelector((state)=>state.saveConclusion)
   const {loading:conLoading,error:conError} = saveConclusion
+
+  // const [typewriterText, setTypewriterText] = useTypewriter({
+  //   words: ['working on the type writer effect'],
+  //   loops:{},
+  //   typeSpeed:100,
+
+  // });
+  //useTypewrite(typewriterText, setTypewriterText);
+
 
 
 
@@ -123,7 +153,11 @@ const GoogleAdTitile = () => {
     }
   }
 
+  
+  
 
+  
+  
   
   
 
@@ -209,32 +243,49 @@ const GoogleAdTitile = () => {
                 </div>
                 {/*  */}
                 <div className="right"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
-                <form onSubmit={handleForm}>
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 <Toaster />
+                
 
                 {conclusions && conclusions.map((conclusion)=>(
                   
-                  <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning>
-                  <BCDIcons />
-                  {conclusion.generated_conclusions.map((d)=>(
-                    <p>{d}</p>
+                  <div className="sec-1"    >
+                   <div className="sec-2">
                     
+                   {conclusions &&
+                    conclusions.map((conclusion, index) => (
+                      <div className="sec-1" contentEditable suppressContentEditableWarning={true} key={index}>
+                        <div className="sec-2">
+                          {conclusion.generated_conclusions.map((d, idx) => (
+                            <div className="txt-sec" key={idx}>
+                              <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                                <MdOutlineContentCopy className="icon" />
+                              </button>
+                              <div id={`div-${index}-${idx}`}>
+                                <TypeWriterEffect text={d} />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     ))}
+                  
+                  </div> 
+                 
                     </div>
                     ))}
 
                     <br />
                   
-                    <Link onClick={setOpenModal} style={{backgroundColor:"blue", padding:"5px",paddingBottom:"4px", color:'#fff'}} className="openModal" >Create Project</Link>
-                    {openModal && <ProjectModal closeModal={setOpenModal} />}
-                    <select
+                    <form onSubmit={handleForm}>
+                   
+                    {/*<select
                     onChange={(e)=>setProjectId(e.target.value)} 
                     value={projectId}
                     name=""
                     id=""
-                    required
+                   
                     className="select"
                     style={{
                       display: "block",
@@ -259,8 +310,8 @@ const GoogleAdTitile = () => {
                         <option key={i} value={pro.id}>{pro.name}</option>
                         ))
                       }
-                      </select>
-                      <br />
+                    </select>*/}
+                     
                       <button className="article-btn" style={{ fontSize: "14px" }}>
                       Save Article Conclusion
                       </button>
