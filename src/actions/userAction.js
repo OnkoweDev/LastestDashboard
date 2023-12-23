@@ -1,5 +1,7 @@
 import { USERS_LOGIN_REQUEST, USERS_LOGIN_SUCCESS, USERS_LOGIN_FAILED, USERS_REGISTER_REQUEST, USERS_REGISTER_FAILED, USERS_REGISTER_SUCCESS, USERS_LOGOUT, USERS_PROFILE_REQUEST, USERS_PROFILE_SUCCESS, USERS_PROFILE_FAILED} from "../constant/userConstant"
 import axios from 'axios'
+import  secureLocalStorage  from  "react-secure-storage";
+
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -17,7 +19,7 @@ export const login = (email, password) => async (dispatch) => {
 
       if (response.ok) {
           dispatch({ type: USERS_LOGIN_SUCCESS, payload: data.data });
-          localStorage.setItem('userInfo', JSON.stringify(data));
+          secureLocalStorage.setItem('userInfo', JSON.stringify(data));
       } else {
           throw new Error(data.message || 'Login failed');
       }
@@ -27,11 +29,7 @@ export const login = (email, password) => async (dispatch) => {
           payload: error.message,
       });
   }
-  // const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  // if (userInfo) {
-  //     const res2 = await fetch(`http://localhost:8000/task/${userInfo.id}/runs`);
-  //     // Process res2...
-  // }
+  
 };
 
 
@@ -47,7 +45,7 @@ export const register = (full_name,email,password) => async(dispatch) =>{
         const {data} = await axios.post(`https://dev.olukowe.co/api/auth/register`,{full_name,email,password},config)
         dispatch({type:USERS_REGISTER_SUCCESS,payload:data.data})
         dispatch({type:USERS_LOGIN_SUCCESS,payload:data.data})
-        localStorage.setItem('userInfo',JSON.stringify(data))
+        secureLocalStorage.setItem('userInfo',JSON.stringify(data))
         
     } catch (error) {
         dispatch({
@@ -92,7 +90,7 @@ export const userProfileAction = (id,about,first_name,phone_number,avatar) => as
         console.log(data)
 
         dispatch({type:USERS_PROFILE_SUCCESS, payload:data.data})
-        localStorage.setItem('userInfo', JSON.stringify(data));
+        secureLocalStorage.setItem('userInfo', JSON.stringify(data));
 
 
     } catch (error) {

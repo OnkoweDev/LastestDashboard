@@ -21,12 +21,14 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { addTweetAction } from "../actions/backend/tweetAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { MdOutlineContentCopy } from "react-icons/md";
+import { Typewriter } from "react-simple-typewriter";
 
 const Tweets = () => {
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
   const [projectId, setProjectId] = useState()
-  const myDiv = useRef(null)
+  const myDiv = useRef('')
 
   const [topic, setTopic] = useState([])
   const [keywords, setKeywords] = useState([])
@@ -66,6 +68,22 @@ const Tweets = () => {
       },5000)
     }
   }
+
+  //handle copy functionality
+
+  const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
+    if (divData) {
+      navigator.clipboard.writeText(divData.innerText);
+      toast.success('copied');
+    }
+  };
+
+  //Typewriter Effect
+  const TypeWriterEffect = ({ text }) => {
+    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
+  };
   // handle audio option
   const handleAudio = () => {
     console.log("Mic is clicked");
@@ -169,24 +187,32 @@ const Tweets = () => {
                 </div>
                 {/*  */}
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
-                <form onSubmit={handleForm}>
+             
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
                 <Toaster />
-                {tweets && tweets.map((tweet)=>(
+                {tweets && tweets.map((tweet,index)=>(
                   
-                  <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
+                  <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning={true}>
                   <div className="sec-2">
                   
-                  {tweet.generated_tweets.map((d)=>(
+                  {tweet.generated_tweets.map((d,idx)=>(
               
-                    <div  className="txt-sec"><BCDIcons />{d}</div>
+                    <div  className="txt-sec" key={idx}>
+                      <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                      <MdOutlineContentCopy className="icon" />
+                      </button>
+                      <div id={`div-${index}-${idx}`}>
+                        <TypeWriterEffect text={d} />
+                       </div>
+                    </div>
                   ))}
                 </div>
                   
                   </div>
                   ))}
                   <br />
+                   <form onSubmit={handleForm}>
                           <p className="product-p">Select Project*</p>
                           <select
                         onChange={(e)=>setProjectId(e.target.value)} 

@@ -21,6 +21,8 @@ import Loader from '../components/Loader'
 import { getProjectAction } from "../actions/backend/projectAction";
 import { blogIntroAddAction } from "../actions/backend/blogIntroAction";
 import toast, { Toaster } from "react-hot-toast";
+import { Typewriter } from "react-simple-typewriter";
+import { MdOutlineContentCopy } from "react-icons/md";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -149,6 +151,22 @@ useEffect(() => {
   
   }
 
+
+  //Typewriter Effect
+  const TypeWriterEffect = ({ text }) => {
+    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
+  };
+//copy Effect
+  const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
+    if (divData) {
+      navigator.clipboard.writeText(divData.innerText);
+      toast.success('copied');
+    }
+  };
+
+
   
 
  
@@ -232,21 +250,28 @@ useEffect(() => {
                 {error && <div className=' bar error'>{error}</div>}
                 <Toaster />
                 
-                <form onSubmit={handleForm}>
+               
                 
                 {
                   Array.isArray(newBlogs) ?
-                   newBlogs.map((d)=>(
-                    <div className="sec-1" suppressContentEditableWarning={true} contentEditable ref={myDiv}>
-                        {d.generated_intros.map((d)=>(
-                          <p>{d}</p>
+                   newBlogs.map((d,index)=>(
+                    <div className="sec-1" key={index} suppressContentEditableWarning={true} contentEditable ref={myDiv}>
+                        {d.generated_intros.map((d,idx)=>(
+                          <div  className="txt-sec" key={idx}>
+                            <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                              <MdOutlineContentCopy className="icon" />
+                            </button>
+                            <div id={`div-${index}-${idx}`}>
+                              <TypeWriterEffect text={d} />
+                            </div>
+                         </div>
                         ))}
                       </div>
                       )):null
                     }
 
                     <br />
-                 
+                    <form onSubmit={handleForm}>
                     <p className="product-p">Select Project*</p>
                        <select
                          onChange={(e)=>setProjectId(e.target.value)} 

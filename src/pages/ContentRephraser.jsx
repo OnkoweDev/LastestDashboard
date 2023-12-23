@@ -20,6 +20,8 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { addContentRepreAction } from "../actions/backend/contentRepreAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { Typewriter } from "react-simple-typewriter";
+import { MdOutlineContentCopy } from "react-icons/md";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -109,11 +111,25 @@ const GoogleAdDesc = () => {
           }
       }
   }
-  // state to keep track of number of output
-  // handle audio option
+ 
+
   const handleAudio = () => {
     console.log("Mic is clicked");
     setIsAudio(true);
+  };
+
+   //Typewriter Effect
+   const TypeWriterEffect = ({ text }) => {
+    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
+  };
+//copy Effect
+  const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
+    if (divData) {
+      navigator.clipboard.writeText(divData.innerText);
+      toast.success('copied');
+    }
   };
   return (
     <>
@@ -157,48 +173,7 @@ const GoogleAdDesc = () => {
                       margin: "10px 0",
                     }}
                   >
-                    {/* {isAudio ? (
-                      <div className="audio">
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <RiVoiceprintFill />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <CiPause1 />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <FiStopCircle />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setIsAudio(false);
-                          }}
-                        >
-                          <HiOutlinePencil />
-                        </button>
-                      </div>
-                    ) : (
-                      <AiOutlineAudio
-                        className="icon-div mic-icon"
-                        onClick={handleAudio}
-                      />
-                    )} */}
+                    
                      {isListening ?  <RiVoiceprintFill className="icon-div mic-icon" /> :  <FiStopCircle className="icon-div mic-icon" />}
                      <AiOutlineAudio
                         className="icon-div mic-icon"
@@ -225,53 +200,59 @@ const GoogleAdDesc = () => {
                     {contentLoading && <Loader />}
                     {contentError && <div className=' bar error'>{contentError}</div>}
                     <Toaster />
-                    <form onSubmit={handleForm}>
-                        {rephesals && rephesals.map((rephesal)=>(
+                    
+                        {rephesals && rephesals.map((rephesal,index)=>(
                           
                           <div className="sec-1" ref={myDiv} suppressContentEditableWarning={true} contentEditable>
-                          <BCDIcons />
-                          {rephesal.generated_rephrase_contents.map((d)=>(
-                            <p>{d}</p>
+                          {rephesal.generated_rephrase_contents.map((d,idx)=>(
+                            <div  className="txt-sec" key={idx}>
+                                <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                                  <MdOutlineContentCopy className="icon" />
+                                </button>
+                                <div id={`div-${index}-${idx}`}>
+                                  <TypeWriterEffect text={d} />
+                                </div>
+                            </div>
                           ))}
                           </div>
                           ))}
                           <br />
-                 
-                 <p className="product-p">Select Project*</p>
-                    <select
-                      onChange={(e)=>setProjectId(e.target.value)} 
-                      value={projectId}
-                       name=""
-                       id=""
-                       className="select"
-                       style={{
-                         display: "block",
-                         width: "100%",
-                         background: "var(--primary-blue)",
-                         borderRadius: "var(--border-radius-xs)",
-                         border: "none",
-                         outline: "none",
-                         height: "10%",
-                         margin: "5px 0",
-                         padding: "5px",
-                         fontWeight: "400",
-                         fontSize: "14px",
-                         lineHeight: "21px",
-                         color: "rgba(0, 22, 51, 0.5)",
-                       }}
-                     >
-                     <option value="" selected disabled hidden>Select project</option>
+                          <form onSubmit={handleForm}>
+                         <p className="product-p">Select Project*</p>
+                          <select
+                            onChange={(e)=>setProjectId(e.target.value)} 
+                            value={projectId}
+                            name=""
+                            id=""
+                            className="select"
+                            style={{
+                              display: "block",
+                              width: "100%",
+                              background: "var(--primary-blue)",
+                              borderRadius: "var(--border-radius-xs)",
+                              border: "none",
+                              outline: "none",
+                              height: "10%",
+                              margin: "5px 0",
+                              padding: "5px",
+                              fontWeight: "400",
+                              fontSize: "14px",
+                              lineHeight: "21px",
+                              color: "rgba(0, 22, 51, 0.5)",
+                            }}
+                          >
+                          <option value="" selected disabled hidden>Select project</option>
 
-                     {
-                      project && project.map((pro, i)=>(
-                       <option key={i} value={pro.id}>{pro.name}</option>
-                       ))
-                      }
-                     </select>
-                  <br />
-                <button className="article-btn" style={{ fontSize: "14px" }}>
-                Save Article Rewriter
-              </button>
+                          {
+                            project && project.map((pro, i)=>(
+                            <option key={i} value={pro.id}>{pro.name}</option>
+                            ))
+                            }
+                          </select>
+                        <br />
+                          <button className="article-btn" style={{ fontSize: "14px" }}>
+                          Save Article Rewriter
+                        </button>
                       </form>
                       {/* <div className="sec-2">
                     <BCDIcons />

@@ -23,6 +23,8 @@ import { addArticleRewriter } from "../actions/ai/artcleRewriterAction";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { articleAddAction } from "../actions/backend/articleWritterAction";
 import { useNavigate } from "react-router-dom";
+import { MdOutlineContentCopy } from "react-icons/md";
+import { Typewriter } from "react-simple-typewriter";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -90,7 +92,20 @@ const ArticleRewriter = () => {
     dispatch(addArticleRewriter(content))
   }
 
- 
+  //Typewriter Effect
+  const TypeWriterEffect = ({ text }) => {
+    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
+  };
+//copy Effect
+  const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
+    if (divData) {
+      navigator.clipboard.writeText(divData.innerText);
+      toast.success('copied');
+    }
+  };
+
 
 
   useEffect(() => {
@@ -130,9 +145,6 @@ const ArticleRewriter = () => {
   
   }
 
-
-  // state to keep track of number of output
-  // handle audio option
   const handleAudio = () => {
     console.log("Mic is clicked");
     setIsAudio(true);
@@ -208,16 +220,21 @@ const ArticleRewriter = () => {
                 {articleError && <div className=' bar error'>{articleError}</div>}
                 <Toaster />
                 
-                
-                <form onSubmit={handleForm}>
-                {rewriters && rewriters.map((rewrite)=>(
-                  <div className="sec-1" ref={myDiv} suppressContentEditableWarning={true} contentEditable  type='text'>
-                  <BCDIcons />
-                  {rewrite.generated_article}
+               
+                {rewriters && rewriters.map((rewrite,index)=>(
+                  <div className="sec-1" key={index} ref={myDiv} suppressContentEditableWarning={true} contentEditable  type='text'>
+                  <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
+                  <MdOutlineContentCopy className="icon" />
+                  </button>
+                 
+                  <div id={`div-${index}`}>
+                    <TypeWriterEffect text={rewrite.generated_article} />
+                  </div>
                   </div>
                   ))}
                   <br />
-                  
+
+                  <form onSubmit={handleForm}>
                   <p className="product-p">Select Project*</p>
                   <select
                   onChange={(e)=>setProjectId(e.target.value)} 

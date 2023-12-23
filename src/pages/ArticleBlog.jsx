@@ -39,7 +39,7 @@ mic.lang = 'en-US'
 const GoogleAdTitile = () => {
 
   const TypeWriterEffect = ({ text }) => {
-    return <Typewriter deleteSpeed={false} words={[text]}  cursor />; // Adjust options as needed
+    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
   };
 
   // state for audio option

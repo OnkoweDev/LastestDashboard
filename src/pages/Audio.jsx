@@ -24,6 +24,8 @@ import { useRef } from "react";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addAudioAction } from "../actions/backend/audioAction";
 import toast, { Toaster } from "react-hot-toast";
+import { MdOutlineContentCopy } from "react-icons/md";
+import { Typewriter } from "react-simple-typewriter";
 
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
@@ -97,6 +99,20 @@ const handleChange = (event) => {
    
   }, [])
 
+  //Typewriter Effect
+  const TypeWriterEffect = ({ text }) => {
+    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
+  };
+//copy Effect
+  const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
+    if (divData) {
+      navigator.clipboard.writeText(divData.innerText);
+      toast.success('copied');
+    }
+  };
+
 
   const handleForm = (e) => {
     e.preventDefault()
@@ -118,38 +134,7 @@ const handleChange = (event) => {
   const [isListening, setIsListening] = useState(false)
   const [note, setNote] = useState([])
 
-//   useEffect(() => {
-//     handleListening()
-//   }, [isListening])
-//   const handleListening = () => {
-//       if(isListening){
-//           mic.start()
-//           mic.onend = () => {
-//               console.log('continue ...')
-//               mic.start()
-//           }
-//       }
-//       else{
-//           mic.stop()
-//           mic.onend = () => {
-//               console.log('stoped')
-//           }
-//       }
-//       mic.onstart = () => {
-//           console.log('Mics is on')
-//       }
 
-//       mic.onresult = event => {
-//           const transcript = Array.from(event.results).map(result => result[0]).map(result=> result.transcript).join('')
-//           console.log(transcript)
-//           setNote(transcript)
-//           mic.onerror = event => {
-//               console.log(event.error)
-//           }
-//       }
-//   }
-  // state to keep track of number of output
-  // handle audio option
   const handleAudio = () => {
     console.log("Mic is clicked");
     setIsAudio(true);
@@ -168,7 +153,7 @@ const handleChange = (event) => {
               <div className="body-content">
                 <div className="left">
                     <form onSubmit={handleSubmit}>
-                  <p className="product-p">Image Name*</p>
+                  <p className="product-p">Audio*</p>
                   <input
                     onChange={handleChange}
                     name=""
@@ -185,48 +170,7 @@ const handleChange = (event) => {
                       margin: "10px 0",
                     }}
                   >
-                    {/* {isAudio ? (
-                      <div className="audio">
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <RiVoiceprintFill />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <CiPause1 />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <FiStopCircle />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setIsAudio(false);
-                          }}
-                        >
-                          <HiOutlinePencil />
-                        </button>
-                      </div>
-                    ) : (
-                      <AiOutlineAudio
-                        className="icon-div mic-icon"
-                        onClick={handleAudio}
-                      />
-                    )} */}
+                   
                     {isListening ?  <RiVoiceprintFill className="icon-div mic-icon" /> :  <FiStopCircle className="icon-div mic-icon" />}
                      <AiOutlineAudio
                         className="icon-div mic-icon"
@@ -241,23 +185,27 @@ const handleChange = (event) => {
                 </div>
                 {/*  */}
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
-                <form onSubmit={handleForm}>
+               
                 {isLoading && <Loader />}
                 {Loading && <Loader />}
                 {errorMessage && <div className='bar error'>{errorMessage}</div>}
                 <Toaster />
                 {/* {console.log(lands.data)} */}
-                {lands && lands?.map((blog)=>(
+                {lands && lands?.map((blog,index)=>(
                   
-                  <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning key={blog.id}>
-                  <BCDIcons />
+                  <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning >
+                  <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
+                    <MdOutlineContentCopy className="icon" />
+                  </button>
                   {file.name}<br/>
-                  {blog.generated_transcription}
+                  <div id={`div-${index}`}>
+                   <TypeWriterEffect text={blog.generated_transcription} />
+                  </div>
                   
                   </div>
                   ))}
                   <br />
-
+                  <form onSubmit={handleForm}>
                   <select
                   onChange={(e)=>setProjectId(e.target.value)} 
                   value={projectId}

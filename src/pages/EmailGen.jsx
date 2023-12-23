@@ -23,6 +23,8 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { addEmailGenAction } from "../actions/backend/emailGeneratorAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { Typewriter } from "react-simple-typewriter";
+import { MdOutlineContentCopy } from "react-icons/md";
 
 
 const EmailGenerator = () => {
@@ -78,6 +80,20 @@ const EmailGenerator = () => {
     console.log("Mic is clicked");
     setIsAudio(true);
     //
+  };
+
+  //Typewriter Effect
+  const TypeWriterEffect = ({ text }) => {
+    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
+  };
+//copy Effect
+  const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
+    if (divData) {
+      navigator.clipboard.writeText(divData.innerText);
+      toast.success('copied');
+    }
   };
   return (
     <>
@@ -225,15 +241,22 @@ const EmailGenerator = () => {
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
                 <Toaster />
-                <form onSubmit={handleForm}>
-                  {gene && gene.map((you)=>(
-                    <div className="sec-1" ref={myDiv} contentEditable>
-                    
-                      {you.generated_emails}
+              
+                  {gene && gene.map((you,index)=>(
+                    <div className="sec-1" key={index} ref={myDiv} suppressContentEditableWarning={true} contentEditable>
+
+                    <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
+                    <MdOutlineContentCopy className="icon" />
+                  </button>
+                  <div id={`div-${index}`}>
+                  <TypeWriterEffect text={you.generated_emails} />
+                 </div>
+                      
+                      
                       </div>
                       ))}
                       <br />
-                      
+                <form onSubmit={handleForm}>   
                  <p className="product-p">Select Project*</p>
                  <select
                    onChange={(e)=>setProjectId(e.target.value)} 
@@ -264,7 +287,7 @@ const EmailGenerator = () => {
                     ))
                    }
                   </select>
-               <br />
+                 <br />
                       <button className="article-btn" style={{ fontSize: "12px" }}>
                       Save Email
                     </button>

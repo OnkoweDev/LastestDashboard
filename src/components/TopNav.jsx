@@ -91,8 +91,8 @@ const TopNav = () => {
                   <img src={profile} alt="" />
                 </aside>
                 <aside style={{marginLeft:'70px'}} className="profile__details">
-                  <h3>{userInfo.full_name}</h3>
-                  <small>{userInfo.email}</small>
+                  <h3>{userInfo?.full_name}</h3>
+                  <small>{userInfo?.email}</small>
                 </aside>
               </section>
               <hr style={{ margin: "25px 0" }} />

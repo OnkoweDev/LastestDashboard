@@ -58,6 +58,17 @@ import { addImageReducer, deleteImageReducer, getImageReducer, getOneImageReduce
 import { addUploadReducer, deleteUploadReducer, getOneUploadReducer, getUploadReducer } from './reducers/backend/uploadReducer'
 import { updateProfileReducer } from './reducers/backend/profileReducer'
 import { changePasswordReducer } from './reducers/backend/changePasswordReducer'
+import secureLocalStorage from 'react-secure-storage'
+import { persistReducer, persistStore } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
+
+const persistConfig = {
+    key: 'root', // Key for the persisted data
+    storage, // Storage method (localStorage by default)
+    whitelist: ['userLogin'], // Reducers to persist
+    // blacklist: [], // Optionally, you can use a blacklist instead of a whitelist
+  };
 
 
 const reducers = combineReducers({
@@ -264,7 +275,12 @@ const reducers = combineReducers({
     viewEbook:viewEbookReucer,
 })
 
-const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')):null
+const persistedReducer = persistReducer(persistConfig, reducers);
+
+
+
+const userInfoFromStorage = secureLocalStorage.getItem('userInfo') ? JSON.parse(secureLocalStorage.getItem('userInfo')):null
+
 
 // const projectInfoFromStorage = localStorage.getItem('projectInfo') ? JSON.parse(localStorage.getItem('projectInfo')):null
 
@@ -279,9 +295,10 @@ const initialState = {
 const middleware = [thunk]
 
 const store = createStore(
-    reducers,
+    persistedReducer,
     initialState,
     composeWithDevTools(applyMiddleware(...middleware))
 )
+export const persistor = persistStore(store);
 
 export default store;

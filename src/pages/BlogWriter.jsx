@@ -20,6 +20,8 @@ import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { blogWriterAddAction } from "../actions/backend/blogWriterAction";
 import toast, { Toaster } from "react-hot-toast";
+import { Typewriter } from "react-simple-typewriter";
+import { MdOutlineContentCopy } from "react-icons/md";
 
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
@@ -118,6 +120,19 @@ useEffect(() => {
     }
   }
 
+   //Typewriter Effect
+   const TypeWriterEffect = ({ text }) => {
+    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
+  };
+//copy Effect
+  const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
+    if (divData) {
+      navigator.clipboard.writeText(divData.innerText);
+      toast.success('copied');
+    }
+  };
  
 
 
@@ -199,48 +214,7 @@ useEffect(() => {
                             margin: "10px 0",
                             }}
                         >
-                            {/* {isAudio ? (
-                            <div className="audio">
-                                <button
-                                className="icon-div"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                }}
-                                >
-                                <RiVoiceprintFill />
-                                </button>
-                                <button
-                                className="icon-div"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                }}
-                                >
-                                <CiPause1 />
-                                </button>
-                                <button
-                                className="icon-div"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                }}
-                                >
-                                <FiStopCircle />
-                                </button>
-                                <button
-                                className="icon-div"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setIsAudio(false);
-                                }}
-                                >
-                                <HiOutlinePencil />
-                                </button>
-                            </div>
-                            ) : (
-                            <AiOutlineAudio
-                                className="icon-div mic-icon"
-                                onClick={handleAudio}
-                            />
-                            )} */}
+                           
                             { isListening ?  <RiVoiceprintFill /> : <FiStopCircle />}
                             <AiOutlineAudio
                                 className="icon-div mic-icon"
@@ -256,14 +230,21 @@ useEffect(() => {
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                 {loading && <Loader />}
                 <Toaster />
-                <form onSubmit={handleForm}>
-                  {writers && writers.map((writer)=>(
-                    <div className="sec-1" ref={myDiv} suppressContentEditableWarning={true} contentEditable>
-                    <BCDIcons />
-                    {writer.generated_contents}
+                
+                  {writers && writers.map((writer,index)=>(
+                    <div className="sec-1" key={index} ref={myDiv} suppressContentEditableWarning={true} contentEditable>
+
+                    <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
+                    <MdOutlineContentCopy className="icon" />
+                  </button>
+                  <div id={`div-${index}`}>
+                   <TypeWriterEffect text={writer.generated_contents} />
+                  </div>
+                    
                     </div>
                     ))}
                     <br/>
+                    <form onSubmit={handleForm}>
                     <p className="product-p">Select Project*</p>
                     <select
                       onChange={(e)=>setProjectId(e.target.value)} 
