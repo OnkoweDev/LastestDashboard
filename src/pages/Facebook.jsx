@@ -24,6 +24,8 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { addFacebookAction } from "../actions/backend/facebookAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { Typewriter } from "react-simple-typewriter";
+import { MdOutlineContentCopy } from "react-icons/md";
 
 const Facebook = () => {
   // state to keep track of number of output
@@ -81,6 +83,20 @@ const Facebook = () => {
     console.log("Mic is clicked");
     setIsAudio(true);
     //
+  };
+
+   //Typewriter Effect
+   const TypeWriterEffect = ({ text }) => {
+    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
+  };
+//copy Effect
+  const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
+    if (divData) {
+      navigator.clipboard.writeText(divData.innerText);
+      toast.success('copied');
+    }
   };
   return (
     <>
@@ -244,22 +260,29 @@ const Facebook = () => {
                 </div>
 
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
-                <form onSubmit={handleForm}>
+                
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
                 {faceLoading && <Loader />}
                 <Toaster />
-                {face && face.map((you)=>(
+                {face && face.map((you,index)=>(
                   <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
                   
-                    {you.generated_ads.map((d)=>(
-                            <p>
-                              {d} 
-                            </p>
+                    {you.generated_ads.map((d,idx)=>(
+                      <div className="txt-sec" key={idx}>
+                        <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                        <MdOutlineContentCopy className="icon" />
+                      </button>
+                      <div id={`div-${index}-${idx}`}>
+                      <TypeWriterEffect text={d} />
+                    </div>        
+                      </div>
+
                     ))}
                   </div>
                 ))}
                 <br />
+                <form onSubmit={handleForm}>
                 <p className="product-p">Select Project*</p>
                   <select
                 onChange={(e)=>setProjectId(e.target.value)} 

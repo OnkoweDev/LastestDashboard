@@ -23,6 +23,8 @@ import axios from "axios";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addLandingPageAction } from "../actions/backend/landingPageAction";
 import toast, { Toaster } from "react-hot-toast";
+import { Typewriter } from "react-simple-typewriter";
+import { MdOutlineContentCopy } from "react-icons/md";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -109,6 +111,7 @@ const Land = () => {
   
 
 
+
   const [isListening, setIsListening] = useState(false)
   const [note, setNote] = useState([])
 
@@ -117,6 +120,20 @@ const Land = () => {
   const handleAudio = () => {
     console.log("Mic is clicked");
     setIsAudio(true);
+  };
+
+  //Typewriter Effect
+  const TypeWriterEffect = ({ text }) => {
+    return <Typewriter deleteSpeed={false} words={text}  cursor />;
+  };
+//copy Effect
+  const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
+    if (divData) {
+      navigator.clipboard.writeText(divData.innerText);
+      toast.success('copied');
+    }
   };
   return (
     <>
@@ -259,20 +276,25 @@ const Land = () => {
                 </div>
                 {/*  */}
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
-                <form onSubmit={handleForm}>
+              
                 
                 {isLoading && <Loader />}
                 {errorMessage && <div className='bar error'>{errorMessage}</div>}
                 <Toaster />
                 {/* {console.log(lands.data)} */}
-                   {lands && lands?.map((blog)=>(
+                   {lands && lands?.map((blog,index)=>(
 
-                        <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
-                            
-                            {blog.generated_pages}
+                        <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning={true}>
+                        <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
+                        <MdOutlineContentCopy className="icon" />
+                       </button>
+                        <div id={`div-${index}`}>
+                        <TypeWriterEffect text={blog.generated_pages} />
+                        </div>
                         </div>
                     ))}
                     <br />
+                    <form onSubmit={handleForm}>
                     <p className="product-p">Select Project*</p>
                       <select
                     onChange={(e)=>setProjectId(e.target.value)} 

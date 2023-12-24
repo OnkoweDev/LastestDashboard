@@ -29,9 +29,9 @@ import { MdOutlineContentCopy } from "react-icons/md";
 
 const EmailGenerator = () => {
   // state to keep track of number of output
-  const [reciepient, setReciepient] = useState([])
-  const [reciepientPos, setReciepientPos] = useState([])
-  const [description, setDescription] = useState([])
+  const [reciepient, setReciepient] = useState('')
+  const [reciepientPos, setReciepientPos] = useState('')
+  const [description, setDescription] = useState('')
   const myDiv = useRef(null)
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
@@ -51,7 +51,6 @@ const EmailGenerator = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(description)
     dispatch(emailGenAction(reciepient,reciepientPos,description))
 
   }
@@ -84,11 +83,11 @@ const EmailGenerator = () => {
 
   //Typewriter Effect
   const TypeWriterEffect = ({ text }) => {
-    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
+    return <Typewriter deleteSpeed={false} words={text}  cursor />;
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    console.log('Copied');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);
@@ -245,11 +244,12 @@ const EmailGenerator = () => {
                   {gene && gene.map((you,index)=>(
                     <div className="sec-1" key={index} ref={myDiv} suppressContentEditableWarning={true} contentEditable>
 
-                    <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
+                  <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
                     <MdOutlineContentCopy className="icon" />
                   </button>
+                  
                   <div id={`div-${index}`}>
-                  <TypeWriterEffect text={you.generated_emails} />
+                    <TypeWriterEffect text={you.generated_emails} />
                  </div>
                       
                       

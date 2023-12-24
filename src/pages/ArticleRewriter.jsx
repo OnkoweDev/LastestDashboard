@@ -224,7 +224,7 @@ const ArticleRewriter = () => {
                 {rewriters && rewriters.map((rewrite,index)=>(
                   <div className="sec-1" key={index} ref={myDiv} suppressContentEditableWarning={true} contentEditable  type='text'>
                   <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
-                  <MdOutlineContentCopy className="icon" />
+                    <MdOutlineContentCopy className="icon" />
                   </button>
                  
                   <div id={`div-${index}`}>

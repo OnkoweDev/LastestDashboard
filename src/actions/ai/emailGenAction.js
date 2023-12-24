@@ -11,7 +11,8 @@ export const emailGenAction = (reciepient,reciepient_position,description) => as
                 'Content-type':'application/x-www-form-urlencoded'
             },
         };
-        const {data} = await axios.post(`https://api.olukowe.co/api/email/`,{reciepient,reciepient_position,description},config)
+        const response = await axios.post(`https://api.olukowe.co/api/email/`,{reciepient,reciepient_position,description},config)
+        const data = response.data
         dispatch({type:ADD_EMAILGEN_SUCCESS,payload:data.data})
         console.log(data.data)
     } catch (error) {

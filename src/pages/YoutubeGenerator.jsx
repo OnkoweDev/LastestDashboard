@@ -21,6 +21,9 @@ import { addProductAction } from "../actions/ai/productAction";
 import Loader from "../components/Loader";
 import { youtubeDescAction } from "../actions/ai/youtubeDescriptionAction";
 import { getProjectAction } from "../actions/backend/projectAction";
+import { Typewriter } from "react-simple-typewriter";
+import toast, { Toaster } from "react-hot-toast";
+import { MdOutlineContentCopy } from "react-icons/md";
 
 const YoutubeGenerator = () => {
   // state to keep track of number of output
@@ -55,6 +58,20 @@ const YoutubeGenerator = () => {
     console.log("Mic is clicked");
     setIsAudio(true);
     //
+  };
+
+  //Typewriter Effect
+  const TypeWriterEffect = ({ text }) => {
+    return <Typewriter deleteSpeed={false} words={text}  cursor />;
+  };
+//copy Effect
+  const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
+    if (divData) {
+      navigator.clipboard.writeText(divData.innerText);
+      toast.success('copied');
+    }
   };
   return (
     <>
@@ -176,14 +193,25 @@ const YoutubeGenerator = () => {
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
-                <form>
+                <Toaster />
                 
-                {yous && yous.map((you)=>(
-                  <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
-                    <BCDIcons />
-                    {you.generated_descriptions}
+                {yous && yous.map((you,index)=>(
+                  <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning={true}>
+                  
+                  {you.generated_descriptions.map((d,idx)=>(
+                    <div  className="txt-sec" key={idx}>
+                    <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                    <MdOutlineContentCopy className="icon" />
+                    </button>
+                    <div id={`div-${index}-${idx}`}>
+                      <TypeWriterEffect text={d} />
+                     </div>
+                  </div>
+                  ))} 
+                                    
                   </div>
                 ))}
+                <form>
                 <p className="product-p">Select Project*</p>
                   <select
                 onChange={(e)=>setProjectId(e.target.value)} 

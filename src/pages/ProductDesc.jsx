@@ -24,6 +24,8 @@ import { useEffect } from "react";
 import { addProductDescAction } from "../actions/backend/productDescAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { Typewriter } from "react-simple-typewriter";
+import { MdOutlineContentCopy } from "react-icons/md";
 
 const ProductDesc = () => {
   // state to keep track of number of output
@@ -76,6 +78,20 @@ const ProductDesc = () => {
     console.log("Mic is clicked");
     setIsAudio(true);
     //
+  };
+
+   //Typewriter Effect
+   const TypeWriterEffect = ({ text }) => {
+    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
+  };
+//copy Effect
+  const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
+    if (divData) {
+      navigator.clipboard.writeText(divData.innerText);
+      toast.success('copied');
+    }
   };
   return (
     <>
@@ -194,24 +210,30 @@ const ProductDesc = () => {
 
                 </div>
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
-                <form onSubmit={handleForm}>
+               
                     {loading && <Loader />}
                     {productLoading && <Loader />}
                     {error && <div className=' bar error'>{error}</div>}
                     {productError && <div className=' bar error'>{productError}</div>}
                     <Toaster />
-                    {products && products.map((item)=>(
-                      <div className="sec-1" contentEditable suppressContentEditableWarning={true} ref={myDiv}>
-                        {item.generated_descriptions.map((d)=>(
+                    {products && products.map((item,index)=>(
+                      <div className="sec-1" key={index} contentEditable suppressContentEditableWarning={true} ref={myDiv}>
+                        {item.generated_descriptions.map((d,idx)=>(
+                          <div className="txt-sec" key={idx}>
+                          <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                          <MdOutlineContentCopy className="icon" />
+                         </button>
                           
-                          <p>
-                          
-                          {d}
-                          </p>
+                          <div id={`div-${index}-${idx}`}>
+                            <TypeWriterEffect text={d} />
+                           </div>
+                           </div>
+                         
                           ))}
                         </div>
                         ))}
                         <br />
+                        <form onSubmit={handleForm}>
                         <p className="product-p">Select Project*</p>
                           <select
                         onChange={(e)=>setProjectId(e.target.value)} 
