@@ -62,7 +62,7 @@ const YoutubeGenerator = () => {
 
   //Typewriter Effect
   const TypeWriterEffect = ({ text }) => {
-    return <Typewriter deleteSpeed={false} words={text}  cursor />;
+    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
   };
 //copy Effect
   const handleCopy = (id) => {
@@ -201,9 +201,9 @@ const YoutubeGenerator = () => {
                   {you.generated_descriptions.map((d,idx)=>(
                     <div  className="txt-sec" key={idx}>
                     <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                    <MdOutlineContentCopy className="icon" />
+                      <MdOutlineContentCopy className="icon" />
                     </button>
-                    <div id={`div-${index}-${idx}`}>
+                     <div id={`div-${index}-${idx}`}>
                       <TypeWriterEffect text={d} />
                      </div>
                   </div>

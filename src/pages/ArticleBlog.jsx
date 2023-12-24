@@ -26,6 +26,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { MdOutlineContentCopy } from "react-icons/md";
 import "../components/styles/BCDIcons.css";
 import { Typewriter } from 'react-simple-typewriter';
+import { MdSaveAlt } from "react-icons/md";
+
 
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
@@ -54,7 +56,7 @@ const GoogleAdTitile = () => {
   const [article, setArticle] = useState([])
   const [outputNumber, setOutputNumber] = useState(1);
   const [projectId, setProjectId] = useState()
-  const myDiv = useRef('')
+  const myDiv = useRef([])
 
   //copy function
 
@@ -138,18 +140,16 @@ const GoogleAdTitile = () => {
   }
 
 
-  const handleForm = (e) => {
+  const handleForm = (index, subIndex,e) => {
     e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData,projectId)
-    dispatch(addConclusionAction(divData,projectId))
+    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+    const specificData = specificDiv.innerText;
+    console.log(specificData)
+    dispatch(addConclusionAction(specificData))
    
-    if(success){
+   if(success){
       toast.success("Blog Article saved successfuly");
-    
-      setTimeout(()=>{
-          navigate('/conclusion')
-      },5000)
+      //navigate('/conclusion')
     }
   }
 
@@ -258,10 +258,17 @@ const GoogleAdTitile = () => {
                       <div className="sec-1" contentEditable suppressContentEditableWarning={true} key={index}>
                         <div className="sec-2">
                           {conclusion.generated_conclusions.map((d, idx) => (
-                            <div className="txt-sec" key={idx}>
-                              <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                                <MdOutlineContentCopy className="icon" />
-                              </button>
+                            <div className="txt-sec" ref={myDiv} key={idx}>
+
+                                <div className="right-icons-container-fa">
+                                  <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                                    <MdOutlineContentCopy className="icon" />
+                                  </button>
+                                  <button className="icon-contain" onClick={(e) =>      handleForm(index, idx,e)}>
+                                    <MdSaveAlt className="icon" />
+                                  </button>
+                                </div>
+                                
                               <div id={`div-${index}-${idx}`}>
                                 <TypeWriterEffect text={d} />
                               </div>
@@ -316,7 +323,7 @@ const GoogleAdTitile = () => {
                       Save Article Conclusion
                       </button>
                     
-                </form>
+                  </form>
                 </div>
               </div>
             </div>

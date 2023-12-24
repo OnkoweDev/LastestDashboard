@@ -236,7 +236,7 @@ const Youtube = () => {
                       <div id={`div-${index}-${idx}`}>
                         <TypeWriterEffect text={d} />
                        </div>
-                    </div>
+                    </div> 
                   ))}
                   </div>
                   

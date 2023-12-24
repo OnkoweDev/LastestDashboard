@@ -21,7 +21,7 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { addTweetAction } from "../actions/backend/tweetAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 import { Typewriter } from "react-simple-typewriter";
 
 const Tweets = () => {
@@ -54,18 +54,16 @@ const Tweets = () => {
     dispatch(addTwitter(topic,keywords))
   }
 
-  const handleForm = (e) => {
-    e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData, projectId)
-    dispatch(addTweetAction(divData, projectId))
+  const handleForm = (index, subIndex) => {
+   // e.preventDefault()
+    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+    const specificData = specificDiv.innerText;
+    console.log(specificData)
+    dispatch(addTweetAction(specificData))
     
-
     if(tweetSuccess){
       toast.success("Tweet saved successfuly");
-      setTimeout(()=>{
-        navigate('/all_tweet')
-      },5000)
+        //navigate('/all_tweet')
     }
   }
 
@@ -199,9 +197,16 @@ const Tweets = () => {
                   {tweet.generated_tweets.map((d,idx)=>(
               
                     <div  className="txt-sec" key={idx}>
-                      <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                      <MdOutlineContentCopy className="icon" />
-                      </button>
+                    <div className="right-icons-container-fa">
+                        <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                          <MdOutlineContentCopy className="icon" />
+                        </button>
+
+                        <button className="icon-contain" onClick={() => handleForm(index,idx)}>
+                              <MdOutlineSaveAlt className="icon" />
+                          </button>
+                    </div>
+                      
                       <div id={`div-${index}-${idx}`}>
                         <TypeWriterEffect text={d} />
                        </div>

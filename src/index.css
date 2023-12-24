@@ -184,6 +184,10 @@ body {
 .right .sec-2 .txt-sec {
   background: rgba(245, 249, 255, 1);
 }
+.txt-sec {
+ 
+  padding: 10px;
+}
 
 @media (max-width: 1024px) {
   .content {
