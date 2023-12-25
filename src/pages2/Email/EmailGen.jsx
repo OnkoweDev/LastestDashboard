@@ -7,6 +7,7 @@ import { deleteEmailGenAction, getEmailGenAction } from "../../actions/backend/e
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
+import { MdDelete } from "react-icons/md";
 
 const EmailGen = () => {
   // state to hold the data comimg from the database / backend
@@ -44,35 +45,42 @@ const EmailGen = () => {
         <div className="container">
           <SideNav />
           <div className="content">
-          <Link className="article-btn"  
-          style={{ 
-            fontSize: "14px",
-            width:"20%",
-            textAlign:"center",
-            justifyContent:"center",
-            alignItems:"center",
-            padding:"5px",
-            
-        }} 
-        to='/emailgenerator'>Add Email Generator</Link><br/>
+            <Link
+              className="article-btn"
+              style={{
+                fontSize: "14px",
+                width: "20%",
+                textAlign: "center",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "5px",
+              }}
+              to="/emailgenerator"
+            >
+              Add Email Generator
+            </Link>
+            <br />
 
+            <div className="cards-container">
+              {loading && <Loader />}
+              {error && <div className=" bar error">{error}</div>}
+              {articleError && <div className=" bar error">{articleError}</div>}
+              {message && <div className=" bar error">{message}</div>}
 
-              <div className="cards-container">
-               {loading && <Loader />}
-               {error && <div className=' bar error'>{error}</div>}
-               {articleError && <div className=' bar error'>{articleError}</div>}
-               {message && <div className=' bar error'>{message}</div>}
+              {emails &&
+                emails.map((email) => (
+                  <div className="card relative" key={email.id}>
+                    <p>{email.email_generator.slice(0, 300)}.....</p>
+                    <Link to={`/email/${email.id}`}>Read more</Link>
+                    <br />
 
-               {emails && emails.map((email)=>(
-                <div className="card" key={email.id}>
-                        <p>{email.email_generator.slice(0,300)}.....</p>
-                        <Link to={`/email/${email.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(email.id)}>delete</a>
-
-                     
-                </div>
+                    <MdDelete
+                      onClick={() => handleDelete(email.id)}
+                      className="absolute top-5 right-5 text-lg text-gray-800"
+                    />
+                  </div>
                 ))}
-              </div>
+            </div>
             {/* <Voice /> */}
           </div>
         </div>
