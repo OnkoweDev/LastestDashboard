@@ -23,7 +23,7 @@ import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { blogTopicAddAction } from "../actions/backend/blogTopicAction";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -61,19 +61,16 @@ const BlogTopic = () => {
     dispatch(blogTopicAction(topic,outputNumber))
   }
 
-  const handleForm = (e) =>{
+  const handleForm = (index, subIndex,e) => {
     e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData)
-    console.log(projectId)
-    dispatch(blogTopicAddAction(divData,projectId))
+    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+    const specificData = specificDiv.innerText;
+    dispatch(blogTopicAddAction(specificData))
    
 
-    if(topicSuccess){
-      toast.success("Blog Topic saved successfuly");
-      setTimeout(()=>{
-        navigate('/all_blog_topic')
-      },5000)
+    if (topicSuccess) {
+      toast.success("Blog Topic saved successfully");
+      navigate('/all_blog_topic');
     }
   }
 
@@ -222,9 +219,15 @@ const BlogTopic = () => {
                     {blog.generated_topics.map((d,idx)=>(
                       
                       <div  className="txt-sec" key={idx}>
-                      <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                      <div className="right-icons-container-fa">
+                        <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
                         <MdOutlineContentCopy className="icon" />
+                        </button>
+
+                        <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                        <MdOutlineSaveAlt className="icon" />
                       </button>
+                      </div>
                       <div id={`div-${index}-${idx}`}>
                         <TypeWriterEffect text={d} />
                       </div>
@@ -233,7 +236,7 @@ const BlogTopic = () => {
                       </div>
                       )):null}
                       <br />
-                      <form onSubmit={handleForm}>
+                      <form>
                       <p className="product-p">Select Project*</p>
                        <select
                          onChange={(e)=>setProjectId(e.target.value)} 

@@ -264,8 +264,8 @@ const GoogleAdTitile = () => {
                                   <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
                                     <MdOutlineContentCopy className="icon" />
                                   </button>
-                                  <button className="icon-contain" onClick={(e) =>      handleForm(index, idx,e)}>
-                                    <MdSaveAlt className="icon" />
+                                  <button className="icon-contain" >
+                                    <MdSaveAlt className="icon" onClick={(e) =>      handleForm(index, idx,e)} />
                                   </button>
                                 </div>
                                 

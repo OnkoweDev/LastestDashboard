@@ -24,7 +24,7 @@ import { addGoogleTitleAction } from "../actions/backend/googleTitleAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 const GoogleTitle = () => {
   // state to keep track of number of output
@@ -60,11 +60,13 @@ const GoogleTitle = () => {
 
   }
 
-  const handleForm = (e) => {
+  const handleForm = (index, subIndex,e) => {
     e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData)
-    dispatch(addGoogleTitleAction(divData,projectId))
+    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+    const specificData = specificDiv.innerText;
+    console.log(specificData)
+    dispatch(addGoogleTitleAction(specificData))
+
     if(titleSuccess){
       toast.success("google ads title saved successfuly");
       setTimeout(()=>{
@@ -242,14 +244,20 @@ const GoogleTitle = () => {
                 {title && title.map((you,index)=>(
                   <div className="sec-1" contentEditable suppressContentEditableWarning={true} ref={myDiv}>
                   
-                  <BCDIcons />
+                  
                   {you.generated_titles.map((d,idx)=>(
 
                     <div className="txt-sec" key={idx}>
                         
-                    <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                      <MdOutlineContentCopy className="icon" />
-                    </button>
+                    <div className="right-icons-container-fa">
+                      <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                       <MdOutlineContentCopy className="icon" />
+                       </button>
+
+                        <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                        <MdOutlineSaveAlt className="icon" />
+                      </button>
+                    </div>
 
                     <div id={`div-${index}-${idx}`}>
                       <TypeWriterEffect text={d} />

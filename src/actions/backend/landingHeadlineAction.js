@@ -4,7 +4,7 @@ import { ADD_LANDINGHEADLINE_FAILED, ADD_LANDINGHEADLINE_REQUEST, ADD_LANDINGHEA
 
 export const addLandingHeadlineAction = (headline,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_LANDINGHEADLINE_REQUEST})
+        //dispatch({type:ADD_LANDINGHEADLINE_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

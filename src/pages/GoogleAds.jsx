@@ -24,7 +24,7 @@ import { addGoogleAdsAction } from "../actions/backend/googleAdsAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 const GoogleAds = () => {
   // state to keep track of number of output
@@ -58,11 +58,13 @@ const GoogleAds = () => {
 
   }
 
-  const handleForm = (e) => {
-    e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData)
-    dispatch(addGoogleAdsAction(divData,projectId))
+ 
+    const handleForm = (index, subIndex,e) => {
+      e.preventDefault()
+      const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+      const specificData = specificDiv.innerText;
+      console.log(specificData)
+    dispatch(addGoogleAdsAction(specificData))
     
     if(adsSuccess){
       toast.success("google ads saved successfuly");
@@ -221,9 +223,15 @@ const GoogleAds = () => {
                     {you.generated_descriptions?.map((d,idx)=>(
                       <div className="txt-sec" key={idx}>
                         
+                      <div className="right-icons-container-fa">
                       <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                      <MdOutlineContentCopy className="icon" />
-                    </button>
+                       <MdOutlineContentCopy className="icon" />
+                       </button>
+
+                        <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                        <MdOutlineSaveAlt className="icon" />
+                      </button>
+                    </div>
                     <div id={`div-${index}-${idx}`}>
                     <TypeWriterEffect text={d} />
                      </div>
@@ -232,7 +240,7 @@ const GoogleAds = () => {
                       </div>
                       ))}
                       <br />
-                      <form onSubmit={handleForm}>
+                      <form>
                       <p className="product-p">Select Project*</p>
                         <select
                       onChange={(e)=>setProjectId(e.target.value)} 

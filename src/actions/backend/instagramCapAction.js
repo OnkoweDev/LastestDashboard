@@ -3,7 +3,7 @@ import { ADD_INSTAGRAMCAP_FAILED, ADD_INSTAGRAMCAP_REQUEST, ADD_INSTAGRAMCAP_SUC
 
 export const addInstagramCapAction = (instagram_caption,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_INSTAGRAMCAP_REQUEST})
+       // dispatch({type:ADD_INSTAGRAMCAP_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

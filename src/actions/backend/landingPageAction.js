@@ -4,7 +4,7 @@ import { ADD_LANDINGPAGE_FAILED, ADD_LANDINGPAGE_REQUEST, ADD_LANDINGPAGE_SUCCES
 
 export const addLandingPageAction = (page,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_LANDINGPAGE_REQUEST})
+        //dispatch({type:ADD_LANDINGPAGE_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

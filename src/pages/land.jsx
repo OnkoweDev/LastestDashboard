@@ -24,7 +24,7 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { addLandingPageAction } from "../actions/backend/landingPageAction";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -63,17 +63,17 @@ const Land = () => {
 }, [])
   
 
-  const handleForm = (e) => {
-    e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData,projectId)
-    dispatch(addLandingPageAction(divData,projectId))
+const handleForm = (index) => {
+  //e.preventDefault()
+  const specificDiv = document.getElementById(`div-${index}`);
+  const specificData = specificDiv.innerText;
+    dispatch(addLandingPageAction(specificData))
 
     if(success){
       toast.success("Landing page saved successfuly");
-      setTimeout(()=>{
-        navegate('/all_landing')
-      },5000)
+      // setTimeout(()=>{
+      //   navegate('/all_landing')
+      // },5000)
     }
   }
 
@@ -285,9 +285,14 @@ const Land = () => {
                    {lands && lands?.map((blog,index)=>(
 
                         <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning={true}>
-                        <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
-                        <MdOutlineContentCopy className="icon" />
-                       </button>
+                        <div className="right-icons-container-fa">
+                            <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
+                            <MdOutlineContentCopy className="icon" />
+                            </button>
+                            <button className="icon-contain" onClick={(e) =>handleForm(index,e)}>
+                              <MdOutlineSaveAlt className="icon" />
+                            </button>
+                        </div>
                         <div id={`div-${index}`}>
                         <TypeWriterEffect text={blog.generated_pages} />
                         </div>

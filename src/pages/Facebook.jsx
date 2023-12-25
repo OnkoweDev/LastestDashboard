@@ -25,7 +25,7 @@ import { addFacebookAction } from "../actions/backend/facebookAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 const Facebook = () => {
   // state to keep track of number of output
@@ -58,19 +58,19 @@ const Facebook = () => {
 
   }
 
-  const handleForm = (e) => {
+  const handleForm = (index, subIndex,e) => {
     e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData)
-    console.log(projectId)
-    dispatch(addFacebookAction(divData,projectId))
+    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+    const specificData = specificDiv.innerText;
+    console.log(specificData)
+    dispatch(addFacebookAction(specificData))
     
 
     if(faceSuccess){
       toast.success("Facebook ads saved successfuly");
-      setTimeout(()=>{
-        navegate('/allfacebookads')
-      },5000)
+      // setTimeout(()=>{
+      //   navegate('/allfacebookads')
+      // },5000)
     }
   }
 
@@ -270,9 +270,15 @@ const Facebook = () => {
                   
                     {you.generated_ads.map((d,idx)=>(
                       <div className="txt-sec" key={idx}>
-                        <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                        <MdOutlineContentCopy className="icon" />
+                      <div className="right-icons-container-fa">
+                      <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                       <MdOutlineContentCopy className="icon" />
+                       </button>
+
+                        <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                        <MdOutlineSaveAlt className="icon" />
                       </button>
+                    </div>
                       <div id={`div-${index}-${idx}`}>
                       <TypeWriterEffect text={d} />
                     </div>        
@@ -282,7 +288,7 @@ const Facebook = () => {
                   </div>
                 ))}
                 <br />
-                <form onSubmit={handleForm}>
+                <form>
                 <p className="product-p">Select Project*</p>
                   <select
                 onChange={(e)=>setProjectId(e.target.value)} 

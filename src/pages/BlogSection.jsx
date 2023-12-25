@@ -21,7 +21,7 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { addSectionAction } from "../actions/backend/blogSectionAction";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
@@ -145,18 +145,16 @@ const Facebook = () => {
 }
   
   
-  const handleForm = (e) => {
-    e.preventDefault()
-    const divData = myDiv.current.innerText;
-    console.log(divData)
-    console.log(projectId)
-    dispatch(addSectionAction(divData,projectId))
+const handleForm = (index, subIndex,e) => {
+  e.preventDefault()
+  const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+  const specificData = specificDiv.innerText;
+  dispatch(addSectionAction(specificData))
     
-    if(blogSuccess){
+    if(success){
       toast.success("Blog section save successfuly");
-      setTimeout(()=>{
-        navigate('/blogsection')
-      },5000)
+        //navigate('/blogsection')
+      
     }
   }
 
@@ -289,9 +287,15 @@ const Facebook = () => {
                 
                   {blog.generated_sections.map((d,idx)=>(
                     <div  className="txt-sec" key={idx}>
-                            <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                              <MdOutlineContentCopy className="icon" />
-                            </button>
+                        <div className="right-icons-container-fa">
+                          <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                          <MdOutlineContentCopy className="icon" />
+                          </button>
+
+                          <button className="icon-contain" onClick={(e) =>handleForm(index,idx,e)}>
+                           <MdOutlineSaveAlt className="icon" />
+                          </button>
+                        </div>
                             <div id={`div-${index}-${idx}`}>
                               <TypeWriterEffect text={d} />
                             </div>

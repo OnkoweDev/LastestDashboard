@@ -24,7 +24,7 @@ import { useRef } from "react";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addAudioAction } from "../actions/backend/audioAction";
 import toast, { Toaster } from "react-hot-toast";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 import { Typewriter } from "react-simple-typewriter";
 
 
@@ -119,8 +119,7 @@ const handleChange = (event) => {
     const divData = myDiv.current.innerText
     console.log(divData,projectId,upload)
     dispatch(addAudioAction(divData,projectId,upload))
-    
-
+   
     if(success){
       toast.success("Audio saved successfuly");
       setTimeout(()=>{
@@ -197,6 +196,9 @@ const handleChange = (event) => {
                   <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
                     <MdOutlineContentCopy className="icon" />
                   </button>
+                  <button className="icon-contain" onClick={(e) =>handleForm(index,e)}>
+                    <MdOutlineSaveAlt className="icon" />
+                </button>
                   {file.name}<br/>
                   <div id={`div-${index}`}>
                    <TypeWriterEffect text={blog.generated_transcription} />

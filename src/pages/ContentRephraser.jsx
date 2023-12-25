@@ -21,7 +21,7 @@ import { addContentRepreAction } from "../actions/backend/contentRepreAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -58,18 +58,18 @@ const GoogleAdDesc = () => {
     dispatch(addContentRephesal(content,outputNumber))
   }
 
-  const handleForm = (e) => {
-    e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData)
-    console.log(projectId)
-    dispatch(addContentRepreAction(divData,projectId))
+  const handleForm = (index, subIndex,e) => {
+    //e.preventDefault()
+    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+    const specificData = specificDiv.innerText;
+    console.log(specificData)
+    dispatch(addContentRepreAction(specificData))
    
     if(conSuccess){
       toast.success("Content Rephraser saved successfuly");
-      setTimeout(()=>{
-        navigate('/content')
-      },5000)
+      // setTimeout(()=>{
+      //   navigate('/content')
+      // },5000)
     }
   }
 
@@ -206,9 +206,15 @@ const GoogleAdDesc = () => {
                           <div className="sec-1" ref={myDiv} suppressContentEditableWarning={true} contentEditable>
                           {rephesal.generated_rephrase_contents.map((d,idx)=>(
                             <div  className="txt-sec" key={idx}>
+                                <div className="right-icons-container-fa">
                                 <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                                  <MdOutlineContentCopy className="icon" />
-                                </button>
+                                <MdOutlineContentCopy className="icon" />
+                              </button>
+
+                              <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                               <MdOutlineSaveAlt className="icon" />
+                             </button>
+                                </div>
                                 <div id={`div-${index}-${idx}`}>
                                   <TypeWriterEffect text={d} />
                                 </div>

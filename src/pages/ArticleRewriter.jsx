@@ -23,7 +23,7 @@ import { addArticleRewriter } from "../actions/ai/artcleRewriterAction";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { articleAddAction } from "../actions/backend/articleWritterAction";
 import { useNavigate } from "react-router-dom";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 import { Typewriter } from "react-simple-typewriter";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
@@ -57,25 +57,19 @@ const ArticleRewriter = () => {
   const {loading:projectLoading,error:projectError, project} = getProject
 
   const articleWritter = useSelector((state)=>state.articleWritter)
-  const  {loading:articleLoading,error:articleError} = articleWritter
+  const  {loading:articleLoading,error:articleError, success:saveSuccess} = articleWritter
 
 
 
-  const handleForm = (e) => {
-    e.preventDefault()
-    const divData = myDiv.current.innerText;
-      setArticle(divData)
-      console.log(divData) 
-      console.log(projectId) 
-      dispatch(articleAddAction(divData,projectId))
-
-      if(success){
-        toast.success("Article rewriter saved successfuly");
+const handleForm = (index) => {
+    //e.preventDefault()
+    const specificDiv = document.getElementById(`div-${index}`);
+    const specificData = specificDiv.innerText;
+    console.log(specificData)
+      dispatch(articleAddAction(specificData))
       
-        setTimeout(()=>{
-          navigate('/allArticle') 
-        },5000)
-      }
+        toast.success("Article rewriter saved successfuly");       
+        //navigate('/allArticle') 
      
       
   }
@@ -94,7 +88,7 @@ const ArticleRewriter = () => {
 
   //Typewriter Effect
   const TypeWriterEffect = ({ text }) => {
-    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
+    return <Typewriter typeSpeed={50} deleteSpeed={false} words={[text]}  cursor />;
   };
 //copy Effect
   const handleCopy = (id) => {
@@ -212,7 +206,7 @@ const ArticleRewriter = () => {
                 </div>
                 {/*  */}
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
-                <ReactTextFormat >
+                
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 
@@ -223,9 +217,15 @@ const ArticleRewriter = () => {
                
                 {rewriters && rewriters.map((rewrite,index)=>(
                   <div className="sec-1" key={index} ref={myDiv} suppressContentEditableWarning={true} contentEditable  type='text'>
-                  <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
-                    <MdOutlineContentCopy className="icon" />
-                  </button>
+                  <div className="right-icons-container-fa">
+                    <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
+                       <MdOutlineContentCopy className="icon" />
+                    </button>
+                    
+                    <button className="icon-contain" onClick={(e) =>handleForm(index,e)}>
+                      <MdOutlineSaveAlt className="icon" />
+                    </button>
+                  </div>
                  
                   <div id={`div-${index}`}>
                     <TypeWriterEffect text={rewrite.generated_article} />
@@ -234,7 +234,7 @@ const ArticleRewriter = () => {
                   ))}
                   <br />
 
-                  <form onSubmit={handleForm}>
+                  <form>
                   <p className="product-p">Select Project*</p>
                   <select
                   onChange={(e)=>setProjectId(e.target.value)} 
@@ -271,7 +271,7 @@ const ArticleRewriter = () => {
                     Save Article Rewriter
                     </button>
                     </form>
-                    </ReactTextFormat>
+                   
                     </div>
                     </div>
                     </div>

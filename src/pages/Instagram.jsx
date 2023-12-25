@@ -23,7 +23,7 @@ import { addInstagramCapAction } from "../actions/backend/instagramCapAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 const Instagram = () => {
   // state for audio option
@@ -56,18 +56,19 @@ const Instagram = () => {
     console.log(product,tone)
     dispatch(InstagramAction(product,tone))
   }
-  const handleForm  = (e) => {
+  const handleForm = (index, subIndex,e) => {
     e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData,projectId)
-    dispatch(addInstagramCapAction(divData,projectId))
+    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+    const specificData = specificDiv.innerText;
+    console.log(specificData)
+    dispatch(addInstagramCapAction(specificData))
     
 
     if(instaSuccess){
       toast.success("instagram caption saved successfuly");
-      setTimeout(()=>{
-        navegate('/allinstagram')
-      },5000)
+      // setTimeout(()=>{
+      //   navegate('/allinstagram')
+      // },5000)
     }
 
   }
@@ -231,9 +232,15 @@ const Instagram = () => {
                   {inst.generated_captions.map((d,idx)=>(
                     <div className="txt-sec" key={idx}>
                         
-                    <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                      <MdOutlineContentCopy className="icon" />
-                    </button>
+                    <div className="right-icons-container-fa">
+                      <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                       <MdOutlineContentCopy className="icon" />
+                       </button>
+
+                        <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                        <MdOutlineSaveAlt className="icon" />
+                      </button>
+                    </div>
 
                     <div id={`div-${index}-${idx}`}>
                       <TypeWriterEffect text={d} />

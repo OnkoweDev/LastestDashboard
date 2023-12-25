@@ -24,7 +24,7 @@ import { addEmailGenAction } from "../actions/backend/emailGeneratorAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 
 const EmailGenerator = () => {
@@ -59,18 +59,18 @@ const EmailGenerator = () => {
     dispatch(getProjectAction())
   }, [])
 
-  const handleForm = (e) => {
-    e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData,projectId)
-    dispatch(addEmailGenAction(divData,projectId))
+  const handleForm = (index) => {
+    //e.preventDefault()
+    const specificDiv = document.getElementById(`div-${index}`);
+    const specificData = specificDiv.innerText;
+    dispatch(addEmailGenAction(specificData))
     
 
     if(emailSuccess){
       toast.success("Email saved successfuly");
-      setTimeout(()=>{
-        navigate('/allemail')
-      },5000)
+      // setTimeout(()=>{
+      //   navigate('/allemail')
+      // },5000)
     }
   }
 
@@ -244,9 +244,14 @@ const EmailGenerator = () => {
                   {gene && gene.map((you,index)=>(
                     <div className="sec-1" key={index} ref={myDiv} suppressContentEditableWarning={true} contentEditable>
 
+                  <div className="right-icons-container-fa">
                   <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
-                    <MdOutlineContentCopy className="icon" />
+                  <MdOutlineContentCopy className="icon" />
                   </button>
+                    <button className="icon-contain" onClick={(e) =>handleForm(index,e)}>
+                      <MdOutlineSaveAlt className="icon" />
+                    </button>
+                  </div>
                   
                   <div id={`div-${index}`}>
                     <TypeWriterEffect text={you.generated_emails} />

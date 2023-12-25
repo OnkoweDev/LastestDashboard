@@ -5,7 +5,7 @@ export const articleAddAction = (article_rewriter,project_id) => async(dispatch,
     try {
         dispatch({type:ADD_ARTICLEWRITTER_REQUEST})
         const {userLogin:{userInfo}} = getState()
-        console.log('UserInfo:', userInfo); 
+        //console.log('UserInfo:', userInfo); 
 
         const token = userInfo?.token;
         console.log('Token:', token); 

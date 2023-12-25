@@ -24,7 +24,7 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { addLandingHeadlineAction } from "../actions/backend/landingHeadlineAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 import { Typewriter } from "react-simple-typewriter";
 
 
@@ -58,18 +58,19 @@ const LandingPage = () => {
 
   }
 
-  const handleForm = (e) => {
+  const handleForm = (index, subIndex,e) => {
     e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData)
-    dispatch(addLandingHeadlineAction(divData,projectId))
-    navegate('/all_landing_headline')
+    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+    const specificData = specificDiv.innerText;
+    console.log(specificData)
+    dispatch(addLandingHeadlineAction(specificData))
+    
     
     if(success){
       toast.success("Landing page saved successfuly");
-      setTimeout(()=>{
-        navegate('/all_landing')
-      },5000)
+      // setTimeout(()=>{
+      //   navegate('/all_landing_headline')
+      // },5000)
     }
 
   }
@@ -225,9 +226,15 @@ const LandingPage = () => {
                     
                     <div className="txt-sec" key={idx}>
                         
+                    <div className="right-icons-container-fa">
                     <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                      <MdOutlineContentCopy className="icon" />
+                     <MdOutlineContentCopy className="icon" />
+                     </button>
+
+                      <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                      <MdOutlineSaveAlt className="icon" />
                     </button>
+                  </div>
 
                     <div id={`div-${index}-${idx}`}>
                       <TypeWriterEffect text={d} />

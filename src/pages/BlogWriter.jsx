@@ -21,7 +21,7 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { blogWriterAddAction } from "../actions/backend/blogWriterAction";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
@@ -103,20 +103,18 @@ useEffect(() => {
       }
   }
 
-  const handleForm = (e) => {
-    e.preventDefault()
-    const divData = myDiv.current.innerText;
-    setArticle(divData)
-    console.log(divData)
-    console.log(projectId)
-    dispatch(blogWriterAddAction(divData, projectId))
-    navigate('/allBlogs')
+  const handleForm = (index) => {
+    //e.preventDefault()
+    const specificDiv = document.getElementById(`div-${index}`);
+    const specificData = specificDiv.innerText;
+    console.log(specificData)
+    dispatch(blogWriterAddAction(specificData))
 
     if(blogSuccess){
       toast.success("Blog Writer saved successfuly");
-      setTimeout(()=>{
-        navigate('/allBlogs')
-      },5000)
+      //navigate('/allBlogs')
+      // setTimeout(()=>{
+      // },5000)
     }
   }
 
@@ -234,9 +232,14 @@ useEffect(() => {
                   {writers && writers.map((writer,index)=>(
                     <div className="sec-1" key={index} ref={myDiv} suppressContentEditableWarning={true} contentEditable>
 
+                    <div className="right-icons-container-fa">
                     <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
                     <MdOutlineContentCopy className="icon" />
-                  </button>
+                    </button>
+                      <button className="icon-contain" onClick={(e) =>handleForm(index,e)}>
+                        <MdOutlineSaveAlt className="icon" />
+                      </button>
+                    </div>
                   <div id={`div-${index}`}>
                    <TypeWriterEffect text={writer.generated_contents} />
                   </div>

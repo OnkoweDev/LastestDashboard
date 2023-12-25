@@ -22,7 +22,7 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { blogIntroAddAction } from "../actions/backend/blogIntroAction";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -63,7 +63,7 @@ const TTR = () => {
   const {loading,error,success,newBlogs} = addBlogIntro
 
   const saveBlogIntro = useSelector((state)=>state.saveBlogIntro)
-  const {loading:saveIntroLoading, error:saveIntroError} = saveBlogIntro
+  const {loading:saveIntroLoading, error:saveIntroError,success:introSuccess} = saveBlogIntro
 
   const userLogin = useSelector((state)=>state.userLogin)
   const {userInfo} = userLogin
@@ -73,21 +73,18 @@ const TTR = () => {
 
  
 
-const handleForm  = (e) => {
-  e.preventDefault()
-  const divData = myDiv.current.innerText;
-  console.log(divData)
-  console.log(projectId)
-  dispatch(blogIntroAddAction(divData,projectId))
+  const handleForm = (index, subIndex,e) => {
+    e.preventDefault()
+    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+    const specificData = specificDiv.innerText;
+    console.log(specificData)
+    dispatch(blogIntroAddAction(specificData))
 
-  
-  if(success){
-    toast.success("Blog intro save successfuly");
-    setTimeout(()=>{
-      navigate('/all_intro')
-    },5000)
-  }
-  
+    if (success){
+      toast.success("Blog intro save successfuly");
+      //navigate('/all_intro')
+    }
+ 
 }
 
 useEffect(() => {
@@ -258,20 +255,26 @@ useEffect(() => {
                     <div className="sec-1" key={index} suppressContentEditableWarning={true} contentEditable ref={myDiv}>
                         {d.generated_intros.map((d,idx)=>(
                           <div  className="txt-sec" key={idx}>
-                            <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                              <MdOutlineContentCopy className="icon" />
-                            </button>
-                            <div id={`div-${index}-${idx}`}>
-                              <TypeWriterEffect text={d} />
-                            </div>
-                         </div>
+                              <div className="right-icons-container-fa">
+                                    <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                                    <MdOutlineContentCopy className="icon" />
+                                    </button>
+
+                                    <button className="icon-contain" onClick={(e) =>        handleForm(index, idx,e)}>
+                                    <MdOutlineSaveAlt className="icon" />
+                                    </button>
+                                </div>
+                                <div id={`div-${index}-${idx}`}>
+                                <TypeWriterEffect text={d} />
+                              </div>
+                          </div>
                         ))}
                       </div>
                       )):null
                     }
 
                     <br />
-                    <form onSubmit={handleForm}>
+                    
                     <p className="product-p">Select Project*</p>
                        <select
                          onChange={(e)=>setProjectId(e.target.value)} 
@@ -305,7 +308,7 @@ useEffect(() => {
                     <button className="article-btn" style={{ fontSize: "14px" }}>
                     Save Blog Intro Generated
                      </button>
-                    </form>
+                    
 
                 </div>
               </div>
