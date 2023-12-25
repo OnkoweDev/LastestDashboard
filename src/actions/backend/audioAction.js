@@ -3,7 +3,7 @@ import { ADD_AUDIO_FAILED, ADD_AUDIO_REQUEST, ADD_AUDIO_SUCCESS, DELETE_AUDIO_FA
 
 export const addAudioAction = (generated_transcription,project_id,uploaded_url) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_AUDIO_REQUEST})
+       // dispatch({type:ADD_AUDIO_REQUEST})
         const {userLogin:{userInfo}} = getState();
         const config = {
             headers:{

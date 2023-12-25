@@ -4,7 +4,7 @@ import { ADD_GOOGLEADS_FAILED, ADD_GOOGLEADS_REQUEST, ADD_GOOGLEADS_SUCCESS, DEL
 
 export const addGoogleAdsAction = (google_ad,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_GOOGLEADS_REQUEST})
+        //dispatch({type:ADD_GOOGLEADS_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

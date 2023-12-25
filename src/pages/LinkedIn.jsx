@@ -19,7 +19,7 @@ import { addLinkAction } from "../actions/backend/linkPostAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 const LinkedIn = () => {
   // state for audio option
@@ -51,18 +51,17 @@ const LinkedIn = () => {
     console.log('loading data')
     dispatch(addLinkedin(productName,productDescription,keyword))
   }
- 
-  const handleFrom = (e) => {
+  const handleForm = (index, subIndex,e) => {
     e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData)
-    dispatch(addLinkAction(divData,projectId))
+    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+    const specificData = specificDiv.innerText;
+    dispatch(addLinkAction(specificData))
    
     if(linkSuccess){
       toast.success("Shot Linkdin post saved successfuly");
-      setTimeout(()=>{
-        navigate('/all_link_post')
-      },5000)
+      // setTimeout(()=>{
+      //   navigate('/all_link_post')
+      // },5000)
     }
   }
 
@@ -199,9 +198,15 @@ const LinkedIn = () => {
                   {link.generated_posts.map((d,idx)=>(
                     <div className="txt-sec" key={idx}>
                         
-                    <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                      <MdOutlineContentCopy className="icon" />
-                    </button>
+                    <div className="right-icons-container-fa">
+                        <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                        <MdOutlineContentCopy className="icon" />
+                        </button>
+
+                        <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                        <MdOutlineSaveAlt className="icon" />
+                      </button>
+                   </div>
 
                     <div id={`div-${index}-${idx}`}>
                       <TypeWriterEffect text={d} />
@@ -211,7 +216,7 @@ const LinkedIn = () => {
                   </div>
                   ))}
                   <br />
-                  <form onSubmit={handleFrom}>
+                  <form>
                     <p className="product-p">Select Project*</p>
                       <select
                     onChange={(e)=>setProjectId(e.target.value)} 

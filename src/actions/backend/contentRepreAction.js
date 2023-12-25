@@ -3,7 +3,7 @@ import { ADD_CONTENTREPRE_FAILED, ADD_CONTENTREPRE_REQUEST, ADD_CONTENTREPRE_SUC
 
 export const addContentRepreAction = (content,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_CONTENTREPRE_REQUEST})
+       // dispatch({type:ADD_CONTENTREPRE_REQUEST})
         const {userLogin:{userInfo}} = getState();
 
         if (!userInfo || !userInfo.token) {

@@ -5,7 +5,7 @@ import { ADD_PARAGRAPH_FAILED, ADD_PARAGRAPH_REQUEST, ADD_PARAGRAPH_SUCCESS, DEL
 
 export const addParagraphAction = (paragraph,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_PARAGRAPH_REQUEST})
+        //dispatch({type:ADD_PARAGRAPH_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

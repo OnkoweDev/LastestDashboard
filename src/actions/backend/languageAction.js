@@ -3,7 +3,7 @@ import { ADD_LANGUAGE_FAILED, ADD_LANGUAGE_REQUEST, ADD_LANGUAGE_SUCCESS, DELETE
 
 export const addLanguageAction = (generated_translation,project_id,language,text) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_LANGUAGE_REQUEST})
+        //dispatch({type:ADD_LANGUAGE_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

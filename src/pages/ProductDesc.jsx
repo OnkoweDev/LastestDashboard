@@ -25,7 +25,7 @@ import { addProductDescAction } from "../actions/backend/productDescAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 const ProductDesc = () => {
   // state to keep track of number of output
@@ -59,17 +59,17 @@ const ProductDesc = () => {
 
   }
 
-  const handleForm = (e) => {
+  const handleForm = (index, subIndex,e) => {
     e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData)
-    dispatch(addProductDescAction(divData,projectId))
+    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+    const specificData = specificDiv.innerText;
+    dispatch(addProductDescAction(specificData))
     
     if(productSuccess){
       toast.success("Product Desc saved successfuly");
-      setTimeout(()=>{
-        navigate('/all_productDesc')
-      },5000)
+      // setTimeout(()=>{
+      //   navigate('/all_productDesc')
+      // },5000)
     }
   }
 
@@ -220,10 +220,16 @@ const ProductDesc = () => {
                       <div className="sec-1" key={index} contentEditable suppressContentEditableWarning={true} ref={myDiv}>
                         {item.generated_descriptions.map((d,idx)=>(
                           <div className="txt-sec" key={idx}>
-                          <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                          <MdOutlineContentCopy className="icon" />
-                         </button>
-                          
+                              <div className="right-icons-container-fa">
+                                <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                                  <MdOutlineContentCopy className="icon" />
+                                  </button>
+          
+                                  <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                                  <MdOutlineSaveAlt className="icon" />
+                                </button>
+                           </div>    
+
                           <div id={`div-${index}-${idx}`}>
                             <TypeWriterEffect text={d} />
                            </div>
@@ -233,7 +239,7 @@ const ProductDesc = () => {
                         </div>
                         ))}
                         <br />
-                        <form onSubmit={handleForm}>
+                        <form>
                         <p className="product-p">Select Project*</p>
                           <select
                         onChange={(e)=>setProjectId(e.target.value)} 

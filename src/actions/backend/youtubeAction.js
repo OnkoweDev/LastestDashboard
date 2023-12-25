@@ -4,7 +4,7 @@ import { ADD_YOUTUBE_FAILED, ADD_YOUTUBE_REQUEST, ADD_YOUTUBE_SUCCESS, DELETE_YO
 
 export const addYoutubeAction = (youtube_intro,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_YOUTUBE_REQUEST})
+        //dispatch({type:ADD_YOUTUBE_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

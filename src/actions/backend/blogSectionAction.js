@@ -3,7 +3,7 @@ import { ADD_BLOGSECTION_FAILED, ADD_BLOGSECTION_REQUEST, ADD_BLOGSECTION_SUCCES
 
 export const addSectionAction = (section,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_BLOGSECTION_REQUEST})
+        //dispatch({type:ADD_BLOGSECTION_REQUEST})
         const {userLogin:{userInfo}} = getState();
 
         if (!userInfo || !userInfo.token) {

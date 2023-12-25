@@ -4,7 +4,7 @@ import { ADD_LINKDLN_FAILED, ADD_LINKDLN_REQUEST, ADD_LINKDLN_SUCCESS, DELETE_LI
 
 export const addLinkAction = (post,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_LINKDLN_REQUEST})
+        //dispatch({type:ADD_LINKDLN_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

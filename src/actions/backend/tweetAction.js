@@ -3,7 +3,7 @@ import { ADD_TWEETGEN_FAILED, ADD_TWEETGEN_REQUEST, ADD_TWEETGEN_SUCCESS, DELETE
 
 export const addTweetAction = (tweet,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_TWEETGEN_REQUEST})
+        //dispatch({type:ADD_TWEETGEN_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

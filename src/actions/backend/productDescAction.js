@@ -3,7 +3,7 @@ import { ADD_PRODUCTDESC_FAILED, ADD_PRODUCTDESC_REQUEST, ADD_PRODUCTDESC_SUCCES
 
 export const addProductDescAction = (product_description,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_PRODUCTDESC_REQUEST})
+        //dispatch({type:ADD_PRODUCTDESC_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

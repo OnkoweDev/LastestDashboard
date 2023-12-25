@@ -4,7 +4,7 @@ import { ADD_PRODUCTNAME_FAILED, ADD_PRODUCTNAME_REQUEST, ADD_PRODUCTNAME_SUCCES
 
 export const addProductNameAction = (product_name,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_PRODUCTNAME_REQUEST})
+        //dispatch({type:ADD_PRODUCTNAME_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

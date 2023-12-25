@@ -3,7 +3,7 @@ import { ADD_EMAILSUBJECT_FAILED, ADD_EMAILSUBJECT_REQUEST, ADD_EMAILSUBJECT_SUC
 
 export const addSubjectAction = (email_subject,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_EMAILSUBJECT_REQUEST})
+       // dispatch({type:ADD_EMAILSUBJECT_REQUEST})
         const {userLogin:{userInfo}} = getState();
 
         if (!userInfo || !userInfo.token) {

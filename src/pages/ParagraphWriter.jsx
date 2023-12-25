@@ -18,7 +18,7 @@ import { addParagraphAction } from "../actions/backend/paragraphAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 const ParagraphWriter = () => {
   // state for audio option
@@ -53,11 +53,11 @@ const ParagraphWriter = () => {
     dispatch(addParagraphWriter(title,keyword,outputNumber,tone))
   }
 
-  const handleForm = (e) => {
+   const handleForm = (index, subIndex,e) => {
     e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData,projectId)
-    dispatch(addParagraphAction(divData,projectId))
+    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+    const specificData = specificDiv.innerText;
+    dispatch(addParagraphAction(specificData))
    
 
     if(paraSuccess){
@@ -233,9 +233,15 @@ const ParagraphWriter = () => {
                   
                   {para.generated_paragraphs?.map((d,idx)=>(
                     <div className="txt-sec" key={idx}>
-                          <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                          <MdOutlineContentCopy className="icon" />
-                         </button>
+                    <div className="right-icons-container-fa">
+                        <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                        <MdOutlineContentCopy className="icon" />
+                        </button>
+
+                        <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                        <MdOutlineSaveAlt className="icon" />
+                      </button>
+                   </div>
                           
                           <div id={`div-${index}-${idx}`}>
                             <TypeWriterEffect text={d} />
@@ -245,7 +251,7 @@ const ParagraphWriter = () => {
                   </div>
                   ))}
                   <br />
-                  <form onSubmit={handleForm}>
+                  <form>
                     <p className="product-p">Select Project*</p>
                     <select
                   onChange={(e)=>setProjectId(e.target.value)} 

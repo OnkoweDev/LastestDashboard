@@ -3,7 +3,7 @@ import { ADD_BLOGWRITER_FAILED, ADD_BLOGWRITER_REQUEST, ADD_BLOGWRITER_SUCCESS, 
 
 export const blogWriterAddAction = (article,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_BLOGWRITER_REQUEST})
+       // dispatch({type:ADD_BLOGWRITER_REQUEST})
         const {userLogin:{userInfo}} = getState();
 
         if (!userInfo || !userInfo.token) {

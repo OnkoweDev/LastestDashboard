@@ -25,7 +25,7 @@ import { addProductNameAction } from "../actions/backend/productNameAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 
 const ProductName = () => {
@@ -59,18 +59,18 @@ const ProductName = () => {
 
   }
 
-  const handleForm = (e) => {
+  const handleForm = (index, subIndex,e) => {
     e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData,projectId)
-    dispatch(addProductNameAction(divData,projectId))
+    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+    const specificData = specificDiv.innerText;
+    dispatch(addProductNameAction(specificData))
     
 
     if(productSuccess){
       toast.success("Product name saved successfuly");
-      setTimeout(()=>{
-        navigate('/all_product_name')
-      },5000)
+      // setTimeout(()=>{
+      //   navigate('/all_product_name')
+      // },5000)
     }
   }
   
@@ -230,10 +230,15 @@ const ProductName = () => {
                   
                   {you.generated_names.map((d,idx)=>(
                     <div className="txt-sec" key={idx}>
-                          <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                          <MdOutlineContentCopy className="icon" />
-                         </button>
-                          
+                        <div className="right-icons-container-fa">
+                            <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                              <MdOutlineContentCopy className="icon" />
+                              </button>
+
+                              <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                              <MdOutlineSaveAlt className="icon" />
+                            </button>
+                       </div>    
                           <div id={`div-${index}-${idx}`}>
                             <TypeWriterEffect text={d} />
                            </div>
@@ -243,7 +248,7 @@ const ProductName = () => {
                     </div>
                     )):null}
                     <br />
-                    <form onSubmit={handleForm}>
+                    <form>
                     <p className="product-p">Select Project*</p>
                           <select
                         onChange={(e)=>setProjectId(e.target.value)} 

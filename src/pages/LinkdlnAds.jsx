@@ -25,7 +25,7 @@ import { addLinkAdsAction } from "../actions/backend/linkdinAdsAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 const LindlnAds = () => {
   // state to keep track of number of output
@@ -60,11 +60,11 @@ const LindlnAds = () => {
 
   }
 
-  const handleForm = (e) => {
+  const handleForm = (index, subIndex,e) => {
     e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData)
-    dispatch(addLinkAdsAction(divData,projectId))
+    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+    const specificData = specificDiv.innerText;
+    dispatch(addLinkAdsAction(specificData))
     
 
     if(linkSuccess){
@@ -246,9 +246,15 @@ const LindlnAds = () => {
                   {you.generated_descriptions.map((d,idx)=>(
                     <div className="txt-sec" key={idx}>
                         
-                    <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                      <MdOutlineContentCopy className="icon" />
-                    </button>
+                      <div className="right-icons-container-fa">
+                        <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                        <MdOutlineContentCopy className="icon" />
+                        </button>
+
+                          <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                          <MdOutlineSaveAlt className="icon" />
+                        </button>
+                       </div>
 
                     <div id={`div-${index}-${idx}`}>
                       <TypeWriterEffect text={d} />

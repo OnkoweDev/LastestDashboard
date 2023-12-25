@@ -21,7 +21,7 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { addYoutubeAction } from "../actions/backend/youtubeAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 import { Typewriter } from "react-simple-typewriter";
 
 const Youtube = () => {
@@ -54,18 +54,19 @@ const Youtube = () => {
         dispatch(youtubeAction(title,hook,keywords,tone))
     }
 
-    const handleForm = (e) => {
-      e.preventDefault()
-      const divData = myDiv.current.innerText
-      console.log(divData,projectId)
-      dispatch(addYoutubeAction(divData,projectId))
+    const handleForm = (index, subIndex) => {
+      // e.preventDefault()
+       const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+       const specificData = specificDiv.innerText;
+       console.log(specificData)
+      dispatch(addYoutubeAction(specificData))
       
       
     if(youtubeSuccess){
       toast.success("YouTube Intro successfuly");
-      setTimeout(()=>{
-        navigate('/all_youtube')
-      },5000)
+      // setTimeout(()=>{
+      //   navigate('/all_youtube')
+      // },5000)
     }
     }
   // state for audio option
@@ -230,9 +231,15 @@ const Youtube = () => {
                   <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning={true}>
                   {yout.generated_intros.map((d,idx)=>(
                     <div  className="txt-sec" key={idx}>
-                      <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                      <MdOutlineContentCopy className="icon" />
-                      </button>
+                    <div className="right-icons-container-fa">
+                        <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                          <MdOutlineContentCopy className="icon" />
+                          </button>
+
+                          <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                          <MdOutlineSaveAlt className="icon" />
+                        </button>
+                    </div>    
                       <div id={`div-${index}-${idx}`}>
                         <TypeWriterEffect text={d} />
                        </div>
@@ -243,7 +250,7 @@ const Youtube = () => {
                   )):null}
 
                   <br />
-                  <form onSubmit={handleForm}>
+                  <form>
                   <p className="product-p">Select Project*</p>
                   <select
                 onChange={(e)=>setProjectId(e.target.value)} 

@@ -3,7 +3,7 @@ import { ADD_FACEBOOKADS_FAILED, ADD_FACEBOOKADS_REQUEST, ADD_FACEBOOKADS_SUCCES
 
 export const addFacebookAction = (facebook_ad,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_FACEBOOKADS_REQUEST})
+       // dispatch({type:ADD_FACEBOOKADS_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

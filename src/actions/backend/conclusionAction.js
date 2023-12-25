@@ -3,7 +3,7 @@ import { ADD_CONCLUSION_FAILED, ADD_CONCLUSION_REQUEST, ADD_CONCLUSION_SUCCESS, 
 
 export const addConclusionAction = (conclusion,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_CONCLUSION_REQUEST})
+        //dispatch({type:ADD_CONCLUSION_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

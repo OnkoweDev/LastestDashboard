@@ -23,7 +23,7 @@ import { youtubeDescAction } from "../actions/ai/youtubeDescriptionAction";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { Typewriter } from "react-simple-typewriter";
 import toast, { Toaster } from "react-hot-toast";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 
 const YoutubeGenerator = () => {
   // state to keep track of number of output
@@ -46,11 +46,18 @@ const YoutubeGenerator = () => {
 }, [])
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(keywords)
-    dispatch(youtubeDescAction(title,keywords))
+const handleForm = (index, subIndex) => {
+  // e.preventDefault()
+   const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+   const specificData = specificDiv.innerText;
+   console.log(specificData)
+    dispatch(youtubeDescAction(specificData))
 
+      toast.success("YouTube Intro successfuly");
+      // setTimeout(()=>{
+      //   navigate('/all_youtube')
+      // },5000)
+  
   }
 
   // handle audio option
@@ -200,9 +207,15 @@ const YoutubeGenerator = () => {
                   
                   {you.generated_descriptions.map((d,idx)=>(
                     <div  className="txt-sec" key={idx}>
-                    <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                      <MdOutlineContentCopy className="icon" />
-                    </button>
+                    <div className="right-icons-container-fa">
+                        <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                          <MdOutlineContentCopy className="icon" />
+                          </button>
+
+                          <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                          <MdOutlineSaveAlt className="icon" />
+                        </button>
+                    </div>   
                      <div id={`div-${index}-${idx}`}>
                       <TypeWriterEffect text={d} />
                      </div>

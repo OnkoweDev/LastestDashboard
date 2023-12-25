@@ -3,7 +3,7 @@ import { ADD_ARTICLEWRITTER_FAILED, ADD_ARTICLEWRITTER_REQUEST, ADD_ARTICLEWRITT
 
 export const articleAddAction = (article_rewriter,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_ARTICLEWRITTER_REQUEST})
+        //dispatch({type:ADD_ARTICLEWRITTER_REQUEST})
         const {userLogin:{userInfo}} = getState()
         //console.log('UserInfo:', userInfo); 
 

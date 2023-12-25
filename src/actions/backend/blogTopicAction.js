@@ -3,7 +3,7 @@ import { ADD_BLOGTOPIC_FAILED, ADD_BLOGTOPIC_REQUEST, ADD_BLOGTOPIC_SUCCESS, DEL
 
 export const blogTopicAddAction = (topic,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_BLOGTOPIC_REQUEST})
+        //dispatch({type:ADD_BLOGTOPIC_REQUEST})
         const {userLogin:{userInfo}} = getState();
 
         if (!userInfo || !userInfo.token) {

@@ -3,7 +3,7 @@ import { ADD_EMAILGEN_FAILED, ADD_EMAILGEN_REQUEST, ADD_EMAILGEN_SUCCESS, DELETE
 
 export const addEmailGenAction = (email_generator,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_EMAILGEN_REQUEST})
+       // dispatch({type:ADD_EMAILGEN_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

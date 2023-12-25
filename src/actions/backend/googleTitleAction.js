@@ -5,7 +5,7 @@ import { ADD_GOOGLETITLE_FAILED, ADD_GOOGLETITLE_REQUEST, ADD_GOOGLETITLE_SUCCES
 
 export const addGoogleTitleAction = (title,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_GOOGLETITLE_REQUEST})
+       // dispatch({type:ADD_GOOGLETITLE_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");

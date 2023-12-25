@@ -3,7 +3,7 @@ import { ADD_BLOGINTRO_FAILED, ADD_BLOGINTRO_REQUEST, ADD_BLOGINTRO_SUCCESS, DEL
 
 export const blogIntroAddAction = (intro,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_BLOGINTRO_REQUEST})
+        //dispatch({type:ADD_BLOGINTRO_REQUEST})
         const {userLogin:{userInfo}} = getState();
 
         const token = userInfo?.token;

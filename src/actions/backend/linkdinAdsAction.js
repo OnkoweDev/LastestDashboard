@@ -5,7 +5,7 @@ import { ADD_LINKDINADS_FAILED, ADD_LINKDINADS_REQUEST, ADD_LINKDINADS_SUCCESS, 
 
 export const addLinkAdsAction = (linkedin_ad,project_id) => async(dispatch,getState) => {
     try {
-        dispatch({type:ADD_LINKDINADS_REQUEST})
+        //dispatch({type:ADD_LINKDINADS_REQUEST})
         const {userLogin:{userInfo}} = getState();
         if (!userInfo || !userInfo.token) {
             throw new Error("Session expired please login again");
