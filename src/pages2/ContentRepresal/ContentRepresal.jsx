@@ -6,6 +6,7 @@ import { deleteContentRepreAction, getContentRepreAction } from "../../actions/b
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
+import { MdDelete } from "react-icons/md";
 
 const AllContentRepre = () => {
   // state to hold the data comimg from the database / backend
@@ -43,33 +44,40 @@ const AllContentRepre = () => {
         <div className="container">
           <SideNav />
           <div className="content">
-          <Link className="article-btn"  
-          style={{ 
-            fontSize: "14px",
-            width:"20%",
-            textAlign:"center",
-            justifyContent:"center",
-            alignItems:"center",
-            padding:"5px",
-            
-        }} 
-        to='/content-rephraser'>Add Content Represal</Link><br/>
+            <Link
+              className="article-btn"
+              style={{
+                fontSize: "14px",
+                width: "20%",
+                textAlign: "center",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "5px",
+              }}
+              to="/content-rephraser"
+            >
+              Add Content Represal
+            </Link>
+            <br />
 
+            <div className="cards-container">
+              {loading && <Loader />}
+              {articleError && <div className=" bar error">{articleError}</div>}
+              {error && <div className=" bar error">{error}</div>}
 
-              <div className="cards-container">
-               {loading && <Loader />}
-               {articleError && <div className=' bar error'>{articleError}</div>}
-               {error && <div className=' bar error'>{error}</div>}
-
-               {content && content.map((con)=>(
-                <div className="card" key={con.id}>
-                        <p>{con.content.slice(0,300)}.....</p>
-                        <Link to={`/content/${con.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(con.id)}>delete</a>
-                     
-                </div>
+              {content &&
+                content.map((con) => (
+                  <div className="card relative" key={con.id}>
+                    <p>{con.content.slice(0, 300)}.....</p>
+                    <Link to={`/content/${con.id}`}>Read more</Link>
+                    <br />
+                    <MdDelete
+                      onClick={() => handleDelete(con.id)}
+                      className="absolute top-5 right-5 text-lg text-gray-800"
+                    />
+                  </div>
                 ))}
-              </div>
+            </div>
             {/* <Voice /> */}
           </div>
         </div>

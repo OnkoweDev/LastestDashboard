@@ -5,37 +5,43 @@ import { Link } from "react-router-dom";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
-import { deleteAudioAction, getAudioAction } from "../../actions/backend/audioAction";
+import {
+  deleteAudioAction,
+  getAudioAction,
+} from "../../actions/backend/audioAction";
+import { MdDelete } from "react-icons/md";
 
 const AllAudio = () => {
   // state to hold the data comimg from the database / backend
   const [message, setMessage] = useState("");
 
-  const dispatch = useDispatch()
-  const getAudio = useSelector((state)=>state.getAudio)
-  const {loading,error,audios} = getAudio
+  const dispatch = useDispatch();
+  const getAudio = useSelector((state) => state.getAudio);
+  const { loading, error, audios } = getAudio;
 
-  const saveAudio = useSelector((state)=>state.saveAudio)
-  const {error:googleError} = saveAudio
+  const saveAudio = useSelector((state) => state.saveAudio);
+  const { error: googleError } = saveAudio;
 
-  const deleteAudio = useSelector((state)=>state.deleteAudio)
-  const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteAudio
+  const deleteAudio = useSelector((state) => state.deleteAudio);
+  const {
+    loading: deleteLoading,
+    error: deleteError,
+    success: deleteSuccess,
+  } = deleteAudio;
 
   useEffect(() => {
-    dispatch(getAudioAction())
-  }, [deleteSuccess])
-  
-  const handleDelete = (id) =>{
-    if(window.confirm(`Are you sure you want to delete Item`)){
-    dispatch(deleteAudioAction(id))
-    setMessage("Item deleted Successful")
-    setTimeout(()=>{
-        setMessage("")
-    },4000)
+    dispatch(getAudioAction());
+  }, [deleteSuccess]);
+
+  const handleDelete = (id) => {
+    if (window.confirm(`Are you sure you want to delete Item`)) {
+      dispatch(deleteAudioAction(id));
+      setMessage("Item deleted Successful");
+      setTimeout(() => {
+        setMessage("");
+      }, 4000);
     }
-}
-
-
+  };
 
   return (
     <>
@@ -44,36 +50,42 @@ const AllAudio = () => {
         <div className="container">
           <SideNav />
           <div className="content">
-          <Link className="article-btn"  
-          style={{ 
-            fontSize: "14px",
-            width:"20%",
-            textAlign:"center",
-            justifyContent:"center",
-            alignItems:"center",
-            padding:"5px",
-            
-        }} 
-        to='/audio'>Transcribe New Audio</Link><br/>
+            <Link
+              className="article-btn"
+              style={{
+                fontSize: "14px",
+                width: "20%",
+                textAlign: "center",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "5px",
+              }}
+              to="/audio"
+            >
+              Transcribe New Audio
+            </Link>
+            <br />
 
+            <div className="cards-container">
+              {loading && <Loader />}
+              {googleError && <div className=" bar error">{googleError}</div>}
+              {error && <div className=" bar error">{error}</div>}
+              {message && <div className=" bar success">{message}</div>}
 
-              <div className="cards-container">
-               {loading && <Loader />}
-               {googleError && <div className=' bar error'>{googleError}</div>}
-               {error && <div className=' bar error'>{error}</div>}
-               {message && <div className=' bar success'>{message}</div>}
-
-               {audios && audios.map((face)=>(
-                <div className="card" key={face.id}>
-                        <h2>{face.uploaded_url}</h2>
-                        <p>{face.generated_transcription.slice(0,300)}.....</p>
-                        <Link to={`/all_audio/${face.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(face.id)}>delete</a>
-
-                     
-                </div>
+              {audios &&
+                audios.map((face) => (
+                  <div className="card relative" key={face.id}>
+                    <h2>{face.uploaded_url}</h2>
+                    <p>{face.generated_transcription.slice(0, 300)}.....</p>
+                    <Link to={`/all_audio/${face.id}`}>Read more</Link>
+                    <br />
+                    <MdDelete
+                      onClick={() => handleDelete(face.id)}
+                      className="absolute top-10 right-10 text-lg text-gray-800"
+                    />
+                  </div>
                 ))}
-              </div>
+            </div>
             {/* <Voice /> */}
           </div>
         </div>

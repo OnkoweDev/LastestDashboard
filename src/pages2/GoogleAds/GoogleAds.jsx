@@ -44,35 +44,41 @@ const ALLGoogleAds = () => {
         <div className="container">
           <SideNav />
           <div className="content">
-          <Link className="article-btn"  
-          style={{ 
-            fontSize: "14px",
-            width:"20%",
-            textAlign:"center",
-            justifyContent:"center",
-            alignItems:"center",
-            padding:"5px",
-            
-        }} 
-        to='/googleads'>Add GoogleAds Generator</Link><br/>
+            <Link
+              className="article-btn"
+              style={{
+                fontSize: "14px",
+                width: "20%",
+                textAlign: "center",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "5px",
+              }}
+              to="/googleads"
+            >
+              Add GoogleAds Generator
+            </Link>
+            <br />
 
+            <div className="cards-container">
+              {loading && <Loader />}
+              {googleError && <div className=" bar error">{googleError}</div>}
+              {error && <div className=" bar error">{error}</div>}
+              {message && <div className=" bar success">{message}</div>}
 
-              <div className="cards-container">
-               {loading && <Loader />}
-               {googleError && <div className=' bar error'>{googleError}</div>}
-               {error && <div className=' bar error'>{error}</div>}
-               {message && <div className=' bar success'>{message}</div>}
-
-               {GoogleAds && GoogleAds.map((face)=>(
-                <div className="card" key={face.id}>
-                        <p>{face.google_ad.slice(0,300)}.....</p>
-                        <Link to={`/allgoogleads/${face.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(face.id)}>delete</a>
-
-                     
-                </div>
+              {GoogleAds &&
+                GoogleAds.map((face) => (
+                  <div className="card relative" key={face.id}>
+                    <p>{face.google_ad.slice(0, 300)}.....</p>
+                    <Link to={`/allgoogleads/${face.id}`}>Read more</Link>
+                    <br />
+                    <MdDelete
+                      onClick={() => handleDelete(face.id)}
+                      className="absolute top-5 right-5 text-lg text-gray-800"
+                    />
+                  </div>
                 ))}
-              </div>
+            </div>
             {/* <Voice /> */}
           </div>
         </div>

@@ -8,6 +8,7 @@ import { deleteSubjectAction, getSubjectAction } from "../../actions/backend/ema
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
+import { MdDelete } from "react-icons/md";
 
 const AllEmailSubject = () => {
   // state to hold the data comimg from the database / backend
@@ -47,35 +48,41 @@ const AllEmailSubject = () => {
         <div className="container">
           <SideNav />
           <div className="content">
-          <Link className="article-btn"  
-          style={{ 
-            fontSize: "14px",
-            width:"20%",
-            textAlign:"center",
-            justifyContent:"center",
-            alignItems:"center",
-            padding:"5px",
-            
-        }} 
-        to='/emailSubject'>Add Email Generator</Link><br/>
+            <Link
+              className="article-btn"
+              style={{
+                fontSize: "14px",
+                width: "20%",
+                textAlign: "center",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "5px",
+              }}
+              to="/emailSubject"
+            >
+              Add Email Generator
+            </Link>
+            <br />
 
+            <div className="cards-container">
+              {loading && <Loader />}
+              {error && <div className=" bar error">{error}</div>}
+              {articleError && <div className=" bar error">{articleError}</div>}
+              {message && <div className=" bar success">{message}</div>}
 
-              <div className="cards-container">
-               {loading && <Loader />}
-               {error && <div className=' bar error'>{error}</div>}
-               {articleError && <div className=' bar error'>{articleError}</div>}
-               {message && <div className=' bar success'>{message}</div>}
-
-               {subjects && subjects.map((subject)=>(
-                <div className="card" key={subject.id}>
-                        <p>{subject.email_subject.slice(0,300)}.....</p>
-                        <Link to={`/allEmailSubject/${subject.id}`}>Read more</Link><br/>
-                        <a  onClick={()=>handleDelete(subject.id)}>delete</a>
-
-                     
-                </div>
+              {subjects &&
+                subjects.map((subject) => (
+                  <div className="card relative" key={subject.id}>
+                    <p>{subject.email_subject.slice(0, 300)}.....</p>
+                    <Link to={`/allEmailSubject/${subject.id}`}>Read more</Link>
+                    <br />
+                    <MdDelete
+                      onClick={() => handleDelete(subject.id)}
+                      className="absolute top-5 right-5 text-lg text-gray-800"
+                    />
+                  </div>
                 ))}
-              </div>
+            </div>
             {/* <Voice /> */}
           </div>
         </div>
