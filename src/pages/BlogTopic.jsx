@@ -16,7 +16,7 @@ import { FiStopCircle } from "react-icons/fi";
 import { CiPause1 } from "react-icons/ci";
 import { RiVoiceprintFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { blogSectionAction } from "../actions/ai/blogSectionAction";
 import { blogTopicAction } from "../actions/ai/blogTopicAction";
 import Loader from "../components/Loader";
@@ -236,8 +236,7 @@ const BlogTopic = () => {
                       </div>
                       )):null}
                       <br />
-                      <form>
-                      <p className="product-p">Select Project*</p>
+                      {/* <p className="product-p">Select Project*</p>
                        <select
                          onChange={(e)=>setProjectId(e.target.value)} 
                          value={projectId}
@@ -259,21 +258,20 @@ const BlogTopic = () => {
                             lineHeight: "21px",
                             color: "rgba(0, 22, 51, 0.5)",
                           }}
-                          
                         >
-                        <option value="" selected disabled hidden>Select project</option>
-
                         {
                          project && project.map((pro, i)=>(
                           <option key={i} value={pro.id}>{pro.name}</option>
                           ))
                          }
                         </select>
-                      <br />
-                      <button className="article-btn" style={{ fontSize: "14px" }}>
-                         {topicLoading ? "Please wait..." : "Save Blog Topic Generator"}
-                    </button>
-                  </form>
+                     <br />
+                    <button className="article-btn" style={{ fontSize: "14px" }}>
+                    Save Blog Intro Generated
+                        </button>
+                      */}
+                       
+                        <Link to='/all_blog_topic' className="article-btn">Saved Work</Link>
                  
                 </div>
               </div>

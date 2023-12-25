@@ -15,7 +15,7 @@ import { CiPause1 } from "react-icons/ci";
 import { RiVoiceprintFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { addEbook, viewMyEbook } from "../actions/ebookaction";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addBlog, getBlogIntroAction } from "../actions/ai/blogIntroAction";
 import Loader from '../components/Loader'
 import { getProjectAction } from "../actions/backend/projectAction";
@@ -275,7 +275,7 @@ useEffect(() => {
 
                     <br />
                     
-                    <p className="product-p">Select Project*</p>
+                   {/* <p className="product-p">Select Project*</p>
                        <select
                          onChange={(e)=>setProjectId(e.target.value)} 
                          value={projectId}
@@ -307,7 +307,9 @@ useEffect(() => {
                      <br />
                     <button className="article-btn" style={{ fontSize: "14px" }}>
                     Save Blog Intro Generated
-                     </button>
+                        </button>*/}
+                       
+                        <Link to='/all_intro' className="article-btn">Saved Work</Link>
                     
 
                 </div>

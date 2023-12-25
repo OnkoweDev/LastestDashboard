@@ -21,7 +21,7 @@ import Loader from "../components/Loader";
 import { emailGenAction } from "../actions/ai/emailGenAction";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addEmailGenAction } from "../actions/backend/emailGeneratorAction";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
 import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
@@ -261,46 +261,45 @@ const EmailGenerator = () => {
                       </div>
                       ))}
                       <br />
-                <form onSubmit={handleForm}>   
-                 <p className="product-p">Select Project*</p>
-                 <select
-                   onChange={(e)=>setProjectId(e.target.value)} 
-                   value={projectId}
-                    name=""
-                    id=""
-                    className="select"
-                    style={{
-                      display: "block",
-                      width: "100%",
-                      background: "var(--primary-blue)",
-                      borderRadius: "var(--border-radius-xs)",
-                      border: "none",
-                      outline: "none",
-                      height: "10%",
-                      margin: "5px 0",
-                      padding: "5px",
-                      fontWeight: "400",
-                      fontSize: "14px",
-                      lineHeight: "21px",
-                      color: "rgba(0, 22, 51, 0.5)",
-                    }}
-                  >
-                  <option value="" selected disabled hidden>Select project</option>
-                  {
-                   project && project.map((pro, i)=>(
-                    <option key={i} value={pro.id}>{pro.name}</option>
-                    ))
-                   }
-                  </select>
-                 <br />
-                      <button className="article-btn" style={{ fontSize: "12px" }}>
-                      Save Email
-                    </button>
-                    </form>
-                  {/* <div className="sec-2">
-                    <BCDIcons />
-                    <div className="txt-sec"></div>
-                  </div> */}
+                         {/* <form onSubmit={handleForm}>
+                              <p className="product-p">Select Project*</p>
+                              <select
+                                onChange={(e)=>setProjectId(e.target.value)} 
+                                value={projectId}
+                                name=""
+                                id=""
+                                className="select"
+                                style={{
+                                  display: "block",
+                                  width: "100%",
+                                  background: "var(--primary-blue)",
+                                  borderRadius: "var(--border-radius-xs)",
+                                  border: "none",
+                                  outline: "none",
+                                  height: "10%",
+                                  margin: "5px 0",
+                                  padding: "5px",
+                                  fontWeight: "400",
+                                  fontSize: "14px",
+                                  lineHeight: "21px",
+                                  color: "rgba(0, 22, 51, 0.5)",
+                                }}
+                              >
+                              <option value="" selected disabled hidden>Choose here</option>
+
+                              {
+                                project && project.map((pro, i)=>(
+                                <option key={i} value={pro.id}>{pro.name}</option>
+                                ))
+                                }
+                              </select>
+                            <br />
+                              <button className="article-btn" style={{ fontSize: "14px" }}>
+                              Save Blog Writer
+                            </button>
+                              </form>*/}
+                              <Link to='/allemail' className="article-btn">Saved Work</Link>
+                 
                 </div>
               </div>
             </div>

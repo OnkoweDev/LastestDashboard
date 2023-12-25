@@ -22,7 +22,7 @@ import { productNameAction } from "../actions/ai/productNameAction";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { useEffect } from "react";
 import { addProductNameAction } from "../actions/backend/productNameAction";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
 import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
@@ -248,43 +248,44 @@ const ProductName = () => {
                     </div>
                     )):null}
                     <br />
-                    <form>
-                    <p className="product-p">Select Project*</p>
-                          <select
-                        onChange={(e)=>setProjectId(e.target.value)} 
-                        value={projectId}
-                        name=""
-                        id=""
-                        className="select"
-                        style={{
-                          display: "block",
-                          width: "100%",
-                          background: "var(--primary-blue)",
-                          borderRadius: "var(--border-radius-xs)",
-                          border: "none",
-                          outline: "none",
-                          height: "10%",
-                          margin: "5px 0",
-                          padding: "5px",
-                          fontWeight: "400",
-                          fontSize: "14px",
-                          lineHeight: "21px",
-                          color: "rgba(0, 22, 51, 0.5)",
-                        }}
-                        >
-                        <option value="" selected disabled hidden>Select project</option>
-                        
-                        {
-                          project && project.map((pro, i)=>(
-                            <option key={i} value={pro.id}>{pro.name}</option>
-                            ))
-                          }
-                          </select>
-                          <br />
-                    <button className="article-btn" style={{ fontSize: "12px" }}>
-                    Save Product Name
-                  </button>
-                    </form>
+                          {/* <form onSubmit={handleForm}>
+                              <p className="product-p">Select Project*</p>
+                              <select
+                                onChange={(e)=>setProjectId(e.target.value)} 
+                                value={projectId}
+                                name=""
+                                id=""
+                                className="select"
+                                style={{
+                                  display: "block",
+                                  width: "100%",
+                                  background: "var(--primary-blue)",
+                                  borderRadius: "var(--border-radius-xs)",
+                                  border: "none",
+                                  outline: "none",
+                                  height: "10%",
+                                  margin: "5px 0",
+                                  padding: "5px",
+                                  fontWeight: "400",
+                                  fontSize: "14px",
+                                  lineHeight: "21px",
+                                  color: "rgba(0, 22, 51, 0.5)",
+                                }}
+                              >
+                              <option value="" selected disabled hidden>Choose here</option>
+
+                              {
+                                project && project.map((pro, i)=>(
+                                <option key={i} value={pro.id}>{pro.name}</option>
+                                ))
+                                }
+                              </select>
+                            <br />
+                              <button className="article-btn" style={{ fontSize: "14px" }}>
+                              Save Blog Writer
+                            </button>
+                              </form>*/}
+                              <Link to='/all_product_name' className="article-btn">Saved Work</Link>
                   {/* <div className="sec-2">
                     <BCDIcons />
                     <div className="txt-sec"></div>

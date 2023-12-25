@@ -14,7 +14,7 @@ import { FiStopCircle } from "react-icons/fi";
 import { CiPause1 } from "react-icons/ci";
 import { RiVoiceprintFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { blogSectionAction } from "../actions/ai/blogSectionAction";
 import { blogTopicAction } from "../actions/ai/blogTopicAction";
 import Loader from "../components/Loader";
@@ -299,43 +299,44 @@ const handleForm = (index) => {
                         </div>
                     ))}
                     <br />
-                    <form onSubmit={handleForm}>
-                    <p className="product-p">Select Project*</p>
-                      <select
-                    onChange={(e)=>setProjectId(e.target.value)} 
-                    value={projectId}
-                    name=""
-                    id=""
-                    className="select"
-                    style={{
-                      display: "block",
-                      width: "100%",
-                      background: "var(--primary-blue)",
-                      borderRadius: "var(--border-radius-xs)",
-                      border: "none",
-                      outline: "none",
-                      height: "10%",
-                      margin: "5px 0",
-                      padding: "5px",
-                      fontWeight: "400",
-                      fontSize: "14px",
-                      lineHeight: "21px",
-                      color: "rgba(0, 22, 51, 0.5)",
-                    }}
-                    >
-                    <option value="" selected disabled hidden>Select project</option>
-                    
-                    {
-                      project && project.map((pro, i)=>(
-                        <option key={i} value={pro.id}>{pro.name}</option>
-                        ))
-                      }
-                      </select>
-                    <br />
-                    <button className="article-btn" style={{ fontSize: "14px" }}>
-                    Save Landing Page
-                  </button>
-                    </form>
+                              {/* <form onSubmit={handleForm}>
+                              <p className="product-p">Select Project*</p>
+                              <select
+                                onChange={(e)=>setProjectId(e.target.value)} 
+                                value={projectId}
+                                name=""
+                                id=""
+                                className="select"
+                                style={{
+                                  display: "block",
+                                  width: "100%",
+                                  background: "var(--primary-blue)",
+                                  borderRadius: "var(--border-radius-xs)",
+                                  border: "none",
+                                  outline: "none",
+                                  height: "10%",
+                                  margin: "5px 0",
+                                  padding: "5px",
+                                  fontWeight: "400",
+                                  fontSize: "14px",
+                                  lineHeight: "21px",
+                                  color: "rgba(0, 22, 51, 0.5)",
+                                }}
+                              >
+                              <option value="" selected disabled hidden>Choose here</option>
+
+                              {
+                                project && project.map((pro, i)=>(
+                                <option key={i} value={pro.id}>{pro.name}</option>
+                                ))
+                                }
+                              </select>
+                            <br />
+                              <button className="article-btn" style={{ fontSize: "14px" }}>
+                              Save Blog Writer
+                            </button>
+                              </form>*/}
+                              <Link to='/all_landing' className="article-btn">Saved Work</Link>
                 </div>
               </div>
             </div>

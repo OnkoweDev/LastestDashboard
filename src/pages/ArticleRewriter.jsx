@@ -22,7 +22,7 @@ import Loader from "../components/Loader";
 import { addArticleRewriter } from "../actions/ai/artcleRewriterAction";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { articleAddAction } from "../actions/backend/articleWritterAction";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 import { Typewriter } from "react-simple-typewriter";
 
@@ -234,7 +234,7 @@ const handleForm = (index) => {
                   ))}
                   <br />
 
-                  <form>
+                 {/* <form>
                   <p className="product-p">Select Project*</p>
                   <select
                   onChange={(e)=>setProjectId(e.target.value)} 
@@ -271,7 +271,8 @@ const handleForm = (index) => {
                     Save Article Rewriter
                     </button>
                     </form>
-                   
+                  */}
+                  <Link to='/allArticle' className="article-btn">Saved Work</Link>
                     </div>
                     </div>
                     </div>

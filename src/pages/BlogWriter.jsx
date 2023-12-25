@@ -14,7 +14,7 @@ import { FiStopCircle } from "react-icons/fi";
 import { CiPause1 } from "react-icons/ci";
 import { RiVoiceprintFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addArticleWriter } from "../actions/ai/blogArticleAction";
 import Loader from "../components/Loader";
 import { getProjectAction } from "../actions/backend/projectAction";
@@ -247,7 +247,7 @@ useEffect(() => {
                     </div>
                     ))}
                     <br/>
-                    <form onSubmit={handleForm}>
+                   {/* <form onSubmit={handleForm}>
                     <p className="product-p">Select Project*</p>
                     <select
                       onChange={(e)=>setProjectId(e.target.value)} 
@@ -283,7 +283,8 @@ useEffect(() => {
                     <button className="article-btn" style={{ fontSize: "14px" }}>
                     Save Blog Writer
                   </button>
-                </form>
+                    </form>*/}
+                    <Link to='/allBlogs' className="article-btn">Saved Work</Link>
                 </div>
               </div>
             </div>
