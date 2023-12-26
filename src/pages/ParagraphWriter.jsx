@@ -19,6 +19,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
 import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
+import axios from "axios";
 
 const ParagraphWriter = () => {
   // state for audio option
@@ -43,13 +44,49 @@ const ParagraphWriter = () => {
   const getProject = useSelector((state)=>state.getProject)
   const {loading:projectLoading,error:projectError, project} = getProject
 
-  useEffect(() => {
-      dispatch(getProjectAction())
-  }, [])
+  // useEffect(() => {
+  //     dispatch(getProjectAction())
+  // }, [])
 
-  const handleSubmit = (e) => {
+  const formatContentWithGPT3 = async () => {
+    try {
+      const apiKey = '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';
+      const gpt3Endpoint = 'https://api.openai.com/v1/engines/davinci/completions';
+
+      // Prepare your data for GPT-3 formatting (title, keyword, etc.)
+      const data = {
+        prompt: `Your prompt here. ${title} ${keyword} ...`, // Include relevant data here
+        max_tokens: 20, // Adjust token limit as needed
+        temperature: 0.7 // Adjust temperature for diversity in generated responses
+        // Add other parameters as needed
+      };
+
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      };
+
+      const response = await axios.post(gpt3Endpoint, data, { headers });
+
+      if (response.status === 200) {
+        const formattedText = response.data.choices[0].text.trim();
+        // Use the formatted text in your UI or processing
+        console.log('Formatted Text:', formattedText);
+        // Apply the formatted text to your UI, update state, etc.
+        // Example: setFormattedText(formattedText);
+      } else {
+        console.error('Error:', response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+
+  const handleSubmit = async(e) => {
     e.preventDefault()
     console.log(tone,outputNumber,keyword,title)
+    await formatContentWithGPT3();
     dispatch(addParagraphWriter(title,keyword,outputNumber,tone))
   }
 
@@ -62,9 +99,9 @@ const ParagraphWriter = () => {
 
     if(paraSuccess){
       toast.success("Paragraph writer saved successfuly");
-      setTimeout(()=>{
-        navegate('/all_paragraph')
-      },5000)
+      // setTimeout(()=>{
+      //   navegate('/all_paragraph')
+      // },5000)
     }
   }
 
@@ -87,6 +124,23 @@ const ParagraphWriter = () => {
       toast.success('copied');
     }
   };
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (paragraphs) {
+      setTypingStatus(Array(paragraphs.length).fill(true));
+    }
+  }, [paragraphs]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
+  };
+  
 
   return (
     <>
@@ -244,7 +298,7 @@ const ParagraphWriter = () => {
                    </div>
                           
                           <div id={`div-${index}-${idx}`}>
-                            <TypeWriterEffect text={d} />
+                          {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
                            </div>
                            </div>
                   ))}

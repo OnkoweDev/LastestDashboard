@@ -89,6 +89,22 @@ const LinkedIn = () => {
       toast.success('copied');
     }
   };
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (links) {
+      setTypingStatus(Array(links.length).fill(true));
+    }
+  }, [links]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
+  };
   
   return (
     <>
@@ -209,7 +225,7 @@ const LinkedIn = () => {
                    </div>
 
                     <div id={`div-${index}-${idx}`}>
-                      <TypeWriterEffect text={d} />
+                    {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
                      </div>
                      </div>
                   ))}

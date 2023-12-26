@@ -135,6 +135,22 @@ const handleForm = (index) => {
       toast.success('copied');
     }
   };
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (lands) {
+      setTypingStatus(Array(lands.length).fill(true));
+    }
+  }, [lands]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
+  };
   return (
     <>
       <main>
@@ -294,7 +310,7 @@ const handleForm = (index) => {
                             </button>
                         </div>
                         <div id={`div-${index}`}>
-                        <TypeWriterEffect text={blog.generated_pages} />
+                        {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={blog.generated_pages} cursor />}
                         </div>
                         </div>
                     ))}

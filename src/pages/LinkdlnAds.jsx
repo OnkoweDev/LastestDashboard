@@ -69,9 +69,9 @@ const LindlnAds = () => {
 
     if(linkSuccess){
       toast.success("Landing page saved successfuly");
-      setTimeout(()=>{
-        navigate('/all_linkedin_ads')
-      },5000)
+      // setTimeout(()=>{
+      //   navigate('/all_linkedin_ads')
+      // },5000)
     }
   }
 
@@ -94,6 +94,22 @@ const LindlnAds = () => {
       navigator.clipboard.writeText(divData.innerText);
       toast.success('copied');
     }
+  };
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (ads) {
+      setTypingStatus(Array(ads.length).fill(true));
+    }
+  }, [ads]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
   };
   return (
     <>
@@ -257,7 +273,7 @@ const LindlnAds = () => {
                        </div>
 
                     <div id={`div-${index}-${idx}`}>
-                      <TypeWriterEffect text={d} />
+                    {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
                      </div>
                      </div>
                     ))}
