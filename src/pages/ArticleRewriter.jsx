@@ -143,6 +143,22 @@ const handleForm = (index) => {
     console.log("Mic is clicked");
     setIsAudio(true);
   };
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (rewriters) {
+      setTypingStatus(Array(rewriters.length).fill(true));
+    }
+  }, [rewriters]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
+  };
   return (
     <>
       <main>
@@ -228,7 +244,8 @@ const handleForm = (index) => {
                   </div>
                  
                   <div id={`div-${index}`}>
-                    <TypeWriterEffect text={rewrite.generated_article} />
+                   
+                    {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[rewrite.generated_article]} cursor />}
                   </div>
                   </div>
                   ))}

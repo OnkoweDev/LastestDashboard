@@ -93,6 +93,22 @@ const Instagram = () => {
     }
   };
 
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (instagrams) {
+      setTypingStatus(Array(instagrams.length).fill(true));
+    }
+  }, [instagrams]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
+  };
+
   return (
     <>
       <main>
@@ -243,7 +259,7 @@ const Instagram = () => {
                     </div>
 
                     <div id={`div-${index}-${idx}`}>
-                      <TypeWriterEffect text={d} />
+                    {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
                      </div>
                      </div>
                     ))}

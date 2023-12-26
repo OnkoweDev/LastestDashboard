@@ -66,12 +66,12 @@ const BlogTopic = () => {
     const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
     const specificData = specificDiv.innerText;
     dispatch(blogTopicAddAction(specificData))
+    toast.success("Blog Topic saved successfully");
    
 
-    if (topicSuccess) {
-      toast.success("Blog Topic saved successfully");
-      navigate('/all_blog_topic');
-    }
+    // if (topicSuccess) {
+    //   //navigate('/all_blog_topic');
+    // }
   }
 
   useEffect(() => {
@@ -143,6 +143,22 @@ const BlogTopic = () => {
       navigator.clipboard.writeText(divData.innerText);
       toast.success('copied');
     }
+  };
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (topics) {
+      setTypingStatus(Array(topics.length).fill(true));
+    }
+  }, [topics]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
   };
   return (
     <>
@@ -229,7 +245,7 @@ const BlogTopic = () => {
                       </button>
                       </div>
                       <div id={`div-${index}-${idx}`}>
-                        <TypeWriterEffect text={d} />
+                      {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
                       </div>
                     </div>
                       ))}

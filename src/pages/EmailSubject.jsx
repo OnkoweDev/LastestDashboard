@@ -97,6 +97,23 @@ const EmailSubject = () => {
       toast.success('copied');
     }
   };
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (email) {
+      setTypingStatus(Array(email.length).fill(true));
+    }
+  }, [email]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
+  };
+  
   return (
     <>
       <main>
@@ -242,7 +259,7 @@ const EmailSubject = () => {
                     </button>
                       </div>
                    <div id={`div-${index}-${idx}`}>
-                   <TypeWriterEffect text={d} />
+                       {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
                    </div>                
                     </div>
                     ))}

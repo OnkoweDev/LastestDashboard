@@ -25,6 +25,8 @@ import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 import { Typewriter } from "react-simple-typewriter";
 
 const Tweets = () => {
+
+
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
   const [projectId, setProjectId] = useState()
@@ -33,10 +35,27 @@ const Tweets = () => {
   const [topic, setTopic] = useState([])
   const [keywords, setKeywords] = useState([])
 
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const twitter = useSelector((state)=>state.twitter)
   const {loading, error,success, tweets} = twitter
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (tweets) {
+      setTypingStatus(Array(tweets.length).fill(true));
+    }
+  }, [tweets]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
+  };
 
   const saveTweet = useSelector((state)=>state.saveTweet)
   const {loading:tweetLoading,error:tweetError,success:tweetSuccess} = saveTweet
@@ -79,9 +98,9 @@ const Tweets = () => {
   };
 
   //Typewriter Effect
-  const TypeWriterEffect = ({ text }) => {
-    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
-  };
+  // const TypeWriterEffect = ({ text }) => {
+  //   return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
+  // };
   // handle audio option
   const handleAudio = () => {
     console.log("Mic is clicked");
@@ -208,7 +227,7 @@ const Tweets = () => {
                     </div>
                       
                       <div id={`div-${index}-${idx}`}>
-                        <TypeWriterEffect text={d} />
+                      {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
                        </div>
                     </div>
                   ))}

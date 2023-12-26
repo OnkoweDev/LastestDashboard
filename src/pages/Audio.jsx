@@ -138,6 +138,23 @@ const handleChange = (event) => {
     console.log("Mic is clicked");
     setIsAudio(true);
   };
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (lands) {
+      setTypingStatus(Array(lands.length).fill(true));
+    }
+  }, [lands]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
+  };
+
   return (
     <>
       <main>
@@ -201,7 +218,7 @@ const handleChange = (event) => {
                 </button>
                   {file.name}<br/>
                   <div id={`div-${index}`}>
-                   <TypeWriterEffect text={blog.generated_transcription} />
+                   {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[blog.generated_transcription]} cursor />}
                   </div>
                   
                   </div>
@@ -245,7 +262,7 @@ const handleChange = (event) => {
                     </button>
                     </form>
                   */}
-                  <Link to='/allArticle' className="article-btn">Saved Work</Link>
+                  <Link to='/allArticle' className="article-btn">Saved Audio</Link>
                 </div>
               </div>
             </div>

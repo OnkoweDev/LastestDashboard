@@ -144,6 +144,22 @@ useEffect(() => {
     console.log("Mic is clicked");
     setIsAudio(true);
   };
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (writers) {
+      setTypingStatus(Array(writers.length).fill(true));
+    }
+  }, [writers]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
+  };
   return (
     <>
       <main>
@@ -227,6 +243,7 @@ useEffect(() => {
                 {/*  */}
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
                 {loading && <Loader />}
+                {error && <div className='bar error'>{error}</div>}
                 <Toaster />
                 
                   {writers && writers.map((writer,index)=>(
@@ -241,7 +258,9 @@ useEffect(() => {
                       </button>
                     </div>
                   <div id={`div-${index}`}>
-                   <TypeWriterEffect text={writer.generated_contents} />
+                  
+                   {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[writer.generated_contents]} cursor />}
+
                   </div>
                     
                     </div>

@@ -131,6 +131,23 @@ const GoogleAdDesc = () => {
       toast.success('copied');
     }
   };
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (rephesals) {
+      setTypingStatus(Array(rephesals.length).fill(true));
+    }
+  }, [rephesals]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
+  };
+
   return (
     <>
       <main>
@@ -216,7 +233,8 @@ const GoogleAdDesc = () => {
                              </button>
                                 </div>
                                 <div id={`div-${index}-${idx}`}>
-                                  <TypeWriterEffect text={d} />
+                                  {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
+
                                 </div>
                             </div>
                           ))}

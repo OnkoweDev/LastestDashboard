@@ -166,12 +166,22 @@ const GoogleAdTitile = () => {
       console.log('this is the pop for creating project')
   }
 
-  // state to keep track of number of output
-  // handle audio option
-  const handleAudio = () => {
-    console.log("Mic is clicked");
-    setIsAudio(true);
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (conclusions) {
+      setTypingStatus(Array(conclusions.length).fill(true));
+    }
+  }, [conclusions]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
   };
+  
   return (
     <>
       <main>
@@ -270,7 +280,7 @@ const GoogleAdTitile = () => {
                                 </div>
                                 
                               <div id={`div-${index}-${idx}`}>
-                                <TypeWriterEffect text={d} />
+                              {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={10} words={[d]} cursor />}
                               </div>
                             </div>
                           ))}

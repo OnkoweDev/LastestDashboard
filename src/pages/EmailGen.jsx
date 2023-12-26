@@ -83,7 +83,7 @@ const EmailGenerator = () => {
 
   //Typewriter Effect
   const TypeWriterEffect = ({ text }) => {
-    return <Typewriter deleteSpeed={false} words={text}  cursor />;
+    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
   };
 //copy Effect
   const handleCopy = (id) => {
@@ -93,6 +93,22 @@ const EmailGenerator = () => {
       navigator.clipboard.writeText(divData.innerText);
       toast.success('copied');
     }
+  };
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (gene) {
+      setTypingStatus(Array(gene.length).fill(true));
+    }
+  }, [gene]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
   };
   return (
     <>
@@ -254,7 +270,7 @@ const EmailGenerator = () => {
                   </div>
                   
                   <div id={`div-${index}`}>
-                    <TypeWriterEffect text={you.generated_emails} />
+                    {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={you.generated_emails} cursor />}
                  </div>
                       
                       

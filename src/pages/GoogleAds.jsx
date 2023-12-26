@@ -68,9 +68,9 @@ const GoogleAds = () => {
     
     if(adsSuccess){
       toast.success("google ads saved successfuly");
-      setTimeout(()=>{
-        navegate('/allgoogleads')
-      },5000)
+      // /setTimeout(()=>{
+      //   navegate('/allgoogleads')
+      // },5000)
     }
   }
 
@@ -93,6 +93,22 @@ const GoogleAds = () => {
       navigator.clipboard.writeText(divData.innerText);
       toast.success('copied');
     }
+  };
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (google) {
+      setTypingStatus(Array(google.length).fill(true));
+    }
+  }, [google]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
   };
   return (
     <>
@@ -233,7 +249,7 @@ const GoogleAds = () => {
                       </button>
                     </div>
                     <div id={`div-${index}-${idx}`}>
-                    <TypeWriterEffect text={d} />
+                        {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
                      </div>
                      </div>
                       ))}
