@@ -93,6 +93,22 @@ const Youtube = () => {
   const TypeWriterEffect = ({ text }) => {
     return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
   };
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (youtubes) {
+      setTypingStatus(Array(youtubes.length).fill(true));
+    }
+  }, [youtubes]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
+  };
   return (
     <>
       <main>
@@ -127,57 +143,7 @@ const Youtube = () => {
                       padding: "10px",
                     }}
                   ></textarea>
-                  <div
-                    className="mic"
-                    style={{
-                      display: "block",
-                      textAlign: "right",
-                      margin: "10px 0",
-                    }}
-                  >
-                    {isAudio ? (
-                      <div className="audio">
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <RiVoiceprintFill />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <CiPause1 />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                        >
-                          <FiStopCircle />
-                        </button>
-                        <button
-                          className="icon-div"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setIsAudio(false);
-                          }}
-                        >
-                          <HiOutlinePencil />
-                        </button>
-                      </div>
-                    ) : (
-                      <AiOutlineAudio
-                        className="icon-div mic-icon"
-                        onClick={handleAudio}
-                      />
-                    )}
-                  </div>
+                  
                   {/* keywords */}
                   <p className="product-p">Keywords*</p>
                   <input required type="text" onChange={(e)=>setKeywords(e.target.value)}  value={keywords}/>
@@ -241,7 +207,7 @@ const Youtube = () => {
                         </button>
                     </div>    
                       <div id={`div-${index}-${idx}`}>
-                        <TypeWriterEffect text={d} />
+                      {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
                        </div>
                     </div> 
                   ))}

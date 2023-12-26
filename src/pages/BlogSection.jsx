@@ -226,21 +226,7 @@ const handleForm = (index, subIndex,e) => {
                       resize: "none",
                     }}
                   ></textarea>
-                  <div
-                    className="mic"
-                    style={{
-                      display: "block",
-                      textAlign: "right",
-                      margin: "10px 0",
-                    }}
-                  >
-                  
-                    {isListening_new ? <RiVoiceprintFill  className="icon-div mic-icon" /> : <FiStopCircle  className="icon-div mic-icon" />}
-                    <AiOutlineAudio
-                      className="icon-div mic-icon"
-                      onClick={()=>setIsListening_new(prevState => !prevState)}
-                    />
-                </div>
+                 
 
                   <p className="product-p">Intro*</p>
 
@@ -264,21 +250,7 @@ const handleForm = (index, subIndex,e) => {
                     }}
                   >
                      </textarea>
-                  <div
-                    className="mic"
-                    style={{
-                      display: "block",
-                      textAlign: "right",
-                      margin: "10px 0",
-                    }}
-                  >
-                    
-                  {isListening ? <RiVoiceprintFill  className="icon-div mic-icon" /> : <FiStopCircle  className="icon-div mic-icon" />}
-                  <AiOutlineAudio
-                     className="icon-div mic-icon"
-                     onClick={()=>setIsListening(prevState => !prevState)}
-                   />
-                  </div>
+                  
                   {/*  number of output*/}
                   <OutputNumber
                     outputNumber={outputNumber}

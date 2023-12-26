@@ -57,7 +57,7 @@ const SideNav = () => {
     },
 
     {
-      name: "Commerce",
+      name: "E-Commerce",
       icon: <FaProductHunt />,
       path: "/commerce",
     },

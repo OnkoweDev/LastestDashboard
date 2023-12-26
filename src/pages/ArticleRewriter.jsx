@@ -199,21 +199,7 @@ const handleForm = (index) => {
                        outline:"0px",
                     }}
                   ></textarea>
-                  <div
-                    className="mic"
-                    style={{
-                      display: "block",
-                      textAlign: "right",
-                      margin: "10px 0",
-                    }}
-                  >
-                   
-                    {isListening ? <RiVoiceprintFill  className="icon-div mic-icon" /> : <FiStopCircle  className="icon-div mic-icon" />}
-                     <AiOutlineAudio
-                        className="icon-div mic-icon"
-                        onClick={()=>setIsListening(prevState => !prevState)}
-                      />
-                  </div>
+               
                   {/*  number of output*/}
                   <button className="article-btn" style={{ fontSize: "14px" }}>
                     Create Article Rewriter
