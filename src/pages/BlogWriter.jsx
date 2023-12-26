@@ -53,44 +53,44 @@ const LinkedInShort = () => {
   const {loading:blogLoading, error:blogError, success:blogSuccess} = addBlogWriter
 
 
-  const formatContentWithGPT3 = async () => {
-    try {
-      const apiKey = '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';
-      const gpt3Endpoint = 'https://api.openai.com/v1/engines/davinci/completions';
+  // const formatContentWithGPT3 = async () => {
+  //   try {
+  //     const apiKey = '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';
+  //     const gpt3Endpoint = 'https://api.openai.com/v1/engines/davinci/completions';
 
-      // Prepare your data for GPT-3 formatting (title, keyword, etc.)
-      const data = {
-        prompt: `Your prompt here. ${title} ${intro} ${sections} ...`, // Include relevant data here
-        max_tokens: 100, // Adjust token limit as needed
-        temperature: 0.7 // Adjust temperature for diversity in generated responses
-        // Add other parameters as needed
-      };
+  //     // Prepare your data for GPT-3 formatting (title, keyword, etc.)
+  //     const data = {
+  //       prompt: `Your prompt here. ${title} ${intro} ${sections} ...`, // Include relevant data here
+  //       max_tokens: 100, // Adjust token limit as needed
+  //       temperature: 0.7 // Adjust temperature for diversity in generated responses
+  //       // Add other parameters as needed
+  //     };
 
-      const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      };
+  //     const headers = {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${apiKey}`
+  //     };
 
-      const response = await axios.post(gpt3Endpoint, data, { headers });
+  //     const response = await axios.post(gpt3Endpoint, data, { headers });
 
-      if (response.status === 200) {
-        const formattedText = response.data.choices[0].text.trim();
-        // Use the formatted text in your UI or processing
-        console.log('Formatted Text:', formattedText);
-        // Apply the formatted text to your UI, update state, etc.
-        // Example: setFormattedText(formattedText);
-      } else {
-        console.error('Error:', response.status, response.statusText);
-      }
-    } catch (error) {
-      console.error('Error:', error.data.error);
-    }
-  };
+  //     if (response.status === 200) {
+  //       const formattedText = response.data.choices[0].text.trim();
+  //       // Use the formatted text in your UI or processing
+  //       console.log('Formatted Text:', formattedText);
+  //       // Apply the formatted text to your UI, update state, etc.
+  //       // Example: setFormattedText(formattedText);
+  //     } else {
+  //       console.error('Error:', response.status, response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error:', error.data.error);
+  //   }
+  // };
 
   const handleArticle = async(e) => {
     e.preventDefault()
     console.log("loading data")
-    await formatContentWithGPT3();
+    //await formatContentWithGPT3();
     dispatch(addArticleWriter(title,intro,sections))
   }
 
