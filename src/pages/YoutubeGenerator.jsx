@@ -25,6 +25,7 @@ import { Typewriter } from "react-simple-typewriter";
 import toast, { Toaster } from "react-hot-toast";
 import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { youtubeAction } from "../actions/ai/youtubeAction";
 
 const YoutubeGenerator = () => {
   // state to keep track of number of output
@@ -46,6 +47,12 @@ const YoutubeGenerator = () => {
     dispatch(getProjectAction())
 }, [])
 
+
+const handleSubmit = (e) => {
+  e.preventDefault()
+  //console.log(tone,hook)
+  dispatch(youtubeDescAction(title,keywords))
+}
 
 const handleForm = (index, subIndex) => {
   // e.preventDefault()
@@ -80,6 +87,22 @@ const handleForm = (index, subIndex) => {
       navigator.clipboard.writeText(divData.innerText);
       toast.success('copied');
     }
+  };
+
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (yous) {
+      setTypingStatus(Array(yous.length).fill(true));
+    }
+  }, [yous]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
   };
   return (
     <>
@@ -168,7 +191,7 @@ const handleForm = (index, subIndex) => {
                         </button>
                     </div>   
                      <div id={`div-${index}-${idx}`}>
-                      <TypeWriterEffect text={d} />
+                     {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
                      </div>
                   </div>
                   ))} 
