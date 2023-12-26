@@ -12,6 +12,6 @@ export default {
         white: "#FCFCFC",
       },
     },
-    plugins: [],
+    plugins: [require("daisyui")],
   },
 };

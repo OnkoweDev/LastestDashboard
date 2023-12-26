@@ -84,6 +84,23 @@
   }
 }
 
+.drop-content-2 {
+  position: absolute;
+  top: 100%;
+  right: 1rem;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  z-index: 2;
+
+  @media (max-width: 700px) {
+    max-width: 300px;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 .dropdown-link {
   text-transform: uppercase;
   font-weight: 400;

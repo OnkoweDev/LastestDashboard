@@ -26,7 +26,7 @@ const SignUp = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     dispatch(register(full_name, email, password));
-    console.log(full_name)
+    console.log(full_name);
   };
 
   useEffect(() => {
@@ -100,20 +100,8 @@ const SignUp = () => {
                 )}
               </article>
             </div>
-            <div className="flex items-center md:inline">
-              
-              <input
-                type="checkbox"
-                required
-                className="md:inline transform scale-150 mr-2"
-                name="checkbox"
-                id="checkboxId"
-              />
-              <p className="inline md:px-3 px-2">
-                I’ve agreed to the Terms and have read and acknowledged our
-                Privacy
-              </p>
-            </div>
+            <input type="checkbox" className="checkbox inline" />
+            <p className="inline md:px-3 px-5">I’ve agreed to the T & C</p>
             <br />
             <Button> {loading ? "Processing please wait" : "Sign Up"}</Button>
           </form>
