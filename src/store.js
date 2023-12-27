@@ -282,14 +282,14 @@ const persistedReducer = persistReducer(persistConfig, reducers);
 const userInfoFromStorage = secureLocalStorage.getItem('userInfo') ? JSON.parse(secureLocalStorage.getItem('userInfo')):null
 
 
-// const projectInfoFromStorage = localStorage.getItem('projectInfo') ? JSON.parse(localStorage.getItem('projectInfo')):null
+const profileInfoFromStorage = localStorage.getItem('profileInfo') ? JSON.parse(localStorage.getItem('profileInfo')):null
 
 // const initialState = {
 //     userLogin:{ userInfo:userInfoFromStorage}}
 
 const initialState = {
     userLogin: { userInfo: userInfoFromStorage },
-    //project: { projectInfo: projectInfoFromStorage },
+    userProfile: { profileInfo: profileInfoFromStorage },
   };
   
 const middleware = [thunk]

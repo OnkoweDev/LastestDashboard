@@ -62,6 +62,9 @@ const TopNav = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, error } = userLogin;
 
+  const userProfile = useSelector((state) => state.userProfile);
+  const { profileInfo, error:profileError } = userLogin;
+
   const handleLogout = () => {
     dispatch(logout());
   };
@@ -91,8 +94,8 @@ const TopNav = () => {
                   <img src={profile} alt="" />
                 </aside>
                 <aside style={{marginLeft:'70px'}} className="profile__details">
-                  <h3>{userInfo?.full_name}</h3>
-                  <small>{userInfo?.email}</small>
+                  <h3>{profileInfo?.first_name}</h3>
+                  <small>{profileInfo?.first_name}</small>
                 </aside>
               </section>
               <hr style={{ margin: "25px 0" }} />

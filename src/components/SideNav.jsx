@@ -4,7 +4,7 @@ import logo from "./../assets/logo.png";
 
 import { BiHomeAlt } from "react-icons/bi";
 
-import { GiSoundWaves } from "react-icons/gi";
+import { GiSoundWaves, GiWhiteBook } from "react-icons/gi";
 import { MdEmail, MdGTranslate, MdOutlineFlightLand } from "react-icons/md";
 import { TiSocialDribbble } from "react-icons/ti";
 import { FaBloggerB, FaProductHunt, FaFileImage } from "react-icons/fa";
@@ -33,12 +33,7 @@ const SideNav = () => {
       icon: <BiHomeAlt />,
       path: "/dashboard",
     },
-    {
-      name: "Transcribe",
-      icon: <GiSoundWaves />,
-      path: "/audio",
-    },
-
+  
     {
       name: "Project",
       icon: <GoProject />,
@@ -88,27 +83,10 @@ const SideNav = () => {
 
     {
       name: "E-Book",
-      icon: <img src={ebook} alt="" />,
+      icon: <GiWhiteBook />,
       path: "/ebook",
     },
 
-    // {
-    //   name: "Notification",
-    //   path: "/notification",
-    //   icon: <IoMdNotifications />,
-    // },
-
-    // {
-    //   name: "Collaboration",
-    //   path: "/collaborate",
-    //   icon: <FcCollaboration />,
-    // },
-
-    // {
-    //   name: "log out",
-    //   path: "/",
-    //   icon: <BiLogOut onClick={handleLogout} />,
-    // },
   ];
 
   return (
