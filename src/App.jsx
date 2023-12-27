@@ -2,7 +2,6 @@ import "./components/styles/error.css";
 import "regenerator-runtime/runtime";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
 
 import {
   Draft,
