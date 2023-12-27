@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userAction";
 import { FcCollaboration } from "react-icons/fc";
 import MobileMenu from "./MobileMenu";
+import { FaRegBell } from "react-icons/fa6";
 
 const NewProjectLinks = ({ link, displayImage, text }) => {
   return (
@@ -49,6 +50,7 @@ const NewProjectLinks = ({ link, displayImage, text }) => {
 const TopNav = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [dropDown, setDropDown] = useState(false);
+  const [showNotifcations, setShowNotifications] = useState(false);
 
   const handleMenuToggle = () => {
     setShowMenu(!showMenu);
@@ -56,6 +58,7 @@ const TopNav = () => {
 
   const toggleDropDown = () => {
     setDropDown(!dropDown);
+    setShowNotifications(false);
   };
 
   const dispatch = useDispatch();
@@ -69,15 +72,21 @@ const TopNav = () => {
     dispatch(logout());
   };
 
+  const toggleViewNotification = () => {
+    setShowNotifications(!showNotifcations);
+    setDropDown(false);
+  };
+
   useEffect(() => {}, [userInfo]);
 
   return (
     <div className="mycontainer">
       <nav className="top-nav">
-        <div className="inner-container">
+        <div className="inner-container w-full flex">
           <div className="hambuger" onClick={handleMenuToggle}>
             <BiMenu className="icon" />
           </div>
+
           {/*profile dropdown  */}
 
           <div className="image" onClick={toggleDropDown}>
@@ -93,9 +102,13 @@ const TopNav = () => {
                 <aside className="profile__img">
                   <img src={profile} alt="" />
                 </aside>
-                <aside style={{marginLeft:'70px'}} className="profile__details">
-                  <h3>{profileInfo?.first_name}</h3>
-                  <small>{profileInfo?.first_name}</small>
+
+                <aside
+                  style={{ marginLeft: "70px" }}
+                  className="profile__details"
+                >
+                  <h3>{userInfo?.full_name}</h3>
+                  <small>{userInfo?.email}</small>
                 </aside>
               </section>
               <hr style={{ margin: "25px 0" }} />
@@ -109,7 +122,7 @@ const TopNav = () => {
                 <ProfileRow
                   Icon={BiBell}
                   title={"Notifications"}
-                  link="/notification"
+                  onClick={toggleViewNotification}
                   text={"Something new"}
                 />
 
@@ -130,11 +143,27 @@ const TopNav = () => {
                   <Link to="/" onClick={handleLogout}>
                     <div className="logout-con">
                       <BiLogOut className="logout-icon" />
-                      <p className="logout-text">Logo out</p>
+                      <p className="logout-text">Log out</p>
                     </div>
                   </Link>
                 }
               </section>
+            </div>
+          </div>
+        )}
+
+        {showNotifcations && (
+          <div className="drop-content-2">
+            <div className={`bg-zinc-50 h-auto w-80 p-5 rounded-md`}>
+              <p className="font-bold py-4 flex items-center gap-x-2">
+                <FaRegBell /> Notifications
+              </p>
+              <div className="bg-slate-50 hover:bg-[#85b5f7] my-2 hover:text-white transition-all duration-150 cursor-pointer p-3 rounded">
+                Mr Feyi wrote a new book
+              </div>
+              <div className="bg-slate-50 hover:bg-[#85b5f7] my-2 hover:text-white transition-all duration-150 cursor-pointer p-3 rounded">
+                Mr Feyi wrote a new book
+              </div>
             </div>
           </div>
         )}
