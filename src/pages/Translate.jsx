@@ -28,7 +28,7 @@ const Translate = () => {
     {
       name: "Spain",
       path: "/spanish",
-      img: <img src='../assets/spain.png' alt="" />,
+      img:spain,
     },
 
     {
@@ -91,9 +91,8 @@ const Translate = () => {
                 {translatePageData.map((i) => (
                   <Card
                     path={i.path}
-                    icon={i.icon}
+                    img={i.img}
                     text={i.name}
-                    isIcon={false}
                   />
                 ))}
               </div>

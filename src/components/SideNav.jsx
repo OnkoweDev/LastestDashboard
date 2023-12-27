@@ -15,6 +15,7 @@ import { logout } from "../actions/userAction";
 
 import ebook from "../assets/ebookIcon.png";
 import { useDispatch, useSelector } from "react-redux";
+import { RiVoiceprintFill } from "react-icons/ri";
 
 const SideNav = () => {
   const refresh = () => window.location.reload(true);
@@ -32,6 +33,12 @@ const SideNav = () => {
       name: "Home",
       icon: <BiHomeAlt />,
       path: "/dashboard",
+    },
+
+    {
+      name: "Transcibe",
+      icon: <RiVoiceprintFill />,
+      path: "/audio",
     },
   
     {
