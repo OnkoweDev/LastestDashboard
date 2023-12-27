@@ -129,7 +129,7 @@ const TopNav = () => {
                 <ProfileRow
                   Icon={FcCollaboration}
                   title={"Collaboration"}
-                  link="/notification"
+                  link="/collaborate"
                   text={"Something new"}
                 />
 

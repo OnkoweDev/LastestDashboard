@@ -35,11 +35,6 @@ const SideNav = () => {
     },
   
     {
-      name: "Project",
-      icon: <GoProject />,
-      path: "/all_project",
-    },
-    {
       name: "Socia media",
       icon: <TiSocialDribbble />,
       path: "/social_media",

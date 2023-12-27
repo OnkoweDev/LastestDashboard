@@ -1,6 +1,6 @@
 import { UPDATE_PROFILE_FAILED, UPDATE_PROFILE_REQUEST, UPDATE_PROFILE_SUCCESS } from "../../constant/backend/profileConstant";
 
-export const updateProfileReducer = (state={profileInfo:[]},action) => {
+export const updateProfileReducer = (state={},action) => {
     switch(action.type){
         case UPDATE_PROFILE_REQUEST:
             return {loading:true}

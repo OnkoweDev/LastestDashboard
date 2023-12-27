@@ -79,12 +79,12 @@ const Collaborate = () => {
             <div className="inner-container team">
               <section className="team-row top-section">
                 <article className="left">
-                  <h4>Comming Soon</h4>
+                  <h4>Coming Soon</h4>
                   <small>
                     collaboration coming soon
                   </small>
                 </article>
-                <article className="right">
+                {/*<article className="right">
                   <aside className="top">
                     <button
                       className="article-btn"
@@ -141,7 +141,7 @@ const Collaborate = () => {
                       New Board
                     </button>
                   </aside>
-                </article>
+                      </article>*/}
               </section>
               {/* bottom section */}
               {/* team section */}

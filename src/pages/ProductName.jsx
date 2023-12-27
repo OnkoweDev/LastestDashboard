@@ -66,8 +66,8 @@ const ProductName = () => {
     dispatch(addProductNameAction(specificData))
     
 
+    toast.success("Product name saved successfuly");
     if(productSuccess){
-      toast.success("Product name saved successfuly");
       // setTimeout(()=>{
       //   navigate('/all_product_name')
       // },5000)

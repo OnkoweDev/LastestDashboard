@@ -2,7 +2,7 @@ import axios from "axios";
 import { ADD_PRODUCTNAME_FAILED, ADD_PRODUCTNAME_REQUEST, ADD_PRODUCTNAME_SUCCESS, DELETE_PRODUCTNAME_FAILED, DELETE_PRODUCTNAME_REQUEST, DELETE_PRODUCTNAME_SUCCESS, GETONE_PRODUCTNAME_FAILED, GETONE_PRODUCTNAME_REQUEST, GETONE_PRODUCTNAME_SUCCESS, GET_PRODUCTNAME_FAILED, GET_PRODUCTNAME_REQUEST, GET_PRODUCTNAME_SUCCESS } from "../../constant/backend/productNameConstant";
 
 
-export const addProductNameAction = (product_name,project_id) => async(dispatch,getState) => {
+export const addProductNameAction = (product_name,) => async(dispatch,getState) => {
     try {
         //dispatch({type:ADD_PRODUCTNAME_REQUEST})
         const {userLogin:{userInfo}} = getState();
@@ -19,7 +19,7 @@ export const addProductNameAction = (product_name,project_id) => async(dispatch,
                 Authorization: `Bearer ${token}`
             }
         };
-        const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/productName`, {product_name,project_id},config)
+        const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/productName`, {product_name,},config)
         const data = response.data
         dispatch({type:ADD_PRODUCTNAME_SUCCESS,payload:data.data})
         console.log(data.data)

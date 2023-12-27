@@ -47,10 +47,10 @@ const Profile = () => {
   const handleProfile = async(e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("file", upload);
+    formData.append("file", upload); // Append the file correctly
     formData.append("fileName", upload.name);
-    console.log(about,country,first_name,last_name,phone,formData,username)
-    dispatch(userProfileAction(about,country,first_name,last_name,phone,formData,username))
+    //console.log(about,country,first_name,last_name,phone,formData,username)
+    dispatch(userProfileAction(about,country,first_name,last_name,phone,username))
   }
 
 
