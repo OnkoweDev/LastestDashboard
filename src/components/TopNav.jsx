@@ -1,213 +1,177 @@
-import React, { useEffect, useRef, useState } from "react";
-import { IoIosArrowBack } from "react-icons/io";
-import { GoBell } from "react-icons/go";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import profile from "../assets/dummyProfile.png";
+import { Link } from "react-router-dom";
+
+import "./styles/TopNav.css";
+
+import { BiHomeAlt, BiBell, BiLogOut, BiMenu } from "react-icons/bi";
+
+import { ProfileRow } from "../components";
 import { useDispatch, useSelector } from "react-redux";
-import MobileMenu from "./MobileMenu";
 import { logout } from "../actions/userAction";
-import { BiMenu } from "react-icons/bi";
+import { FcCollaboration } from "react-icons/fc";
+import MobileMenu from "./MobileMenu";
+import { FaRegBell } from "react-icons/fa6";
+
+const NewProjectLinks = ({ link, displayImage, text }) => {
+  return (
+    <Link
+      to={link}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+      }}
+      className="dropdown-link dropdown-btn-link"
+    >
+      <div className="img">
+        <img
+          src={displayImage}
+          alt=""
+          style={{ width: "20px", height: "20px" }}
+        />
+      </div>
+      <p
+        style={{
+          fontWeight: "400",
+          fontSize: "13px",
+          lineHeight: "19px",
+          letterSpacing: "0.5px",
+          color: "rgba(0, 22, 51, 1)",
+          textTransform: "capitalize",
+        }}
+      >
+        {text}
+      </p>
+    </Link>
+  );
+};
 
 const TopNav = () => {
-  const [isCartDropdownVisible, setIsNotificationDropdownVisible] =
-    useState(false);
-  const [isProfileDropdownVisible, setIsProfileDropdownVisible] =
-    useState(false);
-
-  const notificationRef = useRef(null);
-  const profileRef = useRef(null);
-  const router = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
+  const [dropDown, setDropDown] = useState(false);
+  const [showNotifcations, setShowNotifications] = useState(false);
+
+  const handleMenuToggle = () => {
+    setShowMenu(!showMenu);
+  };
+
+  const toggleDropDown = () => {
+    setDropDown(!dropDown);
+    setShowNotifications(false);
+  };
 
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, error } = userLogin;
 
   const userProfile = useSelector((state) => state.userProfile);
-  const { profileInfo, error: profileError } = userLogin;
+  const { profileInfo, error:profileError } = userLogin;
 
   const handleLogout = () => {
     dispatch(logout());
-    router("/");
   };
 
-  useEffect(() => {
-    const closeDropdowns = (event) => {
-      if (
-        isCartDropdownVisible &&
-        notificationRef.current &&
-        !notificationRef.current.contains(event.target)
-      ) {
-        setIsNotificationDropdownVisible(false);
-      }
-    };
-
-    window.addEventListener("click", closeDropdowns);
-
-    return () => {
-      window.removeEventListener("click", closeDropdowns);
-    };
-  }, [isCartDropdownVisible]);
-
-  useEffect(() => {
-    const closeDropdowns = (event) => {
-      if (
-        isProfileDropdownVisible &&
-        profileRef.current &&
-        !profileRef.current.contains(event.target)
-      ) {
-        setIsProfileDropdownVisible(false);
-      }
-    };
-
-    window.addEventListener("click", closeDropdowns);
-
-    return () => {
-      window.removeEventListener("click", closeDropdowns);
-    };
-  }, [isProfileDropdownVisible]);
-
-  const toggleCartDropdown = () => {
-    setIsNotificationDropdownVisible(!isCartDropdownVisible);
+  const toggleViewNotification = () => {
+    setShowNotifications(!showNotifcations);
+    setDropDown(false);
   };
 
-  const toggleProfileDropdown = () => {
-    setIsProfileDropdownVisible(!isProfileDropdownVisible);
-  };
-
-  const notificatonItems = [
-    {
-      id: 1,
-      text: "Mr Feyi wrote a new book",
-      onClick: () => {
-        console.log(`Hello notification`);
-      },
-    },
-    {
-      id: 2,
-      text: "Wale joined your team",
-      onClick: () => {
-        console.log(`Hello notification`);
-      },
-    },
-    {
-      id: 3,
-      text: "Account created successfully",
-      onClick: () => {
-        console.log(`Hello notification`);
-      },
-    },
-  ];
-
-  const profileMenuItems = [
-    {
-      id: 1,
-      text: "personal information",
-      onClick: () => {
-        router("/profile");
-      },
-    },
-
-    {
-      id: 2,
-      text: "collaboration",
-      onClick: () => {
-        router("/collaborate");
-      },
-    },
-    {
-      id: 3,
-      text: "change password",
-      onClick: () => {
-        router("/password");
-      },
-    },
-
-    {
-      id: 4,
-      text: "Logout",
-      onClick: async () => {
-        handleLogout();
-      },
-    },
-  ];
-
-  const routeBack = () => {
-    router.back();
-  };
-
-  const handleMenuToggle = () => {
-    setShowMenu(!showMenu);
-  };
+  useEffect(() => {}, [userInfo]);
 
   return (
-    <>
-      <div
-        className={`flex items-center ${
-          true ? "justify-between" : "justify-end"
-        } p-4`}
-      >
-        <div className="" onClick={handleMenuToggle}>
-          <BiMenu className="w-8 h-8" />
+    <div className="mycontainer">
+      <nav className="top-nav">
+        <div className="inner-container w-full flex">
+          <div className="hambuger" onClick={handleMenuToggle}>
+            <BiMenu className="icon" />
+          </div>
+
+          {/*profile dropdown  */}
+
+          <div className="image" onClick={toggleDropDown}>
+            <img src={profile} alt="" style={{ width: "100%" }} />
+          </div>
         </div>
 
-        <section className="user-profile flex items-center gap-x-4">
-          <section
-            className="notification cursor-pointer relative"
-            ref={notificationRef}
-          >
-            <GoBell
-              className="h-6 w-6 transition-colors hover:text-accent cursor-pointer"
-              onClick={toggleCartDropdown}
-            />
+        {/* dropdown */}
+        {dropDown && (
+          <div className="drop-content">
+            <div className="dropdown-link dropdown-btn-link">
+              <section className="top">
+                <aside className="profile__img">
+                  <img src={profile} alt="" />
+                </aside>
 
-            {isCartDropdownVisible && (
-              <div className="notification-dropdown absolute  top-full w-72 right-0 bg-white z-[100] rounded-md shadow-md p-4">
-                <h4 className="mb-2 font-bold text-gray-800 capitalize flex items-center gap-x-2">
-                  Notifications{" "}
-                  <GoBell NotificationBell className="inline-block ml-2" />
-                </h4>
-                {notificatonItems.map((item) => (
-                  <p
-                    key={item.id}
-                    className="text-sm bg-slate-50 hover:bg-[#85b5f7] my-2 hover:text-white transition-all duration-150 cursor-pointer p-3 rounded"
-                    onClick={() => item.onClick()}
-                  >
-                    {item.text}
-                  </p>
-                ))}
-              </div>
-            )}
-          </section>
+                <aside
+                  style={{ marginLeft: "70px" }}
+                  className="profile__details"
+                >
+                  <h3>{userInfo?.full_name}</h3>
+                  <small>{userInfo?.email}</small>
+                </aside>
+              </section>
+              <hr style={{ margin: "25px 0" }} />
+              <section className="botttom">
+                <ProfileRow
+                  Icon={BiHomeAlt}
+                  title={"Profile"}
+                  link="/profile"
+                  text={"Personal information"}
+                />
+                <ProfileRow
+                  Icon={BiBell}
+                  title={"Notifications"}
+                  onClick={toggleViewNotification}
+                  text={"Something new"}
+                />
 
-          <div className="avatar cursor-pointer relative" ref={profileRef}>
-            <div className="w-10 rounded-full" onClick={toggleProfileDropdown}>
-              <img className="" src={profile} alt="user profile image" />
+                <ProfileRow
+                  Icon={FcCollaboration}
+                  title={"Collaboration"}
+                  link="/collaborate"
+                  text={"Something new"}
+                />
+
+                <ProfileRow
+                  Icon={BiHomeAlt}
+                  title={"Password"}
+                  link="/password"
+                  text={"Change password"}
+                />
+                {
+                  <Link to="/" onClick={handleLogout}>
+                    <div className="logout-con">
+                      <BiLogOut className="logout-icon" />
+                      <p className="logout-text">Log out</p>
+                    </div>
+                  </Link>
+                }
+              </section>
             </div>
-
-            {isProfileDropdownVisible && (
-              <div className="profile-dropdown absolute  top-full w-60 h-70 right-0 bg-white z-[100] rounded-md shadow-md p-4">
-                <h4 className="mb-2 font-bold text-gray-800 capitalize">
-                  Menu
-                </h4>
-                {profileMenuItems.map((item) => (
-                  <p
-                    key={item.id}
-                    className="bg-slate-50 hover:bg-[#85b5f7] my-2 hover:text-white transition-all duration-150 cursor-pointer p-3 rounded capitalize text-[15px]"
-                    onClick={() => item.onClick()}
-                  >
-                    {item.text}
-                  </p>
-                ))}
-              </div>
-            )}
           </div>
-        </section>
-      </div>
-      <section className="p-3">
+        )}
+
+        {showNotifcations && (
+          <div className="drop-content-2">
+            <div className={`bg-zinc-50 h-auto w-80 p-5 rounded-md`}>
+              <p className="font-bold py-4 flex items-center gap-x-2">
+                <FaRegBell /> Notifications
+              </p>
+              <div className="bg-slate-50 hover:bg-[#85b5f7] my-2 hover:text-white transition-all duration-150 cursor-pointer p-3 rounded">
+                Mr Feyi wrote a new book
+              </div>
+              <div className="bg-slate-50 hover:bg-[#85b5f7] my-2 hover:text-white transition-all duration-150 cursor-pointer p-3 rounded">
+                Mr Feyi wrote a new book
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* mobile menu */}
         <MobileMenu showMenu={showMenu} />
-      </section>
-    </>
+      </nav>
+    </div>
   );
 };
 
