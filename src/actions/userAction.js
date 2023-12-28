@@ -64,43 +64,77 @@ export const logout = ()=> async (dispatch) => {
         dispatch({ type: USERS_LOGOUT });
 };
 
-export const userProfileAction = (about,country,first_name,phone_number,avatar) => async(dispatch,getState) => {
-    try {
-        dispatch({type:USERS_PROFILE_REQUEST})
-        const {userLogin:{userInfo}} = getState();
+// export const userProfileAction = (about,country,first_name,phone_number,avatar) => async(dispatch,getState) => {
+//     try {
+//         dispatch({type:USERS_PROFILE_REQUEST})
+//         const {userLogin:{userInfo}} = getState();
 
-        const token =  userInfo.token;
-        const accountId = userInfo.account_id
-        const userid = userInfo.id
+//         const token =  userInfo.token;
+//         const accountId = userInfo.account_id
+//         const userid = userInfo.id
 
-        const config = {
-            headers:{
-                "Content-Type": "application/x-www-form-urlencoded",
-                 Authorization: `Bearer ${token}`,
-            }
-        }
+//         const config = {
+//             headers:{
+//                 "Content-Type": "application/x-www-form-urlencoded",
+//                  Authorization: `Bearer ${token}`,
+//             }
+//         }
 
-        const userData = {
-            about,country,phone_number,first_name,avatar
-          }
+//         const userData = {
+//             about,country,phone_number,first_name,avatar
+//           }
       
-        const response = await axios.put(`https://dev.olukowe.co/api/account/${accountId}/profile/${userid}`,userData,config)
+//         const response = await axios.put(`https://dev.olukowe.co/api/account/${accountId}/profile/${userid}`,userData,config)
 
-        const data = response.data
-        console.log(data)
+//         const data = response.data
+//         console.log(data)
+//         dispatch({type:USERS_PROFILE_SUCCESS, payload:data.data})
+//         secureLocalStorage.setItem('userInfo', JSON.stringify(data));
 
-        dispatch({type:USERS_PROFILE_SUCCESS, payload:data.data})
-        secureLocalStorage.setItem('userInfo', JSON.stringify(data));
 
+//     } catch (error) {
+//         dispatch({
+//             type: USERS_PROFILE_FAILED,
+//             payload:
+//               error.response && error.response.data.message
+//                 ? error.response.data.message
+//                 : error.message,
+//           });
+//     }
+// }
 
+export const userProfileAction = (userData) => async (dispatch, getState) => {
+    try {
+      dispatch({ type: USERS_PROFILE_REQUEST });
+  
+      const { userLogin: { userInfo } } = getState();
+      const token = userInfo.token;
+      const accountId = userInfo.account_id;
+      const userId = userInfo.id;
+  
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+  
+      const response = await axios.put(
+        `https://dev.olukowe.co/api/account/${accountId}/profile/${userId}`,
+        userData,
+        config
+      );
+  
+      const data = response.data;
+      dispatch({ type: USERS_PROFILE_SUCCESS, payload: data.data });
+      localStorage.setItem('profileInfo', JSON.stringify(data));
     } catch (error) {
-        dispatch({
-            type: USERS_PROFILE_FAILED,
-            payload:
-              error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message,
-          });
+      dispatch({
+        type: USERS_PROFILE_FAILED,
+        payload: error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+      });
     }
-}
+  };
+  
 
