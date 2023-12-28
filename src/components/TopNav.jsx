@@ -31,8 +31,6 @@ const TopNav = () => {
     router("/");
   };
 
-  console.log(userInfo);
-
   useEffect(() => {
     const closeDropdowns = (event) => {
       if (
