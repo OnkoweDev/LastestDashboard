@@ -6,6 +6,7 @@ import Loader from "../../components/Loader";
 import "../styles/Home.css";
 import { deleteLinkAdsAction, getLinkAdsAction } from "../../actions/backend/linkdinAdsAction";
 import { MdDelete } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
 
 const AllLinkAds = () => {
   // state to hold the data comimg from the database / backend
@@ -28,10 +29,8 @@ const AllLinkAds = () => {
   const handleDelete = (id) =>{
     if(window.confirm(`Are you sure you want to delete Item`)){
     dispatch(deleteLinkAdsAction(id))
-    setMessage("Item deleted Successful")
-    setTimeout(()=>{
-        setMessage("")
-    },4000)
+    toast.success("Deleted successfuly");
+
     }
 }
 
@@ -66,6 +65,7 @@ const AllLinkAds = () => {
               {error && <div className=" bar error">{error}</div>}
               {deleteError && <div className=" bar error">{deleteError}</div>}
               {message && <div className=" bar success">{message}</div>}
+              <Toaster />
 
               {links &&
                 links.map((face) => (

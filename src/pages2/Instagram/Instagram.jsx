@@ -7,6 +7,7 @@ import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
 import { MdDelete } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
 
 const AllInstagram = () => {
   // state to hold the data comimg from the database / backend
@@ -30,6 +31,8 @@ const AllInstagram = () => {
     if(window.confirm(`Are you sure you want to delete Item`)){
     dispatch(deleteInstagramAction(id))
     setMessage("Item deleted Successful")
+    toast.success("Deleted successfuly");
+
     setTimeout(()=>{
         setMessage("")
     },4000)
@@ -66,6 +69,7 @@ const AllInstagram = () => {
               {googleError && <div className=" bar error">{googleError}</div>}
               {error && <div className=" bar error">{error}</div>}
               {message && <div className=" bar success">{message}</div>}
+              <Toaster />
 
               {instagrams &&
                 instagrams.map((face) => (

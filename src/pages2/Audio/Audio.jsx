@@ -10,6 +10,7 @@ import {
   getAudioAction,
 } from "../../actions/backend/audioAction";
 import { MdDelete } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
 
 const AllAudio = () => {
   // state to hold the data comimg from the database / backend
@@ -36,10 +37,8 @@ const AllAudio = () => {
   const handleDelete = (id) => {
     if (window.confirm(`Are you sure you want to delete Item`)) {
       dispatch(deleteAudioAction(id));
-      setMessage("Item deleted Successful");
-      setTimeout(() => {
-        setMessage("");
-      }, 4000);
+      toast.success("Deleted successfuly");
+
     }
   };
 
@@ -71,6 +70,7 @@ const AllAudio = () => {
               {googleError && <div className=" bar error">{googleError}</div>}
               {error && <div className=" bar error">{error}</div>}
               {message && <div className=" bar success">{message}</div>}
+              <Toaster />
 
               {audios &&
                 audios.map((face) => (

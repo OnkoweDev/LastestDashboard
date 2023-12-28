@@ -5,6 +5,7 @@ import { deleteArticleAction, getArticleAction } from "../../actions/backend/art
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
+import toast, { Toaster } from "react-hot-toast";
 
 const ALLArticleRewritter = () => {
   // state to hold the data comimg from the database / backend
@@ -27,10 +28,8 @@ const ALLArticleRewritter = () => {
   const handleDelete = (id) =>{
     if(window.confirm(`Are you sure you want to delete Item`)){
     dispatch(deleteArticleAction(id))
-    setMessage("Item deleted Successful")
-    setTimeout(()=>{
-        setMessage("")
-    },4000)
+    toast.success("Deleted successfuly");
+
     }
    
 }
@@ -59,6 +58,7 @@ const ALLArticleRewritter = () => {
                {loading && <Loader />}
                {error && <div className=' bar error'>{error}</div>}
                {articleError && <div className=' bar error'>{articleError}</div>}
+               <Toaster />
 
                {writer && writer.map((write)=>(
                 <div className="card" key={write.id}>

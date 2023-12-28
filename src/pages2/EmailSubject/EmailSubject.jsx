@@ -9,6 +9,7 @@ import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
 import { MdDelete } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
 
 const AllEmailSubject = () => {
   // state to hold the data comimg from the database / backend
@@ -31,10 +32,8 @@ const AllEmailSubject = () => {
   const handleDelete = (id) =>{
     if(window.confirm(`Are you sure you want to delete Item`)){
     dispatch(deleteSubjectAction(id))
-    setMessage("Item deleted Successful")
-    setTimeout(()=>{
-        setMessage("")
-    },4000)
+    toast.success("Deleted successfuly");
+
     }
    
 }
@@ -69,6 +68,7 @@ const AllEmailSubject = () => {
               {error && <div className=" bar error">{error}</div>}
               {articleError && <div className=" bar error">{articleError}</div>}
               {message && <div className=" bar success">{message}</div>}
+              <Toaster />
 
               {subjects &&
                 subjects.map((subject) => (

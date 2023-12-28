@@ -8,6 +8,7 @@ import Loader from "../../components/Loader";
 import "../styles/Home.css";
 import { deleteProductDescAction, getProductDescAction } from "../../actions/backend/productDescAction";
 import { MdDelete } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
 
 const AllProductDesc = () => {
   // state to hold the data comimg from the database / backend
@@ -30,10 +31,8 @@ const AllProductDesc = () => {
   const handleDelete = (id) =>{
     if(window.confirm(`Are you sure you want to delete Item`)){
     dispatch(deleteProductDescAction(id))
-    setMessage("Item deleted Successful")
-    setTimeout(()=>{
-        setMessage("")
-    },4000)
+    toast.success("Deleted successfuly");
+
     }
 }
 
@@ -67,6 +66,7 @@ const AllProductDesc = () => {
               {googleError && <div className=" bar error">{googleError}</div>}
               {error && <div className=" bar error">{error}</div>}
               {message && <div className=" bar success">{message}</div>}
+              <Toaster />
 
               {Array.isArray(productDescs)
                 ? productDescs &&

@@ -6,6 +6,7 @@ import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
 import { MdDelete } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
 
 const AllBlog = () => {
   // state to hold the data comimg from the database / backend
@@ -28,10 +29,8 @@ const AllBlog = () => {
   const handleDelete = (id) =>{
     if(window.confirm(`Are you sure you want to delete Item`)){
     dispatch(deleteBlogAction(id))
-    setMessage("Item deleted Successful")
-    setTimeout(()=>{
-        setMessage("")
-    },4000)
+    toast.success("Deleted successfuly");
+
     }
    
 }
@@ -63,6 +62,7 @@ const AllBlog = () => {
               {loading && <Loader />}
               {error && <div className=" bar error">{error}</div>}
               {articleError && <div className=" bar error">{articleError}</div>}
+              <Toaster />
 
               {blogs &&
                 blogs.slice(0, 10).map((blog) => (

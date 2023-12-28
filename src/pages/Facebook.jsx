@@ -33,6 +33,7 @@ const Facebook = () => {
   const [productDesc, setProductDesc] = useState([])
   const [occasion, setOccasion] = useState([])
   const [promotion, setPromotion] = useState([])
+  const [shouldType, setShouldType] = useState(false);
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
   const [projectId, setProjectId] = useState()
@@ -75,6 +76,7 @@ const Facebook = () => {
   }
 
   useEffect(() => {
+    setShouldType(true);
     dispatch(getProjectAction())
 }, [])
 
@@ -247,7 +249,7 @@ const Facebook = () => {
                       </button>
                     </div>
                       <div id={`div-${index}-${idx}`}>
-                      {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
+                      {shouldType && typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
                     </div>        
                       </div>
 

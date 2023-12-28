@@ -6,6 +6,7 @@ import { deleteGoogleAdsAction, getGoogleAdsAction } from "../../actions/backend
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
+import toast, { Toaster } from "react-hot-toast";
 
 const ALLGoogleAds = () => {
   // state to hold the data comimg from the database / backend
@@ -28,10 +29,11 @@ const ALLGoogleAds = () => {
   const handleDelete = (id) =>{
     if(window.confirm(`Are you sure you want to delete Item`)){
     dispatch(deleteGoogleAdsAction(id))
-    setMessage("Item deleted Successful")
-    setTimeout(()=>{
-        setMessage("")
-    },4000)
+    toast.success("Deleted successfuly");
+    // setMessage("Item deleted Successful")
+    // setTimeout(()=>{
+    //     setMessage("")
+    // },4000)
     }
 }
 
@@ -65,6 +67,7 @@ const ALLGoogleAds = () => {
               {googleError && <div className=" bar error">{googleError}</div>}
               {error && <div className=" bar error">{error}</div>}
               {message && <div className=" bar success">{message}</div>}
+              <Toaster />
 
               {GoogleAds &&
                 GoogleAds.map((face) => (

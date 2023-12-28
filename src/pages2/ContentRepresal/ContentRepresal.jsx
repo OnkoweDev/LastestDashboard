@@ -7,6 +7,7 @@ import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
 import { MdDelete } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
 
 const AllContentRepre = () => {
   // state to hold the data comimg from the database / backend
@@ -29,10 +30,8 @@ const AllContentRepre = () => {
   const handleDelete = (id) =>{
     if(window.confirm(`Are you sure you want to delete Item`)){
     dispatch(deleteContentRepreAction(id))
-    setMessage("Item deleted Successful")
-    setTimeout(()=>{
-        setMessage("")
-    },4000)
+    toast.success("Deleted successfuly");
+
     }
    
 }
@@ -64,6 +63,7 @@ const AllContentRepre = () => {
               {loading && <Loader />}
               {articleError && <div className=" bar error">{articleError}</div>}
               {error && <div className=" bar error">{error}</div>}
+              <Toaster />
 
               {content &&
                 content.map((con) => (

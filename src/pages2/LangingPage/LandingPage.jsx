@@ -8,6 +8,7 @@ import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
 import { MdDelete } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
 
 const AllLandingPage = () => {
   // state to hold the data comimg from the database / backend
@@ -30,10 +31,8 @@ const AllLandingPage = () => {
   const handleDelete = (id) =>{
     if(window.confirm(`Are you sure you want to delete Item`)){
     dispatch(deleteLandingPageAction(id))
-    setMessage("Item deleted Successful")
-    setTimeout(()=>{
-        setMessage("")
-    },4000)
+    toast.success("Deleted successfuly");
+
     }
 }
 
@@ -67,6 +66,7 @@ const AllLandingPage = () => {
               {error && <div className=" bar error">{error}</div>}
               {googleError && <div className=" bar error">{googleError}</div>}
               {message && <div className=" bar success">{message}</div>}
+              <Toaster />
 
               {LandingPages &&
                 LandingPages.map((face) => (

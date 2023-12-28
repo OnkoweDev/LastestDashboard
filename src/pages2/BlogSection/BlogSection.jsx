@@ -9,6 +9,7 @@ import {
   getSectionAction,
 } from "../../actions/backend/blogSectionAction";
 import { MdDelete } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
 
 const AllBlogSection = () => {
   // state to hold the data comimg from the database / backend
@@ -35,10 +36,8 @@ const AllBlogSection = () => {
   const handleDelete = (id) => {
     if (window.confirm(`Are you sure you want to delete Item`)) {
       dispatch(deleteSectionAction(id));
-      setMessage("Item deleted Successful");
-      setTimeout(() => {
-        setMessage("");
-      }, 4000);
+      toast.success("Deleted successfuly");
+
     }
   };
 
@@ -70,6 +69,7 @@ const AllBlogSection = () => {
               {error && <div className=" bar error">{error}</div>}
               {articleError && <div className=" bar error">{articleError}</div>}
               {message && <div className=" bar success">{message}</div>}
+              <Toaster />
 
               {blogs &&
                 blogs.slice(0, 10).map((blog) => (

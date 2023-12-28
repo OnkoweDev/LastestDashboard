@@ -8,6 +8,7 @@ import Loader from "../../components/Loader";
 import "../styles/Home.css";
 import { deleteLanguageAction, getLanguageAction } from "../../actions/backend/languageAction";
 import { MdDelete } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
 
 const Language = () => {
   // state to hold the data comimg from the database / backend
@@ -30,10 +31,8 @@ const Language = () => {
   const handleDelete = (id) =>{
     if(window.confirm(`Are you sure you want to delete Item`)){
     dispatch(deleteLanguageAction(id))
-    setMessage("Item deleted Successful")
-    setTimeout(()=>{
-        setMessage("")
-    },4000)
+    toast.success("Deleted successfuly");
+
     }
 }
 
@@ -51,6 +50,7 @@ const Language = () => {
               {error && <div className=" bar error">{error}</div>}
               {googleError && <div className=" bar error">{googleError}</div>}
               {message && <div className=" bar success">{message}</div>}
+              <Toaster />
 
               {languages &&
                 languages.map((face) => (

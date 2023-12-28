@@ -8,6 +8,7 @@ import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
 import { MdDelete } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
 
 const ALLPARAGRAPHWRITER = () => {
   // state to hold the data comimg from the database / backend
@@ -30,10 +31,8 @@ const ALLPARAGRAPHWRITER = () => {
   const handleDelete = (id) =>{
     if(window.confirm(`Are you sure you want to delete Item`)){
     dispatch(deleteParagraphAction(id))
-    setMessage("Item deleted Successful")
-    setTimeout(()=>{
-        setMessage("")
-    },4000)
+    toast.success("Deleted successfuly");
+
     }
 }
 
@@ -67,6 +66,7 @@ const ALLPARAGRAPHWRITER = () => {
               {googleError && <div className=" bar error">{googleError}</div>}
               {error && <div className=" bar error">{error}</div>}
               {message && <div className=" bar success">{message}</div>}
+              <Toaster />
 
               {paragraphs &&
                 paragraphs.map((face) => (

@@ -7,6 +7,7 @@ import Loader from "../../components/Loader";
 import "../styles/Home.css";
 import { deleteConclusionAction, getConclusionAction } from "../../actions/backend/conclusionAction";
 import { MdDelete } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
 
 const Conclusion = () => {
   // state to hold the data comimg from the database / backend
@@ -32,10 +33,8 @@ const Conclusion = () => {
   const handleDelete = (id) =>{
     if(window.confirm(`Are you sure you want to delete Item`)){
     dispatch(deleteConclusionAction(id))
-    setMessage("Item deleted Successful")
-    setTimeout(()=>{
-        setMessage("")
-    },4000)
+    toast.success("Deleted successfuly");
+
     }
 }
 
@@ -69,6 +68,7 @@ const Conclusion = () => {
               {error && <div className=" bar error">{error}</div>}
               {articleError && <div className=" bar error">{articleError}</div>}
               {message && <div className=" bar success">{message}</div>}
+              <Toaster />
 
               {conclusions &&
                 conclusions.map((face) => (
