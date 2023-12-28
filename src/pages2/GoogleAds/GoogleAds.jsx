@@ -7,6 +7,7 @@ import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
 import toast, { Toaster } from "react-hot-toast";
+import { MdDelete } from "react-icons/md";
 
 const ALLGoogleAds = () => {
   // state to hold the data comimg from the database / backend

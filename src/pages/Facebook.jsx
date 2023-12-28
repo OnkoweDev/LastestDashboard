@@ -33,7 +33,7 @@ const Facebook = () => {
   const [productDesc, setProductDesc] = useState([])
   const [occasion, setOccasion] = useState([])
   const [promotion, setPromotion] = useState([])
-  const [shouldType, setShouldType] = useState(false);
+  const [shouldType, setShouldType] = useState(true);
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
   const [projectId, setProjectId] = useState()
