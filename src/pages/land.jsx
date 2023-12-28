@@ -213,6 +213,7 @@ const handleForm = (index) => {
                     value={feature_benefit_1}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -233,6 +234,7 @@ const handleForm = (index) => {
                     value={feature_benefit_2}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",
@@ -254,6 +256,7 @@ const handleForm = (index) => {
                     value={feature_benefit_3}
                     name=""
                     id=""
+                    required
                     style={{
                       display: "block",
                       width: "100%",

@@ -251,7 +251,7 @@ const GoogleAdTitile = () => {
                     
                    {conclusions &&
                     conclusions.map((conclusion, index) => (
-                      <div className="sec-1" contentEditable suppressContentEditableWarning={true} key={index}>
+                      <div className="sec-1" required contentEditable suppressContentEditableWarning={true} key={index}>
                         <div className="sec-2">
                           {conclusion.generated_conclusions.map((d, idx) => (
                             <div className="txt-sec" ref={myDiv} key={idx}>

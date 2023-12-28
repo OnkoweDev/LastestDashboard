@@ -198,7 +198,7 @@ const Igbo = () => {
                   ))}
 
                   <br />
-                  <select
+                  {/* <select
                    onChange={(e)=>setProjectId(e.target.value)} 
                    value={projectId}
                     name=""
@@ -226,7 +226,7 @@ const Igbo = () => {
                     <option key={i} value={pro.id}>{pro.name}</option>
                     ))
                    }
-                  </select>
+                  </select>*/}
                     <br />
                     <input
                         onChange={(e)=>setLanguage(e.target.value)}

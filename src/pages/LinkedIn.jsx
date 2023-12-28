@@ -144,7 +144,7 @@ const LinkedIn = () => {
                   {/* tone of voice */}
                   <p className="product-p">Keyword*</p>
 
-                  <input type="text" className="input"  onChange={(e)=>setKeyword(e.target.value)} value={keyword} />
+                  <input required type="text" className="input"  onChange={(e)=>setKeyword(e.target.value)} value={keyword} />
 
                   <button className="article-btn" style={{ fontSize: "14px" }}>
                     Create Short Post

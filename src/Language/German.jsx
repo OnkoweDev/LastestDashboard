@@ -196,7 +196,7 @@ const German = () => {
                   </div>
                   ))}
                   <br />
-                  <select
+                 {/* <select
                    onChange={(e)=>setProjectId(e.target.value)} 
                    value={projectId}
                     name=""
@@ -224,7 +224,7 @@ const German = () => {
                     <option key={i} value={pro.id}>{pro.name}</option>
                     ))
                    }
-                  </select>
+                  </select>*/}
                     <br />
                     <input
                         onChange={(e)=>setLanguage(e.target.value)}
