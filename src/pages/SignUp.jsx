@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from "react";
-import "./styles/SignInUp.css";
-
-import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { register } from "../actions/userAction";
+import Button from "../components/Button";
+import loginImage from "../assets/signInImage.png";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { FaTwitter } from "react-icons/fa";
-import loginImage from "./../assets/signInImage.png";
-import logo from "../assets/logo.png";
-import Button from "../components/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../actions/userAction";
+import toast, { Toaster } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [full_name, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,110 +31,114 @@ const SignUp = () => {
     }
   }, [userInfo]);
 
-  const [showPassowrd, setShowPassword] = useState(false);
-  const showPassword = () => {
-    setShowPassword(!showPassowrd);
-  };
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
+
   return (
-    <div className="sign__container bg-[#FCFCFC]">
-      <img src={logo} alt="Logo" className="logo" />
-      <section className="form__section">
-        <div className="form__section__wrapper">
-          <h5>Sign Up</h5>
-          {error && <div className="bar error">{error}</div>}
-          <form onSubmit={handleRegister} novalidate>
-            <label htmlFor="fullName" className="py-2">
-              Full Name
-            </label>
-            <input
-              required
-              type="text"
-              placeholder="Enter your fullname"
-              name="fullName"
-              className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300"
-              //value={full_name}
-              onChange={(e) => setFullname(e.target.value)}
-              value={full_name}
-            />
-            <label htmlFor="email" className="py-2">
-              Email Address
-            </label>
-            <input
-              required
-              type="email"
-              name="email"
-              placeholder="Enter your email address"
-              className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
-            <label htmlFor="Password" className="py-2">
-              Password
-            </label>
-            <div className="input__container">
-              <article className="input__wrapper">
-                <input
-                  required
-                  name="password"
-                  type={showPassowrd ? "text" : "password"}
-                  placeholder="Enter your password"
-                  className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300 flex items-center"
-                  //value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  value={password}
-                />
-                {showPassowrd ? (
-                  <AiOutlineEyeInvisible
-                    className="icon w-5 h-5"
-                    onClick={showPassword}
-                  />
-                ) : (
-                  <AiOutlineEye
-                    className="icon w-5 h-5"
-                    onClick={showPassword}
-                  />
-                )}
-              </article>
-            </div>
-            <input type="checkbox" className="checkbox inline" />
-            <p className="inline md:px-3 px-5">I’ve agreed to the T & C</p>
-            <br />
-            <Button> {loading ? "Processing please wait" : "Sign Up"}</Button>
-          </form>
-          {/* other sign up options */}
-          <p className="sign__up__option__text my-3 md:flex hidden">
-            Or sign Up with{" "}
-          </p>
+    <>
+      <Toaster />
+      <section className="grid md:grid-cols-2  w-screen h-screen">
+        <section className="form-section w-full h-full flex items-center justify-center flex-col">
+          <section className="flex items-center justify-center flex-col gap-y-2">
+            <h1 className="text-[#559fff] font-bold text-4xl text-center capitalize">
+              sign up
+            </h1>
+          </section>
 
-          <p className="my-3 md:hidden block text-center"> Or sign Up with </p>
-
-          <div className="sign__up__options">
-            <button style={{ color: "red", size: "50px" }}>
-              {" "}
-              <FcGoogle style={{ width: "30px", height: "30px" }} />
-            </button>
-            <button style={{ color: "#4267B2" }}>
-              <BsFacebook style={{ width: "30px", height: "30px" }} />
-            </button>
-            <button style={{ color: "#1DA1F2" }}>
-              <FaTwitter style={{ width: "30px", height: "30px" }} />
-            </button>
-          </div>
-          <p
-            style={{ textAlign: "center", margin: "10px 0" }}
-            className="login__text"
+          <br />
+          <form
+            className="w-11/12 lg:w-8/12 md:p-5"
+            onSubmit={handleRegister}
+            novalidate
           >
-            Already have account?{" "}
-            <Link to="/" className="text-blue-100">
-              Login
-            </Link>
-          </p>
-        </div>
+            <section className="my-3">
+              <label htmlFor="email" className="capitalize my-2">
+                full name
+              </label>
+              <input
+                className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300"
+                placeholder="Enter your full name"
+                name="email"
+                type="text"
+                onChange={(e) => setFullname(e.target.value)}
+                value={full_name}
+              />
+            </section>
+
+            <section className="my-3">
+              <label htmlFor="email" className="capitalize my-2">
+                email address
+              </label>
+              <input
+                className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300"
+                placeholder="Enter your email address"
+                name="email"
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+            </section>
+
+            <section className="my-3">
+              <label htmlFor="password" className="capitalize my-2">
+                password
+              </label>
+              <input
+                className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300"
+                placeholder="Enter your password"
+                name="password"
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+            </section>
+
+            <section>
+              <input type="checkbox" name="termsAndCondition" />
+              <p className="inline-block px-2">
+                I’ve agreed to the Terms and Conditions
+              </p>
+            </section>
+
+            <br />
+
+            <section>
+              <Button> {loading ? "Processing please wait" : "Sign Up"}</Button>
+            </section>
+
+            <br />
+
+            <section className="flex w-full items-center justify-center flex-col p-2">
+              <p className="text-center capitalize">or sign up with</p>
+
+              <section className="border-[1px] border-black w-96 rounded-lg flex items-center justify-around p-2 my-4">
+                <FcGoogle className="w-8 h-8 cursor-pointer" />
+                <BsFacebook className="w-8 h-8 text-[#4267B2] cursor-pointer" />
+                <FaTwitter className="w-8 h-8 text-[#1DA1F2] cursor-pointer" />
+              </section>
+            </section>
+
+            <section>
+              <p className="text-center m-5">
+                Have an account?{" "}
+                <Link to="/">
+                  <span className="text-blue-100">Login</span>
+                </Link>
+                <br />
+              </p>
+            </section>
+          </form>
+        </section>
+        <section className="image-section w-full md:flex hidden justify-end overflow-hidden">
+          <img
+            src={loginImage}
+            alt="login image"
+            className="object-contain h-full"
+          />
+        </section>
       </section>
-      <section className="image__section">
-        <img src={loginImage} alt="" />
-      </section>
-    </div>
+    </>
   );
 };
 
