@@ -44,6 +44,8 @@
   text-align: center;
   margin-bottom: 20px;
   border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color:var(--primary) ;
   border-radius: 5px;
 }
 
@@ -52,4 +54,27 @@
   font-size: 18px;
   color: #333;
   font-weight: bold;
+}
+
+/* styles/Home.css or a new CSS file */
+
+/* Styles for the scrollable content */
+.scrollable-content {
+  overflow-y: auto; /* Enable vertical scrollbar */
+  max-height: calc(100vh - 100px); /* Adjust height as needed */
+  padding-right: 15px; /* Add padding to prevent content from being obscured by scrollbar */
+}
+
+/* Adjustments for the scrollbar appearance (optional) */
+.scrollable-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+  background-color: #666;
 }

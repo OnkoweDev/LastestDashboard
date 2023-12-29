@@ -182,11 +182,11 @@ const Home = () => {
         <div className="container">
           <SideNav />
           <div className="content">
-            <div className="cards-container">
-
             <div className="saved-draft-text">
-                <p>Your Draft is Saved Here</p>
+            <p>Your Draft is Saved Here</p>
             </div>
+            <div className="scrollable-content">
+            <div className="cards-container">
 
             {youtubeLoading && <Loader />}
              
@@ -453,7 +453,7 @@ const Home = () => {
 
               
               {loadingConclusion && <Loader />}
-              {conclusions && writer.length > 0 &&
+              {conclusions && conclusions.length > 0 &&
                 <div className="card">
                 <Link to="/conclusion">
                   <img src={conclu} alt="" />
@@ -466,7 +466,7 @@ const Home = () => {
             
                 
              
-              
+              </div>
             </div>
             {/* <Voice /> */}
           </div>
