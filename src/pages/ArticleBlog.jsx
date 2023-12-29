@@ -182,6 +182,13 @@ const GoogleAdTitile = () => {
     });
   };
   
+
+  const [textTyped, setTextTyped] = useState(false);
+  
+  const stopTyping = (index) => {
+    updateTypingStatus(index, false); // Update state to stop typing
+  };
+  
   return (
     <>
       <main>
@@ -266,7 +273,7 @@ const GoogleAdTitile = () => {
                                 </div>
                                 
                               <div id={`div-${index}-${idx}`}>
-                              {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={10} words={[d]} cursor />}
+                              {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={10} words={[d]} onComplete={() => stopTyping(index)}/>}
                               </div>
                             </div>
                           ))}

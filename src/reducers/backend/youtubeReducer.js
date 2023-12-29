@@ -19,7 +19,7 @@ export const addYoutubeReducer = (state={},action) => {
 export const getYoutubeReducer = (state={youtubes:[]},action) => {
     switch(action.type){
         case GET_YOUTUBE_REQUEST:
-            return {loading:true}
+            return {loading:true,}
         case GET_YOUTUBE_SUCCESS:
             return {loading:false, success:true, youtubes:action.payload}
         case GET_YOUTUBE_FAILED:

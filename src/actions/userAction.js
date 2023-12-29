@@ -114,6 +114,7 @@ export const userProfileAction = (userData) => async (dispatch, getState) => {
   
       const config = {
         headers: {
+          'Content-type':'multipart/form-data',
           Authorization: `Bearer ${token}`,
         },
       };

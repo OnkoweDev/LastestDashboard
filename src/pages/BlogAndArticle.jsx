@@ -19,7 +19,7 @@ const BlogAndArticle = () => {
     {
       name: " Blog Intro Generator",
       path: "/blog-intro-generator",
-      icon: <FaBloggerB />,
+      icon: <FaRegGrinHearts />,
     },
     {
       name: " Blog Section Generator",
@@ -46,11 +46,6 @@ const BlogAndArticle = () => {
       name: " Article Rewriter",
       path: "/articleRewriter",
       icon: <FaChartBar />,
-    },
-    {
-      name: "Article/Blog Summary Generator",
-      path: "/blog-article-writer",
-      icon: <FaRegGrinHearts />,
     },
     {
       name: "Paragraph Writer",

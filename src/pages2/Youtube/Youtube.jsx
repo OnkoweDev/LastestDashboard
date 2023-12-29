@@ -19,7 +19,7 @@ const AllYoutube = () => {
   const {loading,error,youtubes} = getYoutube
 
   const saveYoutube = useSelector((state)=>state.saveYoutube)
-  const {error:googleError} = saveYoutube
+  const {error:googleError, success:successYoutube} = saveYoutube
 
   const deleteYoutube = useSelector((state)=>state.deleteYoutube)
   const {loading:deleteLoading,error:deleteError,success:deleteSuccess} = deleteYoutube
