@@ -106,13 +106,13 @@ const SignUp = () => {
             <Button> {loading ? "Processing please wait" : "Sign Up"}</Button>
           </form>
           {/* other sign up options */}
-          <p className="sign__up__option__text my-3 md:flex hidden">
+          {/*<p className="sign__up__option__text my-3 md:flex hidden">
             Or sign Up with{" "}
-          </p>
+                </p>*/}
 
-          <p className="my-3 md:hidden block text-center"> Or sign Up with </p>
+         {/* <p className="my-3 md:hidden block text-center"> Or sign Up with </p> */}
 
-          <div className="sign__up__options">
+         { /*<div className="sign__up__options">
             <button style={{ color: "red", size: "50px" }}>
               {" "}
               <FcGoogle style={{ width: "30px", height: "30px" }} />
@@ -123,7 +123,7 @@ const SignUp = () => {
             <button style={{ color: "#1DA1F2" }}>
               <FaTwitter style={{ width: "30px", height: "30px" }} />
             </button>
-          </div>
+                </div>*/ }
           <p
             style={{ textAlign: "center", margin: "10px 0" }}
             className="login__text"

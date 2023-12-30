@@ -196,7 +196,7 @@ const handleForm = (e) => {
                   <img src={blog.generated_image} width="100%" height="20%" />
                   </div>
                   ))}
-                  <p className="product-p">Select Project*</p>
+                 {/* <p className="product-p">Select Project*</p>
                   <select
                 onChange={(e)=>setProjectId(e.target.value)} 
                 value={projectId}
@@ -248,11 +248,11 @@ const handleForm = (e) => {
                     margin: "10px 0",
                     padding: "10px",
                     resize: "none",}}
-                />
+                  />*/}
                   <br />
-                <button className="article-btn" style={{ fontSize: "12px" }}>
+               {/* <button className="article-btn" style={{ fontSize: "12px" }}>
                 Save Image
-              </button>
+                </button>*/}
                   </form>
                 </div>
               </div>
