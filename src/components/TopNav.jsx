@@ -78,21 +78,21 @@ const TopNav = () => {
   const notificatonItems = [
     {
       id: 1,
-      text: "Mr Feyi wrote a new book",
+      text: "The campaign [13] test has been saved as draft.",
       onClick: () => {
         console.log(`Hello notification`);
       },
     },
     {
       id: 2,
-      text: "Wale joined your team",
+      text: "A process has been completed to delete contacts permanently.",
       onClick: () => {
         console.log(`Hello notification`);
       },
     },
     {
       id: 3,
-      text: "Account created successfully",
+      text: "A process has been queued to delete contacts permanently.",
       onClick: () => {
         console.log(`Hello notification`);
       },
@@ -143,7 +143,7 @@ const TopNav = () => {
   return (
     <>
       <div
-        className={`flex items-center ${
+        className={`flex items-center bg-[#EBF3FF] ${
           true ? "justify-between" : "justify-end"
         } p-4`}
       >
@@ -167,6 +167,7 @@ const TopNav = () => {
                   Notifications{" "}
                   <GoBell NotificationBell className="inline-block ml-2" />
                 </h4>
+                <hr />
                 {notificatonItems.map((item) => (
                   <p
                     key={item.id}
@@ -176,6 +177,12 @@ const TopNav = () => {
                     {item.text}
                   </p>
                 ))}
+                <hr />
+                <section>
+                  <p className="text-sm text-center my-2 text-[#559fff] font-bold">
+                    View all activity
+                  </p>
+                </section>
               </div>
             )}
           </section>
