@@ -72,8 +72,11 @@ const GoogleAdTitile = () => {
   
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  
   const articleBlogs = useSelector((state)=>state.articleBlogs)
   const {loading,error,success,conclusions} = articleBlogs 
+
+  const {wale, setWale} = useState('')
 
   const getProject = useSelector((state)=>state.getProject)
   const {loading:projectLoading,error:projectError, project} = getProject
@@ -81,16 +84,7 @@ const GoogleAdTitile = () => {
   const saveConclusion = useSelector((state)=>state.saveConclusion)
   const {loading:conLoading,error:conError} = saveConclusion
 
-  // const [typewriterText, setTypewriterText] = useTypewriter({
-  //   words: ['working on the type writer effect'],
-  //   loops:{},
-  //   typeSpeed:100,
-
-  // });
-  //useTypewrite(typewriterText, setTypewriterText);
-
-
-
+  
 
   useEffect(() => {
     handleListening()
@@ -171,6 +165,7 @@ const GoogleAdTitile = () => {
   useEffect(() => {
     if (conclusions) {
       setTypingStatus(Array(conclusions.length).fill(true));
+
     }
   }, [conclusions]);
 
@@ -302,3 +297,4 @@ const GoogleAdTitile = () => {
 };
 
 export default GoogleAdTitile;
+

@@ -15,17 +15,19 @@ const Help = () => {
     e.preventDefault()
    try {
     setLoading(true)
-    const {data} = await axios.post('https://dev.olukowe.co/api/help',{email,body})
-    console.log(data.data)
-    setMsg(data.message)
+    const {data} = await axios.post('https://dev.olukowe.co/api/help/',{email,body})
+    console.log(data)
+    
+    setLoading(false)
     setTimeout(()=>{
         setMsg("")
         setEmail("")
         setBody("")
     },4000)
-    setLoading(false)
+   
    } catch (error) {
-    console.log(error)
+    console.log(error.message)
+    setMsg(error.message)
    }
   }
   return (
@@ -60,7 +62,7 @@ const Help = () => {
                     className="btn article-btn"
                     style={{ fontSize: "16px" }}
                   >
-                  {loading ? "Sending..." : "Send"}
+                    Send
                   </button>
                 </form>
               </section>
