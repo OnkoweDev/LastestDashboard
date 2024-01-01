@@ -2,7 +2,7 @@
 import {createStore, combineReducers,applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from '@redux-devtools/extension'
-import { googleUserReducer, userLoginReducer, userProfileReducer, userRegisterReducer } from './reducers/userReducer'
+import { getUserProfileReducer, googleUserReducer, userLoginReducer, userProfileReducer, userRegisterReducer } from './reducers/userReducer'
 import { addEbookReducer, viewEbookReucer } from './reducers/ebookReducer'
 import { addBlogIntroReducer } from './reducers/ai/blogIntroReducer'
 import { blogSectionReducer } from './reducers/ai/blogSectionReducer'
@@ -76,6 +76,7 @@ const reducers = combineReducers({
     userLogin:userLoginReducer,
     userRegister:userRegisterReducer,
     userProfile:userProfileReducer,
+    getProfile:getUserProfileReducer,
     googleUser : googleUserReducer,
 
     //changePassword

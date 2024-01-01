@@ -8,10 +8,11 @@ import { BiHomeAlt, BiBell, BiLogOut, BiMenu } from "react-icons/bi";
 
 import { ProfileRow } from "../components";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../actions/userAction";
+import { getProfileAction, logout } from "../actions/userAction";
 import { FcCollaboration } from "react-icons/fc";
 import MobileMenu from "./MobileMenu";
 import { FaRegBell } from "react-icons/fa6";
+import Loader from "./Loader";
 
 const NewProjectLinks = ({ link, displayImage, text }) => {
   return (
@@ -65,8 +66,13 @@ const TopNav = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, error } = userLogin;
 
+  
   const userProfile = useSelector((state) => state.userProfile);
-  const { profileInfo, error:profileError } = userLogin;
+  const { profileInfo, error:profileError } = userProfile;
+
+  const getProfile = useSelector((state) => state.getProfile);
+  const { profiles, loading,error:getProfileError } = getProfile;
+
 
   const handleLogout = () => {
     dispatch(logout());
@@ -77,7 +83,11 @@ const TopNav = () => {
     setDropDown(false);
   };
 
-  useEffect(() => {}, [userInfo]);
+  useEffect(() => {
+
+    dispatch(getProfileAction())
+
+  }, [userInfo,profileInfo]);
 
   return (
     <div className="mycontainer">
@@ -107,7 +117,17 @@ const TopNav = () => {
                   style={{ marginLeft: "70px" }}
                   className="profile__details"
                 >
-                  <h3>{userInfo?.full_name}</h3>
+                 
+                 {/* <h3>{profileInfo?.data.first_name}</h3>*/}
+                  {/*<h3>{profileInfo ? profileInfo?.data.first_name : userInfo.first_name}</h3><h3>{profileInfo ? profileInfo?.data.last_name : userInfo.first_name}</h3>*/}
+                  {loading && <Loader style={{width:'40px',height:'40px'}} />}
+                   {profiles?.profile && profiles?.profile.map((pro)=>(
+                    <>
+                      <h3>{pro.first_name}</h3>
+                      <h4>{pro.last_name}</h4>
+                      <small>{pro.phone_number} </small>
+                    </>
+                   ))}
                   <small>{userInfo?.email}</small>
                 </aside>
               </section>

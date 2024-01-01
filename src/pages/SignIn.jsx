@@ -98,9 +98,9 @@ const SignIn = () => {
             </Button>
           </form>
           {/* other sign up options */}
-                { /*<p className="text-center my-3">Or Log in with </p>*/}
+                {<p className="text-center my-3">Or Log in with </p>}
 
-         {/* <div className="sign__up__options">
+         { <div className="sign__up__options">
             <button style={{ color: "red", size: "50px" }}>
               {" "}
               <FcGoogle style={{ width: "30px", height: "30px" }} />
@@ -111,7 +111,7 @@ const SignIn = () => {
             <button style={{ color: "#1DA1F2" }}>
               <FaTwitter style={{ width: "30px", height: "30px" }} />
             </button>
-                </div>*/}
+                </div>}
 
           <p className="text-center m-5">
             Don’t have an account?{" "}

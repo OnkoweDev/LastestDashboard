@@ -7,19 +7,20 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfileAction } from "../actions/backend/profileAction";
-import { userProfileAction } from "../actions/userAction";
+import { getProfileAction, userProfileAction } from "../actions/userAction";
 import toast, { Toaster } from "react-hot-toast";
+import Loader from "../components/Loader";
 
 const Profile = () => {
   
 
-  const [about,setAbout] = useState('')
-  const [country,setCountry] = useState('')
   const [first_name, setFull_name] = useState()
-  const [last_name,setLast_name] = useState('')
+  const [about,setAbout] = useState('')
   const [phone,setPhone] = useState('')
-  const [upload, setUpload] = useState([])
+  const [last_name,setLast_name] = useState('')
   const [username,setUsername] = useState('')
+  const [country,setCountry] = useState('')
+  const [url,seturl] = useState('')
 
 
   const dispatch = useDispatch()
@@ -38,6 +39,14 @@ const Profile = () => {
       // setFullname(profileInfo?.full_name)
       // setPhone(profileInfo?.phone_number)
       // setMessage(profileInfo?.about)
+      setFull_name(profileInfo?.first_name)
+      setAbout(profileInfo?.about)
+      setPhone(profileInfo?.phone_number)
+      setLast_name(profileInfo?.last_name)
+      setUsername(profileInfo?.username)
+      setCountry(profileInfo?.country)
+      seturl(profileInfo?.url)
+      // setMessage(profileInfo?.about)
     }
   },[navigate,userInfo])
 
@@ -50,17 +59,34 @@ const Profile = () => {
   const handleProfile = async(e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("about", about);
-    formData.append("country", country);
-    formData.append("phone_number", phone);
-    formData.append("first_name", first_name);
-    formData.append("last_name", last_name);
-    formData.append("avatar", upload); // Assuming this is the field for the profile picture
-    formData.append("username", username);
-    dispatch(userProfileAction(formData));
+    // const formData = new FormData();
+    // formData.append("first_name", first_name);
+    // formData.append("about", about);
+    // formData.append("avatar", upload);
+    // formData.append("last_name", last_name);
+    // formData.append("username", username);
+    // formData.append("country", country);
+    // formData.append("url", url);
+    console.log(first_name,
+      about,
+      phone,
+      last_name,
+      username,
+      country,
+      url)
+    dispatch(
+      userProfileAction
+      (first_name,
+      about,
+      phone,
+      last_name,
+      username,
+      country,
+      url));
     if(success) {
+      dispatch(getProfileAction())
       toast.success('profile updated successfully')
+     
     }
 
     // const formData = new FormData();
@@ -88,50 +114,51 @@ const Profile = () => {
                 <form onSubmit={handleProfile} encType="multipart/form-data">
                 
                 {error && <div className='bar error'>{error}</div>}
+                {loading && <Loader />}
                 <Toaster />
                   <article>
                     <aside>
-                      <label htmlFor="FirstName">About</label>
-                      <input onChange={(e)=>setAbout(e.target.value)}  value={about} type="text" className="input" name="about" />
-                    </aside>
-                    
-                    <aside>
-                      <label htmlFor="FirstName">Country</label>
-                      <input onChange={(e)=>setCountry(e.target.value)}  value={country} type="text" className="input" name="country" />
+                      <label htmlFor="FirstName">First Name</label>
+                      <input onChange={(e)=>setFull_name(e.target.value)}  value={first_name} type="text" className="input" name="first_Name" />
                     </aside>
 
+                    <aside>
+                      <label htmlFor="About">About</label>
+                      <input onChange={(e)=>setAbout(e.target.value)}  value={about} type="text" className="input" name="about" />
+                    </aside>
+
+                    <aside>
+                      <label htmlFor="Phone">Phone</label>
+                      <input onChange={(e)=>setPhone(e.target.value)}  value={phone} type="text" className="input" name="phone_number" />
+                    </aside>
+                    
                   </article>
                 <article>
+                    
+
                     <aside>
-                    <label htmlFor="FirstName">First Name</label>
-                    <input onChange={(e)=>setFull_name(e.target.value)}  value={first_name} type="text" className="input" name="firstName" />
+                      <label htmlFor="LastName">Last Name</label>
+                      <input onChange={(e)=>setLast_name(e.target.value)}  value={last_name} type="text" className="input" name="last_name" />
+                    </aside>
+
+                  <aside>
+                    <label htmlFor="username">username</label>
+                    <input onChange={(e)=>setUsername(e.target.value)}  value={username} type="text" className="input" name="username" />
+                  </aside>
+                
+                </article>
+                <article>
+                  <aside>
+                    <label htmlFor="Country">Country</label>
+                    <input onChange={(e)=>setCountry(e.target.value)}  value={country} type="text" className="input" name="country" />
                   </aside>
 
                   <aside>
-                    <label htmlFor="LastName">Last Name</label>
-                    <input onChange={(e)=>setLast_name(e.target.value)}  value={last_name} type="text" className="input" name="lastName" />
-                  </aside>
-                </article>
-                <article>
-                      <aside>
-                      <label htmlFor="LastName">Phone</label>
-                      <input onChange={(e)=>setPhone(e.target.value)}  value={phone} type="text" className="input" name="phone" />
-                    </aside>
-                    <aside>
-                      <label htmlFor="file">Picture</label>
-                      <input
-                          onChange={handleChange}
-                          type="file"
-                          accept="image/*" 
-                          className="input"
-                          name="upload"
-                        />
-                    </aside>
+                    <label htmlFor="url">Url</label>
+                    <input onChange={(e)=>seturl(e.target.value)}  value={url} type="text" className="input" name="url" />
+                </aside>
 
-                    <aside>
-                      <label htmlFor="LastName">username</label>
-                      <input onChange={(e)=>setUsername(e.target.value)}  value={username} type="text" className="input" name="username" />
-                    </aside>
+                   
                   </article>
                   {/*<div className="textarea__div">
                     <aside>
