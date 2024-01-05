@@ -21,6 +21,11 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { addEbookAction } from "../actions/backend/ebookAction";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { addEbook } from "../actions/ebookaction";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
+import { Typewriter } from "react-simple-typewriter";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 const SpeechRecognision =
   window.speechRecognition || window.webkitSpeechRecognition;
@@ -33,6 +38,7 @@ mic.lang = "en-US";
 const Ebook = () => {
   const [title, setTitle] = useState([]);
   const [description, setDescription] = useState([]);
+  const [no_of_chapters, setChapters] = useState([]);
   const [generated, setGenerated] = useState([]);
   const [loading, setIsLoading] = useState(false);
   const [error, setError] = useState();
@@ -43,8 +49,8 @@ const Ebook = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const  ebook = useSelector((state)=>state.ebook)
-  // const {loading, error, ebooks } = ebook
+  const  userEbook = useSelector((state)=>state.userEbook)
+  //const {loading, error, ebook } = userEbook
 
   // const handleSubmit = async(e) => {
   //     e.preventDefault()
@@ -55,36 +61,31 @@ const Ebook = () => {
   const saveEbook = useSelector((state) => state.saveEbook);
   const { loading: ebookLoading, error: ebookError,success } = saveEbook;
 
-  useEffect(() => {
-    dispatch(getProjectAction());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getProjectAction());
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const config = {
-        headers: {
-          "Content-type": "application/x-www-form-urlencoded",
-        },
-      };
-      setIsLoading(true);
-      const { data } = await axios.post(
-        `https://api.olukowe.co/ebook/`,
-        { title, description },
-        config
-      );
-      const arrData = [data];
-      arrData.forEach((data) => {
-        setGenerated([data]);
-      });
-      console.log(generated);
-      setIsLoading(false);
-    } catch (error) {
-      //setError("data not found")
-      console.log(error);
-      setIsLoading(false);
+   // dispatch(addEbook(title,description,chapters))
+    //console.log(ebook)
+
+    const config = {
+      headers:{
+          "Content-Type": "application/x-www-form-urlencoded",  
+      }
+  }
+  setIsLoading(true)
+  const {data} = await axios.post(`https://api.olukowe.co/ebook/`,{title, description,no_of_chapters},config)
+
+  const arrData = [data]
+        arrData.forEach((data)=>{
+          setGenerated(data)
+        })
+  setIsLoading(false)
+  console.log(generated)
     }
-  };
+  
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -140,17 +141,82 @@ const Ebook = () => {
   // choice of writind style i.e audio / writing
   const [isVoice, setIsVoice] = useState(false);
 
-  // insert book title
-  const insertBookTitle = () => {
-    const bookTitle = document.getElementById("book-title").value;
-    document.getElementById("book-title-heading").textContent = bookTitle;
+  
+
+  const renderEbookContents = () => {
+    if (!generated || !generated.generated_ebook) {
+      return <div>No ebook content available</div>;
+    }
+  
+    const { generated_ebook } = generated;
+    const introContent = generated_ebook['Introduction'];
+    let updatedContents = [];
+  
+    // Move the Introduction content to the beginning
+    if (introContent) {
+      updatedContents.push(
+        <div key="Introduction" style={{ marginBottom: '20px' }}>
+          <h2>Introduction</h2>
+          <Typewriter deleteSpeed={false} typeSpeed={20} words={introContent} cursor/>
+        </div>
+      );
+    }
+  
+    // Render other chapters and content
+    Object.entries(generated_ebook)
+      .filter(([key]) => key !== 'Introduction')
+      .forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+          updatedContents.push(
+            <div key={key} style={{ marginTop: '20px' }}>
+              <h2 style={{ fontWeight: 'bold' }}>{key}</h2>
+              {value.map((content, idx) => (
+                <p key={`${key}-${idx}`} style={{ marginBottom: '10px' }}>
+                  <Typewriter deleteSpeed={false} typeSpeed={20} words={[content]} cursor/>
+                </p>
+              ))}
+            </div>
+          );
+        }
+      });
+  
+    return updatedContents;
   };
 
-  // insert book content
-  const insertBookContent = () => {
-    const bookContent = document.getElementById("book-content-field").value;
-    document.getElementById("book-content").textContent = bookContent;
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        console.log('Text copied to clipboard');
+        // You can add a success message or perform other actions here
+      })
+      .catch((err) => {
+        console.error('Failed to copy: ', err);
+        // Handle error scenarios here
+      });
   };
+
+  const downloadPdf = async () => {
+    const content = document.getElementById('ebook-content'); // Replace 'ebook-content' with your content div ID
+    if (!content) return;
+
+    try {
+      const canvas = await html2canvas(content);
+      const imgData = canvas.toDataURL('image/png');
+
+      const pdf = new jsPDF();
+      const imgWidth = 210; // PDF width in mm (A4 size)
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      pdf.save('generated_ebook.pdf');
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+    }
+  };
+
+
+
+
   return (
     <>
       <main>
@@ -171,6 +237,7 @@ const Ebook = () => {
                       type="text"
                       id="book-title"
                       placeholder="Book Title"
+                      className="textarea"
                       required
                       style={{ padding: "20px", borderRadius: "5px" }}
                     />
@@ -186,6 +253,16 @@ const Ebook = () => {
                       //onChange={insertBookContent}
                       style={{ resize: "none" }}
                     ></textarea>
+
+                    <input
+                        onChange={(e) => setChapters(e.target.value)}
+                        value={no_of_chapters}
+                        type="text"
+                        id="How many Chapters"
+                        placeholder="How many chapters"
+                        required
+                        style={{ padding: "20px", borderRadius: "5px" }}
+                  />
                     <br />
                     <button
                       className="article-btn"
@@ -197,6 +274,7 @@ const Ebook = () => {
                 </form>
 
                 <div
+                  id="ebook-content"
                   className="right"
                   style={{
                     position: "relative",
@@ -205,89 +283,27 @@ const Ebook = () => {
                     height: "100%",
                   }}
                 >
-                  {ebookLoading && <Loader />}
+                
                   {ebookError && <div>{ebookError}</div>}
                   {loading && <Loader />}
                   <Toaster />
                   {error && <div className=" bar error">{error}</div>}
-                  <form onSubmit={handleForm}>
-                    <h2
-                      id="book-title-heading"
-                      style={{
-                        margin: "20px 0",
-                      }}
-                    ></h2>
-                    {Array.isArray(generated)
-                      ? generated &&
-                        generated.map((boo) => (
-                          <p
-                            ref={myDiv}
-                            contentEditable
-                            suppressContentEditableWarning
-                          >
-                            <h2>{boo.title}</h2>
-                            {boo.generated_ebook}
-                          </p>
-                        ))
-                      : null}
-                    <button
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        border: "none",
-                        outline: "none",
-                        position: "absolute",
-                        top: "4%",
-                        right: "5%",
-                        background: "transparent",
-                        cursor: "pointer",
-                      }}
-                      id="dot-btn"
-                    >
-                      <ul className="drop-btn">
-                        <BsThreeDots
-                          className="dot-icon"
-                          style={{ fontSize: "16px", fontWeight: "900" }}
-                        />
-                        <div className="drop-content">
-                          <button className="drop_down">Download</button>
-                          <button className="drop_down">Share</button>
-                        </div>
-                      </ul>
-                    </button>
+                  
+                      <div className="right-icons-container-fa">
+                        <button className="icon-contain"onClick={() => copyToClipboard(contents.join('\n'))}>
+                             <MdOutlineContentCopy className="icon" />
+                        </button>
+
+                        <button className="icon-contain">
+                           <MdOutlineSaveAlt  className="icon" />
+                         </button>
+                      </div>
+                        <p>{renderEbookContents()}</p>
+                       
                     <br />
-                    <select
-                      onChange={(e) => setProjectId(e.target.value)}
-                      value={projectId}
-                      name=""
-                      id=""
-                      className="select"
-                      style={{
-                        display: "block",
-                        width: "100%",
-                        background: "var(--primary-blue)",
-                        borderRadius: "var(--border-radius-xs)",
-                        border: "none",
-                        outline: "none",
-                        height: "10%",
-                        margin: "5px 0",
-                        padding: "5px",
-                        fontWeight: "400",
-                        fontSize: "14px",
-                        lineHeight: "21px",
-                        color: "rgba(0, 22, 51, 0.5)",
-                      }}
-                    >
-                      <option value="" selected disabled hidden>
-                        Select project
-                      </option>
-                      {project &&
-                        project.map((pro, i) => (
-                          <option key={i} value={pro.id}>
-                            {pro.name}
-                          </option>
-                        ))}
-                    </select>
+                    <button className="article-btn"
+                    style={{ fontSize: "14px" }} onClick={downloadPdf}>Download as PDF</button>
+                   {/* <form onSubmit={handleForm}>
                     <br />
                     <input
                       onChange={(e) => setSaveTitle(e.target.value)}
@@ -344,17 +360,14 @@ const Ebook = () => {
                     >
                       save Ebook
                     </button>
-                  </form>
+                    </form>*/}
                 </div>
               </div>
             </div>
 
-            {isListening ? <RiVoiceprintFill /> : <FiStopCircle />}
-            <AiOutlineAudio
-              className="icon-div mic-icon"
-              onClick={() => setIsListening((prevState) => !prevState)}
-            />
+           
           </div>
+          
         </div>
       </main>
     </>

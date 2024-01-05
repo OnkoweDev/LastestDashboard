@@ -188,7 +188,7 @@ const Home = () => {
             <div className="scrollable-content">
             <div className="cards-container">
 
-            {youtubeLoading && <Loader />}
+           
              
             {
               youtubes && youtubes.length > 0 &&
@@ -200,7 +200,7 @@ const Home = () => {
               </div>
             }
 
-            {TweetLoading && <Loader />}
+         
              
             {
               tweeters && tweeters.length > 0 &&
@@ -212,8 +212,7 @@ const Home = () => {
               </div>
             }
 
-            { faceLoading && <Loader />}
-
+            
             {
               facebooks && facebooks.length > 0 && 
               <div className="card">
@@ -225,7 +224,7 @@ const Home = () => {
               </div>
             }
 
-            {emailLoading && <Loader />}
+           
 
             {emails && emails.length > 0 && 
               <div className="card">
@@ -237,8 +236,7 @@ const Home = () => {
               </div>
             }
 
-            {SubjectLoading && <Loader />}
-
+           
             {subjects && subjects.length > 0 &&
               <div className="card">
               <Link to="/allemailSubject">
@@ -249,7 +247,7 @@ const Home = () => {
             </div>
             }
 
-            {blogIntroLoading && <Loader />}
+            
 
             {blogs && blogs.length > 0 &&
               <div className="card">
@@ -261,8 +259,7 @@ const Home = () => {
             </div>
             }
 
-            {rewriterLoading && <Loader />}
-
+         
             {blogRewritter && blogRewritter.length > 0 &&
               
               <div className="card">
@@ -274,7 +271,7 @@ const Home = () => {
               </div>
             }
 
-            {linkLoading && <Loader />}
+           
 
             {links && links.length > 0 &&
               
@@ -287,7 +284,7 @@ const Home = () => {
               </div>
             }
 
-            {paragraphLoading && <Loader />}
+          
 
             {paragraphs && paragraphs.length > 0 &&
               
@@ -299,7 +296,7 @@ const Home = () => {
               </div>
             }
 
-            {ELoading && <Loader />}
+           
             {Ebooks && Ebooks.length > 0 &&
               <div className="card">
                 <Link to="/all_ebook">
@@ -310,7 +307,7 @@ const Home = () => {
             
             }
              
-            {loading && <Loader />}
+           
             {Linkdlin && Linkdlin.length > 0 &&
               <div className="card">
                 <Link to="/all_linkedin_ads">
@@ -320,7 +317,7 @@ const Home = () => {
               </div> 
             }
 
-            {insLoading && <Loader />}
+            
             {instagrams && instagrams.length > 0 &&
               <div className="card">
               <Link to="/allinstagram">
@@ -330,7 +327,7 @@ const Home = () => {
             </div>
             }
 
-            {googleLoading && <Loader />}
+            
             {GoogleAds && GoogleAds.length > 0 &&
               <div className="card">
                 <Link to="/allgoogleads">
@@ -340,7 +337,7 @@ const Home = () => {
               </div>
             }
 
-            {titleLoading && <Loader />}
+            
             {titles && titles.length > 0 &&
               <div className="card">
               <Link to="/alltitle">
@@ -350,7 +347,7 @@ const Home = () => {
             </div>
             }
 
-            {sectionLoading && <Loader />}
+           
             {Section && Section.length > 0 &&
               <div className="card">
               <Link to="/blogsection">
@@ -360,7 +357,7 @@ const Home = () => {
             </div>
             }
 
-            {AudioLoading && <Loader />}
+           
               {audios && audios.length > 0 &&
                 <div className="card">
                 <Link to="/all_audio">
@@ -370,7 +367,7 @@ const Home = () => {
               </div>
               }
               
-              {landingLoading && <Loader />}
+             
               {Landings && Landings.length > 0 &&
                 <div className="card">
                 <Link to="/all_landing_headline">
@@ -380,7 +377,7 @@ const Home = () => {
               </div>
               }
 
-              {LandingPage && <Loader />}
+              
               {LandingPages && LandingPages.length > 0 &&
                 <div className="card">
                 <Link to="/all_landing">
@@ -390,7 +387,7 @@ const Home = () => {
               </div>
               }
 
-              {LanguageLoading && <Loader />}
+              
               {languages && languages.length > 0 &&
                 <div className="card">
                 <Link to="/language">
@@ -400,7 +397,7 @@ const Home = () => {
               </div>
               }
 
-              {proLoading && <Loader />}
+              
               {productDescs && productDescs.length > 0 &&
                 <div className="card">
                 <Link to="/all_productDesc">
@@ -411,7 +408,7 @@ const Home = () => {
               }
 
 
-              {productNameLoading && <Loader />}
+             
               {productNames && productNames.length > 0 &&
                 <div className="card">
                 <Link to="/all_product_name">
@@ -421,7 +418,7 @@ const Home = () => {
               </div>
               }
 
-              {loadingContent && <Loader />}
+             
               {content && content.length > 0 &&
                 <div className="card">
                 <Link to="/content">
@@ -431,7 +428,7 @@ const Home = () => {
               </div>
               }
 
-              {loadingTopic && <Loader />}
+            
               {topic && topic.length > 0 &&
                 <div className="card">
                 <Link to="/all_blog_topic">
@@ -441,7 +438,7 @@ const Home = () => {
               </div>
               }
 
-              {writterLoading && <Loader />}
+            
               {writer && writer.length > 0 &&
                 <div className="card">
                 <Link to="/allArticle">
@@ -452,7 +449,7 @@ const Home = () => {
               }
 
               
-              {loadingConclusion && <Loader />}
+             
               {conclusions && conclusions.length > 0 &&
                 <div className="card">
                 <Link to="/conclusion">

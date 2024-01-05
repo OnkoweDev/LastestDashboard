@@ -1,11 +1,11 @@
 import { ADD_EBOOK_FAILED, ADD_EBOOK_REQUEST, ADD_EBOOK_SUCCESS, VIEW_EBOOK_FAILED, VIEW_EBOOK_REQUEST, VIEW_EBOOK_SUCCESS } from "../constant/ebookConstant";
 
-export const addEbookReducer = (state={},action) => {
+export const addEbookReducer = (state={ebook:[]},action) => {
     switch (action.type) {
         case ADD_EBOOK_REQUEST:
             return {loading:true}
         case ADD_EBOOK_SUCCESS:
-            return {loading:false, success:true}
+            return {loading:false,ebook:action.payload, success:true}
         case ADD_EBOOK_FAILED:
             return {loading:false,success:false,error:action.payload}
         default:

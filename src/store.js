@@ -78,6 +78,7 @@ const reducers = combineReducers({
     userProfile:userProfileReducer,
     getProfile:getUserProfileReducer,
     googleUser : googleUserReducer,
+    userEbook:addEbookReducer,
 
     //changePassword
     changePassword:changePasswordReducer,

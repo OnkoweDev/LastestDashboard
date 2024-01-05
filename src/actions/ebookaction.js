@@ -1,18 +1,19 @@
 import axios from "axios"
 import { ADD_EBOOK_FAILED, ADD_EBOOK_REQUEST, ADD_EBOOK_SUCCESS, VIEW_EBOOK_FAILED, VIEW_EBOOK_REQUEST, VIEW_EBOOK_SUCCESS } from "../constant/ebookConstant"
 
-export const addEbook = (topic, no_of_outputs ) =>async(dispatch,getState) =>{
+export const addEbook = (title, description,no_of_chapters ) =>async(dispatch) =>{
     try {
         dispatch({type:ADD_EBOOK_REQUEST})
-        const {userLogin:{userInfo}} = getState()
         const config = {
             headers:{
-                "Content-Type": "application/x-www-form-urlencoded",
-                //Authorization: `${userInfo.token}`,
+                "Content-Type": "application/x-www-form-urlencoded",  
             }
         }
-        const {data} = await axios.post(`https://api.olukowe.co/topic/`,{topic, no_of_outputs },config)
-        dispatch({type:ADD_EBOOK_SUCCESS,payload:data.data})
+        const response = await axios.post(`https://api.olukowe.co/ebook/`,{title, description,no_of_chapters },config)
+        const data = response.data
+        console.log(data)
+        dispatch({type:ADD_EBOOK_SUCCESS,payload:data})
+
     } catch (error) {
         dispatch({
             type: ADD_EBOOK_FAILED,
@@ -21,6 +22,7 @@ export const addEbook = (topic, no_of_outputs ) =>async(dispatch,getState) =>{
                 ? error.response.data.message
                 : error.message,
           });
+          console.log(error)
     }
 }
 

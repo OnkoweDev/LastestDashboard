@@ -280,10 +280,26 @@ useEffect(() => {
                     </div>
                   <div id={`div-${index}`}>
                   
-                   {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[writer.generated_contents]} cursor />}
-
-                  </div>
-                    
+                  {typingStatus[index] && (
+                    writer.generated_contents.split('\n\n').map((content, i) => {
+                      if (content.startsWith('Section')) {
+                        return <strong key={i} style={{ display: 'block' }}> <Typewriter deleteSpeed={false} typeSpeed={20} words={[content]} cursor/></strong>;
+                      } else if (content.startsWith('Subsection')) {
+                        return <b key={i} style={{ display: 'block', fontSize:'17px' }}> <Typewriter deleteSpeed={false} typeSpeed={20} words={[content]} cursor/></b>;
+                      }
+                      
+                      else if (content.startsWith('Title')) {
+                        return <b key={i} style={{ display: 'block', fontSize:'20px' }}> <Typewriter deleteSpeed={false} typeSpeed={20} words={[content]} cursor/></b>;
+                      }
+                      
+                                            
+                      else {
+                        return <div key={i}><Typewriter deleteSpeed={false} typeSpeed={20} words={[content]} cursor/></div>;
+                      }
+                    })
+                  )}
+                </div>
+                 
                     </div>
                     ))}
                     <br/>
