@@ -10,7 +10,7 @@ import { deleteLanguageAction, getLanguageAction } from "../../actions/backend/l
 import { MdDelete } from "react-icons/md";
 import toast, { Toaster } from "react-hot-toast";
 
-const Language = () => {
+const Language  = () => {
   // state to hold the data comimg from the database / backend
   const [message, setMessage] = useState("");
 
@@ -45,6 +45,21 @@ const Language = () => {
         <div className="container">
           <SideNav />
           <div className="content">
+              <Link
+              className="article-btn"
+              style={{
+                fontSize: "14px",
+                width: "20%",
+                textAlign: "center",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "10px",
+                margin:"10px"
+              }}
+              to="/language-translation"
+            >
+              Translate
+        </Link>
             <div className="cards-container">
               {loading && <Loader />}
               {error && <div className=" bar error">{error}</div>}

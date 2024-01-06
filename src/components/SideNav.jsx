@@ -80,7 +80,7 @@ const SideNav = () => {
     {
       name: "Translate",
       icon: <MdGTranslate />,
-      path: "/translate",
+      path: "/language-translation",
     },
 
     {

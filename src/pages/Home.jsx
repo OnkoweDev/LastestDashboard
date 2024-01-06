@@ -165,6 +165,7 @@ const Home = () => {
     dispatch(getContentRepreAction())
     dispatch(getArticleAction())
     dispatch(getConclusionAction())
+    
 
 
   }, [])

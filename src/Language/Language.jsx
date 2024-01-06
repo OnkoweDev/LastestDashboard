@@ -23,6 +23,7 @@ import axios from "axios";
 import { useRef } from "react";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addLanguageAction } from "../actions/backend/languageAction";
+import { MdOutlineContentCopy } from "react-icons/md";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -31,7 +32,7 @@ mic.continuous = true
 mic.interimResults = true
 mic.lang = 'en-US'
 
-const Chinese = () => {
+const LanguageTrans = () => {
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
 
@@ -85,6 +86,9 @@ const Chinese = () => {
         setErrorMessage("data not found")
         console.log(errorMessage)
         setIsLoading(false)
+        setTimeout(()=>{
+            setErrorMessage("")
+        },4000)
 
     }
   }
@@ -101,38 +105,15 @@ const Chinese = () => {
   const [isListening, setIsListening] = useState(false)
   const [note, setNote] = useState([])
 
-//   useEffect(() => {
-//     handleListening()
-//   }, [isListening])
-//   const handleListening = () => {
-//       if(isListening){
-//           mic.start()
-//           mic.onend = () => {
-//               console.log('continue ...')
-//               mic.start()
-//           }
-//       }
-//       else{
-//           mic.stop()
-//           mic.onend = () => {
-//               console.log('stoped')
-//           }
-//       }
-//       mic.onstart = () => {
-//           console.log('Mics is on')
-//       }
+  const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
+    if (divData) {
+      navigator.clipboard.writeText(divData.innerText);
+      toast.success('copied');
+    }
+  };
 
-//       mic.onresult = event => {
-//           const transcript = Array.from(event.results).map(result => result[0]).map(result=> result.transcript).join('')
-//           console.log(transcript)
-//           setNote(transcript)
-//           mic.onerror = event => {
-//               console.log(event.error)
-//           }
-//       }
-//   }
-  // state to keep track of number of output
-  // handle audio option
   const handleAudio = () => {
     console.log("Mic is clicked");
     setIsAudio(true);
@@ -191,7 +172,7 @@ const Chinese = () => {
                   
                   {/*  number of output*/}
                   <button className="article-btn" style={{ fontSize: "14px" }}>
-                    Translate to Chinese Language
+                    Translate
                   </button>
                   </form>
                 </div>
@@ -203,10 +184,12 @@ const Chinese = () => {
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
                 {/* {console.log(lands.data)} */}
-                {lands && lands?.map((blog)=>(
+                {lands && lands?.map((blog,index)=>(
                   
-                  <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning>
-                  <BCDIcons />
+                  <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning>
+                 {/* <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
+                       <MdOutlineContentCopy className="icon" />
+                </button>*/}
                     {blog.generated_translation}
                   </div>
                   ))}
@@ -247,7 +230,7 @@ const Chinese = () => {
                     type="text"
                     id="book-title"
                     placeholder="Language"
-
+                    required
                     style={{
                         resize: "none", 
                         height: "30px",
@@ -274,6 +257,7 @@ const Chinese = () => {
                         id="book-content-field"
                         className="textarea"
                         placeholder="Text"
+                        required
                     //value={note}
                     //onChange={insertBookContent}
                     style={{ 
@@ -306,4 +290,4 @@ const Chinese = () => {
   );
 };
 
-export default Chinese;
+export default LanguageTrans;

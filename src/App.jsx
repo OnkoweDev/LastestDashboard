@@ -133,6 +133,7 @@ import BlogAndArticle from "./pages/BlogAndArticle";
 import LandingP from "./pages/LandingP";
 import Translate from "./pages/Translate";
 import Email from "./pages/Email";
+import LanguageTrans from "./Language/Language";
 
 function App() {
   return (
@@ -197,6 +198,7 @@ function App() {
         <Route path="italian" element={<Italian />} />
         <Route path="japanese" element={<Japanese />} />
         <Route path="chinese" element={<Chinese />} />
+        <Route path="language-translation" element={<LanguageTrans />} />
         <Route path="project" element={<Project />} />
         <Route path="art" element={<ArticleRewriter2 />} />
         {/*  */}

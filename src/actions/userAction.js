@@ -88,7 +88,7 @@ export const logout = ()=> async (dispatch) => {
   
       const data = response.data;
       dispatch({ type: USERS_PROFILE_SUCCESS, payload: data.data });
-      localStorage.setItem('profileInfo', JSON.stringify(data));
+      //localStorage.setItem('profileInfo', JSON.stringify(data));
     } catch (error) {
       dispatch({
         type: USERS_PROFILE_FAILED,
