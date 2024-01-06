@@ -26,6 +26,10 @@ import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 import { Typewriter } from "react-simple-typewriter";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { saveAs } from 'file-saver';
+import {  Document, Packer, Paragraph, TextRun} from "docx";
+
+
 
 const SpeechRecognision =
   window.speechRecognition || window.webkitSpeechRecognition;
@@ -156,8 +160,9 @@ const Ebook = () => {
     if (introContent) {
       updatedContents.push(
         <div key="Introduction" style={{ marginBottom: '20px' }}>
-          <h2>Introduction</h2>
-          <Typewriter deleteSpeed={false} typeSpeed={20} words={introContent} cursor/>
+         <b> <h2>Introduction</h2></b>
+          <p>{introContent}</p>
+          
         </div>
       );
     }
@@ -183,16 +188,28 @@ const Ebook = () => {
     return updatedContents;
   };
 
-  const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text)
-      .then(() => {
-        console.log('Text copied to clipboard');
-        // You can add a success message or perform other actions here
-      })
-      .catch((err) => {
-        console.error('Failed to copy: ', err);
-        // Handle error scenarios here
-      });
+  
+
+  const copyToClipboard = () => {
+    const contentElement = document.getElementById('ebook-content');
+    if (!contentElement) return;
+  
+    const content = contentElement.innerText;
+  
+    const tempTextArea = document.createElement('textarea');
+    tempTextArea.value = content;
+    tempTextArea.setAttribute('readonly', '');
+    tempTextArea.style.position = 'absolute';
+    tempTextArea.style.left = '-9999px';
+  
+    document.body.appendChild(tempTextArea);
+    tempTextArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempTextArea);
+  
+    //console.log('Text copied to clipboard');
+    // You can add a success message or perform other actions here
+    toast.success('copied');
   };
 
   const downloadPdf = async () => {
@@ -214,9 +231,93 @@ const Ebook = () => {
     }
   };
 
+ 
+  const downloadAsWord = async () => {
+    const content = document.getElementById("ebook-content");
+    if (!content) return;
+  
+    try {
+      const paragraphs = [];
+      const processedNodes = new Set();
+  
+      const processNode = (node) => {
+        if (!processedNodes.has(node)) {
+          processedNodes.add(node);
+          if (node.nodeName === 'H2' || node.nodeName === 'P') {
+            return {
+              type: node.nodeName,
+              text: node.innerText,
+            };
+          }
+        }
+        return null;
+      };
+  
+      const traverse = (node) => {
+        const processedNode = processNode(node);
+        if (processedNode) {
+          paragraphs.push(processedNode);
+        }
+        if (node.children.length > 0) {
+          Array.from(node.children).forEach((childNode) => {
+            traverse(childNode);
+          });
+        }
+      };
+  
+      traverse(content);
+  
+      const structuredParagraphs = [];
+      let tempStructured = null;
+  
+      paragraphs.forEach((para, index) => {
+        if (para.type === 'H2') {
+          if (tempStructured) {
+            structuredParagraphs.push(tempStructured);
+            tempStructured = null;
+          }
+          tempStructured = { title: para.text, content: [] };
+        } else if (para.type === 'P' && tempStructured) {
+          tempStructured.content.push(para.text);
+        }
+  
+        if (index === paragraphs.length - 1 && tempStructured) {
+          structuredParagraphs.push(tempStructured);
+        }
+      });
+  
+      const doc = new Document({
+        sections: structuredParagraphs.map((section) => {
+          const children = [
+            new Paragraph({
+              children: [new TextRun({ text: section.title, bold: true })],
+            }),
+          ];
+  
+          section.content.forEach((text) => {
+            children.push(new Paragraph({ children: [new TextRun({ text })] }));
+          });
+  
+          return {
+            children,
+          };
+        }),
+        creator: 'Olukowe', 
+        title: 'Ebook document',
+      });
+  
+      
+      const buffer = await Packer.toBlob(doc);
+      saveAs(buffer, "olukowe.docx");
+    } catch (error) {
+      console.error("Error generating Word document:", error);
+    }
+  };
+  
 
 
-
+  
+  
   return (
     <>
       <main>
@@ -274,8 +375,9 @@ const Ebook = () => {
                 </form>
 
                 <div
-                  id="ebook-content"
+                  
                   className="right"
+                  id="ebook-content"
                   style={{
                     position: "relative",
                     lineHeight: "2em",
@@ -290,20 +392,19 @@ const Ebook = () => {
                   {error && <div className=" bar error">{error}</div>}
                   
                       <div className="right-icons-container-fa">
-                        <button className="icon-contain"onClick={() => copyToClipboard(contents.join('\n'))}>
-                             <MdOutlineContentCopy className="icon" />
+                        <button className="icon-contain" onClick={copyToClipboard}>
+                          <MdOutlineContentCopy className="icon" />
                         </button>
-
-                        <button className="icon-contain">
-                           <MdOutlineSaveAlt  className="icon" />
-                         </button>
                       </div>
-                        <p>{renderEbookContents()}</p>
+                        <h1><b>Title : {generated.title}</b></h1>
+                        <p  suppressContentEditableWarning={true} contentEditable>{renderEbookContents()}</p>
                        
                     <br />
-                    <button className="article-btn"
-                    style={{ fontSize: "14px" }} onClick={downloadPdf}>Download as PDF</button>
-                   {/* <form onSubmit={handleForm}>
+                    <div>
+                      <button className="article-btn"
+                      style={{ fontSize: "14px" }} onClick={downloadAsWord}>Download as word document</button>
+                    </div>
+                    {/* <form onSubmit={handleForm}>
                     <br />
                     <input
                       onChange={(e) => setSaveTitle(e.target.value)}
