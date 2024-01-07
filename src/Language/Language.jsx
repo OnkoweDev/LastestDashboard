@@ -152,23 +152,82 @@ const LanguageTrans = () => {
                       }}
                     >{note}</textarea>
 
-                    <input
-                      onChange={(e) => setFromLanguage(e.target.value)}
-                      value={from_language}
-                      type="text"
-                      placeholder="From"
-                      required
-                      style={{ padding: "20px", borderRadius: "5px" }}
-                   />
+                   
 
-                   <input
-                      onChange={(e) => setTolanguage(e.target.value)}
-                      value={to_language}
-                      type="text"
-                      placeholder="To"
-                      required
-                      style={{ padding: "20px", borderRadius: "5px" }}
-                   />
+                    <select
+                    onChange={(e)=>setFromLanguage(e.target.value)} 
+                    value={from_language}
+                      name=""
+                      id=""
+                      className="select"
+                      style={{
+                        display: "block",
+                        width: "100%",
+                        background: "var(--primary-blue)",
+                        borderRadius: "var(--border-radius-xs)",
+                        border: "none",
+                        outline: "none",
+                        height: "10%",
+                        margin: "15px 0",
+                        padding: "5px",
+                        fontWeight: "400",
+                        fontSize: "14px",
+                        lineHeight: "21px",
+                        color: "rgba(0, 22, 51, 0.5)",
+                      }}
+                  >
+                      <option  value="" selected disabled hidden>From</option>
+                      <option value="english">English</option>
+                      <option value="french">French</option>
+                      <option value="spanish">Spanish</option>
+                      <option value="german">German</option>
+                      <option value="turkish">Turkish</option>
+                      <option value="hindi">Hindi</option>
+                      <option value="arabic">Arabic</option>
+                      <option value="russian">Russian</option>
+                      <option value="portuguese">Portuguese</option>
+                      <option value="italian">Italian</option>
+                      <option value="japanese">Japanese</option>
+                      <option value="chinese">Chinese</option>
+                  </select>
+
+                  <select
+                    onChange={(e)=>setTolanguage(e.target.value)} 
+                    value={to_language}
+                      name=""
+                      id=""
+                      className="select"
+                      style={{
+                        display: "block",
+                        width: "100%",
+                        background: "var(--primary-blue)",
+                        borderRadius: "var(--border-radius-xs)",
+                        border: "none",
+                        outline: "none",
+                        height: "10%",
+                        margin: "5px 0",
+                        padding: "15px",
+                        fontWeight: "400",
+                        fontSize: "14px",
+                        lineHeight: "21px",
+                        color: "rgba(0, 22, 51, 0.5)",
+                      }}
+                  >
+                      <option  value="" selected disabled hidden>To</option>
+                      <option value="english">English</option>
+                      <option value="french">French</option>
+                      <option value="spanish">Spanish</option>
+                      <option value="german">German</option>
+                      <option value="turkish">Turkish</option>
+                      <option value="hindi">Hindi</option>
+                      <option value="arabic">Arabic</option>
+                      <option value="russian">Russian</option>
+                      <option value="portuguese">Portuguese</option>
+                      <option value="italian">Italian</option>
+                      <option value="japanese">Japanese</option>
+                      <option value="chinese">Chinese</option>
+                  </select>
+ 
                   
                   {/*  number of output*/}
                   <button className="article-btn" style={{ fontSize: "14px" }}>
@@ -191,6 +250,7 @@ const LanguageTrans = () => {
                        <MdOutlineContentCopy className="icon" />
                 </button>*/}
                     {blog.generated_translation}
+                    
                   </div>
                   ))}
                   <br />
