@@ -205,7 +205,7 @@ const LanguageTrans = () => {
                         border: "none",
                         outline: "none",
                         height: "10%",
-                        margin: "5px 0",
+                        margin: "15px 0",
                         padding: "15px",
                         fontWeight: "400",
                         fontSize: "14px",

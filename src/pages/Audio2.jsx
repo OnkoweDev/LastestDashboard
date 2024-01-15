@@ -49,8 +49,8 @@ const Audio = () => {
   const navigate = useNavigate()
   const [file, setAudio] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
   const [transcribedAudio, setTranscribedAudio] = useState('');
   const [transcribedAudioData, setTranscribedAudioData] = useState([]);
 
@@ -94,47 +94,41 @@ const Audio = () => {
         setTranscribedAudio({ id: audioId });
     
         setIsLoading(false);
-        
+        setErrorMsg("please wait getting transcribed data in 30 seconds");
     
-        for (let i = 0; i < 3; i++) {
-          setErrorMsg("please wait getting transcribed data............");
-          setTimeout(async () => {
-            try {
-              await fetchAndLogTranscribedAudio();
-              setErrorMsg("");
-    
-            } catch (error) {
-              console.error('Error fetching transcribed audio in setTimeout:', error);
-              setErrorMsg(error);
-            }
-          }, (i + 1) * 30000); // 30 seconds interval
-        }
+        // Delay fetching transcribed audio by 30 seconds
+        setTimeout(async () => {
+          try {
+            await fetchAndLogTranscribedAudio();
+            setErrorMsg("");
 
+          } catch (error) {
+            console.error('Error fetching transcribed audio in setTimeout:', error);
+            setErrorMsg("")
+          }
+        }, 30000);
       } catch (error) {
-        setErrorMessage(error);
-        setTimeout(()=>{
-          setErrorMessage("")
-        },3000)
+        setErrorMessage('Error processing audio. Please try again.');
         console.log(error);
         setIsLoading(false);
       }
     };
     
+  
+    
+
     const fetchAndLogTranscribedAudio = async () => {
       try {
         const data = await fetchTranscribedAudio(transcribedAudio.id);
-        if (data) {
-          setTranscribedAudioData(data);
-        }
+        //console.log('Fetched Transcribed Audio:', data);
+        setTranscribedAudioData(data.data); // Set the fetched data to the state variable
+        console.log(transcribedAudioData)
       } catch (error) {
-        console.log('Error fetching transcribed audio:', error);
-        setErrorMessage('Error fetching transcribed audio please try again')
-        setTimeout(()=>{setErrorMessage("")},4000)
-        
-        // Handle the error
+        console.error('Error fetching transcribed audio:', error);
+        throw error; // Propagate the error to handle it in the setTimeout block
       }
     };
-
+  
     const fetchTranscribedAudio = async (audioId) => {
       try {
         const response = await axios.get(`https://api.olukowe.co/audio-transcription/${audioId}`);
@@ -147,43 +141,11 @@ const Audio = () => {
         return generatedTranscription;
       } catch (error) {
         console.log('Error fetching transcribed audio:', error);
-        if(error){
-          setErrorMsg("Error fetching transcribed audio please try again")
-        }
         throw error; // Propagate the error to handle it in the calling code
       }
     };
-
-
-
-    const renderAudioContents = () => {
-      if (!transcribedAudioData || !transcribedAudioData.length) {
-        return <div>No Audio content available</div>;
-      }
     
-      
-      return transcribedAudioData.map((item, index) => (
-        <div key={index} className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning>
-        <div className="right-icons-container-fa">
-          <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
-            <MdOutlineContentCopy className="icon" />
-          </button>
-          <button className="icon-contain" onClick={(e) => handleForm(index, e)}>
-            <MdOutlineSaveAlt className="icon" />
-          </button>
-          </div>
-          {file.name}<br />
-          {Object.entries(item.generated_transcription).map(([speaker, transcription], i) => (
-            <div key={`${index}-${i}`}>
-              <h1><b>{speaker}</b></h1>
-              <p>
-                {transcription}
-              </p>
-            </div>
-          ))}
-        </div>
-      ));
-    };
+   
   
 
 
@@ -191,8 +153,13 @@ const Audio = () => {
 
 
 
+
+
   
- 
+  useEffect(() => {
+   
+  }, [])
+
   //Typewriter Effect
   const TypeWriterEffect = ({ text }) => {
     return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
@@ -286,12 +253,61 @@ const Audio = () => {
                 {errorMessage && <div className='bar error'>{errorMessage}</div>}
                 {errorMsg && <div className='bar success'>{errorMsg}</div>}
                 <Toaster />
-              
-                 
-                     { renderAudioContents()}
-                     <br />
-
-                  {/*<Link to='/allArticle' className="article-btn">Saved Audio</Link>*/}
+                {/* {console.log(lands.data)} */}
+                {Array.isArray(transcribedAudioData) ? transcribedAudioData.map((blog, index) => (
+                  <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning>
+                    <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
+                      <MdOutlineContentCopy className="icon" />
+                    </button>
+                    <button className="icon-contain" onClick={(e) => handleForm(index, e)}>
+                      <MdOutlineSaveAlt className="icon" />
+                    </button>
+                    {file.name}<br />
+                    <div id={`div-${index}`}>
+                      {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={blog.generated_transcription} cursor />}
+                    </div>
+                  </div>
+                )):null}
+                  <br />
+                 {/* <form>
+                  <p className="product-p">Select Project*</p>
+                  <select
+                  onChange={(e)=>setProjectId(e.target.value)} 
+                  value={projectId}
+                  name=""
+                  id=""
+                  className="select"
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    background: "var(--primary-blue)",
+                    borderRadius: "var(--border-radius-xs)",
+                    border: "none",
+                    outline: "none",
+                    height: "10%",
+                    margin: "5px 0",
+                    padding: "5px",
+                    fontWeight: "400",
+                    fontSize: "14px",
+                    lineHeight: "21px",
+                    color: "rgba(0, 22, 51, 0.5)",
+                  }}
+                  >
+                  <option value="" selected disabled hidden>Select project</option>
+                  
+                  {
+                    project && project.map((pro, i)=>(
+                      <option key={i} value={pro.id}>{pro.name}</option>
+                      ))
+                    }
+                    </select>
+                    <br />
+                    <button className="article-btn" style={{ fontSize: "14px" }}>
+                    Save Article Rewriter
+                    </button>
+                    </form>
+                  */}
+                  <Link to='/allArticle' className="article-btn">Saved Audio</Link>
                 </div>
               </div>
             </div>
