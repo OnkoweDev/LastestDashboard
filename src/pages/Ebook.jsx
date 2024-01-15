@@ -397,7 +397,7 @@ const Ebook = () => {
                         </button>
                       </div>
                         <h1><b>Title : {generated.title}</b></h1>
-                        <p  suppressContentEditableWarning={true} contentEditable>{renderEbookContents()}</p>
+                        <p>{renderEbookContents()}</p>
                        
                     <br />
                     <div>

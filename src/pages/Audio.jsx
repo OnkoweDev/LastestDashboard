@@ -272,7 +272,10 @@ const Audio = () => {
                     required
                   />
 
-                  {/*  number of output*/}
+                  <p>
+                    {file ? file.name : ''}
+                  </p>
+                  <br />
                   <button className="article-btn" style={{ fontSize: "14px" }}>
                     Transcribe Audio
                   </button>
