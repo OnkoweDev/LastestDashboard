@@ -101,14 +101,25 @@ const handleForm = (e) => {
   const [note, setNote] = useState([])
   const [imageLink, showImageLink] = useState(true)
 
-  const handleShowImageLink = () => {
-      showImageLink(false)
-  }
+  const handleDownload = () => {
+   
+    if (lands && lands.length > 0) {
+      const generatedImageUrl = lands[0]?.generated_image;
 
-  const handleAudio = () => {
-    console.log("Mic is clicked");
-    setIsAudio(true);
+      // Create an invisible anchor element
+      const downloadLink = document.createElement("a");
+      downloadLink.href = generatedImageUrl;
+      downloadLink.download = "generated_image.jpg"; // Set the desired file name
+
+      // Append the anchor element to the body and trigger the click event
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+
+      // Remove the anchor element from the body
+      document.body.removeChild(downloadLink);
+    }
   };
+  
   return (
     <>
       <main>
@@ -181,12 +192,12 @@ const handleForm = (e) => {
                 </div>
                 {/*  */}
                 <div className="right">
-                <form onSubmit={handleForm}>
+              
                 {isLoading && <Loader />}
                 {loading && <Loader />}
                 {errorMessage && <div className='bar error'>{errorMessage}</div>}
                 
-                {/* {console.log(lands.data)} */}
+               
                 {lands && lands?.map((blog)=>(
                   
                   <div className="sec-1" ref={myDiv}>
@@ -196,63 +207,16 @@ const handleForm = (e) => {
                   <img src={blog.generated_image} width="100%" height="20%" />
                   </div>
                   ))}
-                 {/* <p className="product-p">Select Project*</p>
-                  <select
-                onChange={(e)=>setProjectId(e.target.value)} 
-                value={projectId}
-                name=""
-                id=""
-                className="select"
-                style={{
-                  display: "block",
-                  width: "100%",
-                  background: "var(--primary-blue)",
-                  borderRadius: "var(--border-radius-xs)",
-                  border: "none",
-                  outline: "none",
-                  height: "10%",
-                  margin: "5px 0",
-                  padding: "5px",
-                  fontWeight: "400",
-                  fontSize: "14px",
-                  lineHeight: "21px",
-                  color: "rgba(0, 22, 51, 0.5)",
-                }}
-                >
-                <option value="" selected disabled hidden>Select project</option>
                 
-                {
-                  project && project.map((pro, i)=>(
-                    <option key={i} value={pro.id}>{pro.name}</option>
-                    ))
-                  }
-                  </select>
                   <br />
-                  <input
-                  onChange={(e)=>setImgPrompt(e.target.value)}
-                  value = {imgPrompt}
-                  type="text"
-                  id="book-title"
-                  placeholder="Title"
-                  style={{ 
-                    resize: "none",
-                    textAlign:"center",
-                    borderColor: "rgba(255,255,255)", 
-                    display: "block",
-                    width: "100%",
-                    background: "var(--primary-blue)",
-                    borderRadius: "var(--border-radius-xs)",
-                    border: "none",
-                    outline: "none",
-                    height: "15%",
-                    margin: "10px 0",
-                    padding: "10px",
-                    resize: "none",}}
-                  />*/}
-                  <br />
-               {/* <button className="article-btn" style={{ fontSize: "12px" }}>
-                Save Image
-                </button>*/}
+                  <button
+                  className="article-btn"
+                  style={{ fontSize: "12px" }}
+                  onClick={handleDownload}
+                >
+                  Download Image
+                </button>
+                 <form onSubmit={handleForm}>
                   </form>
                 </div>
               </div>
