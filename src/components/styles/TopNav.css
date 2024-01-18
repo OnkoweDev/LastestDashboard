@@ -69,12 +69,13 @@
   position: absolute;
   top: 100%;
   right: 1rem;
-  padding: 1rem;
+  padding: 2.3rem;
   background-color: var(--background);
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   border-radius: var(--border-radius-sm);
   overflow: hidden;
   z-index: 2;
+  
 
   @media (max-width: 700px) {
     max-width: 300px;
@@ -92,6 +93,7 @@
   border-radius: var(--border-radius-sm);
   overflow: hidden;
   z-index: 2;
+  
 
   @media (max-width: 700px) {
     max-width: 300px;
@@ -203,4 +205,23 @@
   letter-spacing: 1.5px;
   color: var(--active);
   text-transform: none;
+}
+.top-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+ 
+  
+  
+}
+
+.top-img {
+  width: 50px;
+  height: 50px;
+  
+}
+.item-name {
+  margin: 10px;
+  padding: 10px;
 }

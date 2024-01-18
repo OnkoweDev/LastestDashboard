@@ -177,7 +177,7 @@ const Ebook = () => {
               <h2 style={{ fontWeight: 'bold' }}>{key}</h2>
               {value.map((content, idx) => (
                 <p key={`${key}-${idx}`} style={{ marginBottom: '10px' }}>
-                  <Typewriter deleteSpeed={false} typeSpeed={20} words={[content]} cursor/>
+                  <Typewriter deleteSpeed={false} typeSpeed={20} words={[content]} />
                 </p>
               ))}
             </div>

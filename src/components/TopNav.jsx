@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "./styles/TopNav.css";
 
 import { BiHomeAlt, BiBell, BiLogOut, BiMenu } from "react-icons/bi";
+import { IoIosStats } from "react-icons/io";
 
 import { ProfileRow } from "../components";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +14,7 @@ import { FcCollaboration } from "react-icons/fc";
 import MobileMenu from "./MobileMenu";
 import { FaRegBell } from "react-icons/fa6";
 import Loader from "./Loader";
+import { MdPayment } from "react-icons/md";
 
 const NewProjectLinks = ({ link, displayImage, text }) => {
   return (
@@ -52,6 +54,7 @@ const TopNav = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [showNotifcations, setShowNotifications] = useState(false);
+  const [showCollaboration, setShowCollaboration] = useState(false);
 
   const handleMenuToggle = () => {
     setShowMenu(!showMenu);
@@ -60,6 +63,7 @@ const TopNav = () => {
   const toggleDropDown = () => {
     setDropDown(!dropDown);
     setShowNotifications(false);
+    setShowCollaboration(false);
   };
 
   const dispatch = useDispatch();
@@ -80,6 +84,11 @@ const TopNav = () => {
 
   const toggleViewNotification = () => {
     setShowNotifications(!showNotifcations);
+    setDropDown(false);
+  };
+
+  const toggleViewCollaboration = () => {
+    setShowCollaboration(!showCollaboration);
     setDropDown(false);
   };
 
@@ -117,18 +126,25 @@ const TopNav = () => {
                   style={{ marginLeft: "70px" }}
                   className="profile__details"
                 >
-                 
-                 {/* <h3>{profileInfo?.data.first_name}</h3>*/}
-                  {/*<h3>{profileInfo ? profileInfo?.data.first_name : userInfo.first_name}</h3><h3>{profileInfo ? profileInfo?.data.last_name : userInfo.first_name}</h3>*/}
-                  {loading && <Loader style={{width:'40px',height:'40px'}} />}
-                   {profiles?.profile && profiles?.profile.map((pro)=>(
-                    <>
-                      <h3>{pro.first_name}</h3>
-                      <h4>{pro.last_name}</h4>
-                      <small>{pro.phone_number} </small>
-                    </>
-                   ))}
-                  <small>{userInfo?.email}</small>
+
+                <div className="top-profile">
+                  <div className="top-img">
+                     <img src={profile} alt="" style={{marginLeft:"10px" }} />
+                  </div>
+                
+                    <div className="item-name" style={{marginRight:'5px'}}>
+                      {loading && <Loader style={{width:'40px',height:'40px'}} />}
+                      {profiles?.profile && profiles?.profile.map((pro)=>(
+                      <>
+                        {/*<h3>{pro.first_name}</h3>
+                      <h4>{pro.last_name}</h4>*/}
+                        <p>{`${pro.first_name} ${pro.last_name}`}</p>
+                       {/*<small>{pro.phone_number} </small>*/}
+                      </>
+                      ))}
+                      <small>{userInfo?.email}</small>
+                    </div>
+                  </div>
                 </aside>
               </section>
               <hr style={{ margin: "25px 0" }} />
@@ -147,9 +163,25 @@ const TopNav = () => {
                 />
 
                 <ProfileRow
+                  Icon={IoIosStats}
+                  title={"Usage"}
+                  link="/usage"
+                  text={"Monitor your usage"}
+                />
+
+                <ProfileRow
+                  Icon={MdPayment}
+                  title={"Billing and plan"}
+                  link="/payment"
+                  text={"Select the plan that best suit you"}
+                  
+                />
+
+                <ProfileRow
                   Icon={FcCollaboration}
                   title={"Collaboration"}
-                  link="/collaborate"
+                  //link="/collaborate"
+                  onClick={toggleViewCollaboration}
                   text={"Something new"}
                 />
 
@@ -179,10 +211,20 @@ const TopNav = () => {
                 <FaRegBell /> Notifications
               </p>
               <div className="bg-slate-50 hover:bg-[#85b5f7] my-2 hover:text-white transition-all duration-150 cursor-pointer p-3 rounded">
-                Mr Feyi wrote a new book
+                No any Notification
               </div>
+            </div>
+          </div>
+        )}
+
+        {showCollaboration && (
+          <div className="drop-content-2">
+            <div className={`bg-zinc-50 h-auto w-80 p-5 rounded-md`}>
+              <p className="font-bold py-4 flex items-center gap-x-2">
+                <FcCollaboration /> Collaboration
+              </p>
               <div className="bg-slate-50 hover:bg-[#85b5f7] my-2 hover:text-white transition-all duration-150 cursor-pointer p-3 rounded">
-                Mr Feyi wrote a new book
+               Comming Soon
               </div>
             </div>
           </div>

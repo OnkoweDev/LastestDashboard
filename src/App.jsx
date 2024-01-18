@@ -134,6 +134,8 @@ import LandingP from "./pages/LandingP";
 import Translate from "./pages/Translate";
 import Email from "./pages/Email";
 import LanguageTrans from "./Language/Language";
+import Payment from "./pages/Payment";
+import Usage from "./pages/Usage";
 
 function App() {
   return (
@@ -201,6 +203,9 @@ function App() {
         <Route path="language-translation" element={<LanguageTrans />} />
         <Route path="project" element={<Project />} />
         <Route path="art" element={<ArticleRewriter2 />} />
+        <Route path="payment" element={<Payment />} />
+        <Route path="usage" element={<Usage />} />
+        
         {/*  */}
         <Route path="social_media" element={<SocialMedia />} />
         <Route path="blog-and-articles" element={<BlogAndArticle />} />

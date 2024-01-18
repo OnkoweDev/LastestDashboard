@@ -3,6 +3,8 @@ import { SideNav, TopNav } from "../components";
 import "./styles/Profile.css";
 import { useState } from "react";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+import Loader from "../components/Loader";
 
 const Help = () => {
  
@@ -19,11 +21,7 @@ const Help = () => {
     console.log(data)
     
     setLoading(false)
-    setTimeout(()=>{
-        setMsg("")
-        setEmail("")
-        setBody("")
-    },4000)
+    toast.success(data.message);
    
    } catch (error) {
     console.log(error.message)
@@ -44,6 +42,8 @@ const Help = () => {
               <hr />
               <section className="form__container">
               {msg && <div className='bar success'>{msg}</div>}
+              {loading && <Loader />}
+              <Toaster />
                 <form onSubmit={handleForm}>
                   <article>
                     <aside>

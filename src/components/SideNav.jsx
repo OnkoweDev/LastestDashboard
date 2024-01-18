@@ -5,7 +5,7 @@ import logo from "./../assets/logo.png";
 import { BiHomeAlt } from "react-icons/bi";
 
 import { GiSoundWaves, GiWhiteBook } from "react-icons/gi";
-import { MdEmail, MdGTranslate, MdOutlineFlightLand, MdOutlineHelp } from "react-icons/md";
+import { MdEmail, MdGTranslate, MdOutlineFlightLand, MdOutlineHelp, MdPayment } from "react-icons/md";
 import { TiSocialDribbble } from "react-icons/ti";
 import { FaBloggerB, FaProductHunt, FaFileImage } from "react-icons/fa";
 import { GoProject } from "react-icons/go";
@@ -93,6 +93,12 @@ const SideNav = () => {
       name: "Help",
       icon: <MdOutlineHelp />,
       path: "/help",
+    },
+
+    {
+      name: "Upgrade",
+      icon: <MdPayment />,
+      path: "/payment",
     },
 
   ];
