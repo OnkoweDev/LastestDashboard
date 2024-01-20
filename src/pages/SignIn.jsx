@@ -39,7 +39,7 @@ const SignIn = () => {
   return (
     <>
       <Toaster />
-      <section className="grid md:grid-cols-2  w-screen h-screen">
+      <section className="grid md:grid-cols-2  w-screen h-screen overflow-hidden">
         <section className="form-section w-full h-full flex items-center justify-center flex-col">
           <section className="flex items-center justify-center flex-col gap-y-2">
             <h1 className="text-[#559fff] font-bold text-4xl text-center capitalize">
@@ -50,7 +50,7 @@ const SignIn = () => {
 
           <br />
           <form className="w-11/12 lg:w-8/12 md:p-5 " onSubmit={handleLogin}>
-            <section className="my-3">
+            <section>
               <label htmlFor="email" className="capitalize my-2">
                 email address
               </label>
@@ -63,8 +63,10 @@ const SignIn = () => {
                 type="email"
               />
             </section>
-
-            <section className="my-3">
+                <Link to="/forgetpassword">
+                <span className="text-blue-100"><p className="text-right">Forgot password</p></span>
+              </Link>
+            <section className="my-2">
               <label htmlFor="password" className="capitalize my-2">
                 password
               </label>
@@ -87,10 +89,13 @@ const SignIn = () => {
               </Button>
             </section>
 
-            <br />
-
-            <section className="flex w-full items-center justify-center flex-col p-2">
-              <p className="text-center capitalize">or login with</p>
+            <p className="text-center">
+            <Link to="/sign-up">
+              <span className="text-blue-100"><p className="text-right">Don’t have an account</p></span>
+            </Link>
+          </p>
+            <section className="flex w-full items-center justify-center flex-col-1 p-2">
+              <p className="text-center capitalize">Sign in with</p>
 
               <section className="border-[1px] border-black w-96 rounded-lg flex items-center justify-around p-2 my-4">
                 <FcGoogle className="w-8 h-8 cursor-pointer" />
@@ -100,16 +105,7 @@ const SignIn = () => {
             </section>
 
             <section>
-              <p className="text-center m-5">
-                Don’t have an account?{" "}
-                <Link to="/sign-up">
-                  <span className="text-blue-100">Sign Up</span>
-                </Link>
-                <br />
-                <Link to="/forgetpassword">
-                  <span className="text-blue-100">Forgot password</span>
-                </Link>
-              </p>
+             
             </section>
           </form>
         </section>

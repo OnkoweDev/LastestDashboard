@@ -84,9 +84,10 @@ const PaymentCard = () => {
                             <p className='py-2 border-b mx-8'>Landing Page Headline Generator</p>
                             <p className='py-2 border-b mx-8'>Landing Page Generator</p>
 
-                            <p className='py-2 border-b mx-8 mt-3  font-bold'>Image Creator (Standard)</p>
-                            <p className='py-2 border-b mx-8 mt-3  font-bold'>Translation (12 Languages)</p>
-                            <p className='py-2 border-b mx-8 mt-3  font-bold'>Audio Transcription( 15+ Languages)</p>
+                            <p className='py-2 border-b mx-8 mt-3  font-bold'>Image Creator <br /> (SD)</p>
+                            <p className='py-2 border-b mx-8 mt-3  font-bold'>Translation 
+                            </p>
+                            <p className='py-2 border-b mx-8 mt-3  font-bold'>Audio Transcription <br /> ( 15+ Languages)</p>
                 </div>
                 <button className='bg-[#559FFF] w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3 '>Upgrade</button>
                
@@ -145,9 +146,9 @@ const PaymentCard = () => {
                         <p className='py-2 border-b mx-8'>Landing Page Headline Generator</p>
                         <p className='py-2 border-b mx-8'>Landing Page Generator</p>
 
-                        <p className='py-2 border-b mx-8 mt-3  font-bold'>Image Creator (Standard)</p>
-                        <p className='py-2 border-b mx-8 mt-3  font-bold'>Translation (12 Languages)</p>
-                        <p className='py-2 border-b mx-8 mt-3  font-bold'>Audio Transcription( 15+ Languages)</p>
+                        <p className='py-2 border-b mx-8 mt-3  font-bold'>Image Creator <br />(HD)</p>
+                        <p className='py-2 border-b mx-8 mt-3  font-bold'>Translation</p>
+                        <p className='py-2 border-b mx-8 mt-3  font-bold'>Audio Transcription <br />( 15+ Languages)</p>
             </div>
             <button className='bg-[#559FFF] w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3 '>Upgrade</button>
            
@@ -206,9 +207,9 @@ const PaymentCard = () => {
                             <p className='py-2 border-b mx-8'>Landing Page Headline Generator</p>
                             <p className='py-2 border-b mx-8'>Landing Page Generator</p>
 
-                            <p className='py-2 border-b mx-8 mt-3  font-bold'>Image Creator (Standard)</p>
-                            <p className='py-2 border-b mx-8 mt-3  font-bold'>Translation (12 Languages)</p>
-                            <p className='py-2 border-b mx-8 mt-3  font-bold'>Audio Transcription( 15+ Languages)</p>
+                            <p className='py-2 border-b mx-8 mt-3  font-bold'>Image Creator <br /> (HD)</p>
+                            <p className='py-2 border-b mx-8 mt-3  font-bold'>Translation</p>
+                            <p className='py-2 border-b mx-8 mt-3  font-bold'>Audio Transcription<br />( 15+ Languages)</p>
                 </div>
                 <button className='bg-[#559FFF] w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3 '>Upgrade</button>
                

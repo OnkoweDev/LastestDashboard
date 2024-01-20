@@ -38,9 +38,9 @@ const SignUp = () => {
   return (
     <>
       <Toaster />
-      <section className="grid md:grid-cols-2  w-screen h-screen">
+      <section className="grid md:grid-cols-2  w-screen h-screen overflow-hidden">
         <section className="form-section w-full h-full flex items-center justify-center flex-col">
-          <section className="flex items-center justify-center flex-col gap-y-2">
+          <section className="flex items-center justify-center pt-2 flex-col">
             <h1 className="text-[#559fff] font-bold text-4xl text-center capitalize">
               sign up
             </h1>
@@ -48,11 +48,11 @@ const SignUp = () => {
 
           <br />
           <form
-            className="w-11/12 lg:w-8/12 md:p-5"
+            className="w-11/12 lg:w-8/12"
             onSubmit={handleRegister}
             novalidate
           >
-            <section className="my-3">
+            <section className="my-1">
               <label htmlFor="email" className="capitalize my-2">
                 full name
               </label>
@@ -95,7 +95,7 @@ const SignUp = () => {
             </section>
 
             <section>
-              <input type="checkbox" name="termsAndCondition" />
+              <input required type="checkbox" name="termsAndCondition" />
               <p className="inline-block px-2">
                 I’ve agreed to the Terms and Conditions
               </p>
@@ -109,10 +109,10 @@ const SignUp = () => {
 
             <br />
 
-            <section className="flex w-full items-center justify-center flex-col p-2">
-              <p className="text-center capitalize">or sign up with</p>
+            <section className="flex w-full items-center justify-center p-2">
+              <p className="text-center capitalize">sign up with</p>
 
-              <section className="border-[1px] border-black w-96 rounded-lg flex items-center justify-around p-2 my-4">
+              <section className="border-[1px] border-black w-96 rounded-lg flex items-center justify-around p-2 my-2">
                 <FcGoogle className="w-8 h-8 cursor-pointer" />
                 <BsFacebook className="w-8 h-8 text-[#4267B2] cursor-pointer" />
                 <FaTwitter className="w-8 h-8 text-[#1DA1F2] cursor-pointer" />
@@ -120,7 +120,7 @@ const SignUp = () => {
             </section>
 
             <section>
-              <p className="text-center m-5">
+              <p className="text-center">
                 Have an account?{" "}
                 <Link to="/">
                   <span className="text-blue-100">Login</span>
