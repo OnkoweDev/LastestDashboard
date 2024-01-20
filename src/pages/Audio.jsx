@@ -10,7 +10,7 @@ import {
 } from "../components";
 import { AiOutlineAudio } from "react-icons/ai";
 import { HiOutlinePencil } from "react-icons/hi";
-import { FiStopCircle } from "react-icons/fi";
+import { FiStopCircle, FiUploadCloud } from "react-icons/fi";
 import { CiPause1 } from "react-icons/ci";
 import { RiVoiceprintFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +26,8 @@ import { addAudioAction } from "../actions/backend/audioAction";
 import toast, { Toaster } from "react-hot-toast";
 import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 import { Typewriter } from "react-simple-typewriter";
+import upload_three from "../assets/upload_three.png"
+
 
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
@@ -53,6 +55,8 @@ const Audio = () => {
   const [errorMsg, setErrorMsg] = useState('');
   const [transcribedAudio, setTranscribedAudio] = useState('');
   const [transcribedAudioData, setTranscribedAudioData] = useState([]);
+  const [fileSelected, setFileSelected] = useState(false);
+
 
   const getProject = useSelector((state)=>state.getProject)
   const {loading:projectLoading,error:projectError, project} = getProject
@@ -60,17 +64,32 @@ const Audio = () => {
   const saveAudio = useSelector((state)=>state.saveAudio)
   const {loading:Loading,error:error,success} = saveAudio
 
-   
+  
+  const fileInputRef = useRef(null);
 
-    const handleChange = (event) => {
-      setAudio(event.target.files[0]);
-    };
+  const openFileInput = () => {
+    fileInputRef.current.click();
+  };
+
+    // const handleChange = (event) => {
+    //   setAudio(event.target.files[0]);
+    // };
   
 
   
     const handleSubmit = async (e) => {
       e.preventDefault();
+
+     
       try {
+        if (!file) {
+          setErrorMessage("Please select an audio file.");
+          setTimeout(() =>{
+            setErrorMessage('')
+          },5000)
+          return;
+        }
+
         const formData = new FormData();
         formData.append('file', file);
         formData.append('fileName', file.name);
@@ -154,43 +173,38 @@ const Audio = () => {
       }
     };
 
-
-
     const renderAudioContents = () => {
       if (!transcribedAudioData || !transcribedAudioData.length) {
-        return <div>No Audio content available</div>;
+        return <div></div>;
       }
     
-      
       return transcribedAudioData.map((item, index) => (
         <div key={index} className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning>
-        <div className="right-icons-container-fa">
-          <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
-            <MdOutlineContentCopy className="icon" />
-          </button>
-          <button className="icon-contain" onClick={(e) => handleForm(index, e)}>
-            <MdOutlineSaveAlt className="icon" />
-          </button>
+          <div className="right-icons-container-fa">
+            <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
+              <MdOutlineContentCopy className="icon" />
+            </button>
+            <button className="icon-contain" onClick={(e) => handleForm(index, e)}>
+              <MdOutlineSaveAlt className="icon" />
+            </button>
           </div>
-          {file.name}<br />
+          <br />
+    
           {Object.entries(item.generated_transcription).map(([speaker, transcription], i) => (
             <div key={`${index}-${i}`}>
               <h1><b>{speaker}</b></h1>
               <p>
-                {transcription}
+                {typeof transcription === 'object'
+                  ? JSON.stringify(transcription)
+                  : transcription}
               </p>
             </div>
           ))}
         </div>
       ));
     };
-  
-
-
-
-
-
-
+    
+    
   
  
   //Typewriter Effect
@@ -221,18 +235,7 @@ const Audio = () => {
       },5000)
     }
   }
-  
-
-
-  const [isListening, setIsListening] = useState(false)
-  const [note, setNote] = useState([])
-
-
-  const handleAudio = () => {
-    console.log("Mic is clicked");
-    setIsAudio(true);
-  };
-
+ 
   const [typingStatus, setTypingStatus] = useState([]);
 
   useEffect(() => {
@@ -249,6 +252,94 @@ const Audio = () => {
     });
   };
 
+
+  const [isDragging, setIsDragging] = useState(false);
+
+  const dropRef = useRef();
+  const dropZoneRef = useRef(null);
+
+  
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const droppedFile = event.dataTransfer.files[0];
+    setAudio(droppedFile);
+    setFileSelected(!!droppedFile);
+  };
+  
+
+  useEffect(() => {
+    const dropZone = dropZoneRef.current;
+    
+    if (dropZone) {
+      const handleDragOver = (event) => {
+        event.preventDefault();
+      };
+  
+      dropZone.addEventListener('dragover', handleDragOver);
+      dropZone.addEventListener('drop', handleDrop);
+  
+      return () => {
+        // Clean up: remove the event listeners
+        dropZone.removeEventListener('dragover', handleDragOver);
+        dropZone.removeEventListener('drop', handleDrop);
+      };
+    }
+  }, [dropZoneRef.current]);
+  
+  
+
+  useEffect(() => {
+    const handleDragEnter = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsDragging(true);
+    };
+
+    const handleDragLeave = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsDragging(false);
+    };
+
+    const handleDragOver = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    };
+
+    const handleDrop = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsDragging(false);
+
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        const droppedFile = e.dataTransfer.files[0];
+        setAudio(droppedFile);
+      }
+    };
+
+    dropRef.current.addEventListener("dragenter", handleDragEnter);
+    dropRef.current.addEventListener("dragleave", handleDragLeave);
+    dropRef.current.addEventListener("dragover", handleDragOver);
+    dropRef.current.addEventListener("drop", handleDrop);
+
+    return () => {
+      //dropRef.current.removeEventListener("dragenter", handleDragEnter);
+      //dropRef.current.removeEventListener("dragleave", handleDragLeave);
+      //dropRef.current.removeEventListener("dragover", handleDragOver);
+      //dropRef.current.removeEventListener("drop", handleDrop);
+      //mic.removeEventListener('your_event', yourEventHandler);
+    };
+  }, []);
+
+
+  const handleChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setAudio(selectedFile);
+    setFileSelected(!!selectedFile); // Set to true if a file is selected, false otherwise
+  };
+  
+
+
   return (
     <>
       <main>
@@ -261,20 +352,39 @@ const Audio = () => {
               <ProjectHeader image={blog2} title="Audio Generator" />
               {/* body */}
               <div className="body-content">
-                <div className="left">
+                <div
+                  className={`left ${isDragging ? "drag-over" : ""}`}
+                  ref={dropRef}
+                  >
                     <form onSubmit={handleSubmit}>
-                  <p className="product-p">Audio*</p>
-                  <input
-                    onChange={handleChange}
-                    name="file"
-                    id=""
-                    type="file"
-                    required
-                  />
-
+                       <div className="upload-side">
+                          <FiUploadCloud style={{fontSize:'60px'}} />
+                          <p>                     
+                            {isDragging ? "" : "Drag & Drop audio"}</p>
+                            <br />
+                            <p>Or</p>
+                        </div>
+                        <br />
+                            <button
+                            type="button"
+                            className="article-btn"
+                            onClick={openFileInput}
+                            >
+                            Click to upload
+                          </button>
+                          <input
+                            ref={fileInputRef}
+                            onChange={handleChange}
+                            name="file"
+                            type="file"
+                            accept="audio/*"
+                            style={{ display: "none" }}
+                          />
                   <p>
                     {file ? file.name : ''}
                   </p>
+                  <br />
+                    <p  style={{textAlign:"center"}}>Then</p>
                   <br />
                   <button className="article-btn" style={{ fontSize: "14px" }}>
                     Transcribe Audio
