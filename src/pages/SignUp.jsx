@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
-import loginImage from "../assets/signInImage.png";
+import loginImage from "../assets/loginImage.jpg";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { FaTwitter } from "react-icons/fa";
@@ -130,13 +130,13 @@ const SignUp = () => {
             </section>
           </form>
         </section>
-        <section className="image-section w-full md:flex hidden justify-end overflow-hidden">
-          <img
-            src={loginImage}
-            alt="login image"
-            className="object-contain h-full"
-          />
-        </section>
+        <section className="image-section h-full w-full md:flex hidden justify-end overflow-hidden">
+        <img
+          src={loginImage}
+          alt="login image"
+          
+        />
+      </section>
       </section>
     </>
   );

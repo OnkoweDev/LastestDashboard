@@ -93,6 +93,14 @@ const SignIn = () => {
               />
             </section>
 
+            <section>
+            <input  type="checkbox" name="termsAndCondition" />
+            <p className="inline-block px-2">
+             stay signed in
+            </p>
+          </section>
+
+         
             <br />
 
             <section>
