@@ -45,6 +45,7 @@ const Facebook = () => {
   const navigate = useNavigate()
   const blogSection = useSelector((state)=>state.blogSection)
   const {loading, success,error, blogsSec} = blogSection
+
   const getProject = useSelector((state)=>state.getProject)
   const {loading:projectLoading,error:projectError, project} = getProject
 
@@ -285,7 +286,7 @@ const handleForm = (index, subIndex,e) => {
                           </button>
                         </div>
                             <div id={`div-${index}-${idx}`}>
-                            {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
+                            {typingStatus[0] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
                             </div>
                          </div>
                   ))}
@@ -328,7 +329,7 @@ const handleForm = (index, subIndex,e) => {
                     Save Blog Intro Generated
                         </button>*/}
                        
-                        <Link to='/blogsection' className="article-btn">Saved Work</Link>
+                       
                  
                 </div>
               </div>

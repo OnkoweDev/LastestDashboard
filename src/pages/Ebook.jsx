@@ -352,7 +352,18 @@ const Ebook = () => {
                       required
                       //value={note}
                       //onChange={insertBookContent}
-                      style={{ resize: "none" }}
+                      style={{
+                        display: "block",
+                        width: "100%",
+                        background: "var(--primary-blue)",
+                        borderRadius: "var(--border-radius-xs)",
+                        border: "none",
+                        outline: "none",
+                        height: "30%",
+                        margin: "10px 0",
+                        padding: "10px",
+                        resize: "none",
+                      }}
                     ></textarea>
 
                     <input

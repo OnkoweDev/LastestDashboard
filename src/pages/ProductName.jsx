@@ -192,7 +192,7 @@ const ProductName = () => {
                 {
                   Array.isArray(product) ?
                 product && product.map((you,index)=>(
-                  <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning={true}>
+                  <div className="sec-1" key={index} ref={myDiv}>
                   
                   {you.generated_names.map((d,idx)=>(
                     <div className="txt-sec" key={idx}>
@@ -251,7 +251,6 @@ const ProductName = () => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                              <Link to='/all_product_name' className="article-btn">Saved Work</Link>
                   {/* <div className="sec-2">
                     <BCDIcons />
                     <div className="txt-sec"></div>

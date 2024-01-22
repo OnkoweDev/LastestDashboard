@@ -214,7 +214,26 @@ useEffect(() => {
                     <form onSubmit={handleArticle}>
                        
                         <p className="product-p">Title*</p>
-                        <input required type="text" className="input"  onChange={(e)=>setTitle(e.target.value)} value={title}/>
+                        <input 
+                        required type="text"
+                         className="input" 
+                          onChange={(e)=>setTitle(e.target.value)}
+                           value={title}
+                           
+                           style={{
+                            display: "block",
+                            width: "100%",
+                            background: "var(--primary-blue)",
+                            borderRadius: "var(--border-radius-xs)",
+                            border: "none",
+                            outline: "none",
+                            height: "30%",
+                            margin: "10px 0",
+                            padding: "10px",
+                            resize: "none",
+                          }}
+
+                           />
                         <p className="product-p">Intro*</p>
                         <textarea
                             onChange={(e)=>setIntro(e.target.value)}
@@ -279,7 +298,7 @@ useEffect(() => {
                         <MdOutlineSaveAlt className="icon" />
                       </button>
                     </div>
-                  <div id={`div-${index}`}>
+                  <div className="txt-sec" id={`div-${index}`}>
                   {typingStatus[0] && (
                     <TypewriterComponent writers={writers} />
                   )}          
@@ -326,7 +345,6 @@ useEffect(() => {
                     Save Blog Writer
                   </button>
                     </form>*/}
-                    <Link to='/allBlogs' className="article-btn">Saved Work</Link>
                 </div>
               </div>
             </div>

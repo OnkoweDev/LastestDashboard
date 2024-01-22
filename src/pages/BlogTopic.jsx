@@ -216,7 +216,7 @@ const BlogTopic = () => {
                   <Toaster />
                   {  Array.isArray(topics) ? 
                     topics.map((blog,index)=>(
-                    <div className="sec-1" key={index} ref={myDiv} suppressContentEditableWarning contentEditable>
+                    <div className="sec-1" key={index} ref={myDiv}>
                   
                     {blog.generated_topics.map((d,idx)=>(
                       
@@ -273,7 +273,6 @@ const BlogTopic = () => {
                         </button>
                       */}
                        
-                        <Link to='/all_blog_topic' className="article-btn">Saved Work</Link>
                  
                 </div>
               </div>

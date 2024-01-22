@@ -255,7 +255,7 @@ useEffect(() => {
                 {
                   Array.isArray(newBlogs) ?
                    newBlogs.map((d,index)=>(
-                    <div className="sec-1" key={index} suppressContentEditableWarning={true} contentEditable ref={myDiv}>
+                    <div className="sec-1" key={index}  ref={myDiv}>
                         {d.generated_intros.map((d,idx)=>(
                           <div  className="txt-sec" key={idx}>
                               <div className="right-icons-container-fa">
@@ -312,7 +312,6 @@ useEffect(() => {
                     Save Blog Intro Generated
                         </button>*/}
                        
-                        <Link to='/all_intro' className="article-btn">Saved Work</Link>
                     
 
                 </div>

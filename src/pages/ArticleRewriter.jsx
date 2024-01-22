@@ -218,7 +218,7 @@ const handleForm = (index) => {
                 
                
                 {rewriters && rewriters.map((rewrite,index)=>(
-                  <div className="sec-1" key={index} ref={myDiv} suppressContentEditableWarning={true} contentEditable  type='text'>
+                  <div className="sec-1" key={index} ref={myDiv}  type='text'>
                   <div className="right-icons-container-fa">
                     <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
                        <MdOutlineContentCopy className="icon" />
@@ -229,7 +229,7 @@ const handleForm = (index) => {
                     </button>
                   </div>
                  
-                  <div id={`div-${index}`}>
+                  <div className="txt-sec" id={`div-${index}`}>
                    
                     {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[rewrite.generated_article]} cursor />}
                   </div>
@@ -275,7 +275,6 @@ const handleForm = (index) => {
                     </button>
                     </form>
                   */}
-                  <Link to='/allArticle' className="article-btn">Saved Work</Link>
                     </div>
                     </div>
                     </div>

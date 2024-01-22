@@ -160,7 +160,7 @@ const Tweets = () => {
                 <Toaster />
                 {tweets && tweets.map((tweet,index)=>(
                   
-                  <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning={true}>
+                  <div className="sec-1" key={index} ref={myDiv}>
                   <div className="sec-2">
                   
                   {tweet.generated_tweets.map((d,idx)=>(
@@ -224,7 +224,6 @@ const Tweets = () => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                              <Link to='/all_tweet' className="article-btn">Saved Work</Link>
                   
                 </div>
               </div>

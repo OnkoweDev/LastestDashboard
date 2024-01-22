@@ -289,7 +289,7 @@ const handleForm = (index) => {
                 {/* {console.log(lands.data)} */}
                    {lands && lands?.map((blog,index)=>(
 
-                        <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning={true}>
+                        <div className="sec-1" key={index} ref={myDiv}>
                         <div className="right-icons-container-fa">
                             <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
                             <MdOutlineContentCopy className="icon" />
@@ -298,7 +298,7 @@ const handleForm = (index) => {
                               <MdOutlineSaveAlt className="icon" />
                             </button>
                         </div>
-                        <div id={`div-${index}`}>
+                        <div className="txt-sec" id={`div-${index}`}>
                         {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={blog.generated_pages} cursor />}
                         </div>
                         </div>
@@ -341,7 +341,6 @@ const handleForm = (index) => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                              <Link to='/all_landing' className="article-btn">Saved Work</Link>
                 </div>
               </div>
             </div>

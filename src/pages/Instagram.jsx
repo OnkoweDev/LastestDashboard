@@ -194,7 +194,7 @@ const Instagram = () => {
                 {error && <div className=' bar error'>{error}</div>}
                 <Toaster />
                 {instagrams && instagrams.map((inst,index)=>(
-                  <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
+                  <div className="sec-1" ref={myDiv}>
                   {inst.generated_captions.map((d,idx)=>(
                     <div className="txt-sec" key={idx}>
                         
@@ -254,7 +254,6 @@ const Instagram = () => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                              <Link to='/allinstagram' className="article-btn">Saved Work</Link>
                   {/* <div className="sec-2">
                     <BCDIcons />
                     <div className="txt-sec"></div>

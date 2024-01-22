@@ -194,7 +194,7 @@ const Youtube = () => {
                 {error && <div className='bar error'>{error}</div>}
                 <Toaster />
                 {Array.isArray(youtubes) ? youtubes && youtubes.map((yout,index)=>(
-                  <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning={true}>
+                  <div className="sec-1" key={index} ref={myDiv}>
                   {yout.generated_intros.map((d,idx)=>(
                     <div  className="txt-sec" key={idx}>
                     <div className="right-icons-container-fa">
@@ -254,7 +254,6 @@ const Youtube = () => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                              <Link to='/all_youtube' className="article-btn">Saved Work</Link>
                  
                 </div>
               </div>

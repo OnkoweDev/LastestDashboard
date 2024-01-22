@@ -207,7 +207,7 @@ const LindlnAds = () => {
                 {linkError && <div className='bar error'>{linkError}</div>}
                 <Toaster />
                 {ads && ads.map((you, index)=>(
-                  <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning>
+                  <div className="sec-1" key={index} ref={myDiv}>
                  
                   {you.generated_descriptions.map((d,idx)=>(
                     <div className="txt-sec" key={idx}>
@@ -267,7 +267,6 @@ const LindlnAds = () => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                              <Link to='/all_linkedin_ads' className="article-btn">Saved Work</Link>
                   {/* <div className="sec-2">
                     <BCDIcons />
                     <div className="txt-sec"></div>

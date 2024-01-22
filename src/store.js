@@ -61,6 +61,7 @@ import { changePasswordReducer } from './reducers/backend/changePasswordReducer'
 import secureLocalStorage from 'react-secure-storage'
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { addYoutubeDescReducer, deleteYoutubeDescReducer, getOneYoutubeDescReducer, getYoutubeDescReducer } from './reducers/backend/youtubeDescReducer'
 
 
 const persistConfig = {
@@ -270,6 +271,11 @@ const reducers = combineReducers({
     getUpload:getUploadReducer,
     getOneUpload:getOneUploadReducer,
     deleteUpload:deleteUploadReducer,
+
+    saveYoutubeDesc:addYoutubeDescReducer,
+    getYoutubeDesc:getYoutubeDescReducer,
+    getOneYoutubeDesc:getOneYoutubeDescReducer,
+    deleteYoutubeDesc:deleteYoutubeDescReducer,
 
     updateProfile:updateProfileReducer,
             //ebook in store

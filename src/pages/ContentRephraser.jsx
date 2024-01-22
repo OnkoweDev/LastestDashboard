@@ -206,7 +206,7 @@ const GoogleAdDesc = () => {
                     
                         {rephesals && rephesals.map((rephesal,index)=>(
                           
-                          <div className="sec-1" ref={myDiv} suppressContentEditableWarning={true} contentEditable>
+                          <div className="sec-1" ref={myDiv}>
                           {rephesal.generated_rephrase_contents.map((d,idx)=>(
                             <div  className="txt-sec" key={idx}>
                                 <div className="right-icons-container-fa">
@@ -264,7 +264,6 @@ const GoogleAdDesc = () => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                        <Link to='/content' className="article-btn">Saved Work</Link>
                       
                 </div>
               </div>

@@ -8,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/userAction";
 import toast, { Toaster } from "react-hot-toast";
+import GoogleAuth from '../components/GoogleAuth';
+
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -35,6 +37,17 @@ const SignIn = () => {
   useEffect(() => {
     error && toast.error(error);
   }, [error]);
+
+  const handleGoogleAuthSuccess = (response) => {
+    // Handle successful Google authentication here
+    console.log('Google Auth Success:', response);
+  };
+
+  const handleGoogleAuthFailure = (error) => {
+    // Handle Google authentication failure here
+    console.error('Google Auth Failure:', error);
+  };
+
 
   return (
     <>
@@ -94,15 +107,12 @@ const SignIn = () => {
               <span className="text-blue-100"><p className="text-right">Don’t have an account</p></span>
             </Link>
           </p>
-            <section className="flex w-full items-center justify-center flex-col-1 p-2">
-              <p className="text-center capitalize">Sign in with</p>
+          <section className=" w-full rounded-lg flex items-center justify-around p-2 my-4">
+          <GoogleAuth onSuccess={handleGoogleAuthSuccess} onFailure={handleGoogleAuthFailure} className="w-full" />
+        </section>
+            <button>
 
-              <section className="border-[1px] border-black w-96 rounded-lg flex items-center justify-around p-2 my-4">
-                <FcGoogle className="w-8 h-8 cursor-pointer" />
-                <BsFacebook className="w-8 h-8 text-[#4267B2] cursor-pointer" />
-                <FaTwitter className="w-8 h-8 text-[#1DA1F2] cursor-pointer" />
-              </section>
-            </section>
+            </button>
 
             <section>
              

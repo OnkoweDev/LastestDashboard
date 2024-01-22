@@ -136,6 +136,8 @@ import Email from "./pages/Email";
 import LanguageTrans from "./Language/Language";
 import Payment from "./pages/Payment";
 import Usage from "./pages/Usage";
+import AllYoutubeDesc from "./pages2/YoutubeDesc/YoutubeDesc";
+import YoutubeDescMore from "./pages2/YoutubeDesc/YoutubeDescMore";
 
 function App() {
   return (
@@ -251,8 +253,14 @@ function App() {
         <Route path="all_product_name/:id" element={<ProductMore />} />
         <Route path="all_tweet" element={<AllTweet />} />
         <Route path="all_tweet/:id" element={<TweetMore />} />
+
         <Route path="all_youtube" element={<AllYoutube />} />
         <Route path="all_youtube/:id" element={<YoutubeMore />} />
+
+        <Route path="all_youtubeDesc" element={<AllYoutubeDesc />} />
+        <Route path="all_youtubeDesc/:id" element={<YoutubeDescMore />} />
+
+
         <Route path="all_ebook" element={<AllEbook />} />
         <Route path="all_ebook/:id" element={<EbookMore />} />
         <Route path="all_link_post" element={<AllLinkPost />} />

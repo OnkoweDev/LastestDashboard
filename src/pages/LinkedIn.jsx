@@ -159,7 +159,7 @@ const LinkedIn = () => {
                 {linkError && <div className=' bar error'>{linkError}</div>}
                 <Toaster />
                 { links && links.map((link,index)=>(
-                  <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning>
+                  <div className="sec-1" key={index} ref={myDiv}>
                  
                   {link.generated_posts.map((d,idx)=>(
                     <div className="txt-sec" key={idx}>
@@ -219,7 +219,6 @@ const LinkedIn = () => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                              <Link to='/all_link_post' className="article-btn">Saved Work</Link>
                 </div>
                 </div>
                 </div>

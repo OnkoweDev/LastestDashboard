@@ -26,6 +26,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { youtubeAction } from "../actions/ai/youtubeAction";
+import { addYoutubeDescAction } from "../actions/backend/youtubeDescAction";
 
 const YoutubeGenerator = () => {
   // state to keep track of number of output
@@ -59,7 +60,7 @@ const handleForm = (index, subIndex) => {
    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
    const specificData = specificDiv.innerText;
    console.log(specificData)
-    dispatch(youtubeDescAction(specificData))
+    dispatch(addYoutubeDescAction(specificData))
 
       toast.success("YouTube Intro successfuly");
       // setTimeout(()=>{
@@ -176,8 +177,8 @@ const handleForm = (index, subIndex) => {
                 {error && <div className='bar error'>{error}</div>}
                 <Toaster />
                 
-                {yous && yous.map((you,index)=>(
-                  <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning={true}>
+                {Array.isArray(yous) && yous.map((you,index)=>(
+                  <div className="sec-1" key={index} ref={myDiv}>
                   
                   {you.generated_descriptions.map((d,idx)=>(
                     <div  className="txt-sec" key={idx}>
@@ -236,7 +237,6 @@ const handleForm = (index, subIndex) => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                              <Link to='/all_youtube' className="article-btn">Saved Work</Link>
                   {/* <div className="sec-2">
                     <BCDIcons />
                     <div className="txt-sec"></div>

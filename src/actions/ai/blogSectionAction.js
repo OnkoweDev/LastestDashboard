@@ -3,7 +3,7 @@ import { ADD_BLOGSECTION_FAILED, ADD_BLOGSECTION_REQUEST, ADD_BLOGSECTION_SUCCES
 
 export const blogSectionAction = (topic,intro,no_of_outputs) => async(dispatch) => {
     try {
-        //dispatch({type:ADD_BLOGSECTION_REQUEST})
+        dispatch({type:ADD_BLOGSECTION_REQUEST})
         const config = {
             headers:{
                 'Content-type':'application/x-www-form-urlencoded'

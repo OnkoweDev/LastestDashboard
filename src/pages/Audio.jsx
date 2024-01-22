@@ -126,13 +126,13 @@ const Audio = () => {
               console.error('Error fetching transcribed audio in setTimeout:', error);
               setErrorMsg(error);
             }
-          }, (i + 1) * 30000); // 30 seconds interval
+          }, (i + 1) * 60000); // 30 seconds interval
         }
 
       } catch (error) {
         setErrorMessage(error);
         setTimeout(()=>{
-          setErrorMessage("")
+          //setErrorMessage("")
         },3000)
         console.log(error);
         setIsLoading(false);
@@ -147,8 +147,8 @@ const Audio = () => {
         }
       } catch (error) {
         console.log('Error fetching transcribed audio:', error);
-        setErrorMessage('Error fetching transcribed audio please try again')
-        setTimeout(()=>{setErrorMessage("")},4000)
+        setErrorMessage('Please wait getting transcribed data.....')
+        setTimeout(()=>{setErrorMessage("")},60000)
         
         // Handle the error
       }
@@ -173,31 +173,83 @@ const Audio = () => {
       }
     };
 
+     //Typewriter Effect
+const TypeWriterEffect = ({ text }) => {
+    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
+  };
+
+const handleCopy = (index, i) => {
+  //console.log('copying blog article');
+  const divData = document.getElementById(`div-${index}-${i}`);
+  if (divData) {
+    navigator.clipboard.writeText(divData.innerText);
+    toast.success('copied');
+  }
+};
+
+const handleForm = (index, i) => {
+  const divId = `div-${index}-${i}`;
+  const specificDiv = document.getElementById(divId);
+
+  if (specificDiv) {
+    const specificData = specificDiv.innerText;
+    dispatch(addAudioAction(specificData));
+
+    if (success) {
+      toast.success("Audio saved successfully");
+      // setTimeout(() => {
+      //   navigate('/all_audio');
+      // }, 5000);
+    }
+  }
+};
+
+
+    
     const renderAudioContents = () => {
       if (!transcribedAudioData || !transcribedAudioData.length) {
         return <div></div>;
       }
     
       return transcribedAudioData.map((item, index) => (
-        <div key={index} className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning>
-          <div className="right-icons-container-fa">
-            <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
-              <MdOutlineContentCopy className="icon" />
-            </button>
-            <button className="icon-contain" onClick={(e) => handleForm(index, e)}>
-              <MdOutlineSaveAlt className="icon" />
-            </button>
-          </div>
-          <br />
+        <div key={index} className="sec-1" ref={myDiv}>
+         
     
           {Object.entries(item.generated_transcription).map(([speaker, transcription], i) => (
-            <div key={`${index}-${i}`}>
+            <div className="txt-sec" key={`${index}-${i}`}>
+            <div className="right-icons-container-fa">
+              <button className="icon-contain" onClick={() => handleCopy(index, i)}>
+                <MdOutlineContentCopy className="icon" />
+              </button>
+
+              <button className="icon-contain" onClick={() => handleForm(index, i)}>
+                 <MdOutlineSaveAlt className="icon" />
+              </button>
+            
+          
+          </div>
               <h1><b>{speaker}</b></h1>
-              <p>
-                {typeof transcription === 'object'
-                  ? JSON.stringify(transcription)
-                  : transcription}
-              </p>
+              {/* ... other code ... */}
+              <div id={`div-${index}-${i}`}>
+                {/* Add the id to the div containing the content */}
+                {i < 5 ? (
+                  <p>
+                    {typeof transcription === 'object'
+                      ? JSON.stringify(transcription, null, 2)
+                      : transcription}
+                  </p>
+                ) : (
+                  <>
+                    <br />
+                    <p>
+                      {typeof transcription === 'object'
+                        ? JSON.stringify(transcription, null, 2)
+                        : transcription}
+                    </p>
+                  </>
+                )}
+              </div>
+              
             </div>
           ))}
         </div>
@@ -205,36 +257,15 @@ const Audio = () => {
     };
     
     
+    
+    
   
  
-  //Typewriter Effect
-  const TypeWriterEffect = ({ text }) => {
-    return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
-  };
-//copy Effect
-  const handleCopy = (id) => {
-    console.log('copying blog article');
-    const divData = document.getElementById(`div-${id}`);
-    if (divData) {
-      navigator.clipboard.writeText(divData.innerText);
-      toast.success('copied');
-    }
-  };
+ 
 
 
-  const handleForm = (e) => {
-    e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData,projectId,upload)
-    dispatch(addAudioAction(divData,projectId,upload))
-   
-    if(success){
-      toast.success("Audio saved successfuly");
-      setTimeout(()=>{
-        navigate('/all_audio')
-      },5000)
-    }
-  }
+
+
  
   const [typingStatus, setTypingStatus] = useState([]);
 
@@ -396,12 +427,13 @@ const Audio = () => {
                
                 {isLoading && <Loader />}
                 {Loading && <Loader />}
-                {errorMessage && <div className='bar error'>{errorMessage}</div>}
+                {errorMessage && <div className='bar success'>{errorMessage}</div>}
                 {errorMsg && <div className='bar success'>{errorMsg}</div>}
                 <Toaster />
               
-                 
-                     { renderAudioContents()}
+                      <div >
+                      { renderAudioContents()}
+                      </div>
                      <br />
 
                   {/*<Link to='/allArticle' className="article-btn">Saved Audio</Link>*/}

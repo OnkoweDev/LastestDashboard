@@ -53,6 +53,7 @@ import { getProductNameAction } from "../actions/backend/productNameAction";
 import { getContentRepreAction } from "../actions/backend/contentRepreAction";
 import { getArticleAction } from "../actions/backend/articleWritterAction";
 import { getConclusionAction } from "../actions/backend/conclusionAction";
+import { getYoutubeDescAction } from "../actions/backend/youtubeDescAction";
 
 
 const Home = () => {
@@ -137,6 +138,9 @@ const Home = () => {
   const getConclusion = useSelector((state)=>state.getConclusion)
   const {loading:loadingConclusion,conclusions} = getConclusion
 
+  const getYoutubeDesc = useSelector((state)=>state.getYoutubeDesc)
+  const {loading:youtubeDescConclusion,youtubesDescs} = getYoutubeDesc
+
   const dispatch = useDispatch()
 
  
@@ -165,6 +169,7 @@ const Home = () => {
     dispatch(getContentRepreAction())
     dispatch(getArticleAction())
     dispatch(getConclusionAction())
+    dispatch(getYoutubeDescAction())
     
 
 
@@ -459,6 +464,17 @@ const Home = () => {
                 </Link>
               </div>
               }
+
+              {youtubesDescs && youtubesDescs.length > 0 &&
+                <div className="card">
+                <Link to="/all_youtubeDesc">
+                  <img src={youtube} alt="" />
+                  <b>Youtube Description Generation</b>
+                </Link>
+              </div>
+              }
+
+              
 
 
             

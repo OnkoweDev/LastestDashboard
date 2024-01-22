@@ -185,7 +185,7 @@ const LandingPage = () => {
                 {error && <div className='bar error'>{error}</div>}
                 <Toaster />
                 {pages && pages?.map((you,index)=>(
-                  <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning={true}>
+                  <div className="sec-1" key={index} ref={myDiv}>
                  
                   
                   {you.generated_headlines?.map((d,idx)=>(
@@ -247,7 +247,6 @@ const LandingPage = () => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                              <Link to='/all_landing_headline' className="article-btn">Saved Work</Link>
                 
                 </div>
               </div>

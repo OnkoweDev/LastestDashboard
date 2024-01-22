@@ -208,7 +208,7 @@ const GoogleTitle = () => {
                 {error && <div className='bar error'>{error}</div>}
                 <Toaster />
                 {title && title.map((you,index)=>(
-                  <div className="sec-1" contentEditable suppressContentEditableWarning={true} ref={myDiv}>
+                  <div className="sec-1" ref={myDiv}>
                   
                   
                   {you.generated_titles.map((d,idx)=>(
@@ -271,7 +271,6 @@ const GoogleTitle = () => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                              <Link to='/alltitle' className="article-btn">Saved Work</Link>
                   {/* <div className="sec-2">
                     <BCDIcons />
                     <div className="txt-sec"></div>

@@ -208,7 +208,7 @@ const EmailGenerator = () => {
                 <Toaster />
               
                   {gene && gene.map((you,index)=>(
-                    <div className="sec-1" key={index} ref={myDiv} suppressContentEditableWarning={true} contentEditable>
+                    <div className="sec-1" key={index} ref={myDiv}>
 
                   <div className="right-icons-container-fa">
                   <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
@@ -219,7 +219,7 @@ const EmailGenerator = () => {
                     </button>
                   </div>
                   
-                  <div id={`div-${index}`}>
+                  <div className="txt-sec" id={`div-${index}`}>
                     {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={you.generated_emails} cursor />}
                  </div>
                       
@@ -264,7 +264,6 @@ const EmailGenerator = () => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                              <Link to='/allemail' className="article-btn">Saved Work</Link>
                  
                 </div>
               </div>

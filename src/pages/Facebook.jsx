@@ -235,7 +235,7 @@ const Facebook = () => {
                 {faceLoading && <Loader />}
                 <Toaster />
                 {face && face.map((you,index)=>(
-                  <div className="sec-1" ref={myDiv} contentEditable suppressContentEditableWarning={true}>
+                  <div className="sec-1" ref={myDiv}>
                   
                     {you.generated_ads.map((d,idx)=>(
                       <div className="txt-sec" key={idx}>
@@ -294,7 +294,6 @@ const Facebook = () => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                              <Link to='/allfacebookads' className="article-btn">Saved Work</Link>
                 </div>
               </div>
             </div>

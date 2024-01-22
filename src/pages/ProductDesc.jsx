@@ -183,7 +183,7 @@ const ProductDesc = () => {
                     {productError && <div className=' bar error'>{productError}</div>}
                     <Toaster />
                     {products && products.map((item,index)=>(
-                      <div className="sec-1" key={index} contentEditable suppressContentEditableWarning={true} ref={myDiv}>
+                      <div className="sec-1" key={index} ref={myDiv}>
                         {item.generated_descriptions.map((d,idx)=>(
                           <div className="txt-sec" key={idx}>
                               <div className="right-icons-container-fa">
@@ -242,7 +242,6 @@ const ProductDesc = () => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                              <Link to='/all_productDesc' className="article-btn">Saved Work</Link>
                 </div>
               </div>
             </div>

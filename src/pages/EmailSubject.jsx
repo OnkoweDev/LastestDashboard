@@ -194,7 +194,7 @@ const EmailSubject = () => {
                
                 <Toaster />
                 {email && email.map((you,index)=>(
-                  <div className="sec-1" key={index} contentEditable suppressContentEditableWarning={true} ref={myDiv}>
+                  <div className="sec-1" key={index}  ref={myDiv}>
 
                   
                   {you.generated_lines.map((d, idx)=>(
@@ -253,7 +253,6 @@ const EmailSubject = () => {
                               Save Blog Writer
                             </button>
                               </form>*/}
-                              <Link to='/allEmailSubject' className="article-btn">Saved Work</Link>
                 </div>
               </div>
             </div>

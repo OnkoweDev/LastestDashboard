@@ -37,7 +37,7 @@ const Help = () => {
           <div className="content">
             <div className="inner-page-container">
               <section className="heading__container">
-                <p>Help</p>
+                <p><b>Please provide a brief description of the issue you are facing. Be specific and include any relevant details and well get back to you as soon as possible <br /> <br /> Thank you</b></p>
               </section>
               <hr />
               <section className="form__container">
