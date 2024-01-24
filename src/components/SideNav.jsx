@@ -105,7 +105,7 @@ const SideNav = () => {
 
   return (
     <div style={{ width: "200px" }} className="side-nav">
-      <div className="top">
+      <div className="top m-8">
         <img src={logo} alt="Olukowe logo" />
       </div>
 
