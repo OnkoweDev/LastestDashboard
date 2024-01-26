@@ -31,73 +31,73 @@ const SideNav = () => {
   const menuItems = [
     {
       name: "Home",
-      icon: <BiHomeAlt />,
+      icon: <BiHomeAlt size={20}/>,
       path: "/dashboard",
     },
 
     {
-      name: "Transcibe",
-      icon: <RiVoiceprintFill />,
+      name: "Transcribe",
+      icon: <RiVoiceprintFill size={20}/>,
       path: "/audio",
     },
   
     {
       name: "Social media",
-      icon: <TiSocialDribbble />,
+      icon: <TiSocialDribbble size={20}/>,
       path: "/social_media",
     },
 
     {
       name: "Blog & Article",
-      icon: <FaBloggerB />,
+      icon: <FaBloggerB size={20}/>,
       path: "/blog-and-articles",
     },
 
     {
       name: "E-Commerce",
-      icon: <FaProductHunt />,
+      icon: <FaProductHunt size={20}/>,
       path: "/commerce",
     },
 
     {
       name: "Email",
-      icon: <MdEmail />,
+      icon: <MdEmail size={20}/>,
       path: "/email",
     },
 
     {
       name: "Landing Page",
-      icon: <MdOutlineFlightLand />,
+      icon: <MdOutlineFlightLand size={20}/>,
       path: "/landing_page",
     },
 
     {
       name: "Image",
-      icon: <FaFileImage />,
+      icon: <FaFileImage size={20}/>,
       path: "/image",
     },
 
     {
       name: "Translate",
-      icon: <MdGTranslate />,
+      icon: <MdGTranslate size={20}/>,
       path: "/language-translation",
     },
 
     {
       name: "E-Book",
-      icon: <GiWhiteBook />,
+      icon: <GiWhiteBook size={20}/>,
       path: "/ebook",
     },
 
     {
       name: "Help",
-      icon: <MdOutlineHelp />,
+      icon: <MdOutlineHelp size={20}/>,
       path: "/help",
     },
 
     {
       name: "Upgrade",
-      icon: <MdPayment />,
+      icon: <MdPayment  size={20}/>,
       path: "/payment",
     },
 

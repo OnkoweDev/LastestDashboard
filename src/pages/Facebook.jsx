@@ -249,7 +249,7 @@ const Facebook = () => {
                       </button>
                     </div>
                       <div id={`div-${index}-${idx}`}>
-                      {shouldType && typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
+                      {shouldType && typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d.replace(/"/g, '')]} cursor />}
                     </div>        
                       </div>
 

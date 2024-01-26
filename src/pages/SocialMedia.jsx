@@ -17,53 +17,53 @@ const SocialMedia = () => {
     {
       name: "Short LinkedIn Posts",
       path: "/short-LinkedIn-posts",
-      icon: <TiSocialLinkedinCircular />,
+      icon: <TiSocialLinkedinCircular size={30} />,
     },
     {
       name: "Tweets Generator",
       path: "/tweets-generation",
-      icon: <TiSocialTwitter />,
+      icon: <TiSocialTwitter size={30} />,
     },
     {
       name: "Youtube Intro Generator",
       path: "/youtube-intro-generator",
-      icon: <TiSocialYoutube />,
+      icon: <TiSocialYoutube size={30} />,
     },
     {
       name: "Youtube Description Generator",
       path: "/youtube-generator",
-      icon: <TiSocialYoutubeCircular />,
+      icon: <TiSocialYoutubeCircular size={30} />,
     },
     {
       name: "Google Ad Description Generator",
       path: "/googleads",
-      icon: <SlSocialGoogle />,
+      icon: <SlSocialGoogle size={30} />,
     },
     {
       name: "LinkedIn Ad Description Generator",
       path: "/linkdlnads",
-      icon: <TiSocialLinkedin />,
+      icon: <TiSocialLinkedin  size={30}/>,
     },
 
     {
       name: "Short Linkdln Posts",
       path: "/short-LinkedIn-posts",
-      icon: <TiSocialLinkedin />,
+      icon: <TiSocialLinkedin size={30} />,
     },
     {
       name: "Google Ad Title Generator",
       path: "/googletitle",
-      icon: <BiHelpCircle />,
+      icon: <SlSocialGoogle size={30} />,
     },
     {
       name: "Instagram Captions Generator",
       path: "/instagram",
-      icon: <SlSocialGoogle />,
+      icon: <SlSocialGoogle size={30} />,
     },
     {
       name: "Facebook Ad Generator",
       path: "/facebook",
-      icon: <TiSocialFacebook />,
+      icon: <TiSocialFacebook size={30} />,
     },
   ];
   return (

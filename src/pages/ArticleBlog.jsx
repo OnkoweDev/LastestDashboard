@@ -162,8 +162,8 @@ const GoogleAdTitile = () => {
   const handSubmit = (e) => {
     e.preventDefault()
     console.log("loading")
-    const structuredArticle = structureText(article);
-    dispatch(addArticleBlog(structuredArticle,outputNumber))
+    
+    dispatch(addArticleBlog(article,outputNumber))
   }
 
 

@@ -407,7 +407,7 @@ const Ebook = () => {
                           <MdOutlineContentCopy className="icon" />
                         </button>
                       </div>
-                        <h1><b>Title : {generated.title}</b></h1>
+                        <h1><b>Title : {title}</b></h1>
                         <p>{renderEbookContents()}</p>
                        
                     <br />

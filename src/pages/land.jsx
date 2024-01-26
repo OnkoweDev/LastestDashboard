@@ -25,6 +25,8 @@ import { addLandingPageAction } from "../actions/backend/landingPageAction";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
 import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
+import LandPComponent from '../components/LandingPageFormatting';
+
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -299,7 +301,9 @@ const handleForm = (index) => {
                             </button>
                         </div>
                         <div className="txt-sec" id={`div-${index}`}>
-                        {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={blog.generated_pages} cursor />}
+                        {typingStatus[0] && (
+                          <LandPComponent lands={lands} />
+                        )} 
                         </div>
                         </div>
                     ))}

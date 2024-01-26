@@ -7,12 +7,12 @@ const Commerce = () => {
     {
       name: "Product Description Generator",
       path: "/product",
-      icon: <FaChartPie />,
+      icon: <FaChartPie size={30}/>,
     },
     {
       name: " Product Name Generator",
       path: "/productname",
-      icon: <FaNutritionix />,
+      icon: <FaNutritionix size={30}/>,
     },
   ];
   return (

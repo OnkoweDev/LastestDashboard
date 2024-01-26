@@ -8,12 +8,12 @@ const LandingP = () => {
     {
       name: "Landing Page Headline Generator",
       path: "/landingpage",
-      icon: <BsFillTabletLandscapeFill />,
+      icon: <BsFillTabletLandscapeFill size={30}/>,
     },
     {
       name: "Landing Page Generator",
       path: "/land",
-      icon: <MdOutlineCropLandscape />,
+      icon: <MdOutlineCropLandscape size={30}/>,
     },
   ];
   return (

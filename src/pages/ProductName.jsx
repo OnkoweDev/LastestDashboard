@@ -131,14 +131,13 @@ const ProductName = () => {
 
                 
                   {/* product description */}
-                  <p className="product-p">Product Name*</p>
+                  <p className="product-p">Product Type*</p>
                   <textarea
                    onChange={(e)=>setProductDesc(e.target.value)}
                    value={productDesc}
                     name=""
                     id=""
                     required
-                    placeholder="e.g Baseball, Digital Camera..etc"
                     style={{
                       display: "block",
                       width: "100%",
@@ -160,7 +159,6 @@ const ProductName = () => {
                     name=""
                     id=""
                     required
-                    placeholder="Include one or more features of the product separated by comma"
                     style={{
                       display: "block",
                       width: "100%",

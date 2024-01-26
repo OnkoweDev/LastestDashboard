@@ -9,12 +9,12 @@ const Email = () => {
     {
       name: "Email Generator",
       path: "/emailgenerator",
-      icon: <MdOutlineAttachEmail />,
+      icon: <MdOutlineAttachEmail size={30}/>,
     },
     {
       name: "Email Subject Lines Generator",
       path: "/emailsubject",
-      icon: <AiTwotoneMail />,
+      icon: <AiTwotoneMail size={30}/>,
     },
   ];
   return (

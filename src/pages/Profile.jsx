@@ -31,24 +31,24 @@ const Profile = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading:loginLoading, userInfo, error:loginError } = userLogin;
 
-  useEffect(()=>{
-    if(!userInfo){
-      navigate('/')
-    }
-    else {
-      // setFullname(profileInfo?.full_name)
-      // setPhone(profileInfo?.phone_number)
-      // setMessage(profileInfo?.about)
-      setFull_name(profileInfo?.first_name)
-      setAbout(profileInfo?.about)
-      setPhone(profileInfo?.phone_number)
-      setLast_name(profileInfo?.last_name)
-      setUsername(profileInfo?.username)
-      setCountry(profileInfo?.country)
-      seturl(profileInfo?.url)
-      // setMessage(profileInfo?.about)
-    }
-  },[navigate,userInfo])
+  // useEffect(()=>{
+  //   if(!userInfo){
+  //     navigate('/')
+  //   }
+  //   else {
+  //     // setFullname(profileInfo?.full_name)
+  //     // setPhone(profileInfo?.phone_number)
+  //     // setMessage(profileInfo?.about)
+  //     setFull_name(profileInfo?.first_name)
+  //     setAbout(profileInfo?.about)
+  //     setPhone(profileInfo?.phone_number)
+  //     setLast_name(profileInfo?.last_name)
+  //     setUsername(profileInfo?.username)
+  //     setCountry(profileInfo?.country)
+  //     seturl(profileInfo?.url)
+  //     // setMessage(profileInfo?.about)
+  //   }
+  // },[navigate,userInfo])
 
   const handleChange = (event) => {
     setUpload(event.target.files[0]);
@@ -59,21 +59,7 @@ const Profile = () => {
   const handleProfile = async(e) => {
     e.preventDefault();
 
-    // const formData = new FormData();
-    // formData.append("first_name", first_name);
-    // formData.append("about", about);
-    // formData.append("avatar", upload);
-    // formData.append("last_name", last_name);
-    // formData.append("username", username);
-    // formData.append("country", country);
-    // formData.append("url", url);
-    console.log(first_name,
-      about,
-      phone,
-      last_name,
-      username,
-      country,
-      url)
+   // console.log(first_name,about,phone,last_name,username,country,url)
     dispatch(
       userProfileAction
       (first_name,
@@ -89,12 +75,37 @@ const Profile = () => {
      
     }
 
-    // const formData = new FormData();
-    // formData.append("file", upload); // Append the file correctly
-    // formData.append("fileName", upload.name);
-    //console.log(about,country,first_name,last_name,phone,formData,username)
+  const getProfile = useSelector((state) => state.getProfile);
+  const { profiles, loading:getProfileLoading,error:getProfileError } = getProfile;
+
+   useEffect(()=>{
+      if(success){
+
+        dispatch(getProfileAction())
+        console.log(profiles)
+      }
+
+  },[dispatch,success])
+
+
+    useEffect(()=>{
+      if(success){
+        
+        setFull_name(profiles.data.profiles.first_name)
+        setAbout(profiles.data.profiles.about)
+        setPhone(profiles.data.profiles.phone_number)
+        setLast_name(profiles.data.profiles.last_name)
+        setUsername(profiles.data.profiles.username)
+        setCountry(profiles.data.profiles.country)
+        seturl(profiles.data.profiles.url)
+        // setMessage(profileInfo?.about)
+      }
+    },[navigate,success])
+
+   
   }
 
+  
 
 
   

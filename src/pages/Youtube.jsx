@@ -31,6 +31,8 @@ const Youtube = () => {
     const [tone, setTone] = useState()
     const [projectId, setProjectId] = useState()
     const myDiv = useRef(null)
+    const myDivRefs = useRef([]);
+
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -54,19 +56,17 @@ const Youtube = () => {
         dispatch(youtubeAction(title,hook,keywords,tone))
     }
 
-    const handleForm = (index, subIndex) => {
-      // e.preventDefault()
-       const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
-       const specificData = specificDiv.innerText;
-       console.log(specificData)
+    const handleForm = (index) => {
+      //e.preventDefault()
+      const divData = myDivRefs.current[index];
+      const specificData = divData.innerText;
+      console.log(specificData)
       dispatch(addYoutubeAction(specificData))
       
       
     if(youtubeSuccess){
       toast.success("YouTube Intro successfuly");
-      // setTimeout(()=>{
-      //   navigate('/all_youtube')
-      // },5000)
+      
     }
     }
   // state for audio option
@@ -80,14 +80,15 @@ const Youtube = () => {
 
    //handle copy functionality
 
-   const handleCopy = (id) => {
-    console.log('copying blog article');
-    const divData = document.getElementById(`div-${id}`);
+   const handleCopy = (index) => {
+    console.log('Copying product description');
+    const divData = myDivRefs.current[index];
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);
-      toast.success('copied');
+      toast.success('Copied product description!');
     }
   };
+  
 
   //Typewriter Effect
   const TypeWriterEffect = ({ text }) => {
@@ -109,6 +110,36 @@ const Youtube = () => {
       return newStatus;
     });
   };
+
+  const renderIntroContents = () => {
+    if (!youtubes || !youtubes.length) {
+      return <div></div>;
+    }
+  
+    return youtubes.map((product, index) => (
+      <div className="sec-1" ref={myDiv} key={index}>
+        <div className="right-icons-container-fa">
+          <button className="icon-contain" onClick={() => handleCopy(index)}>
+            <MdOutlineContentCopy className="icon" />
+          </button>
+          <button className="icon-contain" onClick={() => handleForm(index)}>
+            <MdOutlineSaveAlt className="icon" />
+          </button>
+        </div>
+        <div className="txt-sec" ref={(el) => myDivRefs.current[index] = el}>
+          {product.generated_intros.map((description, idx) => (
+            <div key={`${index}-${idx}`} style={{ marginBottom: '20px', margin:'15px', }}>
+
+              <p style={{  textAlign: 'justify', margin:'10px', }} dangerouslySetInnerHTML={{ __html: description.replace(/"/g, '').replace(/Intro/g, '<span style="font-weight: bold;">Intro</span>') }} />
+
+            </div>
+          ))}
+        </div>
+      </div>
+    ));
+  };
+
+
   return (
     <>
       <main>
@@ -185,7 +216,7 @@ const Youtube = () => {
                   <button className="article-btn" style={{ fontSize: "12px" }}>
                     Create Youtube Intro
                   </button>
-                  </form>
+                     </form>
                 </div>
                 {/*  */}
                 <div className="right" style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
@@ -193,27 +224,7 @@ const Youtube = () => {
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
                 <Toaster />
-                {Array.isArray(youtubes) ? youtubes && youtubes.map((yout,index)=>(
-                  <div className="sec-1" key={index} ref={myDiv}>
-                  {yout.generated_intros.map((d,idx)=>(
-                    <div  className="txt-sec" key={idx}>
-                    <div className="right-icons-container-fa">
-                        <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
-                          <MdOutlineContentCopy className="icon" />
-                          </button>
-
-                          <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
-                          <MdOutlineSaveAlt className="icon" />
-                        </button>
-                    </div>    
-                      <div id={`div-${index}-${idx}`}>
-                          {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
-                       </div>
-                    </div> 
-                  ))}
-                  </div>
-                  
-                  )):null}
+                 {renderIntroContents()}
 
                   <br />
                        {/*

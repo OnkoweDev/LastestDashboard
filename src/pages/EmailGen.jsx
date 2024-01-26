@@ -25,6 +25,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Typewriter } from "react-simple-typewriter";
 import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
+import EmailFormatter from "../components/EmailFormater";
 
 
 const EmailGenerator = () => {
@@ -220,7 +221,9 @@ const EmailGenerator = () => {
                   </div>
                   
                   <div className="txt-sec" id={`div-${index}`}>
-                    {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={you.generated_emails} cursor />}
+                    {typingStatus[0] && (
+                    <EmailFormatter gene={gene} />
+                     )}
                  </div>
                       
                       

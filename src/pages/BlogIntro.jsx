@@ -268,7 +268,7 @@ useEffect(() => {
                                     </button>
                                 </div>
                                 <div id={`div-${index}-${idx}`}>
-                                {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
+                                {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d.replace(/"/g, '')]} cursor />}
                               </div>
                           </div>
                         ))}

@@ -14,43 +14,43 @@ const BlogAndArticle = () => {
     {
       name: "Blog Topic Generator",
       path: "/blogtopic",
-      icon: <FaBloggerB />,
+      icon: <FaBloggerB size={30}/>,
     },
     {
       name: " Blog Intro Generator",
       path: "/blog-intro-generator",
-      icon: <FaRegGrinHearts />,
+      icon: <FaRegGrinHearts size={30}/>,
     },
     {
       name: " Blog Section Generator",
       path: "/blog-section-generator",
-      icon: <FaBloggerB />,
+      icon: <FaBloggerB size={30}/>,
     },
     {
       name: "Blog Article Writer",
       path: "/blog-article-writer",
-      icon: <FaBloggerB />,
+      icon: <FaBloggerB size={30}/>,
     },
     {
       name: " Content Rephraser",
       path: "/content-rephraser",
-      icon: <FaChartPie />,
+      icon: <FaChartPie size={30}/>,
     },
     {
       name: " Article/Blog Conclusion Generator",
       path: "/article-blog-conclusion",
-      icon: <FaArtstation />,
+      icon: <FaArtstation size={30}/>,
     },
 
     {
       name: " Article Rewriter",
       path: "/articleRewriter",
-      icon: <FaChartBar />,
+      icon: <FaChartBar size={30}/>,
     },
     {
       name: "Paragraph Writer",
       path: "/paragraph-writer",
-      icon: <FaChartArea />,
+      icon: <FaChartArea size={30}/>,
     },
   ];
   return (

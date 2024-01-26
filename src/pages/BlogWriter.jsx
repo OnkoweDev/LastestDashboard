@@ -144,7 +144,7 @@ useEffect(() => {
     //e.preventDefault()
     const specificDiv = document.getElementById(`div-${index}`);
     const specificData = specificDiv.innerText;
-    console.log(specificData)
+    //console.log(specificData)
     dispatch(blogWriterAddAction(specificData))
 
     if(blogSuccess){
@@ -177,10 +177,7 @@ useEffect(() => {
   // state to keep track of number of output
   const [outputNumber, setOutputNumber] = useState(1);
   // handle audio option
-  const handleAudio = () => {
-    console.log("Mic is clicked");
-    setIsAudio(true);
-  };
+  
 
   const [typingStatus, setTypingStatus] = useState([]);
 

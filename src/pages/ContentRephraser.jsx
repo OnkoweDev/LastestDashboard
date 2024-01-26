@@ -157,7 +157,7 @@ const GoogleAdDesc = () => {
           <div className="content">
             <div className="google-ad inner-page-container">
               {/* header */}
-              <ProjectHeader image={content} title="Content Rephrase" />
+              <ProjectHeader image={content} title="Content Rephraser" />
               {/* body container */}
               <div className="body-content">
                 <div className="left">

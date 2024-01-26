@@ -23,7 +23,8 @@ import axios from "axios";
 import { useRef } from "react";
 import { getProjectAction } from "../actions/backend/projectAction";
 import { addLanguageAction } from "../actions/backend/languageAction";
-import { MdOutlineContentCopy } from "react-icons/md";
+import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -105,6 +106,14 @@ const LanguageTrans = () => {
   const [isListening, setIsListening] = useState(false)
   const [note, setNote] = useState([])
 
+ 
+
+
+  const handleAudio = () => {
+    console.log("Mic is clicked");
+    setIsAudio(true);
+  };
+
   const handleCopy = (id) => {
     console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
@@ -114,10 +123,7 @@ const LanguageTrans = () => {
     }
   };
 
-  const handleAudio = () => {
-    console.log("Mic is clicked");
-    setIsAudio(true);
-  };
+
   return (
     <>
       <main>
@@ -237,20 +243,27 @@ const LanguageTrans = () => {
                 </div>
                 {/*  */}
                 <div className="right">
-                <form onSubmit={handleForm}>
+               
                 {isLoading && <Loader />}
                 {errorMessage && <div className='bar error'>{errorMessage}</div>}
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
+                <Toaster />
                 {/* {console.log(lands.data)} */}
                 {lands && lands?.map((blog,index)=>(
                   
-                  <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning>
-                 {/* <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
-                       <MdOutlineContentCopy className="icon" />
-                </button>*/}
-                    {blog.generated_translation}
-                    
+                  <div className="sec-1" key={index} ref={myDiv}>
+                  <div className="right-icons-container-fa">
+                    <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>
+                      <MdOutlineContentCopy className="icon" />
+                    </button>
+                    <button className="icon-contain" onClick={(e) =>handleForm(index,e)}>
+                        <MdOutlineSaveAlt className="icon" />
+                    </button>
+                  </div>
+                  <div className="txt-sec" id={`div-${index}`}>
+                     {blog.generated_translation}
+                  </div>
                   </div>
                   ))}
                   <br />
@@ -283,62 +296,8 @@ const LanguageTrans = () => {
                     ))
                    }
                   </select>*/}
-                    <br />
-                    <input
-                    onChange={(e)=>setLanguage(e.target.value)}
-                    value = {language}
-                    type="text"
-                    id="book-title"
-                    placeholder="Language"
-                    required
-                    style={{
-                        resize: "none", 
-                        height: "30px",
-                        borderRadius:"15px", 
-                        border:"none",
-                        textAlign:"center",
-                        borderColor: "rgba(255,255,255)", 
-                        display: "block",
-                        width: "100%",
-                        background: "var(--primary-blue)",
-                        borderRadius: "var(--border-radius-xs)",
-                        border: "none",
-                        outline: "none",
-                        height: "15%",
-                        margin: "10px 0",
-                        padding: "10px",
-                        resize: "none",}}
-                      />
-                    <br />
-                    <textarea
-                      onChange={(e)=>setSaveText(e.target.value)}
-                      value = {saveText}
-                        name=""
-                        id="book-content-field"
-                        className="textarea"
-                        placeholder="Text"
-                        required
-                    //value={note}
-                    //onChange={insertBookContent}
-                    style={{ 
-                    resize: "none",
-                    textAlign:"center",
-                    borderColor: "rgba(255,255,255)", 
-                    display: "block",
-                    width: "100%",
-                    background: "var(--primary-blue)",
-                    borderRadius: "var(--border-radius-xs)",
-                    border: "none",
-                    outline: "none",
-                    height: "15%",
-                    margin: "10px 0",
-                    padding: "10px",
-                    resize: "none",}}
-                  ></textarea>
-                  <br />
-                  <button className="article-btn" style={{ fontSize: "14px" }}>
-                    save Language
-                  </button>
+                   
+                  <form onSubmit={handleForm}>
                   </form>
                   </div>
                   </div>

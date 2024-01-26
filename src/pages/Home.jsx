@@ -54,6 +54,7 @@ import { getContentRepreAction } from "../actions/backend/contentRepreAction";
 import { getArticleAction } from "../actions/backend/articleWritterAction";
 import { getConclusionAction } from "../actions/backend/conclusionAction";
 import { getYoutubeDescAction } from "../actions/backend/youtubeDescAction";
+import { getProductDescAction } from "../actions/backend/productDescAction";
 
 
 const Home = () => {
@@ -170,6 +171,8 @@ const Home = () => {
     dispatch(getArticleAction())
     dispatch(getConclusionAction())
     dispatch(getYoutubeDescAction())
+    dispatch(getProductDescAction())
+
     
 
 

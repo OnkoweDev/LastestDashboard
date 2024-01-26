@@ -233,7 +233,7 @@ const handleForm = (index, i) => {
               <div id={`div-${index}-${i}`}>
                 {/* Add the id to the div containing the content */}
                 {i < 5 ? (
-                  <p>
+                  <p style={{marginLeft:'25px',padding:'7px'}}>
                     {typeof transcription === 'object'
                       ? JSON.stringify(transcription, null, 2)
                       : transcription}

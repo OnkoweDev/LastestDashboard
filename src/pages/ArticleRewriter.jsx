@@ -25,6 +25,7 @@ import { articleAddAction } from "../actions/backend/articleWritterAction";
 import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 import { Typewriter } from "react-simple-typewriter";
+import ArticleReType from "../components/ArticleReType";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -231,7 +232,9 @@ const handleForm = (index) => {
                  
                   <div className="txt-sec" id={`div-${index}`}>
                    
-                    {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[rewrite.generated_article]} cursor />}
+                  {typingStatus[0] && (
+                    <ArticleReType rewriters={rewriters} />
+                  )}  
                   </div>
                   </div>
                   ))}

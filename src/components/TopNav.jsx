@@ -129,7 +129,7 @@ const TopNav = () => {
 
                 <div className="top-profile">
                   <div className="top-img">
-                     <img src={profile} alt="" style={{marginLeft:"10px" }} />
+                     <img src={profile} alt="" style={{marginLeft:"70px" }} />
                   </div>
                 
                     <div className="item-name" style={{marginRight:'5px'}}>
@@ -138,11 +138,11 @@ const TopNav = () => {
                       <>
                         {/*<h3>{pro.first_name}</h3>
                       <h4>{pro.last_name}</h4>*/}
-                        <p>{`${pro.first_name} ${pro.last_name}`}</p>
+                        <p style={{marginLeft:"55px" }}>{`${pro.first_name} ${pro.last_name}`}</p>
                        {/*<small>{pro.phone_number} </small>*/}
                       </>
                       ))}
-                      <small>{userInfo?.email}</small>
+                      <small style={{marginLeft:"55px" }}>{userInfo?.email}</small>
                     </div>
                   </div>
                 </aside>
