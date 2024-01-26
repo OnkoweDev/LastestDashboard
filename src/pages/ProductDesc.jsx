@@ -106,7 +106,7 @@ const handleCopy = (index) => {
   
   const renderProductContents = () => {
     if (!products || !products.length) {
-      return <div>No product descriptions available</div>;
+      return <div></div>;
     }
   
     return products.map((product, index) => (
