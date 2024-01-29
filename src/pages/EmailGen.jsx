@@ -37,6 +37,8 @@ const EmailGenerator = () => {
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
   const [projectId, setProjectId] = useState()
+  const [formattedContent, setFormattedContent] = useState("");
+
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -75,13 +77,7 @@ const EmailGenerator = () => {
     }
   }
 
-  // handle audio option
-  const handleAudio = () => {
-    console.log("Mic is clicked");
-    setIsAudio(true);
-    //
-  };
-
+  
   //Typewriter Effect
   const TypeWriterEffect = ({ text }) => {
     return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
@@ -111,6 +107,14 @@ const EmailGenerator = () => {
       return newStatus;
     });
   };
+
+  useEffect(() => {
+    if (gene) {
+      // Assuming writers is an array of strings containing your content
+      const joinedContent = gene.join('\n\n'); // Joining content with double line breaks
+      setFormattedContent(joinedContent);
+    }
+  }, [gene]);
   return (
     <>
       <main>
@@ -220,10 +224,13 @@ const EmailGenerator = () => {
                     </button>
                   </div>
                   
-                  <div className="txt-sec" id={`div-${index}`}>
-                    {typingStatus[0] && (
-                    <EmailFormatter gene={gene} />
-                     )}
+                  <div className="txt-sec" id={`div-${index}`} style={{ whiteSpace: 'pre-wrap' }}>
+                    
+                     {formattedContent && (
+                   
+                      <Typewriter typeSpeed={20} words={you.generated_emails} />
+                    )}
+                          
                  </div>
                       
                       

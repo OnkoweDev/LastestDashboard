@@ -48,6 +48,8 @@ const ArticleRewriter = () => {
 
   const [article, setArticle] = useState()
   const [projectId, setProjectId] = useState()
+  const [formattedContent, setFormattedContent] = useState("");
+
   
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -160,6 +162,14 @@ const handleForm = (index) => {
       return newStatus;
     });
   };
+
+  useEffect(() => {
+    if (rewriters) {
+      // Assuming writers is an array of strings containing your content
+      const joinedContent = rewriters.join('\n\n'); // Joining content with double line breaks
+      setFormattedContent(joinedContent);
+    }
+  }, [rewriters]);
   return (
     <>
       <main>
@@ -230,11 +240,14 @@ const handleForm = (index) => {
                     </button>
                   </div>
                  
-                  <div className="txt-sec" id={`div-${index}`}>
+                  <div className="txt-sec" id={`div-${index}`} style={{ whiteSpace: 'pre-wrap' }}>
+
+                  {formattedContent && (
                    
-                  {typingStatus[0] && (
-                    <ArticleReType rewriters={rewriters} />
-                  )}  
+                    <Typewriter typeSpeed={20} words={[rewrite.generated_article]} />
+                  )}
+                   
+                 
                   </div>
                   </div>
                   ))}

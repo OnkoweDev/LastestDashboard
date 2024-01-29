@@ -128,7 +128,7 @@ const handleForm = (index, subIndex) => {
                   onChange={(e)=>setTitle(e.target.value)}
                   value={title}
                     type="text"
-                    placeholder="Title"
+                   // placeholder="Title"
                     required
                     style={{
                       display: "block",

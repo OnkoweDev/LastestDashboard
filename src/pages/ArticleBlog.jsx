@@ -128,36 +128,7 @@ const GoogleAdTitile = () => {
   }, [])
 
 
-  function structureText(text) {
-    const lines = text.split('\n');
-    const structuredText = [];
-    let currentChapter = '';
-    let currentSection = '';
   
-    lines.forEach(line => {
-      if (line.toLowerCase().includes('chapter')) {
-        currentChapter = line.trim();
-        structuredText.push({ type: 'Chapter', content: currentChapter, sections: [] });
-      } else if (line.toLowerCase().includes('section')) {
-        currentSection = line.trim();
-        if (currentChapter !== '') {
-          const lastChapter = structuredText[structuredText.length - 1];
-          lastChapter.sections.push({ type: 'Section', content: currentSection });
-        }
-      } else {
-        // If not a chapter or section, assume it's content related to the current section
-        if (currentChapter !== '' && currentSection !== '') {
-          const lastChapter = structuredText[structuredText.length - 1];
-          const lastSection = lastChapter.sections[lastChapter.sections.length - 1];
-          if (lastSection) {
-            lastSection.content += `\n${line}`;
-          }
-        }
-      }
-    });
-  
-    return structuredText;
-  }
 
   const handSubmit = (e) => {
     e.preventDefault()

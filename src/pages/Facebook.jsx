@@ -181,7 +181,7 @@ const Facebook = () => {
                     name=""
                     id=""
                     required
-                    placeholder="e.g Christmas Sales, Flash Sales or N/A "
+                    //placeholder="e.g Christmas Sales, Flash Sales or N/A "
                     style={{
                       display: "block",
                       width: "100%",
@@ -203,7 +203,7 @@ const Facebook = () => {
                     name=""
                     id=""
                     required
-                    placeholder="e.g 20% Discount, 10% Discount or N/A"
+                    //placeholder="e.g 20% Discount, 10% Discount or N/A"
                     style={{
                       display: "block",
                       width: "100%",

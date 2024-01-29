@@ -24,6 +24,8 @@ import { Typewriter } from "react-simple-typewriter";
 import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 import axios from "axios";
 import TypewriterComponent from '../components/Typewriter';
+import DOMPurify from 'dompurify';
+
 
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
@@ -39,6 +41,8 @@ const LinkedInShort = () => {
   const [intro,setIntro] = useState([])
   const [sections,setSections] = useState([])
   const [projectId,setProjectId] = useState()
+  const [formattedContent, setFormattedContent] = useState("");
+
 
   const myDiv = useRef(null);
 
@@ -88,6 +92,8 @@ const LinkedInShort = () => {
   //   }
   // };
 
+
+
   const handleArticle = async(e) => {
     e.preventDefault()
     console.log("loading data")
@@ -96,8 +102,12 @@ const LinkedInShort = () => {
   }
 
   useEffect(() => {
-    dispatch(getProjectAction())
-  }, [])
+    if (writers) {
+      // Assuming writers is an array of strings containing your content
+      const joinedContent = writers.join('\n\n'); // Joining content with double line breaks
+      setFormattedContent(joinedContent);
+    }
+  }, [writers]);
 
 useEffect(() => {
 }, [success])
@@ -284,7 +294,7 @@ useEffect(() => {
                 {error && <div className='bar error'>{error}</div>}
                 <Toaster />
                 
-                  {writers && writers.map((writer,index)=>(
+                  {writers && writers?.map((writer,index)=>(
                     <div className="sec-1" key={index} ref={myDiv} >
 
                     <div className="right-icons-container-fa">
@@ -295,10 +305,12 @@ useEffect(() => {
                         <MdOutlineSaveAlt className="icon" />
                       </button>
                     </div>
-                  <div className="txt-sec" id={`div-${index}`}>
-                  {typingStatus[0] && (
-                    <TypewriterComponent writers={writers} />
-                  )}          
+                  <div className="txt-sec" id={`div-${index}`} style={{ whiteSpace: 'pre-wrap' }}>
+                  {formattedContent && (
+                   
+                    <Typewriter typeSpeed={20} words={[writer.generated_contents]} />
+                  )}
+                         
                 </div>
                  
                     </div>

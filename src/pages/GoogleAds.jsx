@@ -133,7 +133,7 @@ const GoogleAds = () => {
                     onChange={(e)=>setCompanyName(e.target.value)}
                     value={companyName}
                     type="text"
-                    placeholder="Product/Service Name"
+                   // placeholder="Product/Service Name"
                     required
                     style={{
                       display: "block",

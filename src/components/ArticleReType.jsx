@@ -8,7 +8,7 @@ const ArticleReType = ({ rewriters }) => {
     const combinedContent = rewriters.map((writer) => writer.generated_article).join('\n\n');
   
     const formattedContent = combinedContent.split('\n\n').map((content, i) => {
-      if (content.startsWith('Introduction')) {
+      if (content.startsWith('introduction')) {
         return <strong key={i} style={{ display: 'block' }}> <Typewriter deleteSpeed={false} typeSpeed={20} words={[content]} /></strong>;
       } else if (content.startsWith('Subsection')) {
         return <p key={i} style={{ margin:'15px', display: 'block', fontSize: '17px' }}> <Typewriter deleteSpeed={false} typeSpeed={20} words={[content]} /></p>;

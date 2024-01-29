@@ -135,7 +135,7 @@ const GoogleTitle = () => {
                     onChange={(e)=>setCompanyName(e.target.value)}
                     value={companyName}
                     type="text"
-                    placeholder="Product/Service"
+                    //placeholder="Product/Service"
                     required
                     style={{
                       display: "block",

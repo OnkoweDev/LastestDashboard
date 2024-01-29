@@ -174,7 +174,7 @@ const BlogTopic = () => {
               <div className="body-content">
                 <div className="left">
                     <form onSubmit={handleSubmit}>
-                  <p className="product-p">Title*</p>
+                  <p className="product-p">Topic Idea*</p>
                   <textarea
                     onChange={(e)=>setTopic(e.target.value)}
                     value={topic}

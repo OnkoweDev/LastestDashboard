@@ -65,9 +65,7 @@ const Ebook = () => {
   const saveEbook = useSelector((state) => state.saveEbook);
   const { loading: ebookLoading, error: ebookError,success } = saveEbook;
 
-  // useEffect(() => {
-  //   dispatch(getProjectAction());
-  // }, []);
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -104,6 +102,10 @@ const Ebook = () => {
       },5000)
     }
   };
+
+  useEffect(() => {
+    //dispatch(getProjectAction());
+  }, [generated]);
 
   const [isListening, setIsListening] = useState(false);
   const [note, setNote] = useState(null);
@@ -176,7 +178,7 @@ const Ebook = () => {
             <div key={key} style={{ marginTop: '20px' }}>
               <h2 style={{ fontWeight: 'bold' }}>{key}</h2>
               {value.map((content, idx) => (
-                <p key={`${key}-${idx}`} style={{ marginBottom: '10px' }}>
+                <p key={`${key}-${idx}`} style={{ whiteSpace: 'pre-wrap',marginBottom: '10px' }}>
                   <Typewriter deleteSpeed={false} typeSpeed={20} words={[content]} />
                 </p>
               ))}
@@ -332,23 +334,25 @@ const Ebook = () => {
               <div className="body-content">
                 <form onSubmit={handleSubmit}>
                   <div className="left">
+                    <p className="product-p">Book Title</p>
                     <input
                       onChange={(e) => setTitle(e.target.value)}
                       value={title}
                       type="text"
                       id="book-title"
-                      placeholder="Book Title"
+                      //placeholder="Book Title"
                       className="textarea"
                       required
                       style={{ padding: "20px", borderRadius: "5px" }}
                     />
+                    <p className="product-p">Description</p>
                     <textarea
                       onChange={(e) => setDescription(e.target.value)}
                       value={description}
                       name=""
                       id="book-content-field"
                       className="textarea"
-                      placeholder="Content"
+                      //placeholder="Description"
                       required
                       //value={note}
                       //onChange={insertBookContent}
@@ -365,13 +369,13 @@ const Ebook = () => {
                         resize: "none",
                       }}
                     ></textarea>
-
+                    <p className="product-p">Chapters</p>
                     <input
                         onChange={(e) => setChapters(e.target.value)}
                         value={no_of_chapters}
                         type="text"
                         id="How many Chapters"
-                        placeholder="How many chapters"
+                        //placeholder="How many chapters"
                         required
                         style={{ padding: "20px", borderRadius: "5px" }}
                   />
@@ -407,7 +411,7 @@ const Ebook = () => {
                           <MdOutlineContentCopy className="icon" />
                         </button>
                       </div>
-                        <h1><b>Title : {title}</b></h1>
+                        <h1><b>{title}</b></h1>
                         <p>{renderEbookContents()}</p>
                        
                     <br />

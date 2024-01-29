@@ -380,7 +380,7 @@ const handleForm = (index, i) => {
           <div className="content">
             <div className="facebook-container inner-page-container">
               {/* header */}
-              <ProjectHeader image={blog2} title="Audio Generator" />
+              <ProjectHeader image={blog2} title="Transcribe Audio" />
               {/* body */}
               <div className="body-content">
                 <div

@@ -156,7 +156,7 @@ const handleCopy = (index) => {
                       onChange={(e) => setName(e.target.value)}
                       value={name}
                       type="text"
-                      placeholder="Title"
+                      //placeholder="Title"
                       required
                       style={{
                         display: "block",

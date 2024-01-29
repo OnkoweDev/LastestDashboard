@@ -135,7 +135,7 @@ const LindlnAds = () => {
                     value={productName}
                     type="text"
                     required
-                    placeholder="Product/Service "
+                   // placeholder="Product/Service "
                     style={{
                       display: "block",
                       background: "var(--primary-blue)",
