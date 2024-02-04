@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/userAction";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
+
 
 const SignUp = () => {
   const [full_name, setFullname] = useState("");
@@ -40,6 +42,13 @@ const SignUp = () => {
       <Toaster />
       <section className="grid md:grid-cols-2  w-screen h-screen overflow-hidden">
         <section className="form-section w-full h-full flex items-center justify-center flex-col">
+        <section className=" p-5 fixed left-0 top-0">
+            <img
+            src={logo} // Replace with the actual path to your logo image
+            alt="Logo"
+            className="w-12 h-12 mr-2" // Adjust the width and height as needed
+          />
+        </section>
           <section className="flex items-center justify-center pt-2 flex-col">
             <h1 className="text-[#559fff] font-bold text-4xl text-center capitalize">
               sign up

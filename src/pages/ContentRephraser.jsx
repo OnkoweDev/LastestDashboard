@@ -218,7 +218,7 @@ const GoogleAdDesc = () => {
                                <MdOutlineSaveAlt className="icon" />
                              </button>
                                 </div>
-                                <div id={`div-${index}-${idx}`}>
+                                <div id={`div-${index}-${idx}`} style={{ whiteSpace: 'pre-wrap' }}>
                                   {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
 
                                 </div>

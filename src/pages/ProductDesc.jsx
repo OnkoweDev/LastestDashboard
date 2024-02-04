@@ -36,6 +36,8 @@ const ProductDesc = () => {
   const [projectId, setProjectId] = useState()
   const myDiv = useRef(null)
   const myDivRefs = useRef([]);
+  const [formattedContent, setFormattedContent] = useState("");
+
 
   
 
@@ -59,11 +61,10 @@ const ProductDesc = () => {
 
   }
 
-  const handleForm = (index) => {
-    //e.preventDefault()
-    const divData = myDivRefs.current[index];
-    const specificData = divData.innerText;
-    console.log(specificData)
+  const handleForm = (index, subIndex) => {
+    // e.preventDefault()
+     const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+     const specificData = specificDiv.innerText;
     dispatch(addProductDescAction(specificData))
     
     toast.success("Product Desc saved successfuly");
@@ -76,15 +77,15 @@ const ProductDesc = () => {
    const TypeWriterEffect = ({ text }) => {
     return <Typewriter deleteSpeed={false} words={[text]}  cursor />;
   };
-//copy Effect
-const handleCopy = (index) => {
-  console.log('Copying product description');
-  const divData = myDivRefs.current[index];
-  if (divData) {
-    navigator.clipboard.writeText(divData.innerText);
-    toast.success('Copied product description!');
-  }
-};
+
+  const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
+    if (divData) {
+      navigator.clipboard.writeText(divData.innerText);
+      toast.success('copied');
+    }
+  };
 
 
 
@@ -96,6 +97,14 @@ const handleCopy = (index) => {
     }
   }, [products]);
 
+  useEffect(() => {
+    if (products) {
+      // Assuming writers is an array of strings containing your content
+      const joinedContent = products.join('\n\n'); // Joining content with double line breaks
+      setFormattedContent(joinedContent);
+    }
+  }, [products]);
+
   const updateTypingStatus = (index, status) => {
     setTypingStatus((prevStatus) => {
       const newStatus = [...prevStatus];
@@ -104,34 +113,34 @@ const handleCopy = (index) => {
     });
   };
   
-  const renderProductContents = () => {
-    if (!products || !products.length) {
-      return <div></div>;
-    }
+  // const renderProductContents = () => {
+  //   if (!products || !products.length) {
+  //     return <div></div>;
+  //   }
   
-    return products.map((product, index) => (
-      <div className="sec-1" ref={myDiv} key={index}>
-        <div className="right-icons-container-fa">
-          <button className="icon-contain" onClick={() => handleCopy(index)}>
-            <MdOutlineContentCopy className="icon" />
-          </button>
-          <button className="icon-contain" onClick={() => handleForm(index)}>
-            <MdOutlineSaveAlt className="icon" />
-          </button>
-        </div>
-        <div className="txt-sec" ref={(el) => myDivRefs.current[index] = el}>
-          {product.generated_descriptions.map((description, idx) => (
-            <div key={`${index}-${idx}`} style={{ marginBottom: '20px', margin:'15px', }}>
-              <p style={{  textAlign: 'justify', margin:'10px', }} dangerouslySetInnerHTML={{ __html: description.replace(/Product Description/g, '<span style="font-weight: bold;">Product Description</span>') }} />
+  //   return products.map((product, index) => (
+  //     <div className="sec-1" ref={myDiv} key={index}>
+  //       <div className="right-icons-container-fa">
+  //         <button className="icon-contain" onClick={() => handleCopy(index)}>
+  //           <MdOutlineContentCopy className="icon" />
+  //         </button>
+  //         <button className="icon-contain" onClick={() => handleForm(index)}>
+  //           <MdOutlineSaveAlt className="icon" />
+  //         </button>
+  //       </div>
+  //       <div className="txt-sec" ref={(el) => myDivRefs.current[index] = el}>
+  //         {product.generated_descriptions.map((description, idx) => (
+  //           <div key={`${index}-${idx}`} style={{ marginBottom: '20px', margin:'15px', }}>
+  //             <p style={{  textAlign: 'justify', margin:'10px', }} dangerouslySetInnerHTML={{ __html: description.replace(/Product Description/g, '<span style="font-weight: bold;">Product Description</span>') }} />
               
-            </div>
+  //           </div>
 
             
-          ))}
-        </div>
-      </div>
-    ));
-  };
+  //         ))}
+  //       </div>
+  //     </div>
+  //   ));
+  // };
   
   
 
@@ -202,7 +211,31 @@ const handleCopy = (index) => {
                   {error && <div className=' bar error'>{error}</div>}
                   {productError && <div className=' bar error'>{productError}</div>}
                   <Toaster />
-                  {renderProductContents()}
+                  {Array.isArray(products) && products.map((you,index)=>(
+                    <div className="sec-1" key={index} ref={myDiv}>
+                    
+                    {you.generated_descriptions.map((d,idx)=>(
+                      <div  className="txt-sec" key={idx}>
+                      <div className="right-icons-container-fa">
+                          <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                            <MdOutlineContentCopy className="icon" />
+                            </button>
+  
+                            <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                            <MdOutlineSaveAlt className="icon" />
+                          </button>
+                      </div>   
+                       <div id={`div-${index}-${idx}`} style={{ whiteSpace: 'pre-wrap' }}>
+                       
+                       {formattedContent && (
+                        typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d.replace(/"/g, '')]} cursor />
+                      )}
+                       </div>
+                    </div>
+                    ))} 
+                                      
+                    </div>
+                  ))}
                   <br />
                 </div>
               </div>

@@ -48,6 +48,8 @@ const Land = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
   const [projectId, setProjectId] = useState()
+  const [formattedContent, setFormattedContent] = useState("");
+
 
   const myDiv = useRef(null)
   const dispatch = useDispatch()
@@ -107,9 +109,7 @@ const handleForm = (index) => {
   }
     
   
-  useEffect(() => {
-   
-  }, [])
+  
   
 
 
@@ -153,6 +153,15 @@ const handleForm = (index) => {
       return newStatus;
     });
   };
+
+  useEffect(() => {
+    if (lands) {
+      // Assuming writers is an array of strings containing your content
+      const joinedContent = lands.join('\n\n'); // Joining content with double line breaks
+      setFormattedContent(joinedContent);
+    }
+  }, [lands]);
+
   return (
     <>
       <main>
@@ -300,10 +309,12 @@ const handleForm = (index) => {
                               <MdOutlineSaveAlt className="icon" />
                             </button>
                         </div>
-                        <div className="txt-sec" id={`div-${index}`}>
-                        {typingStatus[0] && (
-                          <LandPComponent lands={lands} />
-                        )} 
+                        <div className="txt-sec" id={`div-${index}`} style={{ whiteSpace: 'pre-wrap' }}>
+                        
+                        {formattedContent && (
+                   
+                          <Typewriter typeSpeed={20} words={blog.generated_pages} />
+                        )}
                         </div>
                         </div>
                     ))}

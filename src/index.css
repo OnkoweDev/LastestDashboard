@@ -47,9 +47,7 @@
   font-size:14px;
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
+
 
 body {
   background: var(--background);

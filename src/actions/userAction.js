@@ -117,7 +117,7 @@ export const logout = ()=> async (dispatch) => {
 
       const data = response.data
       dispatch({type:GET_USERS_PROFILE_SUCCESS, payload:data.data})
-      console.log(data)
+      //console.log(data)
     } catch (error) {
       dispatch({
         type: GET_USERS_PROFILE_FAILED,

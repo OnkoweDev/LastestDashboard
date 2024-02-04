@@ -56,18 +56,16 @@ const Youtube = () => {
         dispatch(youtubeAction(title,hook,keywords,tone))
     }
 
-    const handleForm = (index) => {
-      //e.preventDefault()
-      const divData = myDivRefs.current[index];
-      const specificData = divData.innerText;
-      console.log(specificData)
+    const handleForm = (index, subIndex) => {
+      // e.preventDefault()
+       const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
+       const specificData = specificDiv.innerText;
+       //console.log(specificData)
       dispatch(addYoutubeAction(specificData))
       
-      
-    if(youtubeSuccess){
       toast.success("YouTube Intro successfuly");
       
-    }
+   
     }
   // state for audio option
   const [isAudio, setIsAudio] = useState(false);
@@ -80,12 +78,12 @@ const Youtube = () => {
 
    //handle copy functionality
 
-   const handleCopy = (index) => {
-    console.log('Copying product description');
-    const divData = myDivRefs.current[index];
+   const handleCopy = (id) => {
+    console.log('copying blog article');
+    const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);
-      toast.success('Copied product description!');
+      toast.success('copied');
     }
   };
   
@@ -224,8 +222,28 @@ const Youtube = () => {
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
                 <Toaster />
-                 {renderIntroContents()}
+                {Array.isArray(youtubes) && youtubes.map((you,index)=>(
+                  <div className="sec-1" key={index} ref={myDiv}>
+                  
+                  {you.generated_intros.map((d,idx)=>(
+                    <div  className="txt-sec" key={idx}>
+                    <div className="right-icons-container-fa">
+                        <button className="icon-contain" onClick={() => handleCopy(`${index}-${idx}`)}>
+                          <MdOutlineContentCopy className="icon" />
+                          </button>
 
+                          <button className="icon-contain" onClick={(e) => handleForm(index, idx, e)}>
+                          <MdOutlineSaveAlt className="icon" />
+                        </button>
+                    </div>   
+                     <div id={`div-${index}-${idx}`}>
+                     {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d.replace(/"/g, '')]} cursor />}
+                     </div>
+                  </div>
+                  ))} 
+                                    
+                  </div>
+                ))}
                   <br />
                        {/*
                     <form onSubmit={handleForm}>

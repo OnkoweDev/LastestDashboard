@@ -39,6 +39,8 @@ const Facebook = () => {
   const [intro, setIntro] = useState([])
   const [outputNumber, setOutputNumber] = useState(1);
   const [projectId, setProjectId] = useState();
+  const [formattedContent, setFormattedContent] = useState("");
+
 
 
   const dispatch = useDispatch()
@@ -185,6 +187,14 @@ const handleForm = (index, subIndex,e) => {
     }
   }, [blogsSec]);
 
+  useEffect(() => {
+    if (blogsSec) {
+      // Assuming writers is an array of strings containing your content
+      const joinedContent = blogsSec.join('\n\n'); // Joining content with double line breaks
+      setFormattedContent(joinedContent);
+    }
+  }, [blogsSec]);
+
   const updateTypingStatus = (index, status) => {
     setTypingStatus((prevStatus) => {
       const newStatus = [...prevStatus];
@@ -285,8 +295,8 @@ const handleForm = (index, subIndex,e) => {
                            <MdOutlineSaveAlt className="icon" />
                           </button>
                         </div>
-                            <div id={`div-${index}-${idx}`}>
-                            {typingStatus[0] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
+                            <div id={`div-${index}-${idx}`}  style={{ whiteSpace: 'pre-wrap' }}>
+                            {formattedContent && (typingStatus[0] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />)}
                             </div>
                          </div>
                   ))}

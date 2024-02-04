@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/userAction";
 import toast, { Toaster } from "react-hot-toast";
 import GoogleAuth from '../components/GoogleAuth';
+import logo from "../assets/logo.png";
+
 
 
 const SignIn = () => {
@@ -54,13 +56,24 @@ const SignIn = () => {
       <Toaster />
       <section className="grid md:grid-cols-2  w-screen h-screen overflow-hidden">
         <section className="form-section w-full h-full flex items-center justify-center flex-col">
-          <section className="flex items-center justify-center flex-col gap-y-2">
+        <section>
+        <section className=" p-5 fixed left-0 top-0">
+            <img
+            src={logo} // Replace with the actual path to your logo image
+            alt="Logo"
+            className="w-12 h-12 mr-2" // Adjust the width and height as needed
+          />
+        </section>
+       
+          <section className="flex justify-between items-start">
+          <section className="flex items-center justify-center flex-col gap-y-2" >
             <h1 className="text-[#559fff] font-bold text-4xl text-center capitalize">
-              welcome back!
+            welcome back!
             </h1>
             <p className="">Ready to gather the thought once again?</p>
           </section>
-
+          </section>
+        </section>
           <br />
           <form className="w-11/12 lg:w-8/12 md:p-5 " onSubmit={handleLogin}>
             <section>
