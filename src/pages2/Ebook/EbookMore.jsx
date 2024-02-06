@@ -44,7 +44,7 @@ const EbookMore = () => {
                     </div>
                 ))}
                 <br />
-                <Link   style={{width:'150px', textAlign:"center", padding:"3px,0px,0px,0px"}} to="/all_ebook">Back</Link>    
+                <Link   style={{width:'150px', textAlign:"center", padding:"3px,0px,0px,0px",whiteSpace: 'pre-wrap'}} to="/all_ebook">Back</Link>    
           </div>
         </div>
       </main>

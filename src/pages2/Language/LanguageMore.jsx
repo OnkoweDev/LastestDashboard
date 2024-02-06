@@ -32,7 +32,7 @@ const LanguageMore = () => {
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 {language && language.map((sub)=>(
-                    <div key={sub.id}className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
+                    <div key={sub.id}className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%",whiteSpace: 'pre-wrap'}}>
                         {sub.generated_translation}                                       
                     </div>
                 ))}

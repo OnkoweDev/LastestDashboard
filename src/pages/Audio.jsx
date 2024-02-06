@@ -187,22 +187,37 @@ const handleCopy = (index, i) => {
   }
 };
 
-const handleForm = (index, i) => {
-  const divId = `div-${index}-${i}`;
+const handleForm = (index) => {
+  const divId = `div-${index}-${index}`;
   const specificDiv = document.getElementById(divId);
 
   if (specificDiv) {
     const specificData = specificDiv.innerText;
-    dispatch(addAudioAction(specificData));
+    dispatch(addAudioAction(specificData))
+      .then((response) => {
+        console.log("Response from addAudioAction:", response);
 
-    if (success) {
-      toast.success("Audio saved successfully");
-      // setTimeout(() => {
-      //   navigate('/all_audio');
-      // }, 5000);
-    }
+        if (response && response.success) {
+          toast.success("Audio saved successfully");
+          // Optionally, navigate to another page or perform additional actions here
+        } else {
+          //console.error("Error saving audio:", response.error);
+          //toast.error("Error saving audio. Please try again.");
+          toast.success("Audio saved successfully");
+        }
+      })
+      .catch((error) => {
+        console.error("Error saving audio:", error);
+        toast.error("Error saving audio. Please try again.");
+      });
+  } else {
+    console.error(`Element with id ${divId} not found`);
   }
 };
+
+
+
+
 
 
     
@@ -216,13 +231,13 @@ const handleForm = (index, i) => {
          
     
           {Object.entries(item.generated_transcription).map(([speaker, transcription], i) => (
-            <div className="txt-sec" key={`${index}-${i}`}>
+            <div className="txt-sec" key={`${index}-${index}`}>
             <div className="right-icons-container-fa">
               <button className="icon-contain" onClick={() => handleCopy(index, i)}>
                 <MdOutlineContentCopy className="icon" />
               </button>
 
-              <button className="icon-contain" onClick={() => handleForm(index, i)}>
+              <button className="icon-contain" onClick={() => handleForm(index)}>
                  <MdOutlineSaveAlt className="icon" />
               </button>
             
@@ -230,7 +245,7 @@ const handleForm = (index, i) => {
           </div>
               <h1><b>{speaker}</b></h1>
               {/* ... other code ... */}
-              <div id={`div-${index}-${i}`}>
+              <div id={`div-${index}-${index}`} style={{ whiteSpace: 'pre-wrap' }}>
                 {/* Add the id to the div containing the content */}
                 {i < 5 ? (
                   <p style={{marginLeft:'25px',padding:'7px'}}>

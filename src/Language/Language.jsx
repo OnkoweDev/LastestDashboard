@@ -25,6 +25,7 @@ import { getProjectAction } from "../actions/backend/projectAction";
 import { addLanguageAction } from "../actions/backend/languageAction";
 import { MdOutlineContentCopy, MdOutlineSaveAlt } from "react-icons/md";
 import toast, { Toaster } from "react-hot-toast";
+import { Typewriter } from "react-simple-typewriter";
 
 const SpeechRecognision = window.speechRecognition || window.webkitSpeechRecognition
 const mic = new SpeechRecognision()
@@ -94,12 +95,12 @@ const LanguageTrans = () => {
     }
   }
 
-  const handleForm = (e) => {
-    e.preventDefault()
-    const divData = myDiv.current.innerText
-    console.log(divData,projectId)
-    dispatch(addLanguageAction(divData,projectId,language,saveText))
-    navigate('/language')
+  const handleForm = (index) => {
+    //e.preventDefault()
+    const specificDiv = document.getElementById(`div-${index}`);
+    const specificData = specificDiv.innerText;
+    dispatch(addLanguageAction(specificData))
+    toast.success("saved successfuly");
   }
     
 
@@ -123,6 +124,21 @@ const LanguageTrans = () => {
     }
   };
 
+  const [typingStatus, setTypingStatus] = useState([]);
+
+  useEffect(() => {
+    if (lands) {
+      setTypingStatus(Array(lands.length).fill(true));
+    }
+  }, [lands]);
+
+  const updateTypingStatus = (index, status) => {
+    setTypingStatus((prevStatus) => {
+      const newStatus = [...prevStatus];
+      newStatus[index] = status;
+      return newStatus;
+    });
+  };
 
   return (
     <>
@@ -261,8 +277,9 @@ const LanguageTrans = () => {
                         <MdOutlineSaveAlt className="icon" />
                     </button>
                   </div>
-                  <div className="txt-sec" id={`div-${index}`}>
-                     {blog.generated_translation}
+                  <div className="txt-sec" id={`div-${index}`} style={{ whiteSpace: 'pre-wrap' }}>
+                    
+                  {blog.generated_translation}
                   </div>
                   </div>
                   ))}

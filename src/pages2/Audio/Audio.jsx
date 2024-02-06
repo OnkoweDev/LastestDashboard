@@ -75,7 +75,6 @@ const AllAudio = () => {
               {audios &&
                 audios.map((face) => (
                   <div className="card relative" key={face.id}>
-                    <h2>{face.uploaded_url}</h2>
                     <p>{face.generated_transcription.slice(0, 300)}.....</p>
                     <Link to={`/all_audio/${face.id}`}>Read more</Link>
                     <br />

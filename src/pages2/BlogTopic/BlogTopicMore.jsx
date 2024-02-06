@@ -37,7 +37,7 @@ const BlogTopicMore = () => {
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 {topic && topic.map((blo)=>(
-                    <div key={blo.id}className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
+                    <div key={blo.id}className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%",whiteSpace: 'pre-wrap' }}>
                         {blo.topic} 
                                            
                     </div>

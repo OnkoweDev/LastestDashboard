@@ -70,8 +70,6 @@ const Language  = () => {
               {languages &&
                 languages.map((face) => (
                   <div className="card relative" key={face.id}>
-                    <h1>{face.language}</h1>
-                    <h2>{face.text.slice(0, 100)}....</h2>
                     <p>{face.generated_translation.slice(0, 300)}.....</p>
                     <Link to={`/language/${face.id}`}>Read more</Link>
                     <br />

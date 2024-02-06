@@ -36,7 +36,7 @@ const BlogIntroMore = () => {
                 {loading && <Loader />}
                 {error && <div className=' bar error'>{error}</div>}
                 {blog && blog.map((blo)=>(
-                    <div key={blo.id}className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%" }}>
+                    <div key={blo.id}className="cards-container"  style={{ position: "relative", lineHeight:"2em",fontSize:"1.2em",height:"100%",whiteSpace: 'pre-wrap' }}>
                         {blo.article} 
                                            
                     </div>

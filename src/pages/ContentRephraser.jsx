@@ -34,6 +34,8 @@ const GoogleAdDesc = () => {
   const [isAudio, setIsAudio] = useState(false);
   const[isListening, setIsListening] = useState(false)
   const [note, setNote] = useState([])
+  const [formattedContent, setFormattedContent] = useState("");
+
 
   const [projectId, setProjectId] = useState()
   const myDiv = useRef(null)
@@ -140,6 +142,14 @@ const GoogleAdDesc = () => {
     }
   }, [rephesals]);
 
+  useEffect(() => {
+    if (rephesals) {
+      // Assuming writers is an array of strings containing your content
+      const joinedContent = rephesals.join('\n\n'); // Joining content with double line breaks
+      setFormattedContent(joinedContent);
+    }
+  }, [rephesals]);
+
   const updateTypingStatus = (index, status) => {
     setTypingStatus((prevStatus) => {
       const newStatus = [...prevStatus];
@@ -219,7 +229,7 @@ const GoogleAdDesc = () => {
                              </button>
                                 </div>
                                 <div id={`div-${index}-${idx}`} style={{ whiteSpace: 'pre-wrap' }}>
-                                  {typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]} cursor />}
+                                  {formattedContent && (typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d]}  />)}
 
                                 </div>
                             </div>

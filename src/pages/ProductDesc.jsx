@@ -228,7 +228,7 @@ const ProductDesc = () => {
                        <div id={`div-${index}-${idx}`} style={{ whiteSpace: 'pre-wrap' }}>
                        
                        {formattedContent && (
-                        typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d.replace(/"/g, '')]} cursor />
+                        typingStatus[index] && <Typewriter deleteSpeed={false} typeSpeed={20} words={[d.replace(/"/g, '')]} />
                       )}
                        </div>
                     </div>

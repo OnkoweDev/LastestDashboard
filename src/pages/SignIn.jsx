@@ -31,14 +31,17 @@ const SignIn = () => {
       if (userInfo) {
         navigate("/dashboard");
       }
+      else {
+       error ? toast.error(error) : 'redirecting'
+      }
     } catch (error) {
       console.log(error);
     }
-  }, [userInfo]);
+  }, [userInfo,error]);
 
-  useEffect(() => {
-    error && toast.error(error);
-  }, [error]);
+  // useEffect(() => {
+  //   error && toast.error(error);
+  // }, [error]);
 
   const handleGoogleAuthSuccess = (response) => {
     // Handle successful Google authentication here

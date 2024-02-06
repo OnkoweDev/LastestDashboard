@@ -51,6 +51,8 @@ const Ebook = () => {
   const [saveTitle, setSaveTitle] = useState("");
   const [saveDescription, setSaveDescription] = useState("");
 
+  const index = 0;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const  userEbook = useSelector((state)=>state.userEbook)
@@ -89,19 +91,34 @@ const Ebook = () => {
     }
   
 
-  const handleForm = (e) => {
-    e.preventDefault();
-    const divData = myDiv.current.innerText;
-    console.log(divData, projectId, saveTitle, saveDescription);
-    dispatch(addEbookAction(divData, projectId, saveTitle, saveDescription));
+    const handleForm = () => {
+      const specificDiv = document.getElementById(`ebook-content`);
+      
+      // Check if the div element exists
+      if (specificDiv) {
+        // Extract text content and format it (e.g., removing extra spaces)
+        const specificData = specificDiv.textContent.trim();
+        
+        // Check if there is content to save
+        if (specificData) {
+          dispatch(addEbookAction(specificData));
+          toast.success("Ebook saved successfully");
+        } else {
+          console.error('No content found to save.');
+          // You can show an error message or handle it as appropriate
+        }
+      } else {
+        console.error('Unable to find the content div.');
+        // You can show an error message or handle it as appropriate
+      }
     
-    if(success){
-      toast.success("Ebook saved successfuly");
-      setTimeout(()=>{
-        navigate("/all_ebook");
-      },5000)
-    }
-  };
+      // If you want to navigate to another page after saving, uncomment the lines below
+      // setTimeout(() => {
+      //   navigate("/all_ebook");
+      // }, 5000);
+    };
+    
+    
 
   useEffect(() => {
     //dispatch(getProjectAction());
@@ -410,6 +427,10 @@ const Ebook = () => {
                         <button className="icon-contain" onClick={copyToClipboard}>
                           <MdOutlineContentCopy className="icon" />
                         </button>
+
+                        <button className="icon-contain" onClick={() => handleForm(index)}>
+                        <MdOutlineSaveAlt className="icon" />
+                      </button>
                       </div>
                         <h1><b>{title}</b></h1>
                         <p>{renderEbookContents()}</p>
