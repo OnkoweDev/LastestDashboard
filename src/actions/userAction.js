@@ -42,7 +42,8 @@ export const register = (full_name,email,password) => async(dispatch) =>{
                 'Content-type':'application/json',
             },
         };
-        const {data} = await axios.post(`https://dev.olukowe.co/api/auth/register`,{full_name,email,password},config)
+        const response = await axios.post(`https://dev.olukowe.co/api/auth/register`,{full_name,email,password},config)
+        const data = response.data
         dispatch({type:USERS_REGISTER_SUCCESS,payload:data.data})
         dispatch({type:USERS_LOGIN_SUCCESS,payload:data.data})
         secureLocalStorage.setItem('userInfo',JSON.stringify(data))

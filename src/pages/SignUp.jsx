@@ -118,15 +118,15 @@ const SignUp = () => {
 
             <br />
 
-            <section className="flex  w-full items-center justify-center p-2">
-              <p className="text-center capitalize">sign up with</p>
+          {/*<section className="flex  w-full items-center justify-center p-2">
+            <p className="text-center capitalize">sign up with</p>
 
-              <section className="border-[1px] border-black w-96 rounded-lg flex items-center justify-around p-2 mx-2 my-2">
-                <FcGoogle className="w-8 h-8 cursor-pointer" />
-                <BsFacebook className="w-8 h-8 text-[#4267B2] cursor-pointer" />
-                <FaTwitter className="w-8 h-8 text-[#1DA1F2] cursor-pointer" />
-              </section>
+            <section className="border-[1px] border-black w-96 rounded-lg flex items-center justify-around p-2 mx-2 my-2">
+              <FcGoogle className="w-8 h-8 cursor-pointer" />
+              <BsFacebook className="w-8 h-8 text-[#4267B2] cursor-pointer" />
+              <FaTwitter className="w-8 h-8 text-[#1DA1F2] cursor-pointer" />
             </section>
+            </section>*/}
 
             <section>
               <p className="text-center">
@@ -143,7 +143,7 @@ const SignUp = () => {
         <img
           src={loginImage}
           alt="login image"
-          
+          style={{ objectFit: 'cover', width: '100%', height: '100%' }}
         />
       </section>
       </section>

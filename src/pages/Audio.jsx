@@ -65,6 +65,8 @@ const Audio = () => {
   const {loading:Loading,error:error,success} = saveAudio
 
   
+
+  
   const fileInputRef = useRef(null);
 
   const openFileInput = () => {
@@ -412,7 +414,6 @@ const handleForm = (index) => {
                         </div>
                         <br />
                             <button
-                            type="button"
                             className="article-btn"
                             onClick={openFileInput}
                             >

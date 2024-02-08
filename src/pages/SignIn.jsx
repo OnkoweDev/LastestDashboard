@@ -131,9 +131,9 @@ const SignIn = () => {
               <span className="text-blue-100"><p className="text-right">Don’t have an account</p></span>
             </Link>
           </p>
-          <section className=" w-full rounded-lg flex items-center justify-around p-2 my-4">
-          <GoogleAuth onSuccess={handleGoogleAuthSuccess} onFailure={handleGoogleAuthFailure} className="w-full" />
-        </section>
+          {/*<section className=" w-full rounded-lg flex items-center justify-around p-2 my-4">
+              <GoogleAuth onSuccess={handleGoogleAuthSuccess} onFailure={handleGoogleAuthFailure} className="w-full" />
+            </section>*/}
             <button>
 
             </button>
@@ -147,7 +147,7 @@ const SignIn = () => {
           <img
             src={loginImage}
             alt="login image"
-            
+            style={{ objectFit: 'cover', width: '100%', height: '100%' }}
           />
         </section>
       </section>
