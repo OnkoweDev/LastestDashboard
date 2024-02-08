@@ -117,7 +117,7 @@ const Audio = () => {
         setIsLoading(false);
         
     
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 5; i++) {
           setErrorMsg("please wait getting transcribed data............");
           setTimeout(async () => {
             try {
@@ -149,7 +149,7 @@ const Audio = () => {
         }
       } catch (error) {
         console.log('Error fetching transcribed audio:', error);
-        setErrorMessage('Please wait getting transcribed data.....')
+        setErrorMessage("Please dont leave the page getting your transcribed data.......")
         setTimeout(()=>{setErrorMessage("")},60000)
         
         // Handle the error
@@ -414,6 +414,7 @@ const handleForm = (index) => {
                         </div>
                         <br />
                             <button
+                            type="button"
                             className="article-btn"
                             onClick={openFileInput}
                             >
