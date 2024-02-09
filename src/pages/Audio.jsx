@@ -416,6 +416,7 @@ const handleForm = (index) => {
                             <button
                             type="button"
                             className="article-btn"
+                            style={{backgroundColor:"#559fff"}}
                             onClick={openFileInput}
                             >
                             Click to upload

@@ -194,12 +194,13 @@ const GoogleAdDesc = () => {
                   >{note}</textarea>
                  
                   {/*  number of output*/}
-                  <OutputNumber
+                  {/*<OutputNumber
                     outputNumber={outputNumber}
                     setOutputNumber={setOutputNumber}
                     onChange={(e)=>setOutputNumber(e.target.value)}
                     value ={outputNumber}
-                  />
+                  />*/}
+                  <br />
                   <button className="article-btn" style={{ fontSize: "14px" }}>
                     Create Content Rephrase
                   </button>
