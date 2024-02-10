@@ -222,7 +222,8 @@ useEffect(() => {
                        
                         <p className="product-p">Title*</p>
                         <input 
-                        required type="text"
+                        required 
+                        type="text"
                          className="input" 
                           onChange={(e)=>setTitle(e.target.value)}
                            value={title}
@@ -247,6 +248,7 @@ useEffect(() => {
                             value={intro}
                             name=""
                             id=""
+                            required
                             style={{
                             display: "block",
                             width: "100%",
