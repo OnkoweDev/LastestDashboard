@@ -138,6 +138,7 @@ import Payment from "./pages/Payment";
 import Usage from "./pages/Usage";
 import AllYoutubeDesc from "./pages2/YoutubeDesc/YoutubeDesc";
 import YoutubeDescMore from "./pages2/YoutubeDesc/YoutubeDescMore";
+import Audio3 from "./pages/Audio3";
 
 function App() {
   return (
@@ -191,6 +192,7 @@ function App() {
         <Route path="land" element={<Land />} />
         <Route path="image" element={<ImageGen />} />
         <Route path="audio" element={<Audio />} />
+        <Route path="audio-test" element={<Audio3 />} />
         <Route path="french" element={<French />} />
         <Route path="spanish" element={<Spanish />} />
         <Route path="german" element={<German />} />

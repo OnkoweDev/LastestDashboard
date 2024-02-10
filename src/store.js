@@ -62,6 +62,7 @@ import secureLocalStorage from 'react-secure-storage'
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { addYoutubeDescReducer, deleteYoutubeDescReducer, getOneYoutubeDescReducer, getYoutubeDescReducer } from './reducers/backend/youtubeDescReducer'
+import audioReducer from './reducers/ai/audioReducer'
 
 
 const persistConfig = {
@@ -80,6 +81,8 @@ const reducers = combineReducers({
     getProfile:getUserProfileReducer,
     googleUser : googleUserReducer,
     userEbook:addEbookReducer,
+
+    audio:audioReducer,
 
     //changePassword
     changePassword:changePasswordReducer,
