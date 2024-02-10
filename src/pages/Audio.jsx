@@ -134,7 +134,7 @@ const handleSubmit = async (e) => {
 
 // ...
 useEffect(() => {
-  // Your existing code here
+ 
 
   const fetchTranscriptionDataInterval = setInterval(async() => {
     if (transcribedAudio && transcribedAudio.id) {
@@ -266,7 +266,7 @@ const handleForm = (index) => {
          
     
           {Object.entries(item.generated_transcription).map(([speaker, transcription], i) => (
-            <div className="txt-sec" key={`${index}-${index}`}>
+            <div className="txt-sec" key={`${index}-${i}`}>
             <div className="right-icons-container-fa">
               <button className="icon-contain" onClick={() => handleCopy(index, i)}>
                 <MdOutlineContentCopy className="icon" />
@@ -280,7 +280,7 @@ const handleForm = (index) => {
           </div>
               <h1><b>{speaker}</b></h1>
               {/* ... other code ... */}
-              <div id={`div-${index}-${index}`} style={{ whiteSpace: 'pre-wrap' }}>
+              <div id={`div-${index}-${i}`} style={{ whiteSpace: 'pre-wrap' }}>
                 {/* Add the id to the div containing the content */}
                 {i < 5 ? (
                   <p style={{marginLeft:'25px',padding:'7px'}}>
