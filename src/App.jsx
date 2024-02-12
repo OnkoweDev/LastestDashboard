@@ -139,6 +139,7 @@ import Usage from "./pages/Usage";
 import AllYoutubeDesc from "./pages2/YoutubeDesc/YoutubeDesc";
 import YoutubeDescMore from "./pages2/YoutubeDesc/YoutubeDescMore";
 import Audio3 from "./pages/Audio3";
+import EmailVerification from "./pages/EmailVerification";
 
 function App() {
   return (
@@ -149,6 +150,7 @@ function App() {
         <Route path="/dashboard" element={<Home />} />
         <Route path="/" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/verification" element={<EmailVerification />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="font" element={<Font />} />
         <Route path="forgetpassword" element={<ForgotPassword />} />

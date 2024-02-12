@@ -19,17 +19,19 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading, userInfo, error } = userLogin;
+  const { loading,success, userInfo, error } = userLogin;
 
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
+    
   };
 
   useEffect(() => {
     try {
       if (userInfo) {
         navigate("/dashboard");
+        
       }
       else {
        error ? toast.error(error) : 'redirecting'
@@ -37,7 +39,7 @@ const SignIn = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [userInfo,error]);
+  }, [success,error]);
 
   // useEffect(() => {
   //   error && toast.error(error);

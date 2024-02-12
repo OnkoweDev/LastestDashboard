@@ -5,7 +5,7 @@ export const userLoginReducer = (state={},action) => {
         case USERS_LOGIN_REQUEST:
             return {loading:true}
         case USERS_LOGIN_SUCCESS:
-            return {loading:false, userInfo:action.payload}
+            return {loading:false, success:true, userInfo:action.payload}
         case USERS_LOGIN_FAILED:
             return {loading:false, error:action.payload}
          case USERS_LOGOUT:
@@ -20,7 +20,7 @@ export const userRegisterReducer = (state={},action) => {
         case USERS_REGISTER_REQUEST:
             return {loading:true}
         case USERS_REGISTER_SUCCESS:
-            return {loading:false, userInfo:action.payload}
+            return {loading:false,success:true, userInfo:action.payload}
         case USERS_REGISTER_FAILED:
             return {loading:false,error:action.payload}
         default:
@@ -67,4 +67,5 @@ export const googleUserReducer = (state={}, action) => {
            return state;
     }
 }
+
 

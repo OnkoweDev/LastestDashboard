@@ -19,7 +19,7 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userRegister = useSelector((state) => state.userRegister);
-  const { loading, error, userInfo } = userRegister;
+  const { loading,success, error, userInfo } = userRegister;
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -28,10 +28,10 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    if (userInfo) {
-      navigate("/dashboard");
+    if (success) {
+      navigate("/");
     }
-  }, [userInfo]);
+  }, [success]);
 
   useEffect(() => {
     error && toast.error(error);
