@@ -24,7 +24,7 @@ export const blogWriterAddAction = (article,project_id) => async(dispatch,getSta
         const data = response.data
 
         dispatch({type:ADD_BLOGWRITER_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_BLOGWRITER_FAILED,
@@ -56,7 +56,7 @@ export const getBlogWriterAction = () => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/blogArticle`,config)
         const data = response.data
         dispatch({type:GET_BLOGWRITER_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_BLOGWRITER_FAILED,
@@ -90,7 +90,7 @@ export const getOneBlogAction = (id) => async(dispatch,getState) => {
         const data = response.data
 
         dispatch({type:GETONE_BLOGWRITER_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_BLOGWRITER_FAILED,
@@ -123,7 +123,7 @@ export const deleteBlogAction = (id) => async(dispatch,getState) => {
 
         const data = response.data
         dispatch({type:DELETE_BLOGWRITER_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_BLOGWRITER_FAILED,
@@ -157,7 +157,7 @@ export const updateBlogAction = (article) => async(dispatch,getState) => {
 
         const data = response.data
         dispatch({type:UPDATE_BLOGWRITER_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: UPDATE_BLOGWRITER_FAILED,

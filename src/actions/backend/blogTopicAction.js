@@ -23,7 +23,7 @@ export const blogTopicAddAction = (topic,project_id) => async(dispatch,getState)
         const data = response.data
         
         dispatch({type:ADD_BLOGTOPIC_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_BLOGTOPIC_FAILED,
@@ -56,7 +56,7 @@ export const getBlogTopicAction = () => async(dispatch,getState) => {
 
         const data = response.data
         dispatch({type:GET_BLOGTOPIC_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_BLOGTOPIC_FAILED,
@@ -91,7 +91,7 @@ export const getOneBlogTopicAction = (id) => async(dispatch,getState) => {
         const data = response.data
 
         dispatch({type:GETONE_BLOGTOPIC_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_BLOGTOPIC_FAILED,
@@ -124,7 +124,7 @@ export const deleteBlogTopicAction = (id) => async(dispatch,getState) => {
 
         const data = response.data
         dispatch({type:DELETE_BLOGTOPIC_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_BLOGTOPIC_FAILED,

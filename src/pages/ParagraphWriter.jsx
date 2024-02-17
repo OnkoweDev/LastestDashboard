@@ -71,7 +71,7 @@ const ParagraphWriter = () => {
   //     if (response.status === 200) {
   //       const formattedText = response.data.choices[0].text.trim();
   //       // Use the formatted text in your UI or processing
-  //       console.log('Formatted Text:', formattedText);
+  //       //console.log('Formatted Text:', formattedText);
   //       // Apply the formatted text to your UI, update state, etc.
   //       // Example: setFormattedText(formattedText);
   //     } else {
@@ -85,7 +85,7 @@ const ParagraphWriter = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault()
-    console.log(tone,outputNumber,keyword,title)
+    //console.log(tone,outputNumber,keyword,title)
     //await formatContentWithGPT3();
     dispatch(addParagraphWriter(title,keyword,outputNumber,tone))
   }
@@ -107,7 +107,7 @@ const ParagraphWriter = () => {
 
   // handle audio option
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
 
@@ -117,7 +117,7 @@ const ParagraphWriter = () => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);

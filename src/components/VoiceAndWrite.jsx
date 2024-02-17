@@ -18,7 +18,7 @@ const VoiceAndWrite = () => {
         onClick={(e) => {
           e.preventDefault();
           setActive((state = !state));
-          console.log(active);
+          //console.log(active);
         }}
       >
         {active ? (
@@ -32,7 +32,7 @@ const VoiceAndWrite = () => {
         onClick={(e) => {
           e.preventDefault();
           setIsActive((current = !current));
-          console.log(isActive);
+          //console.log(isActive);
         }}
       >
         {isActive ? (

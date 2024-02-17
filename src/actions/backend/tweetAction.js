@@ -21,7 +21,7 @@ export const addTweetAction = (tweet,project_id) => async(dispatch,getState) => 
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/tweetGenerator`, {tweet,project_id},config)
         const data = response.data
         dispatch({type:ADD_TWEETGEN_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_TWEETGEN_FAILED,
@@ -53,7 +53,7 @@ export const getTweetAction = () => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/tweetGenerator`,config)
         const data = response.data
         dispatch({type:GET_TWEETGEN_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_TWEETGEN_FAILED,
@@ -85,7 +85,7 @@ export const getOneTweetAction = (id) => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/tweetGenerator/${id}`,config)
         const data = response.data
         dispatch({type:GETONE_TWEETGEN_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_TWEETGEN_FAILED,
@@ -117,7 +117,7 @@ export const deleteTweetAction = (id) => async(dispatch,getState) => {
         const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/tweetGenerator/${id}`,config)
         const data = response.data
         dispatch({type:DELETE_TWEETGEN_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_TWEETGEN_FAILED,

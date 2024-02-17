@@ -84,7 +84,7 @@ const EmailGenerator = () => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('Copied');
+    //console.log('Copied');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);

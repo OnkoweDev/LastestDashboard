@@ -18,7 +18,7 @@ const EbookMore = () => {
 
   const {id} = useParams();
   //const data = [wroter]
-  //console.log(data)
+  ////console.log(data)
 
   useEffect(() => {
     dispatch(getOneEbookAction(id))

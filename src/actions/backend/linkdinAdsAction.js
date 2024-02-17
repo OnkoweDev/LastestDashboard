@@ -23,7 +23,7 @@ export const addLinkAdsAction = (linkedin_ad,project_id) => async(dispatch,getSt
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/liinkedinAd`, {linkedin_ad,project_id},config)
         const data = response.data
         dispatch({type:ADD_LINKDINADS_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_LINKDINADS_FAILED,
@@ -55,7 +55,7 @@ export const getLinkAdsAction = () => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/liinkedinAd`,config)
         const data = response.data
         dispatch({type:GET_LINKDINADS_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_LINKDINADS_FAILED,
@@ -87,7 +87,7 @@ export const getOneLinkAdsAction = (id) => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/liinkedinAd/${id}`,config)
         const data = response.data
         dispatch({type:GETONE_LINKDINADS_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_LINKDINADS_FAILED,
@@ -119,7 +119,7 @@ export const deleteLinkAdsAction = (id) => async(dispatch,getState) => {
         const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/liinkedinAd/${id}`,config)
         const data = response.data
         dispatch({type:DELETE_LINKDINADS_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_LINKDINADS_FAILED,

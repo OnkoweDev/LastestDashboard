@@ -7,12 +7,12 @@ export const blogIntroAddAction = (intro,project_id) => async(dispatch,getState)
         const {userLogin:{userInfo}} = getState();
 
         const token = userInfo?.token;
-        console.log('Token:', token); 
+        //console.log('Token:', token); 
 
         const accountId = userInfo?.account_id;
 
         if (!token) {
-            console.log("User token not found");
+            //console.log("User token not found");
         }
 
         const config = {
@@ -25,7 +25,7 @@ export const blogIntroAddAction = (intro,project_id) => async(dispatch,getState)
 
         const data = response.data
         dispatch({type:ADD_BLOGINTRO_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_BLOGINTRO_FAILED,
@@ -60,7 +60,7 @@ export const getBlogintroAction = () => async(dispatch,getState) => {
         const data = response.data
 
         dispatch({type:GET_BLOGINTRO_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_BLOGINTRO_FAILED,
@@ -97,7 +97,7 @@ export const getOneIntroAction = (id) => async(dispatch,getState) => {
         const data = response.data
         
         dispatch({type:GETONE_BLOGINTRO_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_BLOGINTRO_FAILED,
@@ -132,7 +132,7 @@ export const deleteIntroAction = (id) => async(dispatch,getState) => {
         const data = response.data
         
         dispatch({type:DELETE_BLOGINTRO_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_BLOGINTRO_FAILED,

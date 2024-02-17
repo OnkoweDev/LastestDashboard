@@ -20,7 +20,7 @@ export const changePasswordAction = (old_password,password,password_confirmation
 
         const data = response.data
         dispatch({type:CHANGE_PASSWORD_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: CHANGE_PASSWORD_FAILED,

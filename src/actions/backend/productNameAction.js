@@ -22,7 +22,7 @@ export const addProductNameAction = (product_name,) => async(dispatch,getState) 
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/productName`, {product_name,},config)
         const data = response.data
         dispatch({type:ADD_PRODUCTNAME_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_PRODUCTNAME_FAILED,
@@ -54,7 +54,7 @@ export const getProductNameAction = () => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/productName`,config)
         const data = response.data
         dispatch({type:GET_PRODUCTNAME_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_PRODUCTNAME_FAILED,
@@ -86,7 +86,7 @@ export const getOneProductNameAction = (id) => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/productName/${id}`,config)
         const data = response.data
         dispatch({type:GETONE_PRODUCTNAME_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_PRODUCTNAME_FAILED,
@@ -118,7 +118,7 @@ export const deleteProductNameAction = (id) => async(dispatch,getState) => {
         const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/productName/${id}`,config)
         const data = response.data
         dispatch({type:DELETE_PRODUCTNAME_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_PRODUCTNAME_FAILED,

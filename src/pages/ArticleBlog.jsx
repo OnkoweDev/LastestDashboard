@@ -61,7 +61,7 @@ const GoogleAdTitile = () => {
   //copy function
 
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);
@@ -95,18 +95,18 @@ const GoogleAdTitile = () => {
       if(isListening){
           mic.start()
           mic.onend = () => {
-              console.log('continue ...')
+              //console.log('continue ...')
               mic.start()
           }
       }
       else{
           mic.stop()
           mic.onend = () => {
-              console.log('stoped')
+              //console.log('stoped')
           }
       }
       mic.onstart = () => {
-          console.log('Mics is on')
+          //console.log('Mics is on')
       }
 
       mic.onresult = (event) => {
@@ -132,7 +132,7 @@ const GoogleAdTitile = () => {
 
   const handSubmit = (e) => {
     e.preventDefault()
-    console.log("loading")
+    //console.log("loading")
     
     dispatch(addArticleBlog(article,outputNumber))
   }
@@ -142,7 +142,7 @@ const GoogleAdTitile = () => {
     e.preventDefault()
     const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
     const specificData = specificDiv.innerText;
-    console.log(specificData)
+    //console.log(specificData)
     dispatch(addConclusionAction(specificData))
    
    if(success){
@@ -161,7 +161,7 @@ const GoogleAdTitile = () => {
 
  
   const handleModal = () => {
-      console.log('this is the pop for creating project')
+      //console.log('this is the pop for creating project')
   }
 
   const [typingStatus, setTypingStatus] = useState([]);

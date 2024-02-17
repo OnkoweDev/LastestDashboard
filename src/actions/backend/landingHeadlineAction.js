@@ -22,7 +22,7 @@ export const addLandingHeadlineAction = (headline,project_id) => async(dispatch,
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/landingPageHeadline`, {headline,project_id},config)
         const data = response.data
         dispatch({type:ADD_LANDINGHEADLINE_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_LANDINGHEADLINE_FAILED,
@@ -54,7 +54,7 @@ export const getLandingHeadlineAction = () => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/landingPageHeadline`,config)
         const data = response.data
         dispatch({type:GET_LANDINGHEADLINE_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_LANDINGHEADLINE_FAILED,
@@ -86,7 +86,7 @@ export const getOneLandingHeadlineAction = (id) => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/landingPageHeadline/${id}`,config)
         const data = response.data
         dispatch({type:GETONE_LANDINGHEADLINE_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_LANDINGHEADLINE_FAILED,
@@ -118,7 +118,7 @@ export const deleteLandingHeadlineAction = (id) => async(dispatch,getState) => {
         const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/landingPageHeadline/${id}`,config)
         const data = response.data
         dispatch({type:DELETE_LANDINGHEADLINE_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_LANDINGHEADLINE_FAILED,

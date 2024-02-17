@@ -69,7 +69,7 @@ const LanguageTrans = () => {
 
   const handleSubmit =async(e) =>{
     e.preventDefault()
-    console.log(text)
+    //console.log(text)
     try {
         const config = {
             headers:{
@@ -82,11 +82,11 @@ const LanguageTrans = () => {
         arrData.forEach((data)=>{
             setLands([data])
         })
-        console.log(lands)
+        //console.log(lands)
         setIsLoading(false)
     } catch (error) {
         setErrorMessage("data not found")
-        console.log(errorMessage)
+        //console.log(errorMessage)
         setIsLoading(false)
         setTimeout(()=>{
             setErrorMessage("")
@@ -111,12 +111,12 @@ const LanguageTrans = () => {
 
 
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
 
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);
@@ -265,7 +265,7 @@ const LanguageTrans = () => {
                 {loading && <Loader />}
                 {error && <div className='bar error'>{error}</div>}
                 <Toaster />
-                {/* {console.log(lands.data)} */}
+                {/* {//console.log(lands.data)} */}
                 {lands && lands?.map((blog,index)=>(
                   
                   <div className="sec-1" key={index} ref={myDiv}>

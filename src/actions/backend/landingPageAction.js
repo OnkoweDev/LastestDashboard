@@ -22,7 +22,7 @@ export const addLandingPageAction = (page,project_id) => async(dispatch,getState
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/landingPage`, {page,project_id},config)
         const data = response.data
         dispatch({type:ADD_LANDINGPAGE_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_LANDINGPAGE_FAILED,
@@ -54,7 +54,7 @@ export const getLandingPageAction = () => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/landingPage`,config)
         const data = response.data
         dispatch({type:GET_LANDINGPAGE_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_LANDINGPAGE_FAILED,
@@ -86,7 +86,7 @@ export const getOneLangingPageAction = (id) => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/landingPage/${id}`,config)
         const data = response.data
         dispatch({type:GETONE_LANDINGPAGE_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_LANDINGPAGE_FAILED,
@@ -118,7 +118,7 @@ export const deleteLandingPageAction = (id) => async(dispatch,getState) => {
         const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/landingPage/${id}`,config)
         const data = response.data
         dispatch({type:DELETE_LANDINGPAGE_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_LANDINGPAGE_FAILED,

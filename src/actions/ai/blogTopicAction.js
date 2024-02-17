@@ -13,8 +13,8 @@ export const blogTopicAction = (topic,no_of_outputs) => async(dispatch) => {
         };
         const {data} = await axios.post(`https://api.olukowe.co/topic/`, {topic,no_of_outputs},config)
         dispatch({type:ADD_BLOGTOPIC_SUCCESS,payload:data.data})
-        console.log(data)
-        //console.log(error)
+        //console.log(data)
+        ////console.log(error)
     } catch (error) {
         dispatch({
             type: ADD_BLOGTOPIC_FAILED,

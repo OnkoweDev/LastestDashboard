@@ -12,7 +12,7 @@ export const addParagraphWriter= (title,keyword,no_of_outputs,tone_of_voice) => 
         };
         const {data} = await axios.post(`https://api.olukowe.co/paragraph/`,{title,keyword,no_of_outputs,tone_of_voice},config)
         dispatch({type:ADD_PARAGRAPH_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_PARAGRAPH_FAILED,

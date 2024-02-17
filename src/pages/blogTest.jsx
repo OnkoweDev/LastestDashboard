@@ -62,9 +62,9 @@ const TTR = () => {
   blogs && blogs.forEach(function(blog){
         if(Array.isArray(blog)){
             blog.forEach(function(intro){
-                console.log(intro)
+                //console.log(intro)
                 data.push(intro)
-               // console.log(data)
+               // //console.log(data)
             })
         }
      })
@@ -82,7 +82,7 @@ const TTR = () => {
     
   const handleIntro = (e) =>{
         e.preventDefault()
-        console.log(title,outputNumber)
+        //console.log(title,outputNumber)
         dispatch(addBlog(title,outputNumber))
         navigate('/test')
         
@@ -99,26 +99,26 @@ const TTR = () => {
       if(isListening){
           mic.start()
           mic.onend = () => {
-              console.log('continue ...')
+              //console.log('continue ...')
               mic.start()
           }
       }
       else{
           mic.stop()
           mic.onend = () => {
-              console.log('stoped')
+              //console.log('stoped')
           }
       }
       mic.onstart = () => {
-          console.log('Mics is on')
+          //console.log('Mics is on')
       }
 
       mic.onresult = event => {
           const transcript = Array.from(event.results).map(result => result[0]).map(result=> result.transcript).join('')
-          console.log(transcript)
+          //console.log(transcript)
           setNote(transcript)
           mic.onerror = event => {
-              console.log(event.error)
+              //console.log(event.error)
           }
       }
   }
@@ -126,7 +126,7 @@ const TTR = () => {
   // state to keep track of number of output
   // handle audio option
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
   return (

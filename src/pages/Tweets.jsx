@@ -69,7 +69,7 @@ const Tweets = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(topic,keywords)
+    //console.log(topic,keywords)
     dispatch(addTwitter(topic,keywords))
   }
 
@@ -77,7 +77,7 @@ const Tweets = () => {
    // e.preventDefault()
     const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
     const specificData = specificDiv.innerText;
-    console.log(specificData)
+    //console.log(specificData)
     dispatch(addTweetAction(specificData))
     
     if(tweetSuccess){
@@ -89,7 +89,7 @@ const Tweets = () => {
   //handle copy functionality
 
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);
@@ -103,7 +103,7 @@ const Tweets = () => {
   // };
   // handle audio option
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
 

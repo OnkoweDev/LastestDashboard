@@ -33,7 +33,7 @@ const Password = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(changePasswordAction(oldPassword,new_Passowrd,confirm_password))
-    console.log(oldPassword,new_Passowrd,confirm_password)
+    //console.log(oldPassword,new_Passowrd,confirm_password)
   }
   return (
     <>

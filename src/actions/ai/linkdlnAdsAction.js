@@ -14,7 +14,7 @@ export const linkdlnAdsAction = (product_name,product_description,keywords) => a
         const {data} = await axios.post(`https://api.olukowe.co/linkedin-ad-description/
         `,{product_name,product_description,keywords},config)
         dispatch({type:ADD_LINKDLNADS_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_LINKDLNADS_FAILED,

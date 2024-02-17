@@ -56,7 +56,7 @@ const GoogleAdDesc = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("working")
+    //console.log("working")
     dispatch(addContentRephesal(content,outputNumber))
   }
 
@@ -64,7 +64,7 @@ const GoogleAdDesc = () => {
     //e.preventDefault()
     const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
     const specificData = specificDiv.innerText;
-    console.log(specificData)
+    //console.log(specificData)
     dispatch(addContentRepreAction(specificData))
    
     if(conSuccess){
@@ -90,33 +90,33 @@ const GoogleAdDesc = () => {
       if(isListening){
           mic.start()
           mic.onend = () => {
-              console.log('continue ...')
+              //console.log('continue ...')
               mic.start()
           }
       }
       else{
           mic.stop()
           mic.onend = () => {
-              console.log('stoped')
+              //console.log('stoped')
           }
       }
       mic.onstart = () => {
-          console.log('Mics is on')
+          //console.log('Mics is on')
       }
 
       mic.onresult = event => {
           const transcript = Array.from(event.results).map(result => result[0]).map(result=> result.transcript).join('')
-          console.log(transcript)
+          //console.log(transcript)
           setNote(transcript)
           mic.onerror = event => {
-              console.log(event.error)
+              //console.log(event.error)
           }
       }
   }
  
 
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
 
@@ -126,7 +126,7 @@ const GoogleAdDesc = () => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copied');
+    //console.log('copied');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);

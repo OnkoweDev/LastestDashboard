@@ -13,7 +13,7 @@ export const youtubeDescAction = (title,keywords) => async(dispatch) => {
         };
         const {data} = await axios.post(`https://api.olukowe.co/youtube-description/`,{title,keywords},config)
         dispatch({type:ADD_YOUTUBEDESC_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_YOUTUBEDESC_FAILED,

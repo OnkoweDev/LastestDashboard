@@ -55,7 +55,7 @@ const EmailSubject = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(emailDesc)
+    //console.log(emailDesc)
    dispatch(emailSubjectAction(productName,emailDesc))
 
   }
@@ -64,7 +64,7 @@ const EmailSubject = () => {
     //e.preventDefault()
     const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
     const specificData = specificDiv.innerText;
-    console.log(specificData)
+    //console.log(specificData)
     dispatch(addSubjectAction(specificData))
     
 
@@ -78,7 +78,7 @@ const EmailSubject = () => {
 
   // handle audio option
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
     //
   };
@@ -90,7 +90,7 @@ const EmailSubject = () => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);

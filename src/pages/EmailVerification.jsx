@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import Loader from '../components/Loader'
 
 const EmailVerification = () => {
   const location = useLocation();
@@ -14,7 +15,7 @@ const EmailVerification = () => {
     const verifyUser = async () => {
       try {
         const response = await axios.post("https://dev.olukowe.co/api/auth/verification", { token: verificationToken });
-        console.log(response)
+        //console.log(response)
 
         if (response.data.status == true) {
           // Redirect the user to a success page or login page
@@ -39,7 +40,7 @@ const EmailVerification = () => {
   return (
     <div>
       {/* You can render a loading spinner or a message while verifying */}
-      <p>A verification mail has been sent to your email for verifation</p>
+        <Loader />
     </div>
   );
 };

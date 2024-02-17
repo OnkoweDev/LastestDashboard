@@ -77,7 +77,7 @@ const TTR = () => {
     e.preventDefault()
     const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
     const specificData = specificDiv.innerText;
-    console.log(specificData)
+    //console.log(specificData)
     dispatch(blogIntroAddAction(specificData))
 
     if (success){
@@ -104,7 +104,7 @@ useEffect(() => {
     
   const handleIntro = (e) =>{
         e.preventDefault()
-        console.log(title,outputNumber)
+        //console.log(title,outputNumber)
         dispatch(addBlog(title,outputNumber))
         navigate('/blog-intro-generator')
        // dispatch(addBlog())
@@ -120,18 +120,18 @@ useEffect(() => {
       if(isListening){
           mic.start()
           mic.onend = () => {
-              console.log('continue ...')
+              //console.log('continue ...')
               mic.start()
           }
       }
       else{
           mic.stop()
           mic.onend = () => {
-              console.log('stoped')
+              //console.log('stoped')
           }
       }
       mic.onstart = () => {
-          console.log('Mics is on')
+          //console.log('Mics is on')
       }
 
       mic.onresult = (event) => {
@@ -155,7 +155,7 @@ useEffect(() => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);
@@ -172,7 +172,7 @@ useEffect(() => {
   // state to keep track of number of output
   // handle audio option
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
 

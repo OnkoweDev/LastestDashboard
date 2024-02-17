@@ -13,7 +13,7 @@ export const InstagramAction = (product_description,tone_of_voice) => async(disp
         };
         const {data} = await axios.post(`https://api.olukowe.co/instagram-caption/`,{product_description,tone_of_voice},config)
         dispatch({type:ADD_INSTAGRAM_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_INSTAGRAM_FAILED,

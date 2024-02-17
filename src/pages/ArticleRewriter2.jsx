@@ -59,10 +59,10 @@ const ArticleRewriter2 = () => {
     e.preventDefault()
     const divData = myDiv.current.innerText;
       setArticle(divData)
-      console.log(divData) 
-      console.log(projectId) 
+      //console.log(divData) 
+      //console.log(projectId) 
       dispatch(articleAddAction(divData,projectId))
-      console.log(error)
+      //console.log(error)
       
   }
   
@@ -74,7 +74,7 @@ const ArticleRewriter2 = () => {
   
   const handSubmit = (e) => {
     e.preventDefault()
-    console.log("loading")
+    //console.log("loading")
     dispatch(addArticleRewriter(content))
   }
 
@@ -90,26 +90,26 @@ const ArticleRewriter2 = () => {
       if(isListening){
           mic.start()
           mic.onend = () => {
-              console.log('continue ...')
+              //console.log('continue ...')
               mic.start()
           }
       }
       else{
           mic.stop()
           mic.onend = () => {
-              console.log('stoped')
+              //console.log('stoped')
           }
       }
       mic.onstart = () => {
-          console.log('Mics is on')
+          //console.log('Mics is on')
       }
 
       mic.onresult = event => {
           const transcript = Array.from(event.results).map(result => result[0]).map(result=> result.transcript).join('')
-          console.log(transcript)
+          //console.log(transcript)
           setNote(transcript)
           mic.onerror = event => {
-              console.log(event.error)
+              //console.log(event.error)
           }
       }
   }
@@ -118,7 +118,7 @@ const ArticleRewriter2 = () => {
   // state to keep track of number of output
   // handle audio option
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
   return (

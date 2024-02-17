@@ -52,7 +52,7 @@ const Youtube = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(tone,hook)
+        //console.log(tone,hook)
         dispatch(youtubeAction(title,hook,keywords,tone))
     }
 
@@ -60,7 +60,7 @@ const Youtube = () => {
       // e.preventDefault()
        const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
        const specificData = specificDiv.innerText;
-       //console.log(specificData)
+       ////console.log(specificData)
       dispatch(addYoutubeAction(specificData))
       
       toast.success("YouTube Intro successfuly");
@@ -72,14 +72,14 @@ const Youtube = () => {
   // state to keep track of number of output
   // handle audio option
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
 
    //handle copy functionality
 
    const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);

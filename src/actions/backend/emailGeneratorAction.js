@@ -21,7 +21,7 @@ export const addEmailGenAction = (email_generator,project_id) => async(dispatch,
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/emailGenerator`, {email_generator,project_id},config)
         const data = response.data
         dispatch({type:ADD_EMAILGEN_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_EMAILGEN_FAILED,
@@ -53,7 +53,7 @@ export const getEmailGenAction = () => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/emailGenerator`,config)
         const data = response.data
         dispatch({type:GET_EMAILGEN_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_EMAILGEN_FAILED,
@@ -86,7 +86,7 @@ export const getOneEmailGenAction = (id) => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/emailGenerator/${id}`,config)
         const data = response.data
         dispatch({type:GETONE_EMAILGEN_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_EMAILGEN_FAILED,
@@ -120,7 +120,7 @@ export const deleteEmailGenAction = (id) => async(dispatch,getState) => {
         const data = response.data
         
         dispatch({type:DELETE_EMAILGEN_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_EMAILGEN_FAILED,

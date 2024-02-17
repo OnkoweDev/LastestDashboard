@@ -88,7 +88,7 @@ const Audio = () => {
         );
     
         const audioId = response.data.id;
-        console.log('Audio ID:', audioId);
+        //console.log('Audio ID:', audioId);
     
         // Make sure to set transcribedAudio.id consistently
         setTranscribedAudio({ id: audioId });
@@ -109,7 +109,7 @@ const Audio = () => {
         }, 30000);
       } catch (error) {
         setErrorMessage('Error processing audio. Please try again.');
-        console.log(error);
+        //console.log(error);
         setIsLoading(false);
       }
     };
@@ -120,9 +120,9 @@ const Audio = () => {
     const fetchAndLogTranscribedAudio = async () => {
       try {
         const data = await fetchTranscribedAudio(transcribedAudio.id);
-        //console.log('Fetched Transcribed Audio:', data);
+        ////console.log('Fetched Transcribed Audio:', data);
         setTranscribedAudioData(data.data); // Set the fetched data to the state variable
-        console.log(transcribedAudioData)
+        //console.log(transcribedAudioData)
       } catch (error) {
         console.error('Error fetching transcribed audio:', error);
         throw error; // Propagate the error to handle it in the setTimeout block
@@ -136,11 +136,11 @@ const Audio = () => {
           throw new Error(`Unexpected response status: ${response.status}`);
         }
         const generatedTranscription = response.data;
-        console.log('Transcription Data:', generatedTranscription);
+        //console.log('Transcription Data:', generatedTranscription);
        // setTranscribedAudioData(generatedTranscription)
         return generatedTranscription;
       } catch (error) {
-        console.log('Error fetching transcribed audio:', error);
+        //console.log('Error fetching transcribed audio:', error);
         throw error; // Propagate the error to handle it in the calling code
       }
     };
@@ -166,7 +166,7 @@ const Audio = () => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);
@@ -178,7 +178,7 @@ const Audio = () => {
   const handleForm = (e) => {
     e.preventDefault()
     const divData = myDiv.current.innerText
-    console.log(divData,projectId,upload)
+    //console.log(divData,projectId,upload)
     dispatch(addAudioAction(divData,projectId,upload))
    
     if(success){
@@ -196,7 +196,7 @@ const Audio = () => {
 
 
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
 
@@ -253,7 +253,7 @@ const Audio = () => {
                 {errorMessage && <div className='bar error'>{errorMessage}</div>}
                 {errorMsg && <div className='bar success'>{errorMsg}</div>}
                 <Toaster />
-                {/* {console.log(lands.data)} */}
+                {/* {//console.log(lands.data)} */}
                 {Array.isArray(transcribedAudioData) ? transcribedAudioData.map((blog, index) => (
                   <div className="sec-1" key={index} ref={myDiv} contentEditable suppressContentEditableWarning>
                     <button className="icon-contain" onClick={() => handleCopy(`${index}`)}>

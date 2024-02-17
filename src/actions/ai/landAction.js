@@ -13,8 +13,8 @@ export const landAction = (product_name,product_description,feature_benefit_1,fe
         };
     const {data} = await axios.post(`https://api.olukowe.co/landing-page/`, {product_name,product_description,feature_benefit_1,feature_benefit_2,feature_benefit_3},config)
         dispatch({type:ADD_LAND_SUCCESS,payload:data})
-        console.log(data)
-        //console.log(error)
+        //console.log(data)
+        ////console.log(error)
     } catch (error) {
         dispatch({
             type: ADD_LAND_FAILED,

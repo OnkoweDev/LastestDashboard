@@ -68,7 +68,7 @@ const handleForm = (index) => {
     //e.preventDefault()
     const specificDiv = document.getElementById(`div-${index}`);
     const specificData = specificDiv.innerText;
-    console.log(specificData)
+    //console.log(specificData)
       dispatch(articleAddAction(specificData))
       
         toast.success("Article rewriter saved successfuly");       
@@ -85,7 +85,7 @@ const handleForm = (index) => {
   
   const handSubmit = (e) => {
     e.preventDefault()
-    console.log("loading")
+    //console.log("loading")
     dispatch(addArticleRewriter(content))
   }
 
@@ -95,7 +95,7 @@ const handleForm = (index) => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);
@@ -114,18 +114,18 @@ const handleForm = (index) => {
       if(isListening){
           mic.start()
           mic.onend = () => {
-              console.log('continue ...')
+              //console.log('continue ...')
               mic.start()
           }
       }
       else{
           mic.stop()
           mic.onend = () => {
-              console.log('stoped')
+              //console.log('stoped')
           }
       }
       mic.onstart = () => {
-          console.log('Mics is on')
+          //console.log('Mics is on')
       }
 
       mic.onresult = (event) => {
@@ -143,7 +143,7 @@ const handleForm = (index) => {
   }
 
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
 

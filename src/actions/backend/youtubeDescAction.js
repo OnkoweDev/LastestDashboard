@@ -23,7 +23,7 @@ export const addYoutubeDescAction = (description) => async(dispatch,getState) =>
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/youtubeDescription`, {description},config)
         const data = response.data
         dispatch({type:ADD_YOUTUBEDESC_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_YOUTUBEDESC_FAILED,
@@ -55,7 +55,7 @@ export const getYoutubeDescAction = () => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/youtubeDescription`,config)
         const data = response.data
         dispatch({type:GET_YOUTUBEDESC_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_YOUTUBEDESC_FAILED,
@@ -87,7 +87,7 @@ export const getOneYoutubeDescAction = (id) => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/youtubeDescription/${id}`,config)
         const data = response.data
         dispatch({type:GETONE_YOUTUBEDESC_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_YOUTUBEDESC_FAILED,
@@ -121,7 +121,7 @@ export const deleteYoutubeDescAction = (id) => async(dispatch,getState) => {
         const data = response.data
         
         dispatch({type:DELETE_YOUTUBEDESC_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_YOUTUBEDESC_FAILED,

@@ -62,7 +62,7 @@ const German = () => {
   const handleForm = (e) => {
     e.preventDefault()
     const divData = myDiv.current.innerText
-    console.log(divData,projectId)
+    //console.log(divData,projectId)
     dispatch(addLanguageAction(divData,projectId,language,saveText))
     navigate('/language')
   }
@@ -73,7 +73,7 @@ const German = () => {
 
   const handleSubmit =async(e) =>{
     e.preventDefault()
-    console.log(text)
+    //console.log(text)
     try {
         const config = {
             headers:{
@@ -86,11 +86,11 @@ const German = () => {
         arrData.forEach((data)=>{
             setLands([data])
         })
-        console.log(lands)
+        //console.log(lands)
         setIsLoading(false)
     } catch (error) {
         setErrorMessage("data not found")
-        console.log(errorMessage)
+        //console.log(errorMessage)
         setIsLoading(false)
 
     }
@@ -113,33 +113,33 @@ const German = () => {
 //       if(isListening){
 //           mic.start()
 //           mic.onend = () => {
-//               console.log('continue ...')
+//               //console.log('continue ...')
 //               mic.start()
 //           }
 //       }
 //       else{
 //           mic.stop()
 //           mic.onend = () => {
-//               console.log('stoped')
+//               //console.log('stoped')
 //           }
 //       }
 //       mic.onstart = () => {
-//           console.log('Mics is on')
+//           //console.log('Mics is on')
 //       }
 
 //       mic.onresult = event => {
 //           const transcript = Array.from(event.results).map(result => result[0]).map(result=> result.transcript).join('')
-//           console.log(transcript)
+//           //console.log(transcript)
 //           setNote(transcript)
 //           mic.onerror = event => {
-//               console.log(event.error)
+//               //console.log(event.error)
 //           }
 //       }
 //   }
   // state to keep track of number of output
   // handle audio option
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
   return (
@@ -187,7 +187,7 @@ const German = () => {
                 <form onSubmit={handleForm}>
                 {isLoading && <Loader />}
                 {errorMessage && <div className='bar error'>{errorMessage}</div>}
-                {/* {console.log(lands.data)} */}
+                {/* {//console.log(lands.data)} */}
                 {lands && lands?.map((blog)=>(
                   
                   <div className="sec-1" contentEditable suppressContentEditableWarning ref={myDiv}>

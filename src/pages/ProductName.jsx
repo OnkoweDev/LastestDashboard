@@ -54,7 +54,7 @@ const ProductName = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(productDesc)
+    //console.log(productDesc)
    dispatch(productNameAction(productDesc,keywords))
 
   }
@@ -77,7 +77,7 @@ const ProductName = () => {
 
   // handle audio option
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
     //
   };
@@ -88,7 +88,7 @@ const ProductName = () => {
 };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);

@@ -12,7 +12,7 @@ export const addProductAction = (product_name,product_features) =>  async(dispat
         };
         const {data} = await axios.post(`https://api.olukowe.co/product-description/`,{product_name,product_features},config)
         dispatch({type:ADD_PRODUCT_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_PRODUCT_FAILED,

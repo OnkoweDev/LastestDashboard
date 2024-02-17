@@ -22,7 +22,7 @@ export const addLinkAction = (post,project_id) => async(dispatch,getState) => {
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/linkedinPost`, {post,project_id},config)
         const data = response.data
         dispatch({type:ADD_LINKDLN_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_LINKDLN_FAILED,
@@ -54,7 +54,7 @@ export const getLinkAction = () => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/linkedinPost`,config)
         const data = response.data
         dispatch({type:GET_LINKDLN_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_LINKDLN_FAILED,
@@ -86,7 +86,7 @@ export const getOneLinkAction = (id) => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/linkedinPost/${id}`,config)
         const data = response.data
         dispatch({type:GETONE_LINKDLN_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_LINKDLN_FAILED,
@@ -118,7 +118,7 @@ export const deleteLinkAction = (id) => async(dispatch,getState) => {
         const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/linkedinPost/${id}`,config)
         const data = response.data
         dispatch({type:DELETE_LINKDLN_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_LINKDLN_FAILED,

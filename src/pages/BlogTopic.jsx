@@ -57,7 +57,7 @@ const BlogTopic = () => {
 
   const handleSubmit = (e) =>{
     e.preventDefault()
-    console.log(topic, outputNumber)
+    //console.log(topic, outputNumber)
     dispatch(blogTopicAction(topic,outputNumber))
   }
 
@@ -98,18 +98,18 @@ const BlogTopic = () => {
     if(isListening){
         mic.start()
         mic.onend = () => {
-            console.log('continue ...')
+            //console.log('continue ...')
             mic.start()
         }
     }
     else{
         mic.stop()
         mic.onend = () => {
-            console.log('stoped')
+            //console.log('stoped')
         }
     }
     mic.onstart = () => {
-        console.log('Mics is on')
+        //console.log('Mics is on')
     }
 
     mic.onresult = (event) => {
@@ -127,7 +127,7 @@ const BlogTopic = () => {
 }
 
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
 
@@ -137,7 +137,7 @@ const BlogTopic = () => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);

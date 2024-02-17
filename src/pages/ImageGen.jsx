@@ -59,7 +59,7 @@ const ImageGen = () => {
 
   const handleSubmit =async(e) =>{
     e.preventDefault()
-    console.log("God abeg oo")
+    //console.log("God abeg oo")
     try {
         const config = {
             headers:{
@@ -73,14 +73,14 @@ const ImageGen = () => {
         arrData.forEach((data)=>{
             setLands([data])
         })
-        console.log(lands)
+        //console.log(lands)
         setIsLoading(false)
     } catch (error) {
         setErrorMessage("image not found")
         setTimeout(()=>{
           setErrorMessage("")
         },500)
-        console.log(errorMessage)
+        //console.log(errorMessage)
         setIsLoading(false)
 
     }
@@ -90,7 +90,7 @@ const ImageGen = () => {
 const handleForm = (e) => {
   e.preventDefault()
   const divData = myDiv.current.innerText
-  console.log(divData,projectId)
+  //console.log(divData,projectId)
   dispatch(addImageAction(divData,projectId,imgPrompt))
   navigate('/all_image')
 }

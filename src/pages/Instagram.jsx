@@ -53,14 +53,14 @@ const Instagram = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(product,tone)
+    //console.log(product,tone)
     dispatch(InstagramAction(product,tone))
   }
   const handleForm = (index, subIndex,e) => {
     e.preventDefault()
     const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
     const specificData = specificDiv.innerText;
-    console.log(specificData)
+    //console.log(specificData)
     dispatch(addInstagramCapAction(specificData))
     
 
@@ -75,7 +75,7 @@ const Instagram = () => {
 
   // handle audio option
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
 
@@ -85,7 +85,7 @@ const Instagram = () => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);

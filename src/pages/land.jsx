@@ -85,7 +85,7 @@ const handleForm = (index) => {
 
   const handleSubmit =async(e) =>{
     e.preventDefault()
-    console.log("God abeg oo")
+    //console.log("God abeg oo")
     try {
         const config = {
             headers:{
@@ -98,11 +98,11 @@ const handleForm = (index) => {
         arrData.forEach((data)=>{
             setLands([data])
         })
-        console.log(lands)
+        //console.log(lands)
         setIsLoading(false)
     } catch (error) {
         setErrorMessage("data not found")
-        console.log(errorMessage)
+        //console.log(errorMessage)
         setIsLoading(false)
 
     }
@@ -120,7 +120,7 @@ const handleForm = (index) => {
 
 
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
 
@@ -130,7 +130,7 @@ const handleForm = (index) => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);
@@ -297,7 +297,7 @@ const handleForm = (index) => {
                 {isLoading && <Loader />}
                 {errorMessage && <div className='bar error'>{errorMessage}</div>}
                 <Toaster />
-                {/* {console.log(lands.data)} */}
+                {/* {//console.log(lands.data)} */}
                    {lands && lands?.map((blog,index)=>(
 
                         <div className="sec-1" key={index} ref={myDiv}>

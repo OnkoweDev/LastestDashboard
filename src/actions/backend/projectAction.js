@@ -5,15 +5,15 @@ export const projectAction = (name,status) => async(dispatch,getState) => {
     try {
         dispatch({type:ADD_PROJECT_REQUEST})
         const {userLogin:{userInfo}} = getState()
-        console.log('UserInfo:', userInfo); 
+        //console.log('UserInfo:', userInfo); 
 
         const token = userInfo?.token;
-        console.log('Token:', token); 
+        //console.log('Token:', token); 
 
         const accountId = userInfo?.account_id;
 
         if (!token) {
-            console.log("User token not found");
+            //console.log("User token not found");
         }
 
         const config = {
@@ -27,7 +27,7 @@ export const projectAction = (name,status) => async(dispatch,getState) => {
 
         dispatch({type:ADD_PROJECT_SUCCESS,payload:data.data})
         //localStorage.setItem('projectInfo', JSON.stringify(data))
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_PROJECT_FAILED,
@@ -81,15 +81,15 @@ export const getOneProjectAction = (id) => async(dispatch,getState) => {
         dispatch({type:GETONE_PROJECT_REQUEST})
         const {userLogin:{userInfo}} = getState();
 
-        console.log('UserInfo:', userInfo); 
+        //console.log('UserInfo:', userInfo); 
 
         const token = userInfo?.token;
-        console.log('Token:', token); 
+        //console.log('Token:', token); 
         
         const accountId = userInfo?.account_id;
 
         if (!token) {
-            console.log("User token not found");
+            //console.log("User token not found");
         }
 
         const config = {
@@ -103,7 +103,7 @@ export const getOneProjectAction = (id) => async(dispatch,getState) => {
         const data = response.data;
         
         dispatch({type:GETONE_PROJECT_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_PROJECT_FAILED,
@@ -136,7 +136,7 @@ export const deleteProjectAction = (id) => async(dispatch,getState) => {
         const data = response.data
         
         dispatch({type:DELETE_PROJECT_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_PROJECT_FAILED,

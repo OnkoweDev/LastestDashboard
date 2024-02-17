@@ -110,7 +110,7 @@ const handleSubmit = async (e) => {
     );
 
     const audioId = response.data.id;
-    console.log('Audio ID:', audioId);
+    //console.log('Audio ID:', audioId);
 
     // Set the audioId state
     setTranscribedAudio({ id: audioId });
@@ -119,7 +119,7 @@ const handleSubmit = async (e) => {
     setIsLoading(false);
 
     // Log the response
-    console.log('Transcription API Response:', response);
+    //console.log('Transcription API Response:', response);
 
     
   } catch (error) {
@@ -127,7 +127,7 @@ const handleSubmit = async (e) => {
     setTimeout(() => {
       // setErrorMessage("");
     }, 3000);
-    console.log(error);
+    //console.log(error);
     setIsLoading(false);
   }
 };
@@ -164,7 +164,7 @@ useEffect(() => {
           setTranscribedAudioData(data);
         }
       } catch (error) {
-        console.log('Error fetching and logging transcribed audio:', error);
+        //console.log('Error fetching and logging transcribed audio:', error);
         setErrorMessage("Please don't leave the page while getting your transcribed data...");
         setTimeout(() => { setErrorMessage(""); }, 60000);
       }
@@ -178,10 +178,10 @@ useEffect(() => {
           throw new Error(`Unexpected response status: ${response.status}`);
         }
         const generatedTranscription = response.data;
-        console.log('Transcription Data:', generatedTranscription);
+        //console.log('Transcription Data:', generatedTranscription);
         return generatedTranscription;
       } catch (error) {
-        console.log('Error fetching transcribed audio:', error);
+        //console.log('Error fetching transcribed audio:', error);
         setErrorMsg(`Error fetching transcribed audio for audioId ${audioId}: ${error.message}`);
         throw error;
       }
@@ -193,7 +193,7 @@ useEffect(() => {
       for (let attempt = 1; attempt <= maxAttempts; attempt++) {
         try {
           const data = await fetchTranscribedAudio(audioId);
-          console.log('Transcription Data:', data); // Log the received data
+          //console.log('Transcription Data:', data); // Log the received data
           if (data) {
             setTranscribedAudioData(data);
             return;
@@ -214,7 +214,7 @@ const TypeWriterEffect = ({ text }) => {
   };
 
 const handleCopy = (index, i) => {
-  //console.log('copying blog article');
+  ////console.log('copying blog article');
   const divData = document.getElementById(`div-${index}-${i}`);
   if (divData) {
     navigator.clipboard.writeText(divData.innerText);
@@ -230,7 +230,7 @@ const handleForm = (index) => {
     const specificData = specificDiv.innerText;
     dispatch(addAudioAction(specificData))
       .then((response) => {
-        console.log("Response from addAudioAction:", response);
+        //console.log("Response from addAudioAction:", response);
 
         if (response && response.success) {
           toast.success("Audio saved successfully");

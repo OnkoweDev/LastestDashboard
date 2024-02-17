@@ -13,7 +13,7 @@ export const emailSubjectAction = (product_name,email_description ) => async(dis
         };
         const {data} = await axios.post(`https://api.olukowe.co/email-subject-line/`,{product_name,email_description },config)
         dispatch({type:ADD_EMAIL_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_EMAIL_FAILED,

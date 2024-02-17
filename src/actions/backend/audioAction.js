@@ -24,7 +24,7 @@ export const addAudioAction = (generated_transcription) => async(dispatch,getSta
         const data = response.data
 
         dispatch({type:ADD_AUDIO_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_AUDIO_FAILED,
@@ -58,7 +58,7 @@ export const getAudioAction = () => async(dispatch,getState) => {
         const data = response.data
         
         dispatch({type:GET_AUDIO_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_AUDIO_FAILED,
@@ -91,7 +91,7 @@ export const getOneAudioAction = (id) => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/audioTranscription/${id}`,config)
         const data = response.data
         dispatch({type:GETONE_AUDIO_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_AUDIO_FAILED,
@@ -124,7 +124,7 @@ export const deleteAudioAction = (id) => async(dispatch,getState) => {
         const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/audioTranscription/${id}`,config)
         const data = response.data
         dispatch({type:DELETE_AUDIO_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_AUDIO_FAILED,

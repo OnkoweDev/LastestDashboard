@@ -22,7 +22,7 @@ export const adduploadAction = (upload) => async(dispatch,getState) => {
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/upload`, {upload},config)
         const data = response.data
         dispatch({type:ADD_UPLOAD_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_UPLOAD_FAILED,

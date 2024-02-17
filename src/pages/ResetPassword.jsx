@@ -68,13 +68,13 @@ const ForgetPassword = () => {
         } else {
           toast.error(data.message);
         }
-        console.log(data);
+        //console.log(data);
         setIsLoading(false);
       };
 
       getData();
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       toast.error("Something went wrong");
     }
   };

@@ -22,7 +22,7 @@ export const addFacebookAction = (facebook_ad,project_id) => async(dispatch,getS
         const data = response.data
 
         dispatch({type:ADD_FACEBOOKADS_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_FACEBOOKADS_FAILED,
@@ -55,7 +55,7 @@ export const getFacebookAdsAction = () => async(dispatch,getState) => {
         const data = response.data
 
         dispatch({type:GET_FACEBOOKADS_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_FACEBOOKADS_FAILED,
@@ -87,7 +87,7 @@ export const getOneFacebookAdsAction = (id) => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/facebookAd/${id}`,config)
         const data = await response.data
         dispatch({type:GETONE_FACEBOOKADS_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_FACEBOOKADS_FAILED,
@@ -120,7 +120,7 @@ export const deleteFacebookAdsAction = (id) => async(dispatch,getState) => {
         const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/facebookAd/${id}`,config)
         const data = response.data
         dispatch({type:DELETE_FACEBOOKADS_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_FACEBOOKADS_FAILED,

@@ -21,7 +21,7 @@ export const addEbookAction = (generated_ebook,project_id,title,description) => 
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/ebookGenerator`, {generated_ebook,project_id,title,description},config)
         const data = response.data
         dispatch({type:ADD_EBOOK_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_EBOOK_FAILED,
@@ -53,7 +53,7 @@ export const getEbookAction = () => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/ebookGenerator`,config)
         const data = response.data
         dispatch({type:GET_EBOOK_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_EBOOK_FAILED,
@@ -87,7 +87,7 @@ export const getOneEbookAction = (id) => async(dispatch,getState) => {
 
         const data = response.data
         dispatch({type:GETONE_EBOOK_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_EBOOK_FAILED,
@@ -120,7 +120,7 @@ export const deleteEbookAction = (id) => async(dispatch,getState) => {
 
         const data = response.data
         dispatch({type:DELETE_EBOOK_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_EBOOK_FAILED,

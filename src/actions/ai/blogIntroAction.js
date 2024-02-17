@@ -12,7 +12,7 @@ export const addBlog = (title,number_of_outputs) => async(dispatch) => {
         };
         const {data} = await axios.post(`https://api.olukowe.co/intro/`,{title,number_of_outputs},config)
         dispatch({type:ADD_BLOGINTRO_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_BLOGINTRO_FAILED,
@@ -34,7 +34,7 @@ export const getBlogIntroAction = () => async (dispatch) => {
         };
         const {data} = await axios.get(`https://api.olukowe.co/intro/`,config)
         dispatch({type:GET_BLOGINTRO_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
 
     } catch (error) {
         dispatch({

@@ -14,7 +14,7 @@ export const youtubeAction = (title,video_hook,keywords,tone_of_voice) => async(
         
         const {data} = await axios.post(`https://api.olukowe.co/youtube-intro/`,{title,video_hook,keywords,tone_of_voice},config)
         dispatch({type:ADD_YOUTUBE_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_YOUTUBE_FAILED,

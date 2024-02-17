@@ -13,7 +13,7 @@ export const googleadsAction = (company_name,product_description) => async(dispa
         };
         const {data} = await axios.post(`https://api.olukowe.co/google-ad-description/`,{company_name,product_description},config)
         dispatch({type:ADD_GOOGLEADS_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_GOOGLEADS_FAILED,

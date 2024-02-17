@@ -22,7 +22,7 @@ export const addGoogleAdsAction = (google_ad,project_id) => async(dispatch,getSt
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/googleAd`, {google_ad,project_id},config)
         const data = response.data
         dispatch({type:ADD_GOOGLEADS_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_GOOGLEADS_FAILED,
@@ -54,7 +54,7 @@ export const getGoogleAdsAction = () => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/googleAd`,config)
         const data = response.data
         dispatch({type:GET_GOOGLEADS_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_GOOGLEADS_FAILED,
@@ -87,7 +87,7 @@ export const getOneGoogleAdsAction = (id) => async(dispatch,getState) => {
         const data = response.data
 
         dispatch({type:GETONE_GOOGLEADS_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_GOOGLEADS_FAILED,
@@ -120,7 +120,7 @@ export const deleteGoogleAdsAction = (id) => async(dispatch,getState) => {
         const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/googleAd/${id}`,config)
         const data = response.data
         dispatch({type:DELETE_GOOGLEADS_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_GOOGLEADS_FAILED,

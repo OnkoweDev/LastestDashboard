@@ -72,7 +72,7 @@ const Ebook = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
    // dispatch(addEbook(title,description,chapters))
-    //console.log(ebook)
+    ////console.log(ebook)
 
     const config = {
       headers:{
@@ -87,7 +87,7 @@ const Ebook = () => {
           setGenerated(data)
         })
   setIsLoading(false)
-  console.log(generated)
+  //console.log(generated)
     }
   
 
@@ -135,17 +135,17 @@ const Ebook = () => {
     if (isListening) {
       mic.start();
       mic.onend = () => {
-        console.log("continue ...");
+        //console.log("continue ...");
         mic.start();
       };
     } else {
       mic.stop();
       mic.onend = () => {
-        console.log("stoped");
+        //console.log("stoped");
       };
     }
     mic.onstart = () => {
-      console.log("Mics is on");
+      //console.log("Mics is on");
     };
 
     mic.onresult = (event) => {
@@ -153,10 +153,10 @@ const Ebook = () => {
         .map((result) => result[0])
         .map((result) => result.transcript)
         .join("");
-      console.log(transcript);
+      //console.log(transcript);
       setNote(transcript);
       mic.onerror = (event) => {
-        console.log(event.error);
+        //console.log(event.error);
       };
     };
   };
@@ -226,7 +226,7 @@ const Ebook = () => {
     document.execCommand('copy');
     document.body.removeChild(tempTextArea);
   
-    //console.log('Text copied to clipboard');
+    ////console.log('Text copied to clipboard');
     // You can add a success message or perform other actions here
     toast.success('copied');
   };

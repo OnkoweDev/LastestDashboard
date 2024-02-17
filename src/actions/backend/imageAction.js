@@ -22,7 +22,7 @@ export const addImageAction = (generated_url,project_id,prompt) => async(dispatc
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/imageGenerator`, {generated_url,prompt,project_id},config)
         const data = response.data
         dispatch({type:ADD_IMAGE_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_IMAGE_FAILED,
@@ -55,7 +55,7 @@ export const getImageAction = () => async(dispatch,getState) => {
         const data = response.data
 
         dispatch({type:GET_IMAGE_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_IMAGE_FAILED,
@@ -87,7 +87,7 @@ export const getOneImageAction = (id) => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/imageGenerator/${id}`,config)
         const data = response.data
         dispatch({type:GETONE_IMAGE_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_IMAGE_FAILED,
@@ -120,7 +120,7 @@ export const deleteImageAction = (id) => async(dispatch,getState) => {
         const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/imageGenerator/${id}`,config)
         const data = response.data
         dispatch({type:DELETE_IMAGE_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_IMAGE_FAILED,

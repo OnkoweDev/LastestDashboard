@@ -12,7 +12,7 @@ export const addContentRephesal = (content,no_of_inputs) => async(dispatch) => {
         };
         const {data} = await axios.post(`https://api.olukowe.co/rephrase/`,{content,no_of_inputs},config)
         dispatch({type:ADD_CONTENTREPRESAL_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_CONTENTREPRESAL_FAILED,

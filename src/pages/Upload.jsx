@@ -19,7 +19,7 @@ const {error,success,loading} = saveUpload
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(upload)
+    //console.log(upload)
 
     const formData = new FormData();
     formData.append('file', upload);

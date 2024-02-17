@@ -17,7 +17,7 @@ export const updateProfileAction = (id,about,country,first_name,last_name,phone_
         const {data} = await axios.put(`https://dev.olukowe.co/api/account/${userInfo.data.account_id}/profile/${id}`, {about,country,first_name,last_name,phone_number,url,username},config)
         dispatch({type:UPDATE_PROFILE_SUCCESS,payload:data.data})
         localStorage.setItem('profileInfo', JSON.stringify(data))
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: UPDATE_PROFILE_FAILED,

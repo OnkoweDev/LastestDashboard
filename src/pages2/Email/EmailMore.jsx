@@ -18,7 +18,7 @@ const EmailMore = () => {
 
   const {id} = useParams();
   //const data = [wroter]
-  //console.log(data)
+  ////console.log(data)
 
   useEffect(() => {
     dispatch(getOneEmailGenAction(id))

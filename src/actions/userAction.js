@@ -45,7 +45,7 @@ export const register = (full_name,email,password) => async(dispatch) =>{
         const response = await axios.post(`https://dev.olukowe.co/api/auth/register`,{full_name,email,password},config)
         const data = response.data
         dispatch({type:USERS_REGISTER_SUCCESS,payload:data.data})
-        dispatch({type:USERS_LOGIN_SUCCESS,payload:data.data})
+        //dispatch({type:USERS_LOGIN_SUCCESS,payload:data.data})
         secureLocalStorage.setItem('userInfo',JSON.stringify(data))
         
     } catch (error) {
@@ -118,7 +118,7 @@ export const logout = ()=> async (dispatch) => {
 
       const data = response.data
       dispatch({type:GET_USERS_PROFILE_SUCCESS, payload:data.data})
-      //console.log(data)
+      ////console.log(data)
     } catch (error) {
       dispatch({
         type: GET_USERS_PROFILE_FAILED,

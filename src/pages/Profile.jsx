@@ -59,7 +59,7 @@ const Profile = () => {
   const handleProfile = async(e) => {
     e.preventDefault();
 
-   // console.log(first_name,about,phone,last_name,username,country,url)
+   // //console.log(first_name,about,phone,last_name,username,country,url)
     dispatch(
       userProfileAction
       (first_name,
@@ -82,7 +82,7 @@ const Profile = () => {
       if(success){
 
         dispatch(getProfileAction())
-        console.log(profiles)
+        //console.log(profiles)
       }
 
   },[dispatch,success])

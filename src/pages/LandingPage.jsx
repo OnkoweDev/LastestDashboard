@@ -53,7 +53,7 @@ const LandingPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(productDesc)
+    //console.log(productDesc)
    dispatch(landingPageAction(productName,productDesc))
 
   }
@@ -62,7 +62,7 @@ const LandingPage = () => {
     e.preventDefault()
     const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
     const specificData = specificDiv.innerText;
-    console.log(specificData)
+    //console.log(specificData)
     dispatch(addLandingHeadlineAction(specificData))
     
     
@@ -77,7 +77,7 @@ const LandingPage = () => {
 
   // handle audio option
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
     //
   };
@@ -87,7 +87,7 @@ const LandingPage = () => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);

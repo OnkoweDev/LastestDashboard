@@ -5,15 +5,15 @@ export const articleAddAction = (article_rewriter,project_id) => async(dispatch,
     try {
         //dispatch({type:ADD_ARTICLEWRITTER_REQUEST})
         const {userLogin:{userInfo}} = getState()
-        //console.log('UserInfo:', userInfo); 
+        ////console.log('UserInfo:', userInfo); 
 
         const token = userInfo?.token;
-        console.log('Token:', token); 
+        //console.log('Token:', token); 
 
         const accountId = userInfo?.account_id;
 
         if (!token) {
-            console.log("User token not found");
+            //console.log("User token not found");
         }
 
         const config = {
@@ -27,7 +27,7 @@ export const articleAddAction = (article_rewriter,project_id) => async(dispatch,
         const data = response.data;
         
         dispatch({type:ADD_ARTICLEWRITTER_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_ARTICLEWRITTER_FAILED,
@@ -61,7 +61,7 @@ export const getArticleAction = () => async(dispatch,getState) => {
 
         const data =  response.data
         dispatch({type:GET_ARTICLEWRITTER_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_ARTICLEWRITTER_FAILED,
@@ -94,7 +94,7 @@ export const getOneArticleAction = (id) => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/articleRewriter/${id}`,config)
         const data = response.data;
         dispatch({type:GETONE_ARTICLEWRITTER_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_ARTICLEWRITTER_FAILED,
@@ -129,7 +129,7 @@ export const updateArticleAction = (id,article_rewriter) => async(dispatch,getSt
         const data = response.data;
 
         dispatch({type:UPDATE_ARTICLEWRITTER_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: UPDATE_ARTICLEWRITTER_FAILED,
@@ -164,7 +164,7 @@ export const deleteArticleAction = (id) => async(dispatch,getState) => {
 
         const data = response.data
         dispatch({type:DELETE_ARTICLEWRITTER_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_ARTICLEWRITTER_FAILED,

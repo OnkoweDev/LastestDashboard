@@ -11,7 +11,7 @@ export const addEbook = (title, description,no_of_chapters ) =>async(dispatch) =
         }
         const response = await axios.post(`https://api.olukowe.co/ebook/`,{title, description,no_of_chapters },config)
         const data = response.data
-        console.log(data)
+        //console.log(data)
         dispatch({type:ADD_EBOOK_SUCCESS,payload:data})
 
     } catch (error) {
@@ -22,7 +22,7 @@ export const addEbook = (title, description,no_of_chapters ) =>async(dispatch) =
                 ? error.response.data.message
                 : error.message,
           });
-          console.log(error)
+          //console.log(error)
     }
 }
 
@@ -39,7 +39,7 @@ export const viewMyEbook = () => async(dispatch,getState) => {
 
         const {data} = await axios.get(`https://api.olukowe.co/topic/`,config)
         dispatch({type:VIEW_EBOOK_SUCCESS,payload:data.data})
-        console.log({data})
+        //console.log({data})
         
     } catch (error) {
         dispatch({

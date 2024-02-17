@@ -12,7 +12,7 @@ export const addLinkedin= (product_name,product_description,keywords) => async(d
         };
         const {data} = await axios.post(`https://api.olukowe.co/short-linkedin-posts/`,{product_name,product_description,keywords},config)
         dispatch({type:ADD_LINKEDIN_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_LINKEDIN_FAILED,

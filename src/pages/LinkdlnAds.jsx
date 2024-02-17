@@ -55,7 +55,7 @@ const LindlnAds = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(productName)
+    //console.log(productName)
     dispatch(linkdlnAdsAction(productName,productDesc,keywords))
 
   }
@@ -77,7 +77,7 @@ const LindlnAds = () => {
 
   // handle audio option
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
     //
   };
@@ -88,7 +88,7 @@ const LindlnAds = () => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);

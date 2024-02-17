@@ -19,9 +19,9 @@ const SpeechTest = () => {
     ebooks && ebooks.forEach(function(ebook){
         if(Array.isArray(ebook)){
             ebook.forEach(function(book){
-                console.log(book)
+                //console.log(book)
                 data.push(book)
-               // console.log(data)
+               // //console.log(data)
             })
         }
      }) 

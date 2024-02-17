@@ -37,7 +37,7 @@ const SignIn = () => {
        error ? toast.error(error) : 'redirecting'
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   }, [success,error]);
 
@@ -47,7 +47,7 @@ const SignIn = () => {
 
   const handleGoogleAuthSuccess = (response) => {
     // Handle successful Google authentication here
-    console.log('Google Auth Success:', response);
+    //console.log('Google Auth Success:', response);
   };
 
   const handleGoogleAuthFailure = (error) => {

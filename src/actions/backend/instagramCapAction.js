@@ -21,7 +21,7 @@ export const addInstagramCapAction = (instagram_caption,project_id) => async(dis
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/instagramCaption`, {instagram_caption,project_id},config)
         const data = response.data
         dispatch({type:ADD_INSTAGRAMCAP_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_INSTAGRAMCAP_FAILED,
@@ -53,7 +53,7 @@ export const getInstagramAction = () => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/instagramCaption`,config)
         const data = response.data
         dispatch({type:GET_INSTAGRAMCAP_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_INSTAGRAMCAP_FAILED,
@@ -85,7 +85,7 @@ export const getOneInstagramAction = (id) => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/instagramCaption/${id}`,config)
         const data = response.data
         dispatch({type:GETONE_INSTAGRAMCAP_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_INSTAGRAMCAP_FAILED,
@@ -117,7 +117,7 @@ export const deleteInstagramAction = (id) => async(dispatch,getState) => {
         const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/instagramCaption/${id}`,config)
         const data = response.data
         dispatch({type:DELETE_INSTAGRAMCAP_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_INSTAGRAMCAP_FAILED,

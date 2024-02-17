@@ -21,7 +21,7 @@ export const addLanguageAction = (generated_translation,project_id,language,text
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/translationGenerator`, {generated_translation,project_id,language,text},config)
         const data = response.data
         dispatch({type:ADD_LANGUAGE_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_LANGUAGE_FAILED,
@@ -53,7 +53,7 @@ export const getLanguageAction = () => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/translationGenerator`,config)
         const data = response.data
         dispatch({type:GET_LANGUAGE_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_LANGUAGE_FAILED,
@@ -85,7 +85,7 @@ export const getOneLanguageAction = (id) => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/translationGenerator/${id}`,config)
         const data = response.data
         dispatch({type:GETONE_LANGUAGE_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_LANGUAGE_FAILED,
@@ -117,7 +117,7 @@ export const deleteLanguageAction = (id) => async(dispatch,getState) => {
         const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/translationGenerator/${id}`,config)
         const data = response.data
         dispatch({type:DELETE_LANGUAGE_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_LANGUAGE_FAILED,

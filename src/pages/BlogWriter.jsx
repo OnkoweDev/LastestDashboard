@@ -81,7 +81,7 @@ const LinkedInShort = () => {
   //     if (response.status === 200) {
   //       const formattedText = response.data.choices[0].text.trim();
   //       // Use the formatted text in your UI or processing
-  //       console.log('Formatted Text:', formattedText);
+  //       //console.log('Formatted Text:', formattedText);
   //       // Apply the formatted text to your UI, update state, etc.
   //       // Example: setFormattedText(formattedText);
   //     } else {
@@ -96,7 +96,7 @@ const LinkedInShort = () => {
 
   const handleArticle = async(e) => {
     e.preventDefault()
-    console.log("loading data")
+    //console.log("loading data")
     //await formatContentWithGPT3();
     dispatch(addArticleWriter(title,intro,sections))
   }
@@ -126,26 +126,26 @@ useEffect(() => {
       if(isListening){
           mic.start()
           mic.onend = () => {
-              console.log('continue ...')
+              //console.log('continue ...')
               mic.start()
           }
       }
       else{
           mic.stop()
           mic.onend = () => {
-              console.log('stoped')
+              //console.log('stoped')
           }
       }
       mic.onstart = () => {
-          console.log('Mics is on')
+          //console.log('Mics is on')
       }
 
       mic.onresult = event => {
           const transcript = Array.from(event.results).map(result => result[0]).map(result=> result.transcript).join('')
-          console.log(transcript)
+          //console.log(transcript)
           setNote(transcript)
           mic.onerror = event => {
-              console.log(event.error)
+              //console.log(event.error)
           }
       }
   }
@@ -154,7 +154,7 @@ useEffect(() => {
     //e.preventDefault()
     const specificDiv = document.getElementById(`div-${index}`);
     const specificData = specificDiv.innerText;
-    //console.log(specificData)
+    ////console.log(specificData)
     dispatch(blogWriterAddAction(specificData))
 
     if(blogSuccess){
@@ -171,7 +171,7 @@ useEffect(() => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);

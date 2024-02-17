@@ -48,7 +48,7 @@ const LinkedIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('loading data')
+    //console.log('loading data')
     dispatch(addLinkedin(productName,productDescription,keyword))
   }
   const handleForm = (index, subIndex,e) => {
@@ -66,7 +66,7 @@ const LinkedIn = () => {
   }
 
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
 
@@ -82,7 +82,7 @@ const LinkedIn = () => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);

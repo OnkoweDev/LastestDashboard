@@ -18,13 +18,13 @@ const Help = () => {
    try {
     setLoading(true)
     const {data} = await axios.post('https://dev.olukowe.co/api/help/',{email,body})
-    console.log(data)
+    //console.log(data)
     
     setLoading(false)
     toast.success(data.message);
    
    } catch (error) {
-    console.log(error.message)
+    //console.log(error.message)
     setMsg(error.message)
    }
   }

@@ -13,7 +13,7 @@ export const googleTitleAction = (company_name,product_description,keywords) => 
         };
         const {data} = await axios.post(`https://api.olukowe.co/google-ad-title/`,{company_name,product_description,keywords},config)
         dispatch({type:ADD_GOOGLEADSTITLE_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_GOOGLEADSTITLE_FAILED,

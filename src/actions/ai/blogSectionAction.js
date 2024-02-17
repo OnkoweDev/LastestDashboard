@@ -11,7 +11,7 @@ export const blogSectionAction = (topic,intro,no_of_outputs) => async(dispatch) 
         };
         const {data} = await axios.post(`https://api.olukowe.co/section/`,{topic,intro,no_of_outputs},config)
         dispatch({type:ADD_BLOGSECTION_SUCCESS, payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_BLOGSECTION_FAILED,

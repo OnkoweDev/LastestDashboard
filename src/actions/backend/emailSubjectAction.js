@@ -22,7 +22,7 @@ export const addSubjectAction = (email_subject,project_id) => async(dispatch,get
         const response = await axios.post(`https://dev.olukowe.co/api/account/${accountId}/emailSubject`, {email_subject,project_id},config)
         const data = response.data
         dispatch({type:ADD_EMAILSUBJECT_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_EMAILSUBJECT_FAILED,
@@ -55,7 +55,7 @@ export const getSubjectAction = () => async(dispatch,getState) => {
         const data = response.data
 
         dispatch({type:GET_EMAILSUBJECT_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_EMAILSUBJECT_FAILED,
@@ -88,7 +88,7 @@ export const deleteSubjectAction = (id) => async(dispatch,getState) => {
         const response = await axios.delete(`https://dev.olukowe.co/api/account/${accountId}/emailSubject/${id}`,config)
         const data = response.data
         dispatch({type:DELETE_EMAILSUBJECT_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_EMAILSUBJECT_FAILED,
@@ -122,7 +122,7 @@ export const getOneSubjectAction = (id) => async(dispatch,getState) => {
         const data = response.data
         
         dispatch({type:GETONE_EMAILSUBJECT_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_EMAILSUBJECT_FAILED,

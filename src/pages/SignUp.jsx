@@ -15,6 +15,8 @@ const SignUp = () => {
   const [full_name, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showSuccessMessage, setShowSuccessMessage] = useState("");
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,12 +26,15 @@ const SignUp = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     dispatch(register(full_name, email, password));
-    console.log(full_name);
+    //console.log(full_name);
   };
 
   useEffect(() => {
     if (success) {
-      navigate("/");
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+      },30000)
     }
   }, [success]);
 
@@ -41,7 +46,13 @@ const SignUp = () => {
     <>
       <Toaster />
       <section className="grid md:grid-cols-2  w-screen h-screen overflow-hidden">
+       
         <section className="form-section w-full h-full flex items-center justify-center flex-col">
+        {showSuccessMessage && (
+          <div className="text-green-500 text-center mt-4">
+            User registered successfully! Please check your email to verify your account 
+          </div>
+        )}
         <section className=" p-5 fixed left-0 top-0">
             <img
             src={logo} // Replace with the actual path to your logo image

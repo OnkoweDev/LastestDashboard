@@ -12,7 +12,7 @@ export const addTwitter= (topic,keywords) => async(dispatch) => {
         };
         const {data} = await axios.post(`https://api.olukowe.co/tweets/`,{topic,keywords},config)
         dispatch({type:ADD_TWITTER_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_TWITTER_FAILED,

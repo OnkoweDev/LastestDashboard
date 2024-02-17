@@ -42,7 +42,7 @@ const Test = () => {
 
   const handSubmit = (e) => {
     e.preventDefault()
-    console.log(content)
+    //console.log(content)
     dispatch(articleAddAction(content))
   }
 
@@ -57,26 +57,26 @@ const Test = () => {
       if(isListening){
           mic.start()
           mic.onend = () => {
-              console.log('continue ...')
+              //console.log('continue ...')
               mic.start()
           }
       }
       else{
           mic.stop()
           mic.onend = () => {
-              console.log('stoped')
+              //console.log('stoped')
           }
       }
       mic.onstart = () => {
-          console.log('Mics is on')
+          //console.log('Mics is on')
       }
 
       mic.onresult = event => {
           const transcript = Array.from(event.results).map(result => result[0]).map(result=> result.transcript).join('')
-          console.log(transcript)
+          //console.log(transcript)
           setNote(transcript)
           mic.onerror = event => {
-              console.log(event.error)
+              //console.log(event.error)
           }
       }
   }
@@ -85,7 +85,7 @@ const Test = () => {
   // state to keep track of number of output
   // handle audio option
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
   };
   return (

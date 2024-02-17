@@ -13,7 +13,7 @@ export const landingPageAction = (product_name,product_description) =>  async(di
         const {data} = await axios.post(`https://api.olukowe.co/landing-page-headline/
         `,{product_name,product_description},config)
         dispatch({type:ADD_LANDINGPAGE_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_LANDINGPAGE_FAILED,

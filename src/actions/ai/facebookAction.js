@@ -13,7 +13,7 @@ export const facebookAction = (product_name,product_description,occasion,promoti
         };
         const {data} = await axios.post(`https://api.olukowe.co/facebook-ad/`,{product_name,product_description,occasion,promotion},config)
         dispatch({type:ADD_FACEBOOK_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_FACEBOOK_FAILED,

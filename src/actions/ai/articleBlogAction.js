@@ -13,7 +13,7 @@ export const addArticleBlog = (article,no_of_outputs) => async(dispatch) => {
         const response = await axios.post(`https://api.olukowe.co/conclusions/`,{article,no_of_outputs},config)
         const data = response.data
         dispatch({type:ADD_ARTICLEBLOG_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_ARTICLEBLOG_FAILED,

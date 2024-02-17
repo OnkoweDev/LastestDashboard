@@ -23,7 +23,7 @@ export const addConclusionAction = (conclusion,project_id) => async(dispatch,get
         const data = response.data
 
         dispatch({type:ADD_CONCLUSION_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_CONCLUSION_FAILED,
@@ -55,7 +55,7 @@ export const getConclusionAction = () => async(dispatch,getState) => {
         const response = await axios.get(`https://dev.olukowe.co/api/account/${accountId}/articleConclusion`,config)
         const data = response.data
         dispatch({type:GET_CONCLUSION_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_CONCLUSION_FAILED,
@@ -90,7 +90,7 @@ export const getOneConclusionAction = (id) => async(dispatch,getState) => {
         const data = response.data
 
         dispatch({type:GETONE_CONCLUSION_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_CONCLUSION_FAILED,
@@ -124,7 +124,7 @@ export const deleteConclusionAction = (id) => async(dispatch,getState) => {
         const data = response.data
         
         dispatch({type:DELETE_CONCLUSION_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_CONCLUSION_FAILED,

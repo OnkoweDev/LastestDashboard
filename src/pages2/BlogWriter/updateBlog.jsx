@@ -54,7 +54,7 @@ const UpdateBlog = () => {
     e.preventDefault()
     const divData = myDiv.current.innerText;
       setArticle(divData)
-      console.log(divData) 
+      //console.log(divData) 
       dispatch(updateBlogAction(divData))
      
       

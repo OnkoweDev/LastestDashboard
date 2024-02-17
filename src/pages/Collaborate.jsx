@@ -57,9 +57,9 @@ const Collaborate = () => {
           </div>
         </aside>`;
 
-        console.log(person.name);
+        //console.log(person.name);
       } else if (inputValue === "") {
-        console.log("input field is empty");
+        //console.log("input field is empty");
         document.querySelector(".display__ul").textContent = "";
       }
 

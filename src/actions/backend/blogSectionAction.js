@@ -24,7 +24,7 @@ export const addSectionAction = (section,project_id) => async(dispatch,getState)
         const data = response.data
 
         dispatch({type:ADD_BLOGSECTION_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: ADD_BLOGSECTION_FAILED,
@@ -58,7 +58,7 @@ export const getSectionAction = () => async(dispatch,getState) => {
 
         const data = response.data
         dispatch({type:GET_BLOGSECTION_SUCCESS,payload:data.data})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GET_BLOGSECTION_FAILED,
@@ -91,7 +91,7 @@ export const getOneSectionAction = (id) => async(dispatch,getState) => {
 
         const data = response.data
         dispatch({type:GETONE_BLOGSECTION_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: GETONE_BLOGSECTION_FAILED,
@@ -125,7 +125,7 @@ export const deleteSectionAction = (id) => async(dispatch,getState) => {
 
         const data = response.data
         dispatch({type:DELETE_BLOGSECTION_SUCCESS,payload:[data.data]})
-        console.log(data.data)
+        //console.log(data.data)
     } catch (error) {
         dispatch({
             type: DELETE_BLOGSECTION_FAILED,

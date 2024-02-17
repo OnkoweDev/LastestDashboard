@@ -13,8 +13,8 @@ export const ebookAction = (title,description) => async(dispatch) => {
         };
         const {data} = await axios.post(`https://api.olukowe.co/ebook/`, {title,description},config)
         dispatch({type:ADD_EBOOK_SUCCESS,payload:data.data})
-        console.log(data)
-        //console.log(error)
+        //console.log(data)
+        ////console.log(error)
     } catch (error) {
         dispatch({
             type: ADD_EBOOK_FAILED,

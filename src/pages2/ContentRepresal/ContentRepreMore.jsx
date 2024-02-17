@@ -18,7 +18,7 @@ const ContentRepreMore = () => {
 
   const {id} = useParams();
   //const data = [wroter]
-  //console.log(data)
+  ////console.log(data)
 
   useEffect(() => {
     dispatch(getOneContentRepreAction(id))

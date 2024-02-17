@@ -18,12 +18,12 @@ const ArticleRewriterMore = () => {
 
   const {id} = useParams();
   const data = [wroter]
-  console.log(data)
+  //console.log(data)
 
   useEffect(() => {
     dispatch(getOneArticleAction(id))
     const data = [wroter]
-    console.log(data)
+    //console.log(data)
   }, [])
   
  

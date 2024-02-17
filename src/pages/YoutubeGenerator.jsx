@@ -51,7 +51,7 @@ const YoutubeGenerator = () => {
 
 const handleSubmit = (e) => {
   e.preventDefault()
-  //console.log(tone,hook)
+  ////console.log(tone,hook)
   dispatch(youtubeDescAction(title,keywords))
 }
 
@@ -59,7 +59,7 @@ const handleForm = (index, subIndex) => {
   // e.preventDefault()
    const specificDiv = document.getElementById(`div-${index}-${subIndex}`);
    const specificData = specificDiv.innerText;
-   console.log(specificData)
+   //console.log(specificData)
     dispatch(addYoutubeDescAction(specificData))
 
       toast.success("YouTube Intro successfuly");
@@ -71,7 +71,7 @@ const handleForm = (index, subIndex) => {
 
   // handle audio option
   const handleAudio = () => {
-    console.log("Mic is clicked");
+    //console.log("Mic is clicked");
     setIsAudio(true);
     //
   };
@@ -82,7 +82,7 @@ const handleForm = (index, subIndex) => {
   };
 //copy Effect
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);

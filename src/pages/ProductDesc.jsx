@@ -56,7 +56,7 @@ const ProductDesc = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(name)
+    //console.log(name)
     dispatch(addProductAction(name,feature))
 
   }
@@ -79,7 +79,7 @@ const ProductDesc = () => {
   };
 
   const handleCopy = (id) => {
-    console.log('copying blog article');
+    //console.log('copying blog article');
     const divData = document.getElementById(`div-${id}`);
     if (divData) {
       navigator.clipboard.writeText(divData.innerText);
