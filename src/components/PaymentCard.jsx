@@ -36,9 +36,9 @@ const PaymentCard = () => {
             <div className='w-full border border-gray-200 shadow-xl flex flex-col p-4 my-4 rounded-xl hover:scale-105 duration-300'>              
                 <h2 className='text-1xl font-bold text-center py-8 border-b'>STARTER PLAN (${starterPlanPrice})</h2>
                 <div className='text-center text-1xl font-bold pt-3 border-b p-2'>
-                    <p>100k Words</p> 
-                    <p>20 Image Generation</p>
-                    <p>3hrs Audio Transcription</p>
+                        <p>{isAnnualSubscription ? '1.2m Words' : '100k Words'}</p>
+                        <p>{isAnnualSubscription ? '240 Image Generation' : '20 Image Generation'}</p>
+                        <p>{isAnnualSubscription ? '36hrs Audio Transcription' : '3hrs Audio Transcription'}</p>
                 </div>
                 <div className='text-center font-medium'>
                     <p className='py-2 border-b mx-8 mt-3 font-bold'>Social Media</p>
@@ -98,9 +98,9 @@ const PaymentCard = () => {
             <h2 className='text-1xl font-bold text-center py-8 border-b'>ELITE PLAN (${elitePlanPrice})</h2>
             <div className='text-center text-1xl font-bold pt-3 border-b p-2'>
            
-                <p>150k Words</p> 
-                <p>27 Image Generation</p>
-                <p>5hrs Audio Transcription</p>
+                        <p>{isAnnualSubscription ? '1.8m Words' : '150k Words'}</p>
+                        <p>{isAnnualSubscription ? '324 Image Generation' : '27 Image Generation'}</p>
+                        <p>{isAnnualSubscription ? '60hrs Audio Transcription' : '5hrs Audio Transcription'}</p>
             </div>
             <div className='text-center font-medium'>
                 <p className='py-2 border-b mx-8 mt-3 font-bold'>Social Media</p>
@@ -159,9 +159,9 @@ const PaymentCard = () => {
         <div className='w-full border border-gray-200 shadow-xl flex flex-col p-4 my-4 rounded-xl hover:scale-105 duration-300'>
                 <h2 className='text-1xl font-bold text-center py-8 border-b'>PROFESSIONAL PLAN (${professionalPlanPrice})</h2>
                 <div className='text-center text-1xl font-bold pt-3 border-b p-2'>
-                    <p>250k Words</p> 
-                    <p>40 Image Generation</p>
-                    <p>10hrs Audio Transcription</p>
+                    <p>{isAnnualSubscription ? '3m Words' : '250k Words'}</p>
+                        <p>{isAnnualSubscription ? '480 Image Generation' : '40 Image Generation'}</p>
+                        <p>{isAnnualSubscription ? '120hrs Audio Transcription' : '10hrs Audio Transcription'}</p>
                 </div>
                 <div className='text-center font-medium'>
                     <p className='py-2 border-b mx-8 mt-3 font-bold'>Social Media</p>
