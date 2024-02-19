@@ -19,10 +19,10 @@ const EmailVerification = () => {
 
         if (response.data.status == true) {
           // Redirect the user to a success page or login page
-          window.location.href = "http://localhost:5173/"; // Redirect to a success page
+          window.location.href = "https://dashboard.olukowe.co"; // Redirect to a success page
         } else {
           // Handle verification failure (show an error message, etc.)
-          window.location.href = "http://localhost:5173/sign-up"; // Redirect to a failure page
+          window.location.href = "https://dashboard.olukowe.co/sign-up"; // Redirect to a failure page
         }
       } catch (error) {
         // Handle any errors during the verification process
