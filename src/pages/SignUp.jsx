@@ -83,6 +83,7 @@ const SignUp = () => {
                 type="text"
                 onChange={(e) => setFullname(e.target.value)}
                 value={full_name}
+                required
               />
             </section>
 
@@ -97,6 +98,7 @@ const SignUp = () => {
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
+                required
               />
             </section>
 
@@ -111,6 +113,7 @@ const SignUp = () => {
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
+                required
               />
             </section>
 

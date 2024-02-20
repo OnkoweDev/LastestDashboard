@@ -92,6 +92,7 @@ const SignIn = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 type="email"
+                required
               />
             </section>
                 <Link to="/forgetpassword">
@@ -108,6 +109,7 @@ const SignIn = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
                 type="password"
+                required
               />
             </section>
 
