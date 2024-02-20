@@ -49,7 +49,7 @@ const SignUp = () => {
        
         <section className="form-section w-full h-full flex items-center justify-center flex-col">
         {showSuccessMessage && (
-          <div className="text-green-500 text-center mt-4">
+          <div className="text-blue-100 text-center mt-7 m-7 border-blue-400 border rounded-lg p-4">
             User registered successfully! Please check your email to verify your account 
           </div>
         )}
