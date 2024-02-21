@@ -150,6 +150,11 @@ const GoogleAdTitile = () => {
       //navigate('/conclusion')
     }
   }
+  
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  if (!userInfo) {
+    navigate('/')
+  }
 
   
   

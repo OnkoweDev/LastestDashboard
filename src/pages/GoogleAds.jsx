@@ -51,6 +51,13 @@ const GoogleAds = () => {
     dispatch(getProjectAction())
 }, [])
 
+const userInfo = useSelector((state) => state.userLogin.userInfo);
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     //console.log(productDesc)

@@ -25,6 +25,13 @@ const ArticleRewriterMore = () => {
     const data = [wroter]
     //console.log(data)
   }, [])
+
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
   
  
 

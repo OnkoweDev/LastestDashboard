@@ -57,6 +57,13 @@ const ImageGen = () => {
     dispatch(getProjectAction())
 }, [])
 
+const userInfo = useSelector((state) => state.userLogin.userInfo);
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
+
   const handleSubmit =async(e) =>{
     e.preventDefault()
     //console.log("God abeg oo")

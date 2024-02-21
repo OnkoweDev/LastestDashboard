@@ -73,6 +73,14 @@ const ProductName = () => {
       // },5000)
     }
   }
+
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
   
 
   // handle audio option

@@ -207,7 +207,14 @@ const Ebook = () => {
     return updatedContents;
   };
 
-  
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
+
 
   const copyToClipboard = () => {
     const contentElement = document.getElementById('ebook-content');

@@ -20,7 +20,12 @@ const ConclusionMore = () => {
     dispatch(getOneConclusionAction(id))
   }, [])
   
- 
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
 
   return (
     <>

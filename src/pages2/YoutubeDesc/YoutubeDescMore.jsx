@@ -19,7 +19,12 @@ const YoutubeDescMore = () => {
     dispatch(getOneYoutubeDescAction(id));
   }, [id, dispatch]);
   
- 
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
 
   return (
     <>

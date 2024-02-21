@@ -108,6 +108,15 @@ const EmailGenerator = () => {
     });
   };
 
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
+
+
   useEffect(() => {
     if (gene) {
       // Assuming writers is an array of strings containing your content

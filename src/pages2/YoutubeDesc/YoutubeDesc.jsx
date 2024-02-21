@@ -35,7 +35,12 @@ const AllYoutubeDesc = () => {
     }
 }
 
-
+const userInfo = useSelector((state) => state.userLogin.userInfo);
+useEffect(()=>{
+  if (!userInfo) {
+    navigate('/')
+  }
+},[])
 
   return (
     <>

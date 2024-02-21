@@ -71,6 +71,14 @@ const ProductDesc = () => {
     
   }
 
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
+
  
 
    //Typewriter Effect

@@ -251,7 +251,10 @@ const handleForm = (index) => {
 };
 
 
-
+const userInfo = useSelector((state) => state.userLogin.userInfo);
+  if (!userInfo) {
+    navigate('/')
+  }
 
 
 

@@ -78,6 +78,14 @@ const BlogTopic = () => {
     dispatch(getProjectAction())
   }, [])
 
+const userInfo = useSelector((state) => state.userLogin.userInfo);
+
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
+
 
   useEffect(() => {
    

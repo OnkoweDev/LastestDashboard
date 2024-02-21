@@ -65,13 +65,15 @@ const TTR = () => {
   const saveBlogIntro = useSelector((state)=>state.saveBlogIntro)
   const {loading:saveIntroLoading, error:saveIntroError,success:introSuccess} = saveBlogIntro
 
-  const userLogin = useSelector((state)=>state.userLogin)
-  const {userInfo} = userLogin
+ 
 
   const getProject = useSelector((state)=>state.getProject)
   const {loading:projectLoading,error:projectError, project} = getProject
 
- 
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  if (!userInfo) {
+    navigate('/')
+  }
 
   const handleForm = (index, subIndex,e) => {
     e.preventDefault()
@@ -148,6 +150,7 @@ useEffect(() => {
   
   }
 
+  
 
   //Typewriter Effect
   const TypeWriterEffect = ({ text }) => {

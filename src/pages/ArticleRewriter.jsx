@@ -170,6 +170,12 @@ const handleForm = (index) => {
       setFormattedContent(joinedContent);
     }
   }, [rewriters]);
+
+//auth
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  if (!userInfo) {
+    navigate('/')
+  }
   return (
     <>
       <main>

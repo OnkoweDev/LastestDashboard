@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Loader from '../components/Loader'
+import Loader from '../components/Loader';
 
 const EmailVerification = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     // Extract the verification token from the URL parameters
@@ -15,19 +17,26 @@ const EmailVerification = () => {
     const verifyUser = async () => {
       try {
         const response = await axios.post("https://dev.olukowe.co/api/auth/verification", { token: verificationToken });
-        //console.log(response)
 
-        if (response.data.status == true) {
-          // Redirect the user to a success page or login page
-          window.location.href = "https://dashboard.olukowe.co/"; // Redirect to a success page
+        if (response.data.status === true) {
+          // Set success message and navigate to a success page or login page
+          setMessage("Verification successful. Redirecting you to the login page");
+          setTimeout(() => {
+            navigate("/"); // Navigate to a login page or desired route
+          }, 5000); // Navigate after 2 seconds (adjust as needed)
         } else {
-          // Handle verification failure (show an error message, etc.)
-          window.location.href = "https://dashboard.olukowe.co/sign-up"; // Redirect to a failure page
+          // Set failure message and navigate to a failure page
+          setMessage("Verification failed. Redirecting...");
+          setTimeout(() => {
+            navigate("/sign-up"); // Navigate to a failure page or desired route
+          }, 2000); // Navigate after 2 seconds (adjust as needed)
         }
       } catch (error) {
         // Handle any errors during the verification process
+        setMessage("Verification failed. Please try again.");
         console.error(error);
-       // window.location.href = "/verification-error"; // Redirect to an error page
+        // Navigate to an error page if needed
+        // navigate("/verification-error");
       }
     };
 
@@ -35,12 +44,15 @@ const EmailVerification = () => {
     if (verificationToken) {
       verifyUser();
     }
-  }, [location.search]);
+  }, [location.search, navigate]);
 
   return (
     <div>
-      {/* You can render a loading spinner or a message while verifying */}
-        <Loader />
+      
+      <div className="text-blue-100 text-center mt-7 m-7 border-blue-400 border rounded-lg p-4">
+      {message && <p>{message}</p>}
+      
+      </div>
     </div>
   );
 };

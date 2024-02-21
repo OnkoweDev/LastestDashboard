@@ -95,6 +95,13 @@ const LanguageTrans = () => {
     }
   }
 
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
+
   const handleForm = (index) => {
     //e.preventDefault()
     const specificDiv = document.getElementById(`div-${index}`);

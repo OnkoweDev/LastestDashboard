@@ -76,6 +76,13 @@ const GoogleTitle = () => {
 
   }
 
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
+
   // handle audio option
   const handleAudio = () => {
     //console.log("Mic is clicked");

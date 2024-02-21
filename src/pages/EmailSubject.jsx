@@ -100,6 +100,14 @@ const EmailSubject = () => {
 
   const [typingStatus, setTypingStatus] = useState([]);
 
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
+
+
   useEffect(() => {
     if (email) {
       setTypingStatus(Array(email.length).fill(true));

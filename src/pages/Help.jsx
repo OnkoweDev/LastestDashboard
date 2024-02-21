@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SideNav, TopNav } from "../components";
 import "./styles/Profile.css";
 import { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../components/Loader";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Help = () => {
  
@@ -28,6 +30,15 @@ const Help = () => {
     setMsg(error.message)
    }
   }
+
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const navigate = useNavigate()
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
+
   return (
     <>
       <main>

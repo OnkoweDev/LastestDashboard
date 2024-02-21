@@ -25,7 +25,7 @@ import conclu from "../assets/icon/27.png";
 
 
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import { Loader2 } from "lucide-react";
@@ -142,7 +142,9 @@ const Home = () => {
   const getYoutubeDesc = useSelector((state)=>state.getYoutubeDesc)
   const {loading:youtubeDescConclusion,youtubesDescs} = getYoutubeDesc
 
+
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
  
 
@@ -178,7 +180,10 @@ const Home = () => {
 
   }, [])
 
- 
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  if (!userInfo) {
+    navigate('/')
+  }
   
 
   

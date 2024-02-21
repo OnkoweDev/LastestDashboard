@@ -19,7 +19,13 @@ const Password = () => {
   const {loading,error, success} = changePassword
 
 
-
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
+  
   const showPassword = () => {
     setShowPassword(!showPassowrd);
   };

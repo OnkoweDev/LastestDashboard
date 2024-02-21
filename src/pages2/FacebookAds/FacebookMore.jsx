@@ -23,7 +23,12 @@ const FacebookMore = () => {
     dispatch(getOneFacebookAdsAction(id))
   }, [])
   
- 
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
 
   return (
     <>

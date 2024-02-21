@@ -20,7 +20,12 @@ const LandingMore = () => {
     dispatch(getOneLangingPageAction(id))
   }, [])
   
- 
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
 
   return (
     <>
