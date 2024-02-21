@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
@@ -18,6 +18,8 @@ const AllBlogSection = () => {
   const dispatch = useDispatch();
   const getBlogSection = useSelector((state) => state.getBlogSection);
   const { loading, error, blogs } = getBlogSection;
+  const navigate = useNavigate()
+
 
   const deleteBlogSection = useSelector((state) => state.deleteBlogSection);
   const {

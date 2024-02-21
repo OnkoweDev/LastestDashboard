@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getOneContentRepreAction } from "../../actions/backend/contentRepreAction";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
@@ -26,6 +26,8 @@ const ContentRepreMore = () => {
   }, [])
 
 const userInfo = useSelector((state) => state.userLogin.userInfo);
+const navigate = useNavigate()
+
 useEffect(()=>{
   if (!userInfo) {
     navigate('/')

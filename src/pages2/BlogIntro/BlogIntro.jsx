@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   deleteIntroAction,
   getBlogintroAction,
@@ -15,6 +15,8 @@ import toast, { Toaster } from "react-hot-toast";
 const ALLBlogIntro = () => {
   // state to hold the data comimg from the database / backend
   const [message, setMessage] = useState("");
+  const navigate = useNavigate()
+
 
   const dispatch = useDispatch();
   const getBlogIntro = useSelector((state) => state.getBlogIntro);

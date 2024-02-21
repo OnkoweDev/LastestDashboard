@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getOneSubjectAction } from "../../actions/backend/emailSubjectAction";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
@@ -23,8 +23,10 @@ const EmailSubjectMore = () => {
     dispatch(getOneSubjectAction(id))
    
   }, [])
-  
+
 const userInfo = useSelector((state) => state.userLogin.userInfo);
+const navigate = useNavigate()
+
 useEffect(()=>{
   if (!userInfo) {
     navigate('/')

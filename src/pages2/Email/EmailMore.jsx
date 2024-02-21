@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getOneEmailGenAction } from "../../actions/backend/emailGeneratorAction";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
@@ -26,6 +26,8 @@ const EmailMore = () => {
   }, [])
   
   const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const navigate = useNavigate()
+
   useEffect(()=>{
     if (!userInfo) {
       navigate('/')

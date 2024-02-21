@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
 import "../styles/Home.css";
@@ -12,6 +12,8 @@ const AudioMore = () => {
   const dispatch = useDispatch()
   const getOneAudio = useSelector((state)=>state.getOneAudio)
   const {loading,error,audio} = getOneAudio
+  const navigate = useNavigate()
+
 
   const {id} = useParams();
  
@@ -27,7 +29,7 @@ const AudioMore = () => {
         navigate('/')
       }
     },[])
-    
+
   return (
     <>
       <main>

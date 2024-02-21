@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getOneIntroAction } from "../../actions/backend/blogIntroAction";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
@@ -11,6 +11,8 @@ const BlogIntroMore = () => {
   // state to hold the data comimg from the database / backend
   //const [data, setData] = useState(HomepageData);
   const [article, setArticle] = useState([])
+  const navigate = useNavigate()
+
 
   const dispatch = useDispatch()
   const getOneBlogIntro = useSelector((state)=>state.getOneBlogIntro)
@@ -29,7 +31,7 @@ const BlogIntroMore = () => {
       navigate('/')
     }
   },[])
-  
+
   return (
     <>
       <main>

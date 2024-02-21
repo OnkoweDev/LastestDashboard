@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { deleteArticleAction, getArticleAction } from "../../actions/backend/articleWritterAction";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
@@ -10,6 +10,8 @@ import toast, { Toaster } from "react-hot-toast";
 const ALLArticleRewritter = () => {
   // state to hold the data comimg from the database / backend
   const [message, setMessage] = useState("");
+  const navigate = useNavigate()
+
 
   const dispatch = useDispatch()
   const getArticleWriter = useSelector((state)=>state.getArticleWriter)

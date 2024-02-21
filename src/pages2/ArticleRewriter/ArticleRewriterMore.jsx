@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getOneArticleAction } from "../../actions/backend/articleWritterAction";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
 import Loader from "../../components/Loader";
@@ -11,6 +11,8 @@ const ArticleRewriterMore = () => {
   // state to hold the data comimg from the database / backend
   //const [data, setData] = useState(HomepageData);
   const [article, setArticle] = useState([])
+  const navigate = useNavigate()
+
 
   const dispatch = useDispatch()
   const getOneArticleWriter = useSelector((state)=>state.getOneArticleWriter)

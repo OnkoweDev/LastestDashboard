@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
@@ -37,6 +37,8 @@ const AllProductDesc = () => {
 }
 
 const userInfo = useSelector((state) => state.userLogin.userInfo);
+const navigate = useNavigate()
+
 useEffect(()=>{
   if (!userInfo) {
     navigate('/')

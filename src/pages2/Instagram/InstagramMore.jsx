@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getOneGoogleTilteAction } from "../../actions/backend/googleTitleAction";
 import { getOneInstagramAction } from "../../actions/backend/instagramCapAction";
 import { SideNav, TopNav, Voice, HomepageData } from "../../components";
@@ -22,6 +22,8 @@ const InstagramMore = () => {
   }, [])
   
   const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const navigate = useNavigate()
+
   useEffect(()=>{
     if (!userInfo) {
       navigate('/')
