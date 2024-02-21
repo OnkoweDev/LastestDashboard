@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SideNav, TopNav } from "../components";
 import Card from "../components/Card";
 import { AiTwotoneMail } from "react-icons/ai";
 import { MdOutlineAttachEmail } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Email = () => {
   const emailPageData = [
@@ -17,6 +19,14 @@ const Email = () => {
       icon: <AiTwotoneMail size={30}/>,
     },
   ];
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
   return (
     <>
       <main>

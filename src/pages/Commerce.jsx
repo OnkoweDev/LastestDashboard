@@ -1,6 +1,9 @@
 import { FaChartPie, FaNutritionix } from "react-icons/fa";
 import { SideNav, TopNav } from "../components";
 import Card from "../components/Card";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Commerce = () => {
   const commerceData = [
@@ -15,6 +18,15 @@ const Commerce = () => {
       icon: <FaNutritionix size={30}/>,
     },
   ];
+
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
   return (
     <>
       <main>

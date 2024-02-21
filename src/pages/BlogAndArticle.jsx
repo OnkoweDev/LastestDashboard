@@ -8,6 +8,9 @@ import {
 } from "react-icons/fa";
 import { SideNav, TopNav } from "../components";
 import Card from "../components/Card";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const BlogAndArticle = () => {
   const blogAndArticleConstants = [
@@ -53,6 +56,15 @@ const BlogAndArticle = () => {
       icon: <FaChartArea size={30}/>,
     },
   ];
+
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
   return (
     <>
       <main>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SideNav, TopNav } from "../components";
 import Card from "../components/Card";
 import {
@@ -11,6 +11,8 @@ import {
 } from "react-icons/ti";
 import { BiHelpCircle } from "react-icons/bi";
 import { SlSocialGoogle } from "react-icons/sl";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const SocialMedia = () => {
   const socialMediaItems = [
@@ -66,6 +68,14 @@ const SocialMedia = () => {
       icon: <TiSocialFacebook size={30} />,
     },
   ];
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
   return (
     <>
       <main>

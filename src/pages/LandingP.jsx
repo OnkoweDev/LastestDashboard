@@ -2,6 +2,9 @@ import { BsFillTabletLandscapeFill } from "react-icons/bs";
 import { SideNav, TopNav } from "../components";
 import { MdOutlineCropLandscape } from "react-icons/md";
 import Card from "../components/Card";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const LandingP = () => {
   const landingPageData = [
@@ -16,6 +19,15 @@ const LandingP = () => {
       icon: <MdOutlineCropLandscape size={30}/>,
     },
   ];
+
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if (!userInfo) {
+      navigate('/')
+    }
+  },[])
   return (
     <>
       <main>
