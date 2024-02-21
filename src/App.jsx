@@ -147,7 +147,7 @@ function App() {
       {/* <SignUp /> */}
       {/* <SignIn /> */}
       <Routes>
-        <Route path="/dashboard" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/verification" element={<EmailVerification />} />

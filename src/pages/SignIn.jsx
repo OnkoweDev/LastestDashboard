@@ -30,7 +30,7 @@ const SignIn = () => {
   useEffect(() => {
     try {
       if (userInfo) {
-        navigate("/dashboard");
+        navigate("/home");
         
       }
       else {
