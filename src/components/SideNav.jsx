@@ -32,7 +32,7 @@ const SideNav = () => {
     {
       name: "Home",
       icon: <BiHomeAlt size={20}/>,
-      path: "/dashboard",
+      path: "/home",
     },
 
     {
