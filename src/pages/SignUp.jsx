@@ -9,6 +9,7 @@ import { register } from "../actions/userAction";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 
 
 const SignUp = () => {
@@ -55,7 +56,7 @@ const SignUp = () => {
       setShowSuccessMessage(true);
       setTimeout(() => {
         setShowSuccessMessage(false);
-        
+
         setFullname("");
         setEmail("");
         setPassword("");
@@ -143,7 +144,7 @@ const SignUp = () => {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute inset-y-0 right-0 px-2 py-1"
               >
-                {showPassword ? "Hide" : "Show"}
+              {showPassword ? <IoEyeOff /> : <IoEye />}
               </button>
             </div>
           </section>
@@ -167,7 +168,7 @@ const SignUp = () => {
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className="absolute inset-y-0 right-0 px-2 py-1"
               >
-                {showConfirmPassword ? "Hide" : "Show"}
+                {showPassword ? <IoEyeOff /> : <IoEye />}
               </button>
             </div>
         </section>
