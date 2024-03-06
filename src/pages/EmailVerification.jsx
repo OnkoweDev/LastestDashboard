@@ -13,7 +13,7 @@ const EmailVerification = () => {
     const searchParams = new URLSearchParams(location.search);
     const verificationToken = searchParams.get("token");
 
-    // Make an API request to your backend to verify the user
+    // Make an API request to  backend to verify the user
     const verifyUser = async () => {
       try {
         const response = await axios.post("https://dev.olukowe.co/api/auth/verification", { token: verificationToken });

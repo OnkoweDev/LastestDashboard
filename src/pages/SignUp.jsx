@@ -16,7 +16,9 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showSuccessMessage, setShowSuccessMessage] = useState("");
-
+  const [confirmPassword, setConfirmPassword] = useState(""); 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,6 +27,11 @@ const SignUp = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
     dispatch(register(full_name, email, password));
     //console.log(full_name);
   };
@@ -41,6 +48,22 @@ const SignUp = () => {
   useEffect(() => {
     error && toast.error(error);
   }, [error]);
+
+
+  useEffect(() => {
+    if (success) {
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+        
+        setFullname("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+      }, 30000);
+    }
+  }, [success]);
+
 
   return (
     <>
@@ -101,21 +124,53 @@ const SignUp = () => {
                 required
               />
             </section>
-
             <section className="my-3">
-              <label htmlFor="password" className="capitalize my-2">
-                password
-              </label>
+            <label htmlFor="password" className="capitalize my-2">
+              password
+            </label>
+            <div className="relative">
               <input
                 className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300"
                 placeholder="Enter your password"
                 name="password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
                 required
               />
-            </section>
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 px-2 py-1"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
+          </section>
+
+          <section className="my-3">
+            <label htmlFor="confirmPassword" className="capitalize my-2">
+              confirm password
+            </label>
+            <div className="relative">
+              <input
+                className="p-4 w-full border-[1px] border-black rounded-[8px] focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-300"
+                placeholder="Confirm your password"
+                name="confirmPassword"
+                type={showConfirmPassword ? "text" : "password"}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                value={confirmPassword}
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute inset-y-0 right-0 px-2 py-1"
+              >
+                {showConfirmPassword ? "Hide" : "Show"}
+              </button>
+            </div>
+        </section>
 
             <section>
               <input required type="checkbox" name="termsAndCondition" />
