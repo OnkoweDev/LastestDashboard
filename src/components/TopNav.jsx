@@ -129,20 +129,14 @@ const TopNav = () => {
 
                 <div className="top-profile">
                   <div className="top-img">
-                     <img src={profile} alt="" style={{marginLeft:"70px" }} />
+                     <img src={profile} alt="" style={{marginLeft:"97px" }} />
                   </div>
                 
                     <div className="item-name" style={{marginRight:'5px'}}>
-                      {loading && <Loader style={{width:'40px',height:'40px'}} />}
-                      {profiles?.profile && profiles?.profile.map((pro)=>(
-                      <>
-                        {/*<h3>{pro.first_name}</h3>
-                      <h4>{pro.last_name}</h4>*/}
-                        <p style={{marginLeft:"55px" }}>{`${pro.first_name} ${pro.last_name}`}</p>
-                       {/*<small>{pro.phone_number} </small>*/}
-                      </>
-                      ))}
-                      <small style={{marginLeft:"55px" }}>{userInfo?.email}</small>
+                    <p  style={{marginLeft:'93px', padding:'5px'}}>{userInfo?.full_name}</p>
+                      
+                      <p>{userInfo?.username}</p>
+                      <small style={{marginLeft:"84px" }}>{userInfo?.email}</small>
                     </div>
                   </div>
                 </aside>
